@@ -1,0 +1,13 @@
+{
+   "name": "PayStructure",
+   "namespace": "sap.sf.foundationobjects",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.foundationobjects:dataSource:Paygrade:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Payrange:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Payscalearea:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Payscalegroup:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Payscalelevel:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Payscaletype:v1.0.0"
+   ]
+}

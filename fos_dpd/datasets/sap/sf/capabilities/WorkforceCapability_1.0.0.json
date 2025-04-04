@@ -1,0 +1,11 @@
+{
+   "name": "WorkforceCapability",
+   "namespace": "sap.sf.capabilities",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.capabilities:dataSource:Library:v1.0.0",
+      "sap.sf.capabilities:dataSource:Librarytype:v1.0.0",
+      "sap.sf.capabilities:dataSource:Proficiencyset:v1.0.0",
+      "sap.sf.capabilities:dataSource:Tag:v1.0.0"
+   ]
+}

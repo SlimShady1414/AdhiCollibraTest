@@ -1,0 +1,1971 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/foundationobjects/enterprisestructure/v1/metadata/legalEntity",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "legalEntity",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.foundationobjects",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "legalEntity" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Legal Entity",
+      "@ODM.entityName" : "CompanyCode",
+      "@ODM.oid" : "entityOID",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntityId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntityId"
+        },
+        "entityOID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityOID",
+          "length" : 128
+        },
+        "externalCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalCode",
+          "length" : 32
+        },
+        "timeslices" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "timeslices", "legalEntity_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "legalEntity_legalEntityTimeSlice" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_legalEntityTimeSlice",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "legalEntity_legalEntityTimeSlice",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_legalEntityTimeSliceRecordId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "validFrom",
+        "temporalIntervalEndProperty" : "validTo"
+      } ],
+      "elements" : {
+        "legalEntity_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_legalEntityTimeSliceId"
+        },
+        "_legalEntity" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity", "id" ]
+          }, "=", {
+            "ref" : [ "legalEntity_id_virtual" ]
+          } ]
+        },
+        "validFrom" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validFrom"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "name"
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "description"
+        },
+        "effectiveStatus" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "effectiveStatus"
+        },
+        "defaultPayGroup" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PayGroup",
+            "referencedPropertyType" : "sap.sf.extensibility:PayGroupId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultPayGroup",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "defaultLocation" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:location",
+            "referencedPropertyType" : "sap.sf.foundationobjects:locationId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultLocation",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "standardWeeklyHours" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "standardWeeklyHours",
+          "precision" : 272,
+          "scale" : 17
+        },
+        "currency" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:currency",
+            "referencedPropertyType" : "sap.sf.foundationobjects:currencyId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "currency",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "officialLanguage" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "officialLanguage",
+          "length" : 255
+        },
+        "countryOfRegistration" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:country",
+            "referencedPropertyType" : "sap.sf.foundationobjects:countryId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "countryOfRegistration",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "autoCreated" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "autoCreated"
+        },
+        "validTo" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validTo"
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_legalEntityTimeSliceRecordId"
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        },
+        "toLegalEntityUSA" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_LegalEntityUSA",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toLegalEntityUSA", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toLegalEntityDEU" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_LegalEntityDEU",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toLegalEntityDEU", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toLegalEntityESP" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_LegalEntityESP",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toLegalEntityESP", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toLegalEntityFRA" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_LegalEntityFRA",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toLegalEntityFRA", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toLegalEntityARG" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_LegalEntityARG",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toLegalEntityARG", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toLegalEntityRUS" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_LegalEntityRUS",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toLegalEntityRUS", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toLegalEntitySAU" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_LegalEntitySAU",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toLegalEntitySAU", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toLegalEntityBLR" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_LegalEntityBLR",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toLegalEntityBLR", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toLegalEntityTHA" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_LegalEntityTHA",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toLegalEntityTHA", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "cust_toNameFormatGO" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:NameFormatGO",
+            "referencedPropertyType" : "sap.sf.extensibility:NameFormatGOId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "toNameFormat" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:NameFormatGO",
+            "referencedPropertyType" : "sap.sf.extensibility:NameFormatGOId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "toLegalEntityTUN" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_LegalEntityTUN",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toLegalEntityTUN", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toDisplayNameFormat" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:NameFormatGO",
+            "referencedPropertyType" : "sap.sf.extensibility:NameFormatGOId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "toLegalEntitySGP" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_LegalEntitySGP",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toLegalEntitySGP", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toLegalEntityPRY" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_LegalEntityPRY",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toLegalEntityPRY", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toLegalEntityBOL" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_LegalEntityBOL",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toLegalEntityBOL", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toLegalEntitySVN" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_LegalEntitySVN",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toLegalEntitySVN", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toLegalEntityCAN" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_LegalEntityCAN",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toLegalEntityCAN", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "legalEntity_legalEntityText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        }
+      }
+    },
+    "legalEntity_LegalEntityUSA" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Legal Entity USA",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_LegalEntityUSA",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_LegalEntityUSA",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_LegalEntityUSARecordId" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityUSARecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "legalEntityType" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:LegalEntityTypePickList",
+            "referencedPropertyType" : "sap.sf.extensibility:LegalEntityTypePickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "legalEntityType",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "federalReserveBankID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "federalReserveBankID",
+          "length" : 45
+        },
+        "fedReserveBankDistrict" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "fedReserveBankDistrict",
+          "length" : 45
+        },
+        "employerID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "employerID",
+          "length" : 45
+        },
+        "eeoCompanyCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "eeoCompanyCode",
+          "length" : 45
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityUSARecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "legalEntity_LegalEntityDEU" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Legal Entity Germany",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_LegalEntityDEU",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_LegalEntityDEU",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_LegalEntityDEURecordId" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityDEURecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "taxUnit" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "taxUnit",
+          "length" : 45
+        },
+        "socialAccidentInsurance" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "socialAccidentInsurance",
+          "length" : 45
+        },
+        "socialAccidentInsuranceRegistrationNumber" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "socialAccidentInsuranceRegistrationNumber",
+          "length" : 45
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityDEURecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "legalEntity_LegalEntityESP" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Legal Entity Spain",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_LegalEntityESP",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_LegalEntityESP",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_LegalEntityESPRecordId" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityESPRecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "certificadoDeIdentificacionFiscal" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "certificadoDeIdentificacionFiscal",
+          "length" : 45
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityESPRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "legalEntity_LegalEntityFRA" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Legal Entity France",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_LegalEntityFRA",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_LegalEntityFRA",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_LegalEntityFRARecordId" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityFRARecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "nafCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "nafCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "nafCodePost2008" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "nafCodePost2008",
+          "length" : 45
+        },
+        "sirenCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "sirenCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityFRARecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "legalEntity_LegalEntityARG" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Legal Entity Argentina",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_LegalEntityARG",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_LegalEntityARG",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_LegalEntityARGRecordId" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityARGRecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "cuitCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "cuitCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "cuit" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "cuit",
+          "length" : 11
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityARGRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "legalEntity_LegalEntityRUS" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Legal Entity Russia",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_LegalEntityRUS",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_LegalEntityRUS",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_LegalEntityRUSRecordId" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityRUSRecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "okpoNumber" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "okpoNumber",
+          "length" : 10
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityRUSRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "legalEntity_LegalEntitySAU" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Legal Entity Saudi Arabia",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_LegalEntitySAU",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_LegalEntitySAU",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_LegalEntitySAURecordId" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntitySAURecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "gosiRegistrationNumber" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "gosiRegistrationNumber",
+          "length" : 9
+        },
+        "gosiOfficeBranch" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "gosiOfficeBranch",
+          "length" : 255
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntitySAURecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        },
+        "companyCommercialRegistrationNumber" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "companyCommercialRegistrationNumber",
+          "length" : 255
+        },
+        "companyRepresentative" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "companyRepresentative"
+        }
+      }
+    },
+    "legalEntity_LegalEntityBLR" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Legal Entity Belarus",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_LegalEntityBLR",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_LegalEntityBLR",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_LegalEntityBLRRecordId" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityBLRRecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "unpNumber" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "unpNumber",
+          "length" : 9
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityBLRRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "legalEntity_LegalEntityTHA" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Legal Entity Thailand",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_LegalEntityTHA",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_LegalEntityTHA",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_LegalEntityTHARecordId" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityTHARecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "socialSecurityNumber" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "socialSecurityNumber",
+          "length" : 10
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityTHARecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "legalEntity_LegalEntityTUN" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Legal Entity Tunisia",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_LegalEntityTUN",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_LegalEntityTUN",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_LegalEntityTUNRecordId" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityTUNRecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "numberOfSecondaryEstablishment" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "numberOfSecondaryEstablishment",
+          "length" : 3
+        },
+        "categoryCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "categoryCode",
+          "length" : 1
+        },
+        "codeVat" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "codeVat",
+          "length" : 1
+        },
+        "fiscalID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "fiscalID",
+          "length" : 9
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityTUNRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "legalEntity_LegalEntitySGP" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Legal Entity Singapore",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_LegalEntitySGP",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_LegalEntitySGP",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_LegalEntitySGPRecordId" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntitySGPRecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "uniqueEntityNumber" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "uniqueEntityNumber",
+          "length" : 255
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntitySGPRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "legalEntity_LegalEntityPRY" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Legal Entity Paraguay",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_LegalEntityPRY",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_LegalEntityPRY",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_LegalEntityPRYRecordId" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityPRYRecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "taxNumber" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "taxNumber",
+          "length" : 13
+        },
+        "socialSecurity" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "socialSecurity",
+          "length" : 13
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityPRYRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "legalEntity_LegalEntityBOL" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Legal Entity Bolivia",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_LegalEntityBOL",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_LegalEntityBOL",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_LegalEntityBOLRecordId" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityBOLRecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "taxNumber" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "taxNumber",
+          "length" : 12
+        },
+        "employerSocialSecurityNumber" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "employerSocialSecurityNumber",
+          "length" : 13
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityBOLRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "legalEntity_LegalEntitySVN" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Legal Entity Slovenia",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_LegalEntitySVN",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_LegalEntitySVN",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_LegalEntitySVNRecordId" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntitySVNRecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "companyRegistrationNumber" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "companyRegistrationNumber",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "companyMasterNumber" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "companyMasterNumber",
+          "length" : 10
+        },
+        "employerTaxNumber" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "employerTaxNumber",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntitySVNRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "legalEntity_LegalEntityCAN" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Legal Entity Canada",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_LegalEntityCAN",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_LegalEntityCAN",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_LegalEntityCANRecordId" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityCANRecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "businessNumber" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "businessNumber",
+          "length" : 9
+        },
+        "neqNumber" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "neqNumber",
+          "length" : 10
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_LegalEntityCANRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "legalEntity_legalEntityText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Localized value for translatable data type field",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:legalEntity_legalEntityText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "legalEntity_legalEntityText",
+        "propertyTypes" : [ "sap.sf.foundationobjects:legalEntity_legalEntityTextRecordId", "sap.sf.foundationobjects:legalEntity_legalEntityTextLocale" ]
+      } ],
+      "elements" : {
+        "legalEntity_legalEntityTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_legalEntity_legalEntityTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_legalEntityTextRecordId"
+        },
+        "_legalEntity_legalEntityTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "legalEntity_legalEntityTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_legalEntity_legalEntityTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "legalEntity_legalEntityTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "locale",
+          "length" : 128,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:legalEntity_legalEntityTextLocale"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "name",
+          "length" : 90
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "description",
+          "length" : 128
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "default"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1601 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/foundationobjects/jobstructure/v1/metadata/jobClassification",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "jobClassification",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.foundationobjects",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "jobClassification" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Job Classification ",
+      "@ODM.entityName" : "JobClassification",
+      "@ODM.oid" : "entityOID",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobClassification",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobClassification",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobClassificationId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassificationId"
+        },
+        "entityOID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityOID",
+          "length" : 128
+        },
+        "externalCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalCode",
+          "length" : 32
+        },
+        "timeslices" : {
+          "type" : "cds.Composition",
+          "target" : "jobClassification_jobClassificationTimeSlice",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "timeslices", "jobClassification_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "jobClassification_jobClassificationTimeSlice" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobClassification_jobClassificationTimeSlice",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "jobClassification_jobClassificationTimeSlice",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobClassification_jobClassificationTimeSliceRecordId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "validFrom",
+        "temporalIntervalEndProperty" : "validTo"
+      } ],
+      "elements" : {
+        "jobClassification_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobClassification"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_jobClassificationTimeSliceId"
+        },
+        "_jobClassification" : {
+          "type" : "cds.Association",
+          "target" : "jobClassification",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobClassification", "id" ]
+          }, "=", {
+            "ref" : [ "jobClassification_id_virtual" ]
+          } ]
+        },
+        "validFrom" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validFrom"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "name"
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "description"
+        },
+        "effectiveStatus" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "effectiveStatus"
+        },
+        "workerCompCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "workerCompCode",
+          "length" : 32
+        },
+        "parentJobClassification" : {
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobClassification_parentJobClassification"
+          },
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "parentJobClassification",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "_jobClassification_parentJobClassification" : {
+          "type" : "cds.Association",
+          "target" : "jobClassification",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobClassification_parentJobClassification", "id" ]
+          }, "=", {
+            "ref" : [ "parentJobClassification" ]
+          } ]
+        },
+        "defaultJobLevel" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:JobLevelPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:JobLevelPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultJobLevel",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "standardWeeklyHours" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "standardWeeklyHours",
+          "precision" : 272,
+          "scale" : 17
+        },
+        "regularTemporary" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:RegularTemporaryPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:RegularTemporaryPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "regularTemporary",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "defaultEmployeeClass" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:EmployeeClassPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:EmployeeClassPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultEmployeeClass",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "fulltimeEmployee" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "fulltimeEmployee"
+        },
+        "defaultSupervisorLevel" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:EmployeeClassPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:EmployeeClassPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultSupervisorLevel",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "payGrade" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:payGrade",
+            "referencedPropertyType" : "sap.sf.foundationobjects:payGradeId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "payGrade",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "jobFunction" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:jobFunction",
+            "referencedPropertyType" : "sap.sf.foundationobjects:jobFunctionId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "jobFunction",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "autoCreated" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "autoCreated"
+        },
+        "validTo" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validTo"
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_jobClassificationTimeSliceRecordId"
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        },
+        "toJobClassificationCountry" : {
+          "type" : "cds.Composition",
+          "target" : "jobClassification_JobClassificationCountry",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "toJobClassificationCountry", "jobClassification_jobClassificationTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "jobClassification_jobClassificationText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "jobClassification_jobClassificationTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        }
+      }
+    },
+    "jobClassification_JobClassificationCountry" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Job Classification Country/Region",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobClassification_JobClassificationCountry",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobClassification_JobClassificationCountry",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobClassification_JobClassificationCountryRecordId" ]
+      } ],
+      "elements" : {
+        "jobClassification_jobClassificationTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobClassification_jobClassificationTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationCountryRecordId"
+        },
+        "_jobClassification_jobClassificationTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "jobClassification_jobClassificationTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobClassification_jobClassificationTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "jobClassification_jobClassificationTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "country" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:country",
+            "referencedPropertyType" : "sap.sf.foundationobjects:countryId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "country",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "effectiveStatus" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "effectiveStatus"
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationCountryRecordId"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        },
+        "toJobClassificationUSA" : {
+          "type" : "cds.Composition",
+          "target" : "jobClassification_JobClassificationUSA",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toJobClassificationUSA", "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toJobClassificationFRA" : {
+          "type" : "cds.Composition",
+          "target" : "jobClassification_JobClassificationFRA",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toJobClassificationFRA", "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toJobClassificationGBR" : {
+          "type" : "cds.Composition",
+          "target" : "jobClassification_JobClassificationGBR",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toJobClassificationGBR", "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toJobClassificationAUS" : {
+          "type" : "cds.Composition",
+          "target" : "jobClassification_JobClassificationAUS",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toJobClassificationAUS", "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toJobClassificationBRA" : {
+          "type" : "cds.Composition",
+          "target" : "jobClassification_JobClassificationBRA",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toJobClassificationBRA", "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toJobClassificationCAN" : {
+          "type" : "cds.Composition",
+          "target" : "jobClassification_JobClassificationCAN",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toJobClassificationCAN", "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toJobClassificationITA" : {
+          "type" : "cds.Composition",
+          "target" : "jobClassification_JobClassificationITA",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toJobClassificationITA", "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toJobClassificationZAF" : {
+          "type" : "cds.Composition",
+          "target" : "jobClassification_JobClassificationZAF",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toJobClassificationZAF", "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toJobClassificationBOL" : {
+          "type" : "cds.Composition",
+          "target" : "jobClassification_JobClassificationBOL",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toJobClassificationBOL", "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "toJobClassificationCHL" : {
+          "type" : "cds.Composition",
+          "target" : "jobClassification_JobClassificationCHL",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toJobClassificationCHL", "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        }
+      }
+    },
+    "jobClassification_jobClassificationText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Localized value for translatable data type field",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobClassification_jobClassificationText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobClassification_jobClassificationText",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobClassification_jobClassificationTextRecordId", "sap.sf.foundationobjects:jobClassification_jobClassificationTextLocale" ]
+      } ],
+      "elements" : {
+        "jobClassification_jobClassificationTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobClassification_jobClassificationTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_jobClassificationTextRecordId"
+        },
+        "_jobClassification_jobClassificationTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "jobClassification_jobClassificationTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobClassification_jobClassificationTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "jobClassification_jobClassificationTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "locale",
+          "length" : 128,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_jobClassificationTextLocale"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "name",
+          "length" : 90
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "description",
+          "length" : 4000
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "default"
+        }
+      }
+    },
+    "jobClassification_JobClassificationUSA" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Job Classification USA ",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobClassification_JobClassificationUSA",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobClassification_JobClassificationUSA",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobClassification_JobClassificationUSARecordId" ]
+      } ],
+      "elements" : {
+        "jobClassification_JobClassificationCountry_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobClassification_JobClassificationCountry"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationUSARecordId"
+        },
+        "_jobClassification_JobClassificationCountry" : {
+          "type" : "cds.Association",
+          "target" : "jobClassification_JobClassificationCountry",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobClassification_JobClassificationCountry", "recordId" ]
+          }, "=", {
+            "ref" : [ "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          } ]
+        },
+        "localJobTitle" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "localJobTitle",
+          "length" : 32
+        },
+        "eeo1JobCategory" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:EEO1JobCategoryUSAPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:EEO1JobCategoryUSAPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "eeo1JobCategory",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "eeo4JobCategory" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:EEO4JobCategoryUSAPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:EEO4JobCategoryUSAPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "eeo4JobCategory",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "eeo5JobCategory" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:EEO5JobCategoryUSAPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:EEO5JobCategoryUSAPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "eeo5JobCategory",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "eeo6JobCategory" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:EEO6JobCategoryUSAPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:EEO6JobCategoryUSAPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "eeo6JobCategory",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "eeoJobGroup" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:EEOJobGroupUSAPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:EEOJobGroupUSAPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "eeoJobGroup",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "flsaStatusUSA" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:FLSAStatusUSAPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:FLSAStatusUSAPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "flsaStatusUSA",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationUSARecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "jobClassification_JobClassificationFRA" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Job Classification France",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobClassification_JobClassificationFRA",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobClassification_JobClassificationFRA",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobClassification_JobClassificationFRARecordId" ]
+      } ],
+      "elements" : {
+        "jobClassification_JobClassificationCountry_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobClassification_JobClassificationCountry"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationFRARecordId"
+        },
+        "_jobClassification_JobClassificationCountry" : {
+          "type" : "cds.Association",
+          "target" : "jobClassification_JobClassificationCountry",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobClassification_JobClassificationCountry", "recordId" ]
+          }, "=", {
+            "ref" : [ "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          } ]
+        },
+        "inseeCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "inseeCode",
+          "length" : 32
+        },
+        "employeeCategory" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "employeeCategory",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationFRARecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "jobClassification_JobClassificationGBR" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Job Classification United Kingdom",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobClassification_JobClassificationGBR",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobClassification_JobClassificationGBR",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobClassification_JobClassificationGBRRecordId" ]
+      } ],
+      "elements" : {
+        "jobClassification_JobClassificationCountry_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobClassification_JobClassificationCountry"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationGBRRecordId"
+        },
+        "_jobClassification_JobClassificationCountry" : {
+          "type" : "cds.Association",
+          "target" : "jobClassification_JobClassificationCountry",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobClassification_JobClassificationCountry", "recordId" ]
+          }, "=", {
+            "ref" : [ "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          } ]
+        },
+        "occupationalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "occupationalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationGBRRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "jobClassification_JobClassificationAUS" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Job Classification Australia",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobClassification_JobClassificationAUS",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobClassification_JobClassificationAUS",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobClassification_JobClassificationAUSRecordId" ]
+      } ],
+      "elements" : {
+        "jobClassification_JobClassificationCountry_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobClassification_JobClassificationCountry"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationAUSRecordId"
+        },
+        "_jobClassification_JobClassificationCountry" : {
+          "type" : "cds.Association",
+          "target" : "jobClassification_JobClassificationCountry",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobClassification_JobClassificationCountry", "recordId" ]
+          }, "=", {
+            "ref" : [ "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          } ]
+        },
+        "ascoCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "ascoCode",
+          "length" : 32
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationAUSRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "jobClassification_JobClassificationBRA" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Job Classification Brazil ",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobClassification_JobClassificationBRA",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobClassification_JobClassificationBRA",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobClassification_JobClassificationBRARecordId" ]
+      } ],
+      "elements" : {
+        "jobClassification_JobClassificationCountry_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobClassification_JobClassificationCountry"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationBRARecordId"
+        },
+        "_jobClassification_JobClassificationCountry" : {
+          "type" : "cds.Association",
+          "target" : "jobClassification_JobClassificationCountry",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobClassification_JobClassificationCountry", "recordId" ]
+          }, "=", {
+            "ref" : [ "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          } ]
+        },
+        "occupationalCode" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:OccupationalCodeBRAPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:OccupationalCodeBRAPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "occupationalCode",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationBRARecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "jobClassification_JobClassificationCAN" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Job Classification Canada ",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobClassification_JobClassificationCAN",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobClassification_JobClassificationCAN",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobClassification_JobClassificationCANRecordId" ]
+      } ],
+      "elements" : {
+        "jobClassification_JobClassificationCountry_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobClassification_JobClassificationCountry"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationCANRecordId"
+        },
+        "_jobClassification_JobClassificationCountry" : {
+          "type" : "cds.Association",
+          "target" : "jobClassification_JobClassificationCountry",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobClassification_JobClassificationCountry", "recordId" ]
+          }, "=", {
+            "ref" : [ "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          } ]
+        },
+        "occupationalClassification" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "occupationalClassification",
+          "length" : 255
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationCANRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        },
+        "classificationGroupCA" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:ClassificationGroup_CANPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:ClassificationGroup_CANPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "classificationGroupCA",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        }
+      }
+    },
+    "jobClassification_JobClassificationITA" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Job Classification Italy ",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobClassification_JobClassificationITA",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobClassification_JobClassificationITA",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobClassification_JobClassificationITARecordId" ]
+      } ],
+      "elements" : {
+        "jobClassification_JobClassificationCountry_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobClassification_JobClassificationCountry"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationITARecordId"
+        },
+        "_jobClassification_JobClassificationCountry" : {
+          "type" : "cds.Association",
+          "target" : "jobClassification_JobClassificationCountry",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobClassification_JobClassificationCountry", "recordId" ]
+          }, "=", {
+            "ref" : [ "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          } ]
+        },
+        "inailCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "inailCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationITARecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "jobClassification_JobClassificationZAF" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Job Classification South Africa",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobClassification_JobClassificationZAF",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobClassification_JobClassificationZAF",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobClassification_JobClassificationZAFRecordId" ]
+      } ],
+      "elements" : {
+        "jobClassification_JobClassificationCountry_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobClassification_JobClassificationCountry"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationZAFRecordId"
+        },
+        "_jobClassification_JobClassificationCountry" : {
+          "type" : "cds.Association",
+          "target" : "jobClassification_JobClassificationCountry",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobClassification_JobClassificationCountry", "recordId" ]
+          }, "=", {
+            "ref" : [ "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          } ]
+        },
+        "occupationalLevel" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:occupationalLevel_ZAFPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:occupationalLevel_ZAFPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "occupationalLevel",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationZAFRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "jobClassification_JobClassificationBOL" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Job Classification Bolivia",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobClassification_JobClassificationBOL",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobClassification_JobClassificationBOL",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobClassification_JobClassificationBOLRecordId" ]
+      } ],
+      "elements" : {
+        "jobClassification_JobClassificationCountry_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobClassification_JobClassificationCountry"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationBOLRecordId"
+        },
+        "_jobClassification_JobClassificationCountry" : {
+          "type" : "cds.Association",
+          "target" : "jobClassification_JobClassificationCountry",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobClassification_JobClassificationCountry", "recordId" ]
+          }, "=", {
+            "ref" : [ "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          } ]
+        },
+        "occupationalCategory" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:OCCUPATION_BOLPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:OCCUPATION_BOLPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "occupationalCategory",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationBOLRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "jobClassification_JobClassificationCHL" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Job Classification Chile",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobClassification_JobClassificationCHL",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobClassification_JobClassificationCHL",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobClassification_JobClassificationCHLRecordId" ]
+      } ],
+      "elements" : {
+        "jobClassification_JobClassificationCountry_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobClassification_JobClassificationCountry"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationCHLRecordId"
+        },
+        "_jobClassification_JobClassificationCountry" : {
+          "type" : "cds.Association",
+          "target" : "jobClassification_JobClassificationCountry",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobClassification_JobClassificationCountry", "recordId" ]
+          }, "=", {
+            "ref" : [ "jobClassification_JobClassificationCountry_recordId_virtual" ]
+          } ]
+        },
+        "heavyWork" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:heavyWork_CHIPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:heavyWork_CHIPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "heavyWork",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobClassification_JobClassificationCHLRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    }
+  }
+}

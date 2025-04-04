@@ -1,0 +1,23 @@
+{
+   "name": "CompensationStructure",
+   "title": "CompensationStructure",
+   "description": "Compensation structure refers to components of compensation information and their definitions.",
+   "shortDescription": "Comp structure refers to component of comp information and their definition.",
+   "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-EC",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.odm:entityType:PayComponent:v1",
+      "sap.odm:entityType:PayComponentGroup:v1",
+      "sap.sf.foundationobjects:entityType:payComponent:v1",
+      "sap.sf.foundationobjects:entityType:payComponentGroup:v1"
+   ],
+   "datasets": [
+      "sap.sf.foundationobjects:dataset:CompensationStructure:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.foundationobjects:share:CompensationStructure:v1.0.0"
+   ]
+}

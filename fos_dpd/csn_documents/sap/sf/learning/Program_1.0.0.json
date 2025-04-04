@@ -1,0 +1,284 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/learning/asset/v1/metadata/program",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "program",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.learning",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "program" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Program",
+      "@EntityRelationship.entityType" : "sap.sf.learning:program",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "program",
+        "propertyTypes" : [ "sap.sf.learning:programId" ]
+      } ],
+      "elements" : {
+        "domainId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Domain ID"
+        },
+        "active" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Active"
+        },
+        "programId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Program ID"
+        },
+        "title" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Title"
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Description"
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "program_learningItemText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "program_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "duration" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Duration",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "source" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Source"
+        },
+        "categories" : {
+          "type" : "cds.Composition",
+          "target" : "program_categories",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "categories", "program_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "capabilities" : {
+          "type" : "cds.Composition",
+          "target" : "program_capabilityRating",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "capabilities", "program_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "productionReady" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Production Ready"
+        },
+        "thumbnailAttachmentId" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Thumbnail Attachment ID",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "capabilitySource" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Capability Source"
+        },
+        "rating" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Program Rating"
+        },
+        "ratingCount" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "Program Rating Count",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "id" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "ID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:programId"
+        },
+        "lastUpdatedUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Updated User"
+        },
+        "lastUpdatedTimestamp" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "defaultTitle"
+        }
+      }
+    },
+    "program_learningItemText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.learning:program_learningItemText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "program_learningItemText",
+        "propertyTypes" : [ "sap.sf.learning:program_learningItemTextId", "sap.sf.learning:program_learningItemTextLocale" ]
+      } ],
+      "elements" : {
+        "program_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_program"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:program_learningItemTextId"
+        },
+        "_program" : {
+          "type" : "cds.Association",
+          "target" : "program",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_program", "id" ]
+          }, "=", {
+            "ref" : [ "program_id_virtual" ]
+          } ]
+        },
+        "title" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "The Locale Property",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:program_learningItemTextLocale"
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Default"
+        }
+      }
+    },
+    "program_categories" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "elements" : {
+        "program_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_program"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:program_categoriesId"
+        },
+        "_program" : {
+          "type" : "cds.Association",
+          "target" : "program",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_program", "id" ]
+          }, "=", {
+            "ref" : [ "program_id_virtual" ]
+          } ]
+        },
+        "categories" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Categories"
+        }
+      }
+    },
+    "program_capabilityRating" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Learning Capabilities",
+      "@EntityRelationship.entityType" : "sap.sf.learning:program_capabilityRating",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "program_capabilityRating",
+        "propertyTypes" : [ "sap.sf.learning:program_capabilityRatingId", "sap.sf.learning:program_capabilityRatingInternalId" ]
+      } ],
+      "elements" : {
+        "program_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_program"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:program_capabilityRatingId"
+        },
+        "_program" : {
+          "type" : "cds.Association",
+          "target" : "program",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_program", "id" ]
+          }, "=", {
+            "ref" : [ "program_id_virtual" ]
+          } ]
+        },
+        "internalId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Internal ID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:program_capabilityRatingInternalId"
+        },
+        "externalId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "External ID"
+        },
+        "rating" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Rating",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "tihExternalId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.capabilities:library",
+            "referencedPropertyType" : "sap.sf.capabilities:libraryLibraryId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "TIH External ID"
+        },
+        "jpbExternalId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "JPB External ID"
+        },
+        "jdmExternalId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "JDB External ID"
+        }
+      }
+    }
+  }
+}

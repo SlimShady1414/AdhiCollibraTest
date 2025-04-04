@@ -1,0 +1,12 @@
+{
+   "name": "DataProducts",
+   "namespace": "sap.sf.foundationobjects",
+   "version": "1.0.0",
+   "vendor": "sap:vendor:SAP:",
+   "partOfProducts": [
+      "sap:product:SAPSuccessFactors:"
+   ],
+   "title": "Foundationobjects data products",
+   "shortDescription": "Package for Foundationobjects data products.",
+   "description": "Package that contains Foundationobjects data products."
+}

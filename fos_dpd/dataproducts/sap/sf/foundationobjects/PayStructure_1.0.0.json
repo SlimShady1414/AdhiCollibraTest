@@ -1,0 +1,31 @@
+{
+   "name": "PayStructure",
+   "title": "PayStructure",
+   "description": "Pay structure refers to the payment definition, including pay range, pay grade, and pay scale types.",
+   "shortDescription": "Pay structure refer to the payment defn, including pay range, pay grade, and pay scale type.",
+   "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-EC",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.odm:entityType:PayGrade:v1",
+      "sap.odm:entityType:PayRange:v1",
+      "sap.odm:entityType:PayScaleArea:v1",
+      "sap.odm:entityType:PayScaleGroup:v1",
+      "sap.odm:entityType:PayScaleLevel:v1",
+      "sap.odm:entityType:PayScaleType:v1",
+      "sap.sf.foundationobjects:entityType:payGrade:v1",
+      "sap.sf.foundationobjects:entityType:payRange:v1",
+      "sap.sf.foundationobjects:entityType:payScaleArea:v1",
+      "sap.sf.foundationobjects:entityType:payScaleGroup:v1",
+      "sap.sf.foundationobjects:entityType:payScaleLevel:v1",
+      "sap.sf.foundationobjects:entityType:payScaleType:v1"
+   ],
+   "datasets": [
+      "sap.sf.foundationobjects:dataset:PayStructure:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.foundationobjects:share:PayStructure:v1.0.0"
+   ]
+}

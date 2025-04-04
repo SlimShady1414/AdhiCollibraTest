@@ -1,0 +1,8 @@
+{
+   "name": "AssignmentAdditionalInformation",
+   "namespace": "sap.sf.workforce",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.workforce:dataSource:Jobrelationship:v1.0.0"
+   ]
+}

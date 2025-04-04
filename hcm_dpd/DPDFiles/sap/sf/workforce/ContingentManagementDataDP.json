@@ -1,0 +1,43 @@
+{
+  "name": "ContingentManagementData",
+  "version": "1.0.0",
+  "category": "businessObject",
+  "type": "primary",
+  "title": "ContingentManagementData",
+  "status": "In Testing",
+  "namespace": "sap.sf.workforce",
+  "responsible": "sap:ach:LOD-SF-EC",
+  "partOfPackage": "sap.sf.workforce:package:DataProducts:v1.0.0",
+  "shortDescription": "Contingent management includes info about contingent workers distributors who are entrusted with the staffing responsibilities in a company.",
+  "description": "Contingent management data includes information about contingent workers's distributors who are entrusted with the staffing responsibilities in a company.",
+  "entityTypes": [
+    "sap.odm:entityType:BusinessPartner:v1",
+    "sap.sf.workforce:entityType:vendorInfo:v1"
+  ],
+  "entities": [
+    {
+      "name": "vendorInfo",
+      "nodes": [
+        {
+          "name": "vendorInfo_vendorInfoText",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "vendorInfo_vendorInfoTimeSlice",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "vendorInfo",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        }
+      ],
+      "main": false
+    }
+  ]
+}

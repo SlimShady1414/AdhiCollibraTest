@@ -1,0 +1,115 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/learning/asset/v1/metadata/courseType",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "courseType",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.learning",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "courseType" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Course Type",
+      "@EntityRelationship.entityType" : "sap.sf.learning:courseType",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "courseType",
+        "propertyTypes" : [ "sap.sf.learning:courseTypeId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Course Type ID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:courseTypeId"
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Description"
+        },
+        "systemProvided" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "System Provided"
+        },
+        "visible" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Visible"
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "courseType_courseTypeText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "courseType_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "lastUpdatedUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Updated User"
+        },
+        "lastUpdatedTimestamp" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Updated Timestamp"
+        }
+      }
+    },
+    "courseType_courseTypeText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Course Type Localized Texts",
+      "@EntityRelationship.entityType" : "sap.sf.learning:courseType_courseTypeText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "courseType_courseTypeText",
+        "propertyTypes" : [ "sap.sf.learning:courseType_courseTypeTextId", "sap.sf.learning:courseType_courseTypeTextLocale" ]
+      } ],
+      "elements" : {
+        "courseType_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_courseType"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:courseType_courseTypeTextId"
+        },
+        "_courseType" : {
+          "type" : "cds.Association",
+          "target" : "courseType",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_courseType", "id" ]
+          }, "=", {
+            "ref" : [ "courseType_id_virtual" ]
+          } ]
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Course Type Description"
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "The Locale Property",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:courseType_courseTypeTextLocale"
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Default"
+        }
+      }
+    }
+  }
+}

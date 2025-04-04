@@ -1,0 +1,172 @@
+{
+  "$id": "/rest/foundationobjects/paystructure/v1/metadata/payScaleType",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "Pay Scale Type",
+  "type": "object",
+  "x-sap-sf-version": "1.0.0",
+  "x-sap-sf-custom-version": 1,
+  "properties": {
+    "id": {
+      "type": "integer",
+      "title": "id",
+      "x-sap-sf-hidden": true,
+      "minimum": -9223372036854775808,
+      "maximum": 9223372036854775807
+    },
+    "code": {
+      "type": "string",
+      "title": "code",
+      "maxLength": 128
+    },
+    "payScaleType": {
+      "type": "string",
+      "title": "payScaleType",
+      "maxLength": 128
+    },
+    "externalName": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "externalName"
+    },
+    "country": {
+      "type": "integer",
+      "title": "country"
+    },
+    "recordId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "recordId",
+      "x-sap-sf-hidden": true,
+      "maxLength": 255
+    },
+    "status": {
+      "type": "string",
+      "title": "status",
+      "x-sap-sf-hidden": true,
+      "enum": [
+        "A",
+        "I"
+      ]
+    },
+    "createdBy": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "createdBy",
+      "x-sap-sf-hidden": true
+    },
+    "createdDate": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "createdDate",
+      "x-sap-sf-hidden": true,
+      "format": "date-time"
+    },
+    "lastModifiedBy": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "lastModifiedBy",
+      "x-sap-sf-hidden": true
+    },
+    "lastModifiedDate": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "lastModifiedDate",
+      "x-sap-sf-hidden": true,
+      "format": "date-time"
+    },
+    "proxyUser": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "proxyUser",
+      "x-sap-sf-hidden": true,
+      "maxLength": 255
+    },
+    "texts": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "title": "Localized Texts",
+      "items": {
+        "$ref": "/rest/foundationobjects/paystructure/v1/metadata/payScaleTypeText"
+      }
+    }
+  },
+  "required": [
+    "code",
+    "payScaleType",
+    "country"
+  ],
+  "x-sap-sf-resource": {
+    "id": [
+      "id"
+    ],
+    "properties": {
+      "country": {
+        "bind": {
+          "schema": {
+            "$ref": "/rest/foundationobjects/v1/metadata/country"
+          },
+          "properties": [
+            {
+              "country": "id"
+            }
+          ],
+          "multiplicity": "1..1",
+          "type": "association"
+        }
+      }
+    }
+  },
+  "x-sap-odm-entity-name": "PayScaleType",
+  "x-sap-root-entity": true,
+  "$defs": {
+    "PayScaleTypeText": {
+      "$id": "/rest/foundationobjects/paystructure/v1/metadata/payScaleTypeText",
+      "title": "Localized value for translatable data type field",
+      "type": "object",
+      "properties": {
+        "locale": {
+          "title": "locale",
+          "description": "The locale specified as an ISO 63901 or BCP-47 language code.",
+          "type": "string",
+          "maxLength": 128
+        },
+        "externalName": {
+          "title": "externalName",
+          "type": "string",
+          "maxLength": 128
+        },
+        "default": {
+          "title": "default",
+          "description": "Whether or not the locale is the default locale based on the request context (i.e. user or system)",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "x-sap-sf-resource": {
+        "id": [
+          "/properties/recordId",
+          "locale"
+        ]
+      },
+      "required": [
+        "locale"
+      ]
+    }
+  }
+}

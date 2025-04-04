@@ -1,0 +1,516 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/workforce/relatedpersons/v1/metadata/dependent",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "dependent",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.workforce",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "dependent" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Biographical Information",
+      "@ODM.entityName" : "WorkforceDependent",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:dependent",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "dependent",
+        "propertyTypes" : [ "sap.sf.workforce:dependentId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Per Person UUID",
+          "length" : 32,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:dependentId"
+        },
+        "dependentBiographicalDetails" : {
+          "type" : "cds.Composition",
+          "target" : "dependent_dependentBiographicalDetail",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "dependentBiographicalDetails", "dependent_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "person" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:person",
+            "referencedPropertyType" : "sap.sf.workforce:personId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 32
+        }
+      }
+    },
+    "dependent_dependentBiographicalDetail" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Biographical Information",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:dependent_dependentBiographicalDetail",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "dependent_dependentBiographicalDetail",
+        "propertyTypes" : [ "sap.sf.workforce:dependent_dependentBiographicalDetailId" ]
+      } ],
+      "elements" : {
+        "dependent_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_dependent"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:dependent_dependentBiographicalDetailId"
+        },
+        "_dependent" : {
+          "type" : "cds.Association",
+          "target" : "dependent",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_dependent", "id" ]
+          }, "=", {
+            "ref" : [ "dependent_id_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Id",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:dependent_dependentBiographicalDetailId"
+        },
+        "dateOfBirth" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Date Of Birth"
+        },
+        "countryOfBirth" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Country/Region Of Birth",
+          "length" : 100
+        },
+        "regionOfBirth" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Region Of Birth",
+          "length" : 100
+        },
+        "placeOfBirth" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Place Of Birth",
+          "length" : 100
+        },
+        "dateOfDeath" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Date of Death"
+        },
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Created On"
+        },
+        "createdAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Created By",
+          "length" : 100
+        },
+        "modifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Modified On"
+        },
+        "modifiedAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Modified By",
+          "length" : 100
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "on behalf of assignment UUID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf:modifiedOnBehalfOfAssignment",
+            "referencedPropertyType" : "sap.sf:modifiedOnBehalfOfAssignment"
+          } ]
+        },
+        "dependentPersonalDetails" : {
+          "type" : "cds.Composition",
+          "target" : "dependent_dependentPersonalDetail",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "dependentPersonalDetails", "dependent_dependentBiographicalDetail_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "personRelationships" : {
+          "type" : "cds.Composition",
+          "target" : "dependent_personRelationship",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "personRelationships", "dependent_dependentBiographicalDetail_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "dependent_dependentPersonalDetail" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Personal Information",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:dependent_dependentPersonalDetail",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "dependent_dependentPersonalDetail",
+        "propertyTypes" : [ "sap.sf.workforce:dependent_dependentPersonalDetailId" ]
+      } ],
+      "elements" : {
+        "dependent_dependentBiographicalDetail_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_dependent_dependentBiographicalDetail"
+          },
+          "type" : "cds.Integer64",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:dependent_dependentPersonalDetailId"
+        },
+        "_dependent_dependentBiographicalDetail" : {
+          "type" : "cds.Association",
+          "target" : "dependent_dependentBiographicalDetail",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_dependent_dependentBiographicalDetail", "id" ]
+          }, "=", {
+            "ref" : [ "dependent_dependentBiographicalDetail_id_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Id",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:dependent_dependentPersonalDetailId"
+        },
+        "firstName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "First Name",
+          "length" : 128
+        },
+        "lastName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Name",
+          "length" : 128
+        },
+        "secondLastName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Second Last Name",
+          "length" : 128
+        },
+        "middleName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Middle Name",
+          "length" : 128
+        },
+        "salutation" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:salutationPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:salutationPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Salutation",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "suffix" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:namesuffixPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:namesuffixPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Suffix",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "displayName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Display Name",
+          "length" : 128
+        },
+        "formalName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Formal Name",
+          "length" : 128
+        },
+        "birthName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Birth Name",
+          "length" : 128
+        },
+        "initials" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Initials",
+          "length" : 128
+        },
+        "namePrefix" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:nameprefixPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:nameprefixPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Prefix",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "customString1" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Preferred Name",
+          "length" : 128
+        },
+        "gender" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Gender",
+          "length" : 2
+        },
+        "maritalStatus" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:ecMaritalStatusPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:ecMaritalStatusPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Marital Status",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "since" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Marital Status Since"
+        },
+        "nationality" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Nationality",
+          "length" : 128
+        },
+        "secondNationality" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Second Nationality",
+          "length" : 128
+        },
+        "thirdNationality" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Third Nationality",
+          "length" : 128
+        },
+        "script" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:Script",
+            "referencedPropertyType" : "sap.sf.extensibility:ScriptId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Language Script",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "thirdName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Third Name",
+          "length" : 128
+        },
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Created On"
+        },
+        "createdAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Created By",
+          "length" : 100
+        },
+        "modifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Modified On"
+        },
+        "modifiedAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Modified By",
+          "length" : 100
+        },
+        "startDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Event Date"
+        },
+        "endDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "End Date"
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "on behalf of assignment UUID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf:modifiedOnBehalfOfAssignment",
+            "referencedPropertyType" : "sap.sf:modifiedOnBehalfOfAssignment"
+          } ]
+        },
+        "wfRequestId" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        }
+      }
+    },
+    "dependent_personRelationship" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Dependents",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:dependent_personRelationship",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "dependent_personRelationship",
+        "propertyTypes" : [ "sap.sf.workforce:dependent_personRelationshipId" ]
+      } ],
+      "elements" : {
+        "dependent_dependentBiographicalDetail_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_dependent_dependentBiographicalDetail"
+          },
+          "type" : "cds.Integer64",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:dependent_personRelationshipId"
+        },
+        "_dependent_dependentBiographicalDetail" : {
+          "type" : "cds.Association",
+          "target" : "dependent_dependentBiographicalDetail",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_dependent_dependentBiographicalDetail", "id" ]
+          }, "=", {
+            "ref" : [ "dependent_dependentBiographicalDetail_id_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Id",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:dependent_personRelationshipId"
+        },
+        "relationshipType" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:personRelationshipTypePickList",
+            "referencedPropertyType" : "sap.sf.extensibility:personRelationshipTypePickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Relationship",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "isAccompanyingDependent" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Accompanying"
+        },
+        "isAddressSameAsPerson" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Copy Address from Employee"
+        },
+        "isBeneficiary" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Is Beneficiary"
+        },
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Created On"
+        },
+        "createdAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Created By",
+          "length" : 100
+        },
+        "modifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Modified On"
+        },
+        "modifiedAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Modified By",
+          "length" : 100
+        },
+        "startDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Event Date"
+        },
+        "endDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "End Date"
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "on behalf of assignment UUID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf:modifiedOnBehalfOfAssignment",
+            "referencedPropertyType" : "sap.sf:modifiedOnBehalfOfAssignment"
+          } ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+    "$id": "/rest/ecosystem/wholeself/v1/metadata/tag",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "x-sap-sf-version": "1.0.0",
+    "type": "object",
+    "title": "TIH Tag",
+    "description": "Metadata for the TIH Tag",
+    "properties": {
+      "tagId": {
+        "type": "integer",
+        "maxLength": 10
+      },
+      "tagLabel": {
+        "type": "string",
+        "maxLength": 256
+      },
+      "tagValue": {
+        "type": "string",
+        "maxLength": 256
+      },
+      "status": {
+        "type": "string",
+        "maxLength": 50
+      },
+      "tagType": {
+        "type": "string",
+        "maxLength": 50
+      },
+      "tagTexts": {
+        "type": "array",
+        "items": {
+          "$ref": "/rest/ecosystem/wholeself/v1/metadata/tagText"
+        }
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date-time",
+        "maxLength": 27
+      },
+      "createdBy": {
+        "type": "string",
+        "maxLength": 100
+      },
+      "lastModifiedAt": {
+        "type": "string",
+        "format": "date-time",
+        "maxLength": 27
+      },
+      "lastModifiedBy": {
+        "type": "string",
+        "maxLength": 100
+      }
+    },
+    "required": [
+      "tagId"
+    ],
+  "x-sap-odm-oid": "uuid",
+  "x-sap-odm-entity-name": "WorkforceCapabilityCatalog",
+  "x-sap-root-entity": true,
+    "x-sap-sf-resource": {
+      "id": [
+        "tagId"
+      ]
+    },
+    "$defs": {
+      "TagTextRef": {
+        "$id": "/rest/ecosystem/wholeself/v1/metadata/tagText",
+        "$schema": "https://json-schema.org/draft/2019-09/schema",
+        "type": "object",
+        "properties": {
+          "tagTextId": {
+            "type": "integer",
+            "maxLength": 10
+          },
+          "tagLabel": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "tagValue": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "locale": {
+            "type": "string",
+            "maxLength": 256
+          }
+        },
+        "required": [
+          "tagTextId"
+        ],
+        "x-sap-sf-resource": {
+          "id": [
+            "tagTextId"
+          ]
+        }
+      }
+    }
+  }

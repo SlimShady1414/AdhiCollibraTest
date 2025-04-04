@@ -1,0 +1,333 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/ecosystem/wholeself/v1/metadata/library",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "library",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.capabilities",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "library" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "TIH Library",
+      "@ODM.entityName" : "WorkforceCapability",
+      "@ODM.oid" : "uuid",
+      "@EntityRelationship.entityType" : "sap.sf.capabilities:library",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "library",
+        "propertyTypes" : [ "sap.sf.capabilities:libraryLibraryId" ]
+      } ],
+      "elements" : {
+        "libraryId" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:libraryLibraryId"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 4000
+        },
+        "addedType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 50
+        },
+        "defaultLocale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        },
+        "externalId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        },
+        "uuid" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        },
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 100
+        },
+        "lastModifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 100
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 50
+        },
+        "sources" : {
+          "type" : "cds.Composition",
+          "target" : "library_source",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "sources", "library_libraryId_virtual" ]
+          }, "=", {
+            "ref" : [ "libraryId" ]
+          } ]
+        },
+        "libraryType" : {
+          "type" : "cds.Composition",
+          "target" : "library_libraryTypeRef",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "libraryType", "library_libraryId_virtual" ]
+          }, "=", {
+            "ref" : [ "libraryId" ]
+          } ]
+        },
+        "libraryTexts" : {
+          "type" : "cds.Composition",
+          "target" : "library_libraryText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "libraryTexts", "library_libraryId_virtual" ]
+          }, "=", {
+            "ref" : [ "libraryId" ]
+          } ]
+        },
+        "proficiencySet" : {
+          "type" : "cds.String",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.capabilities:proficiencySet",
+            "referencedPropertyType" : "sap.sf.capabilities:proficiencySetProficiencySetId"
+          } ]
+        },
+        "tags" : {
+          "type" : "cds.Composition",
+          "target" : "library_tag",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "tags", "library_libraryId_virtual" ]
+          }, "=", {
+            "ref" : [ "libraryId" ]
+          } ]
+        }
+      }
+    },
+    "library_source" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.capabilities:library_source",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "library_source",
+        "propertyTypes" : [ "sap.sf.capabilities:library_sourceSourceId" ]
+      } ],
+      "elements" : {
+        "library_libraryId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_library"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:library_sourceLibraryId"
+        },
+        "_library" : {
+          "type" : "cds.Association",
+          "target" : "library",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_library", "libraryId" ]
+          }, "=", {
+            "ref" : [ "library_libraryId_virtual" ]
+          } ]
+        },
+        "sourceId" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:library_sourceSourceId"
+        },
+        "sourceType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 50
+        }
+      }
+    },
+    "library_libraryTypeRef" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.capabilities:library_libraryTypeRef",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "library_libraryTypeRef",
+        "propertyTypes" : [ "sap.sf.capabilities:library_libraryTypeRefLibraryTypeId" ]
+      } ],
+      "elements" : {
+        "library_libraryId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_library"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:library_libraryTypeRefLibraryId"
+        },
+        "_library" : {
+          "type" : "cds.Association",
+          "target" : "library",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_library", "libraryId" ]
+          }, "=", {
+            "ref" : [ "library_libraryId_virtual" ]
+          } ]
+        },
+        "libraryTypeId" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:library_libraryTypeRefLibraryTypeId"
+        },
+        "code" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        }
+      }
+    },
+    "library_libraryText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.capabilities:library_libraryText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "library_libraryText",
+        "propertyTypes" : [ "sap.sf.capabilities:library_libraryTextLibraryTextId" ]
+      } ],
+      "elements" : {
+        "library_libraryId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_library"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:library_libraryTextLibraryId"
+        },
+        "_library" : {
+          "type" : "cds.Association",
+          "target" : "library",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_library", "libraryId" ]
+          }, "=", {
+            "ref" : [ "library_libraryId_virtual" ]
+          } ]
+        },
+        "libraryTextId" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:library_libraryTextLibraryTextId"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 4000
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        }
+      }
+    },
+    "library_tag" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "elements" : {
+        "library_libraryId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_library"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:library_tagLibraryId"
+        },
+        "_library" : {
+          "type" : "cds.Association",
+          "target" : "library",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_library", "libraryId" ]
+          }, "=", {
+            "ref" : [ "library_libraryId_virtual" ]
+          } ]
+        },
+        "tagId" : {
+          "type" : "cds.String",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.capabilities:tag",
+            "referencedPropertyType" : "sap.sf.capabilities:tagTagId"
+          } ]
+        }
+      }
+    }
+  }
+}

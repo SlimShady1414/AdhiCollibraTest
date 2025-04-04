@@ -1,0 +1,9 @@
+{
+   "name": "JobStructure",
+   "namespace": "sap.sf.foundationobjects",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.foundationobjects:dataSource:Jobclassification:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Jobfunction:v1.0.0"
+   ]
+}

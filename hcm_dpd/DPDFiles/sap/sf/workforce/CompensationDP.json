@@ -1,0 +1,69 @@
+{
+  "name": "Compensation",
+  "version": "1.0.0",
+  "category": "businessObject",
+  "type": "primary",
+  "title": "Compensation",
+  "status": "In Testing",
+  "namespace": "sap.sf.workforce",
+  "responsible": "sap:ach:LOD-SF-EC",
+  "partOfPackage": "sap.sf.workforce:package:DataProducts:v1.0.0",
+  "shortDescription": "Data Product for Compensation info of assignment includes compensation details and one-time payments.",
+  "description": "Data Product that contains Compensation information of assignment includes compensation details and one-time payments.",
+  "entityTypes": [
+    "sap.odm:entityType:WorkforceCompensation:v1",
+    "sap.odm:entityType:WorkforceOneTimePayment:v1",
+    "sap.sf.workforce:entityType:compensationInfo:v1",
+    "sap.sf.workforce:entityType:oneTimePayment:v1"
+  ],
+  "entities": [
+    {
+      "name": "oneTimePayment",
+      "nodes": [
+        {
+          "name": "oneTimePayment_oneTimePaymentDetail",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "oneTimePayment",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        }
+      ],
+      "main": false
+    },
+    {
+      "name": "compensationInfo",
+      "nodes": [
+        {
+          "name": "compensationInfo",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        },
+        {
+          "name": "compensationInfo_compDetail",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "compensationInfo_recurringPayComponent",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "compensationInfo_targetPayComponent",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        }
+      ],
+      "main": false
+    }
+  ]
+}

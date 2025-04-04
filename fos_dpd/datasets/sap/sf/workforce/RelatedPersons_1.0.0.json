@@ -1,0 +1,8 @@
+{
+   "name": "RelatedPersons",
+   "namespace": "sap.sf.workforce",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.workforce:dataSource:Dependent:v1.0.0"
+   ]
+}

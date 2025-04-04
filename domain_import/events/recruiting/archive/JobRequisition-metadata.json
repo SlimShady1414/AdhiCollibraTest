@@ -1,0 +1,1936 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "/rest/recruiting/requisition/v1/metadata/jobRequisition",
+    "title": "Job Requisition Details",
+    "description": "Job Requisition Details",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": -9223372036854775808,
+            "maximum": 9223372036854775807
+        },
+        "templateId": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "format": "int64",
+            "title": "Job Requisition Template Id",
+            "description": "Job Requisition Template Id",
+            "minimum": -9223372036854775808,
+            "maximum": 9223372036854775807
+        },
+        "internalStatus": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Internal Status",
+            "description": "Internal Status",
+            "maxLength": 4000
+        },
+        "overallScaleName": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Overall Scale Name",
+            "description": "Overall Scale Name",
+            "maxLength": 100
+        },
+        "assessRatingScaleName": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Assess Rating Scale Name",
+            "description": "Assess Rating Scale Name",
+            "maxLength": 100
+        },
+        "reverseScale": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Reverse Scale",
+            "description": "Reverse Scale",
+            "maxLength": 100
+        },
+        "statusSetId": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "format": "int64",
+            "title": "Application Status Set Id",
+            "description": "Application Status Set Id",
+            "minimum": -9223372036854775808,
+            "maximum": 9223372036854775807
+        },
+        "templateType": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Template Type",
+            "description": "Template Type",
+            "maxLength": 4000
+        },
+        "appTemplateId": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "format": "int64",
+            "title": "Application Template Id",
+            "description": "Application Template Id",
+            "minimum": -9223372036854775808,
+            "maximum": 9223372036854775807
+        },
+        "positionNumber": {
+            "type": "string",
+            "maxLength": 100
+        },
+        "deleted": {
+            "type": [
+                "boolean",
+                "null"
+            ],
+            "title": "Is Deleted",
+            "description": "Is Deleted"
+        },
+        "parentJobReqId": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "format": "int64",
+            "title": "Parent Job Req Id",
+            "description": "Parent Job Req Id",
+            "minimum": -9223372036854775808,
+            "maximum": 9223372036854775807
+        },
+        "closedDateTime": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Date Closed",
+            "description": "Date Closed"
+        },
+        "createdAt": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Date Created",
+            "description": "Date Created"
+        },
+        "formDataId": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "format": "int64",
+            "title": "Form Data Id",
+            "description": "Form Data Id",
+            "minimum": -9223372036854775808,
+            "maximum": 9223372036854775807
+        },
+        "jobReqGUId": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Job Requisition GU Id",
+            "description": "Job Requisition GU Id",
+            "maxLength": 100
+        },
+        "modifiedBy": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Last Modified By",
+            "description": "Last Modified By",
+            "maxLength": 100
+        },
+        "modifiedAt": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Last Modified Date",
+            "description": "Last Modified Date"
+        },
+        "modifiedOnBehalfOf": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Last Modified Proxy User Id",
+            "description": "Last Modified Proxy User Id",
+            "maxLength": 100
+        },
+        "approvedBy": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Approved By",
+            "description": "Approved By",
+            "maxLength": 100
+        },
+        "approvedAt": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Approved Date",
+            "description": "Approved Date"
+        },
+        "hiringManagerSupervisor": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "numberOpenings": {
+            "type": "number",
+            "format": "decimal",
+            "x-sap-precision": 38,
+            "x-sap-scale": 2
+        },
+        "comments": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "location_obj": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/locationItem"
+            }
+        },
+        "salaryMid": {
+            "$ref": "/rest/recruiting/common/v1/metadata/currencyData"
+        },
+        "intranetPosting": {
+            "type": [
+                "boolean",
+                "null"
+            ]
+        },
+        "goalSharingTargetPercent": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "reqAssignedDate": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time"
+        },
+        "start": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time"
+        },
+        "pIPTargetPercent": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "intJobDescFooter": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "sourcerTeamGroup": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operator"
+            }
+        },
+        "sourcerTeam": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operatorTeam"
+            }
+        },
+        "positionTitle": {
+            "type": "string",
+            "maxLength": 100
+        },
+        "underutilizedfield": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "originator": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operator"
+            }
+        },
+        "corporatePosting": {
+            "type": [
+                "boolean",
+                "null"
+            ]
+        },
+        "agencyPosting": {
+            "type": [
+                "boolean",
+                "null"
+            ]
+        },
+        "budgeted": {
+            "type": "string",
+            "maxLength": 4000
+        },
+        "goalSharingTargetAmount": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "extListingLayout": {
+            "type": "string",
+            "maxLength": 4000
+        },
+        "listingLayout": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "intranetPrivatePosting": {
+            "type": [
+                "boolean",
+                "null"
+            ]
+        },
+        "salesIncentivePlanTargetAmount": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "extJobDescHeader": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "comments1": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "vpOfStaffing": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operator"
+            }
+        },
+        "secondRecruiter": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operator"
+            }
+        },
+        "workerClass": {
+            "type": "string",
+            "maxLength": 100
+        },
+        "compfrequency": {
+            "type": "string",
+            "maxLength": 100
+        },
+        "hiringManagerTeamGroup": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operator"
+            }
+        },
+        "hiringManagerTeam": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operatorTeam"
+            }
+        },
+        "legalEntity_obj": {
+            "type": "string",
+            "maxLength": 100
+        },
+        "reqType": {
+            "type": "string",
+            "maxLength": 4000
+        },
+        "externalPrivatePosting": {
+            "type": [
+                "boolean",
+                "null"
+            ]
+        },
+        "candidateHired": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "format": "decimal",
+            "x-sap-precision": 38,
+            "x-sap-scale": 2
+        },
+        "travel": {
+            "type": "string",
+            "maxLength": 4000
+        },
+        "legalEntity": {
+            "type": "string",
+            "maxLength": 100
+        },
+        "extJobDescFooter": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "salaryMax": {
+            "$ref": "/rest/recruiting/common/v1/metadata/currencyData"
+        },
+        "division": {
+            "type": "string",
+            "maxLength": 100
+        },
+        "salaryMin": {
+            "$ref": "/rest/recruiting/common/v1/metadata/currencyData"
+        },
+        "currency": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "hiringManager": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operator"
+            }
+        },
+        "coordinatorTeamGroup": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operator"
+            }
+        },
+        "coordinatorTeam": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operatorTeam"
+            }
+        },
+        "custaddReplace": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "vpOfStaffingTeamGroup": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operator"
+            }
+        },
+        "vpOfStaffingTeam": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operatorTeam"
+            }
+        },
+        "secondRecruiterTeamGroup": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operator"
+            }
+        },
+        "secondRecruiterTeam": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operatorTeam"
+            }
+        },
+        "additionalComments": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "location": {
+            "type": "string",
+            "maxLength": 100
+        },
+        "underutilizedcategory": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "immigrationAssistAvail": {
+            "type": "string",
+            "maxLength": 4000
+        },
+        "erpAmount": {
+            "$ref": "/rest/recruiting/common/v1/metadata/currencyData"
+        },
+        "frequency": {
+            "type": "string",
+            "maxLength": 100
+        },
+        "targetHireDate": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time"
+        },
+        "salesIncentivePlanTargetPercent": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "jobRole": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "jobFamily": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "exportControlFieldFlag": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "incrementalHeadcount": {
+            "type": "string",
+            "maxLength": 4000
+        },
+        "coordinator": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operator"
+            }
+        },
+        "sfstd_jobReqType": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Job Requisition Type",
+            "description": "Job Requisition Type",
+            "maxLength": 4000
+        },
+        "filter1": {
+            "type": "string",
+            "maxLength": 4000
+        },
+        "filter2": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "filter3": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "filter4": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "evergreen": {
+            "type": [
+                "boolean",
+                "null"
+            ],
+            "title": "Evergreen"
+        },
+        "costcenter_obj_text": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "division_obj_text": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "reqChargeType": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "intJobDescHeader": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 4000
+        },
+        "division_obj": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "recruiterTeamGroup": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operator"
+            }
+        },
+        "recruiterTeam": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operatorTeam"
+            }
+        },
+        "status": {
+            "type": "string",
+            "maxLength": 4000
+        },
+        "location_obj_text": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "custreplacementFor": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "sourcer": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operator"
+            }
+        },
+        "legalEntity_obj_text": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "costcenter_obj": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "relocationAssistAvail": {
+            "type": "string",
+            "maxLength": 4000
+        },
+        "recruiter": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/operator"
+            }
+        },
+        "end": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time"
+        },
+        "department": {
+            "type": "string",
+            "maxLength": 100
+        },
+        "texts": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/localizedText"
+            },
+            "title": "Localized Texts",
+            "description": "Provides the translated values for all localized string properties for one or more locales."
+        },
+        "jobReqPostings": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/jobReqPostings"
+            }
+        },
+        "skillProfile": {
+            "title": "Skill Profile",
+            "$ref": "/rest/recruiting/requisition/v1/metadata/Skills"
+        },
+        "statusAudits": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/requisition/v1/metadata/statusAudit"
+            }
+        }
+    },
+    "required": [
+        "id",
+        "positionNumber",
+        "numberOpenings",
+        "positionTitle",
+        "budgeted",
+        "extListingLayout",
+        "workerClass",
+        "compfrequency",
+        "legalEntity_obj",
+        "reqType",
+        "travel",
+        "legalEntity",
+        "division",
+        "location",
+        "immigrationAssistAvail",
+        "frequency",
+        "incrementalHeadcount",
+        "filter1",
+        "status",
+        "relocationAssistAvail",
+        "department"
+    ],
+    "x-sap-sf-resource": {
+        "id": [
+            "id"
+        ],
+        "properties": {
+            "modifiedBy": {
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/User"
+                    },
+                    "properties": {
+                        "modifiedBy": "id"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "modifiedOnBehalfOf": {
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/User"
+                    },
+                    "properties": {
+                        "modifiedOnBehalfOf": "id"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "approvedBy": {
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/User"
+                    },
+                    "properties": {
+                        "approvedBy": "id"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "underutilizedfield": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "underutilizedfield": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "budgeted": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "budgeted": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "legalEntity_obj": {
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/LegalEntity"
+                    },
+                    "properties": {
+                        "legalEntity_obj": "id"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "reqType": {
+                "valueList": {
+                    "id": "RCM_reqType",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "reqType": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "travel": {
+                "valueList": {
+                    "id": "RCM_travel",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "travel": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "custaddReplace": {
+                "valueList": {
+                    "id": "RCM_additionReplacement",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "custaddReplace": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "immigrationAssistAvail": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "immigrationAssistAvail": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "jobRole": {
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/RoleEntity"
+                    },
+                    "properties": {
+                        "jobRole": "id"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "exportControlFieldFlag": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "exportControlFieldFlag": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "incrementalHeadcount": {
+                "valueList": {
+                    "id": "RCM_additionReplacement1",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "incrementalHeadcount": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "filter1": {
+                "valueList": {
+                    "id": "RCM_jobFamily",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "filter1": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "filter2": {
+                "valueList": {
+                    "id": "country",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "filter2": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "filter3": {
+                "valueList": {
+                    "id": "RCM_RMKjobPostingStateProvince",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "filter3": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "filter4": {
+                "valueList": {
+                    "id": "RCM_RMKjobPostingCity",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "filter4": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "reqChargeType": {
+                "valueList": {
+                    "id": "RCM_reqChargeType",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "reqChargeType": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "division_obj": {
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/Division"
+                    },
+                    "properties": {
+                        "division_obj": "id"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "status": {
+                "valueList": {
+                    "id": "RCM_jobRequisitionStatus",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "status": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "costcenter_obj": {
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/CostCenter"
+                    },
+                    "properties": {
+                        "costcenter_obj": "id"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "relocationAssistAvail": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "relocationAssistAvail": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            }
+        }
+    },
+    "x-sap-sf-version": "1.0.0",
+    "x-sap-root-entity": true,
+    "$defs": {
+        "skillProfile": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/requisition/v1/metadata/Skills",
+            "title": "Job Requisition Skill Profile",
+            "description": "Job Requisition Skill Profile",
+            "type": "object",
+            "properties": {
+                "jobReqId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Job Req Id",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "id": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "format": "int64",
+                    "title": "Skill set id",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "extractionStatus": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Extraction Status",
+                    "maxLength": 100
+                },
+                "validated": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Is Validated",
+                    "maxLength": 100
+                },
+                "skills": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "/rest/recruiting/requisition/skillprofile/v1/metadata/skill"
+                    }
+                }
+            },
+            "required": [
+                "jobReqId"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "jobReqId"
+                ]
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "statusAudit": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/requisition/v1/metadata/statusAudit",
+            "title": "Job Requisition Custom Status Audit",
+            "description": "Job Requisition Custom Status Audit",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Revision Number",
+                    "description": "Revision number",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "type": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Revision Type",
+                    "description": "revision type: 0 - Insert; 1 - Update; 2 - Delete; -1 - Undefined",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "customStatusId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Job Requisition Custom Status Id",
+                    "description": "the custom status of the requisition",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "createdAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Created Date",
+                    "description": "date on which this record was created"
+                },
+                "createdBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Created By",
+                    "description": "user who created this record. For system statuses, this is set to v4admin",
+                    "maxLength": 100
+                },
+                "modifiedAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Last Modified Date",
+                    "description": "the date on which the status was last modified"
+                },
+                "modifiedBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Last Modified By",
+                    "description": "the user who last modified the requisition custom status. For system statuses, this is set to v4admin",
+                    "maxLength": 100
+                }
+            },
+            "required": [
+                "id",
+                "type",
+                "customStatusId"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "jobReqId",
+                    "id"
+                ],
+                "properties": {
+                    "createdBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "createdBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "modifiedBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "modifiedBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    }
+                }
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "texts": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/requisition/v1/metadata/localizedText",
+            "title": "Localized Texts",
+            "description": "Provides the translated values for all localized string properties for a single locales.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "JOB_REQ_LOCAL_ID",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "title": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "JOB_TITLE",
+                    "maxLength": 4000
+                },
+                "extTitle": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "EXTERNAL_TITLE",
+                    "maxLength": 4000
+                },
+                "listingLayout": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "JOB_DESCRIPTION",
+                    "maxLength": 4000
+                },
+                "extListingLayout": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "EXT_JOB_DESCRIPTION",
+                    "maxLength": 4000
+                },
+                "locale": {
+                    "type": "string",
+                    "title": "The locale specified as an ISO 63901 or BCP-47 language code.",
+                    "maxLength": 100
+                },
+                "default": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Whether or not the locale is the default locale based on the request context (i.e. user or system)",
+                    "maxLength": 100
+                }
+            },
+            "required": [
+                "id",
+                "locale"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ]
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "operatorTeam": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/requisition/v1/metadata/operatorTeam",
+            "title": "Operator Team Details",
+            "description": "Operator Team Details",
+            "type": "object",
+            "properties": {
+                "jobReqId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Job Req Id",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "operatorType": {
+                    "type": "string",
+                    "title": "Operator Type",
+                    "maxLength": 100
+                },
+                "isAdminSelected": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "title": "Is Admin Selected"
+                },
+                "isDisabled": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "title": "Is Operator Disabled"
+                },
+                "usersGroupId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "User Group ID",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                }
+            },
+            "required": [
+                "jobReqId",
+                "operatorType",
+                "usersGroupId"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "jobReqId",
+                    "usersGroupId",
+                    "operatorType"
+                ]
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "skill": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/requisition/skillprofile/v1/metadata/skill",
+            "title": "Skill Details",
+            "description": "Skill Details",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "format": "int64",
+                    "title": "SKill Item Id",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Skill code",
+                    "maxLength": 100
+                },
+                "assignmentMode": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "format": "int64",
+                    "title": "Assignment Mode",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "priority": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "format": "int64",
+                    "title": "priority",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "surfaceForm": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Surface Form",
+                    "maxLength": 100
+                },
+                "context": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Skill context",
+                    "maxLength": 100
+                }
+            },
+            "x-sap-sf-resource": {
+                "id": [
+                    "code"
+                ]
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "currencyData": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/common/v1/metadata/currencyData",
+            "title": "Currency Data",
+            "description": "Currency Data",
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "format": "decimal",
+                    "title": "Value",
+                    "x-sap-precision": 38,
+                    "x-sap-scale": 1
+                },
+                "currency": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Currency",
+                    "maxLength": 100
+                }
+            },
+            "x-sap-sf-resource": {},
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "locationItem": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/requisition/v1/metadata/locationItem",
+            "title": "Multi Select Field Details",
+            "description": "Multi Select Field Details",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Job Req Multi Select Id",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "value": {
+                    "type": "string",
+                    "title": "Field Value",
+                    "maxLength": 100
+                },
+                "primary": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "title": "Is Primary"
+                }
+            },
+            "required": [
+                "id",
+                "value"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ],
+                "properties": {
+                    "value": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/location"
+                            },
+                            "properties": {
+                                "value": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    }
+                }
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "jobReqPostings": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/requisition/v1/metadata/jobReqPostings",
+            "title": "Job Requisition Postings",
+            "description": "Job Requisition Postings",
+            "type": "object",
+            "properties": {
+                "jobReqId": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "format": "int64",
+                    "title": "Job Req Id",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Job Posting Id",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "boardId": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Job Board Id",
+                    "maxLength": 4000
+                },
+                "channelId": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Job Channel Id",
+                    "maxLength": 100
+                },
+                "boardName": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Job Board Name",
+                    "maxLength": 100
+                },
+                "postingStatus": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Job Posting Status",
+                    "maxLength": 4000
+                },
+                "postedBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Job Posting By",
+                    "maxLength": 100
+                },
+                "lastModifiedBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Posting Last Modified By",
+                    "maxLength": 100
+                },
+                "lastModifiedDateTime": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Posting Last Modified Date"
+                },
+                "postStartDate": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Posting Start Date"
+                },
+                "postEndDate": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Posting End DateDate"
+                },
+                "agencyComments": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Agency Comments",
+                    "maxLength": 4000
+                },
+                "extPartnerAccountId": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "format": "int64",
+                    "title": "Ext Partner Account Id",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ],
+                "properties": {
+                    "postedBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "postedBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "lastModifiedBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "lastModifiedBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    }
+                }
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "operator": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/requisition/v1/metadata/operator",
+            "title": "Operator Details",
+            "description": "Operator Details",
+            "type": "object",
+            "properties": {
+                "jobReqId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Job Req ID",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "usersSysId": {
+                    "type": "string",
+                    "title": "Operators User ID",
+                    "maxLength": 100
+                },
+                "operatorType": {
+                    "type": "string",
+                    "title": "Operator Type",
+                    "maxLength": 4000
+                },
+                "status": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "format": "decimal",
+                    "title": "Status",
+                    "x-sap-precision": 38,
+                    "x-sap-scale": 2
+                },
+                "reviewed": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "title": "Is Reviewed"
+                },
+                "owner": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "title": "Is Owner"
+                },
+                "adminSelected": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "title": "Is Admin Selected"
+                },
+                "disabled": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "title": "Is Operator Disabled"
+                }
+            },
+            "required": [
+                "jobReqId",
+                "usersSysId",
+                "operatorType"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "jobReqId",
+                    "usersSysId",
+                    "operatorType"
+                ],
+                "properties": {
+                    "usersSysId": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "usersSysId": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    }
+                }
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        }
+    }
+}

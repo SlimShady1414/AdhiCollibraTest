@@ -1,0 +1,40 @@
+{
+   "name": "Paygrade",
+   "namespace": "sap.sf.foundationobjects",
+   "version": "1.0.0",
+   "connector": {
+      "connectorName": "dsapi",
+      "outboundMedallionLayer": "staging"
+   },
+   "metadata": {
+      "id": "sap.sf.foundationobjects:csnDocument:payGrade:v1.0.0"
+   },
+   "transformers": [
+      {
+         "transformerName": "sap.bdc.fos:transformer:jsonlDatasourcePlugins:v1.0.0",
+         "outboundMedallionLayer": "silver"
+      }
+   ],
+   "plugins": [
+      {
+         "jsonlIngest": {
+            "isEnable": true,
+            "primaryKeyColumn": "xsapsfseqkeys",
+            "watermarkColumn": "sequence",
+            "watermarkColumnType": "cds.Int64"
+         }
+      },
+      {
+         "jsonlMerge": {
+            "isEnable": true
+         }
+      },
+      {
+         "jsonlDecompose": {
+            "isEnable": true,
+            "sourceColumnName": "data",
+            "normalize": true
+         }
+      }
+   ]
+}

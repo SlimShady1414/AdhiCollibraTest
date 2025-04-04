@@ -1,0 +1,20 @@
+{
+   "name": "RequirementType",
+   "title": "RequirementType",
+   "description": "Reference Data required in Learning",
+   "shortDescription": "Reference Data that is required in Learning",
+   "partOfPackage": "sap.sf.learning:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-TIH",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.sf.learning:entityType:requirementType:v1"
+   ],
+   "datasets": [
+      "sap.sf.learning:dataset:RequirementType:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.learning:share:RequirementType:v1.0.0"
+   ]
+}

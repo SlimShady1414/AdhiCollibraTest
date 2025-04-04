@@ -1,0 +1,4166 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "/rest/recruiting/application/v1/metadata/jobApplication",
+    "title": "Job Application Details",
+    "description": "Job Application Details",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "format": "int64",
+            "title": "Job Application Id",
+            "description": "Unique identifier for an application",
+            "minimum": -9223372036854775808,
+            "maximum": 9223372036854775807
+        },
+        "candidateId": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "format": "decimal",
+            "title": "Candidate Id",
+            "description": "The id of the candidate applying for a job",
+            "x-sap-precision": 38
+        },
+        "jobReqId": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "format": "decimal",
+            "title": "Job requisition id",
+            "description": "job requisition id",
+            "x-sap-precision": 38
+        },
+        "status": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "format": "decimal",
+            "title": "Application Status",
+            "description": "Application status: 0 - Open; 1 - Disqualified; 2 - Closed; 3 - Withdraw; 4 - Saved; 5 - Not Applied; 6 - Draft Application",
+            "x-sap-precision": 12
+        },
+        "emailAddress": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Email Address",
+            "description": "maps to standard application field ‘contactEmail’",
+            "maxLength": 100
+        },
+        "minAnnualSalary": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "format": "decimal",
+            "title": "Min Annual Salary",
+            "description": "maps to standard application field ‘minAnnualSal’",
+            "x-sap-precision": 12,
+            "x-sap-scale": 2
+        },
+        "preferredLocation": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Preferred Location",
+            "description": "maps to standard application field ‘preferredLoc’",
+            "maxLength": 256
+        },
+        "statusComment": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Status Comments",
+            "description": "comments entered by operator",
+            "maxLength": 1000
+        },
+        "backgroundCheckStatus": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Background Check Status",
+            "description": "maps to standard application field ‘bkgrndChkStatus’",
+            "maxLength": 256
+        },
+        "hiredOn": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Applicant Hired Date",
+            "description": "Date on which the applicant was hired"
+        },
+        "exportedOn": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Applicant Exported Date",
+            "description": "date on which the applicant was exported"
+        },
+        "snapshotAt": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Snapshot Date",
+            "description": "snapshot date of the application. Details from candidate profile are copied over to corresponding application fields."
+        },
+        "countryCode": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Country Code",
+            "description": "maps to standard application field ‘country’. This is a special field. Mix of ISO country code and option ids from ‘country’ picklist.",
+            "maxLength": 1024
+        },
+        "usersSysId": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "User Sys Id",
+            "description": "users sys id for an internal applicant",
+            "maxLength": 100
+        },
+        "publicIntranet": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Public Intranet",
+            "description": "If true it means that this application was made by a candidate from the public intranet career site.",
+            "maxLength": 1
+        },
+        "guid": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Id for imported application",
+            "description": "external job application id for imported applications",
+            "maxLength": 512
+        },
+        "nonApplicantStatus": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "format": "decimal",
+            "title": "Non applicant status",
+            "description": "if the candidate has applied or not: 0 - UNDEFINED; 1- ACTIVE_STATUS; 2- INVITED_STATUS",
+            "x-sap-precision": 38
+        },
+        "urlHash": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Commuted Hash",
+            "description": "Commuted hash from private URL. This is copied to the db if user chooses to save the job and apply later.",
+            "maxLength": 200
+        },
+        "resumeUploadedAt": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Resume uploaded date",
+            "description": "date on which the resume was uploaded to the JAM group"
+        },
+        "dataSource": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "format": "decimal",
+            "title": "Data Source",
+            "description": "Source of the application: 0 - SF_ONLY (SF internal and user entry through SF only. No external partner data source); 1 - LINKED_IN",
+            "x-sap-precision": 38
+        },
+        "anonymized": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Anonymized Flag",
+            "description": "The candidate solr search is controlled based on this flag. Only non-anonymized candidates are searchable: (0 or null) - Non-anonymized; 1 - Anonymized",
+            "maxLength": 1
+        },
+        "anonymizedAt": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Anonymized Date",
+            "description": "date when anonymized"
+        },
+        "locale": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Application Locale",
+            "description": "Locale used for the application. This is used for passing the application locale to VI while initiating on-boarding request and background check request.",
+            "maxLength": 32
+        },
+        "profileUpdated": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Is Profile Updated",
+            "description": "This is used in multi-stage application to indicate to the operator in the candidate summary page that the candidate has updated the application: 0 - not updated; 1 - updated",
+            "maxLength": 1
+        },
+        "duplicateProfile": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Duplicate Profile",
+            "description": "indicate job application is no longer relevant because it came from a duplicate candidate profile that has been merged using the Candidate Merge feature",
+            "maxLength": 1
+        },
+        "modifiedOnBehalfOf": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Proxy User",
+            "description": "The proxy user who last modified the job application",
+            "maxLength": 100
+        },
+        "owner": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Owner",
+            "description": "owner for purposes of calculating referral bonus",
+            "maxLength": 100
+        },
+        "candConversionProcessed": {
+            "type": [
+                "boolean",
+                "null"
+            ],
+            "title": "Candidate Conversion Process",
+            "description": "Whether candidate profile conversion job has processed this application"
+        },
+        "candTypeWhenHired": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Candidate Type when hired",
+            "description": "Indicated whether the applicant was internal, external or alumni when user was marked as hired",
+            "maxLength": 1
+        },
+        "ownedFrom": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Ownership date",
+            "description": "Date when ownership was established"
+        },
+        "timeToHire": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "format": "decimal",
+            "title": "Time to hire",
+            "description": "calculated based on admin recruiting setting for job application, represents Time taken to hire a candidate",
+            "x-sap-precision": 18,
+            "x-sap-scale": 2
+        },
+        "personId": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "format": "decimal",
+            "title": "Person id",
+            "description": "PersonId column to store person id for internal applicants",
+            "x-sap-precision": 38
+        },
+        "segment": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "format": "decimal",
+            "title": "Segment id",
+            "description": "Stores the segment id of the job application. segment id is the id of a subsidiary which the job application belongs to.",
+            "x-sap-precision": 38
+        },
+        "modifiedBy": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Last Modified by",
+            "description": "The user who last modified the job application",
+            "maxLength": 100
+        },
+        "modifiedAt": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Last Modified Date",
+            "description": "date on which the application was last modified"
+        },
+        "createdAt": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Application Date",
+            "description": "maps to standard application field ‘applicationDate’"
+        },
+        "source": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "format": "decimal",
+            "title": "Application Source",
+            "description": "maps to standard application field ‘source’",
+            "x-sap-precision": 12
+        },
+        "referralSource": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "format": "decimal",
+            "title": "Referral Source",
+            "description": "maps to standard application field ‘referralSource'",
+            "x-sap-precision": 38
+        },
+        "ssn": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "SSN",
+            "description": "maps to standard application field ‘ssn’",
+            "maxLength": 100
+        },
+        "dateOfBirth": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Date Of Birth",
+            "description": "maps to standard application field ‘dateOfBirth’"
+        },
+        "ethnicity": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Ethnicity",
+            "description": "maps to standard application field ‘ethnicity’",
+            "maxLength": 256
+        },
+        "veteranStatus": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Veteran Status",
+            "description": "maps to standard application field ‘veteranStatus’",
+            "maxLength": 256
+        },
+        "disabilityStatus": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Disability Status",
+            "description": "maps to standard application field ‘disabilityStatus’",
+            "maxLength": 100
+        },
+        "currentCompany": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Current Company",
+            "description": "maps to standard application field ‘currentCompany’",
+            "maxLength": 256
+        },
+        "currentTitle": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Current Title",
+            "description": "maps to standard application field ‘currentTitle’",
+            "maxLength": 256
+        },
+        "race": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Race",
+            "description": "maps to standard application field ‘race’",
+            "maxLength": 100
+        },
+        "formerEmployee": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Former Employee",
+            "description": "maps to standard application field ‘formerEmployee’",
+            "maxLength": 1
+        },
+        "startedAt": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Start Date",
+            "description": "maps to standard application field ‘startDate’"
+        },
+        "psRelocation": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Willing To Relocate",
+            "maxLength": 4000
+        },
+        "psRoleMotivation": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Motivation/Reason for pursuing a new role",
+            "maxLength": 4000
+        },
+        "psTopicsForFurtherExploration": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Topics for Further Exploration",
+            "maxLength": 4000
+        },
+        "talentwise_error_1": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Background Check Error",
+            "maxLength": 100
+        },
+        "payType": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Pay Type",
+            "maxLength": 4000
+        },
+        "custUS3": {
+            "type": "string",
+            "title": "Are you a citizen or permanent resident of Iran, Syria, North Korea, Cuba, Sudan, or the Crimea region of Ukraine?",
+            "maxLength": 4000
+        },
+        "disclaimerAcknowledge": {
+            "type": "string",
+            "title": "Typed Signature",
+            "maxLength": 100
+        },
+        "custUS1": {
+            "type": "string",
+            "title": "Are you currently authorized to work in the U.S.?",
+            "maxLength": 4000
+        },
+        "coverLetter": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Cover Letter",
+            "maxLength": 4000
+        },
+        "retentionBonusPaymentDate2": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Retention Bonus #2 Payment Date"
+        },
+        "preferredName": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Preferred Name",
+            "maxLength": 100
+        },
+        "state": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "State / Province",
+            "maxLength": 100
+        },
+        "custUS2": {
+            "type": "string",
+            "title": "Do you now or will you in the future require sponsorship for employment visa status?",
+            "maxLength": 4000
+        },
+        "completedMilliaryServiceTaiwan": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Have you completed Milliary service in Taiwan",
+            "maxLength": 4000
+        },
+        "offerAcceptDate": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Offer Acceptance Date"
+        },
+        "passportIssuedBy": {
+            "type": "string",
+            "title": "Issued By",
+            "maxLength": 100
+        },
+        "zip": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Zip / Postal Code",
+            "maxLength": 256
+        },
+        "minimumLegalAge": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Do you meet the minimum legal employable age",
+            "maxLength": 4000
+        },
+        "phoneScreenDate": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Phone Screen Date"
+        },
+        "veteranActq1": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Please select one of the following in regard to your Protected Veteran status:",
+            "maxLength": 4000
+        },
+        "signingBonusPaymentDate": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Sign-on Bonus Payment Date"
+        },
+        "evergreenConsent": {
+            "type": "string",
+            "title": "Corning may have other openings for this job in other cities and/or countries.  If you would like to give your consent for Corning to use your application for this position as an application for those other jobs in addition to this one, please select “Yes” below.  If you select “Yes,” recruiting personnel will use your application information to create and submit applications for those other jobs in your name.  \nIf you select “No” below, you will need to apply separately for each specific location and role in which you are interested.  \nWhether you select “Yes” or “No,” you can withdraw your applications (both applications that you submit, and, if you select “Yes,” any that Corning personnel submit on your behalf) at any time.  To do so, log into Corning’s job application webpage https://corningjobs.corning.com/ and select “My Account, Sign In”, then open the specific Job to click the “Withdraw Application” button.  \nPlease note that if you withdraw your application, Corning may already have processed (reviewed or used) your information.  Any processing prior to withdrawal is lawful based on your original consent before you withdrew the application.",
+            "maxLength": 4000
+        },
+        "eeParticipation": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Do you wish to furnish this information",
+            "maxLength": 4000
+        },
+        "statusId": {
+            "type": "string",
+            "title": "Candidate Status",
+            "maxLength": 4000
+        },
+        "OfferExtendedDate": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Offer Extended Date"
+        },
+        "psIdealTiming": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Ideal Timing",
+            "maxLength": 4000
+        },
+        "legalInCanada": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Are you legally entitled to work in Canada",
+            "maxLength": 4000
+        },
+        "fixedBonus": {
+            "title": "Fixed Bonus",
+            "$ref": "/rest/recruiting/common/v1/metadata/currencyData"
+        },
+        "startDate": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Actual Employment Start Date"
+        },
+        "talentwise_createTimeLastModified_1": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Background Check Created",
+            "maxLength": 100
+        },
+        "lastName": {
+            "type": "string",
+            "title": "Last Name",
+            "maxLength": 128
+        },
+        "nonCompeteAgreement": {
+            "type": "string",
+            "title": "Are you subject to any non-compete agreement(s) or other restrictions that may conflict with employment at Corning",
+            "maxLength": 4000
+        },
+        "offerContactPerson": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Name of Person Receiving Acceptance Documents",
+            "maxLength": 100
+        },
+        "gender": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Gender",
+            "maxLength": 1
+        },
+        "city": {
+            "type": "string",
+            "title": "City",
+            "maxLength": 100
+        },
+        "offerContactEmail": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Email of Person Receiving Acceptance Documents",
+            "maxLength": 100
+        },
+        "enrolledWaiverProgram": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "If answered no, are you enrolled to a waiver program",
+            "maxLength": 4000
+        },
+        "empStartDate": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Anticipated Employment Start Date"
+        },
+        "talentwise_completedOn_1": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Background Check Completed On",
+            "maxLength": 100
+        },
+        "psLastYearBase": {
+            "title": "Last Year Base",
+            "$ref": "/rest/recruiting/common/v1/metadata/currencyData"
+        },
+        "bkgrndChkStatus1": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Background Check Results",
+            "maxLength": 4000
+        },
+        "averageRating": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "format": "decimal",
+            "title": "Average Rating",
+            "x-sap-precision": 38,
+            "x-sap-scale": 2
+        },
+        "offerReturnDate": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Offer Returned by Date"
+        },
+        "talentwise_lastModified_1": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Background Check Last Modified",
+            "maxLength": 100
+        },
+        "currency": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Currency",
+            "maxLength": 4000
+        },
+        "IDNumber": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "ID Number",
+            "maxLength": 100
+        },
+        "resume": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Resume/CV (Required for US applicants)",
+            "maxLength": 4000
+        },
+        "nonCompeteAgreementDetails": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "If yes, please provide details on your non-compete restrictions",
+            "maxLength": 4000
+        },
+        "address": {
+            "type": "string",
+            "title": "Address",
+            "maxLength": 256
+        },
+        "questionResponse": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/application/v1/metadata/questionResponse"
+            }
+        },
+        "psCurrentBonus": {
+            "title": "Current Bonus",
+            "$ref": "/rest/recruiting/common/v1/metadata/currencyData"
+        },
+        "signingBonus": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Sign-on Bonus",
+            "maxLength": 100
+        },
+        "RCM_retentionBonus2": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Retention Bonus #2",
+            "maxLength": 100
+        },
+        "newHireEndDate": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Expected Job End Date"
+        },
+        "psDesiredCompensation": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Desired Compensation",
+            "maxLength": 4000
+        },
+        "candidateName": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Candidate Name",
+            "maxLength": 100
+        },
+        "workedForiBwave": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Have you worked for iBwave",
+            "maxLength": 4000
+        },
+        "cellPhone": {
+            "type": "string",
+            "title": "Primary Phone",
+            "maxLength": 100
+        },
+        "psCurrentOrganization": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Current Organization",
+            "maxLength": 100
+        },
+        "psWorkHistory": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Work History",
+            "maxLength": 4000
+        },
+        "country": {
+            "type": "string",
+            "title": "Country",
+            "maxLength": 4000
+        },
+        "psPotentialAttractionChallenges": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Potential Attraction Challenges",
+            "maxLength": 4000
+        },
+        "jobTitle": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Position Applied For",
+            "maxLength": 100
+        },
+        "highestEducation": {
+            "type": "string",
+            "title": "Highest Level of Education Completed",
+            "maxLength": 4000
+        },
+        "vacationEntitlement2": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Vacation",
+            "maxLength": 100
+        },
+        "jobsApplied": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Other Applications",
+            "maxLength": 100
+        },
+        "passportIssuedOn": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Issued On"
+        },
+        "ethnicityA": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Based on this definition, choose the correct selection",
+            "maxLength": 4000
+        },
+        "RCM_ovm": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "OVM (lump sum in lieu of base pay)",
+            "maxLength": 100
+        },
+        "passportNumber": {
+            "type": "string",
+            "title": "Passport Number",
+            "maxLength": 100
+        },
+        "reloAllowance": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Relocation",
+            "maxLength": 100
+        },
+        "retentionBonusPaymentDate": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Retention Bonus Payment Date"
+        },
+        "homePhone": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Alternate Phone",
+            "maxLength": 100
+        },
+        "gender2": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Gender.",
+            "maxLength": 4000
+        },
+        "psCompensation": {
+            "title": "Desired Compensation Confirmation",
+            "$ref": "/rest/recruiting/common/v1/metadata/currencyData"
+        },
+        "hiringManagersTitle": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Hiring Manager's Title",
+            "maxLength": 100
+        },
+        "psCurrentBase": {
+            "title": "Current Base",
+            "$ref": "/rest/recruiting/common/v1/metadata/currencyData"
+        },
+        "reportToAddress": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "First Day Report to Address",
+            "maxLength": 100
+        },
+        "formerEmployeeDetails": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "If yes, please provide the employer(s) name(s), date(s), location(s) and position(s) held",
+            "maxLength": 4000
+        },
+        "firstName": {
+            "type": "string",
+            "title": "First Name",
+            "maxLength": 128
+        },
+        "disabilityq1": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Please check one of the boxes below:",
+            "maxLength": 4000
+        },
+        "psSummary": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Summary",
+            "maxLength": 4000
+        },
+        "psLastYearBonus": {
+            "title": "Last Year Bonus",
+            "$ref": "/rest/recruiting/common/v1/metadata/currencyData"
+        },
+        "disabilityTodaysDate": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Today's Date"
+        },
+        "applicationDate": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "Application Date"
+        },
+        "psPotentialIssues": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Potential Issues",
+            "maxLength": 4000
+        },
+        "psOtherCompensation": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Other Compensation",
+            "maxLength": 4000
+        },
+        "onbOnboardingProcess": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Indicate Onboarding Process",
+            "maxLength": 4000
+        },
+        "sponsorship": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Will you now or in the future require sponsorship for employment visa status",
+            "maxLength": 4000
+        },
+        "psYearsOfExperience": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "format": "decimal",
+            "title": "Years Of Experience",
+            "x-sap-precision": 38,
+            "x-sap-scale": 2
+        },
+        "newHireCompensationRate": {
+            "title": "Base Pay",
+            "$ref": "/rest/recruiting/common/v1/metadata/currencyData"
+        },
+        "psCurrentRole": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Current Role",
+            "maxLength": 100
+        },
+        "psCareerObjectives": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Career Objectives",
+            "maxLength": 4000
+        },
+        "RCM_ovmDate": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "title": "OVM Payment Date"
+        },
+        "comments": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/application/v1/metadata/comment"
+            }
+        },
+        "bkgrndChkStatus": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Background Check Status",
+            "maxLength": 4000
+        },
+        "raceA": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Based on this definition, choose the correct selection",
+            "maxLength": 4000
+        },
+        "disabilitySignature": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Typed Signature",
+            "maxLength": 100
+        },
+        "contactEmail": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Email Address",
+            "maxLength": 100
+        },
+        "address2": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Address 2",
+            "maxLength": 100
+        },
+        "psRoleSpecificSkillset": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Role Specific Skillset/Experience",
+            "maxLength": 4000
+        },
+        "psEducationConfirmation": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Education Confirmation",
+            "maxLength": 4000
+        },
+        "psInterviewAvailability": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Interview Availability",
+            "maxLength": 4000
+        },
+        "RCM_retentionBonus": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Retention Bonus",
+            "maxLength": 100
+        },
+        "preferredLanguageONB": {
+            "type": "string",
+            "title": "Indicate New Hire's Preferred Language for Onboarding",
+            "maxLength": 4000
+        },
+        "additionalOfferInfo": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Additional Offer Details",
+            "maxLength": 4000
+        },
+        "middleName": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Middle",
+            "maxLength": 128
+        },
+        "formerEmployee1": {
+            "type": "string",
+            "title": "Have you ever worked for Corning or any of it's affliates as an employee or a contractor previously",
+            "maxLength": 4000
+        },
+        "talentwisePackageID": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "title": "Background Check Package ID",
+            "maxLength": 4000
+        },
+        "assessments": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/application/v1/metadata/assessment"
+            }
+        },
+        "onboardingInformation": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/application/v1/metadata/onboardingInformation"
+            }
+        },
+        "backgroundChecks": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/application/v1/metadata/backgroundCheck"
+            }
+        },
+        "courses": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/application/v1/metadata/courses"
+            }
+        },
+        "certificates": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/application/v1/metadata/certificates"
+            }
+        },
+        "mobility": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/application/v1/metadata/mobility"
+            }
+        },
+        "languages": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/application/v1/metadata/languages"
+            }
+        },
+        "education": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/application/v1/metadata/education"
+            }
+        },
+        "insideWorkExperience": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/application/v1/metadata/insideWorkExperience"
+            }
+        },
+        "outsideWorkExperience": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/application/v1/metadata/outsideWorkExperience"
+            }
+        },
+        "statusAudits": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "/rest/recruiting/application/v1/metadata/statusAudit"
+            }
+        },
+        "skillProfile": {
+            "title": "Skill Profile",
+            "$ref": "/rest/recruiting/application/v1/metadata/skillProfile"
+        }
+    },
+    "required": [
+        "id",
+        "custUS3",
+        "disclaimerAcknowledge",
+        "custUS1",
+        "custUS2",
+        "passportIssuedBy",
+        "evergreenConsent",
+        "statusId",
+        "lastName",
+        "nonCompeteAgreement",
+        "city",
+        "address",
+        "cellPhone",
+        "country",
+        "highestEducation",
+        "passportIssuedOn",
+        "passportNumber",
+        "firstName",
+        "preferredLanguageONB",
+        "formerEmployee1"
+    ],
+    "x-sap-sf-resource": {
+        "id": [
+            "id"
+        ],
+        "properties": {
+            "usersSysId": {
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/User"
+                    },
+                    "properties": {
+                        "usersSysId": "id"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "modifiedOnBehalfOf": {
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/User"
+                    },
+                    "properties": {
+                        "modifiedOnBehalfOf": "id"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "owner": {
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/User"
+                    },
+                    "properties": {
+                        "owner": "id"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "modifiedBy": {
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/User"
+                    },
+                    "properties": {
+                        "modifiedBy": "id"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "psRelocation": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "psRelocation": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "payType": {
+                "valueList": {
+                    "id": "PayType",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "payType": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "custUS3": {
+                "valueList": {
+                    "id": "RCMyesNo2",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "custUS3": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "custUS1": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "custUS1": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "custUS2": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "custUS2": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "completedMilliaryServiceTaiwan": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "completedMilliaryServiceTaiwan": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "minimumLegalAge": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "minimumLegalAge": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "veteranActq1": {
+                "valueList": {
+                    "id": "RCM_veteranActq1",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "veteranActq1": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "evergreenConsent": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "evergreenConsent": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "eeParticipation": {
+                "valueList": {
+                    "id": "RCM_eeParticipation",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "eeParticipation": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "statusId": {
+                "valueList": {
+                    "id": "RCM_candidateStatusDL",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "statusId": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "legalInCanada": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "legalInCanada": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "nonCompeteAgreement": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "nonCompeteAgreement": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "gender": {
+                "valueList": {
+                    "id": "RCM_gender",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "gender": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "enrolledWaiverProgram": {
+                "valueList": {
+                    "id": "RCM_yesNoNA",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "enrolledWaiverProgram": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "bkgrndChkStatus1": {
+                "valueList": {
+                    "id": "RCM_backgroundStatus1",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "bkgrndChkStatus1": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "workedForiBwave": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "workedForiBwave": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "country": {
+                "valueList": {
+                    "id": "country",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "country": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "highestEducation": {
+                "valueList": {
+                    "id": "degree",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "highestEducation": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "ethnicityA": {
+                "valueList": {
+                    "id": "RCM_ethnicOrigin",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "ethnicityA": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "gender2": {
+                "valueList": {
+                    "id": "RCM_gender",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "gender2": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "disabilityq1": {
+                "valueList": {
+                    "id": "RCM_disabilityq1",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "disabilityq1": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "onbOnboardingProcess": {
+                "valueList": {
+                    "id": "RCM_OnboardingProcessONB",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "onbOnboardingProcess": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "sponsorship": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "sponsorship": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "bkgrndChkStatus": {
+                "valueList": {
+                    "id": "RCM_backgroundStatus",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "bkgrndChkStatus": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "raceA": {
+                "valueList": {
+                    "id": "RCM_race",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "raceA": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "psEducationConfirmation": {
+                "valueList": {
+                    "id": "degree",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "psEducationConfirmation": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "preferredLanguageONB": {
+                "valueList": {
+                    "id": "RCM_preferredLanguageONB",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "preferredLanguageONB": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "formerEmployee1": {
+                "valueList": {
+                    "id": "yesNo",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "formerEmployee1": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            },
+            "talentwisePackageID": {
+                "valueList": {
+                    "id": "RCM_TalentwisePkgIDs",
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                    },
+                    "load": "lazy",
+                    "properties": {},
+                    "label": null
+                },
+                "bind": {
+                    "schema": {
+                        "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                    },
+                    "properties": {
+                        "talentwisePackageID": "optionId"
+                    },
+                    "type": "association",
+                    "multiplicity": "1..1"
+                }
+            }
+        }
+    },
+    "x-sap-sf-dpp": {
+        "properties": {
+            "createdBy": {
+                "pii": true
+            },
+            "modifiedBy": {
+                "pii": true
+            }
+        }
+    },
+    "x-sap-sf-version": "1.0.0",
+    "x-sap-root-entity": true,
+    "$defs": {
+        "courses": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/application/v1/metadata/courses",
+            "title": "Courses",
+            "description": "Significant Courses Completed",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Background Id",
+                    "description": "Unique identifier for snapshot application background information",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "type": {
+                    "type": "number",
+                    "format": "decimal",
+                    "title": "Background Element Type",
+                    "description": "Background Element Type",
+                    "x-sap-precision": 4
+                },
+                "modifiedAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Last Modified Date",
+                    "description": "Date on which this record was last modified"
+                },
+                "createdAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Background Element Creation Date",
+                    "description": "Date on which this record was created"
+                },
+                "createdBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Element Created By",
+                    "description": "Records User Sys Id of the user who has created the record.",
+                    "maxLength": 100
+                },
+                "modifiedBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Element Last Modified By",
+                    "description": "Records User Sys Id of the user who has modified the record last time.",
+                    "maxLength": 100
+                },
+                "course": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Significant Courses Completed",
+                    "description": "Significant Courses Completed",
+                    "maxLength": 4000
+                }
+            },
+            "required": [
+                "id",
+                "type"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ],
+                "properties": {
+                    "createdBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "createdBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "modifiedBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "modifiedBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    }
+                }
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "mobility": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/application/v1/metadata/mobility",
+            "title": "Mobility",
+            "description": "Geographic Mobility",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Background Id",
+                    "description": "Unique identifier for snapshot application background information",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "type": {
+                    "type": "number",
+                    "format": "decimal",
+                    "title": "Background Element Type",
+                    "description": "Background Element Type",
+                    "x-sap-precision": 4
+                },
+                "modifiedAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Last Modified Date",
+                    "description": "Date on which this record was last modified"
+                },
+                "createdAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Background Element Creation Date",
+                    "description": "Date on which this record was created"
+                },
+                "createdBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Element Created By",
+                    "description": "Records User Sys Id of the user who has created the record.",
+                    "maxLength": 100
+                },
+                "modifiedBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Element Last Modified By",
+                    "description": "Records User Sys Id of the user who has modified the record last time.",
+                    "maxLength": 100
+                },
+                "willingness": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Willing to Relocate",
+                    "description": "Willing to Relocate",
+                    "maxLength": 4000
+                },
+                "location": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Location Desired",
+                    "description": "Location Desired",
+                    "maxLength": 4000
+                }
+            },
+            "required": [
+                "id",
+                "type"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ],
+                "properties": {
+                    "createdBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "createdBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "modifiedBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "modifiedBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "willingness": {
+                        "valueList": {
+                            "id": "willingtorelocate",
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                            },
+                            "load": "lazy",
+                            "properties": {},
+                            "label": null
+                        },
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                            },
+                            "properties": {
+                                "willingness": "optionId"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "location": {
+                        "valueList": {
+                            "id": "mobilitylocation",
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                            },
+                            "load": "lazy",
+                            "properties": {},
+                            "label": null
+                        },
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                            },
+                            "properties": {
+                                "location": "optionId"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    }
+                }
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "education": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/application/v1/metadata/education",
+            "title": "Education",
+            "description": "Formal Education",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Background Id",
+                    "description": "Unique identifier for snapshot application background information",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "type": {
+                    "type": "number",
+                    "format": "decimal",
+                    "title": "Background Element Type",
+                    "description": "Background Element Type",
+                    "x-sap-precision": 4
+                },
+                "modifiedAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Last Modified Date",
+                    "description": "Date on which this record was last modified"
+                },
+                "createdAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Background Element Creation Date",
+                    "description": "Date on which this record was created"
+                },
+                "createdBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Element Created By",
+                    "description": "Records User Sys Id of the user who has created the record.",
+                    "maxLength": 100
+                },
+                "modifiedBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Element Last Modified By",
+                    "description": "Records User Sys Id of the user who has modified the record last time.",
+                    "maxLength": 100
+                },
+                "school": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "School",
+                    "description": "School",
+                    "maxLength": 4000
+                },
+                "degree": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Degree",
+                    "description": "Degree",
+                    "maxLength": 4000
+                },
+                "major": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Major",
+                    "description": "Major",
+                    "maxLength": 999
+                },
+                "stillAttending": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Currently Enrolled",
+                    "description": "Currently Enrolled",
+                    "maxLength": 999
+                },
+                "educationCompleted": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Completed",
+                    "description": "Completed",
+                    "maxLength": 999
+                },
+                "startDate": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Start Date",
+                    "description": "Start Date"
+                },
+                "endDate": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Graduation Date",
+                    "description": "Graduation Date"
+                }
+            },
+            "required": [
+                "id",
+                "type"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ],
+                "properties": {
+                    "createdBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "createdBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "modifiedBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "modifiedBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "degree": {
+                        "valueList": {
+                            "id": "degree",
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                            },
+                            "load": "lazy",
+                            "properties": {},
+                            "label": null
+                        },
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                            },
+                            "properties": {
+                                "degree": "optionId"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "major": {
+                        "valueList": {
+                            "id": "major",
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                            },
+                            "load": "lazy",
+                            "properties": {},
+                            "label": null
+                        },
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                            },
+                            "properties": {
+                                "major": "optionId"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "stillAttending": {
+                        "valueList": {
+                            "id": "yesNo",
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                            },
+                            "load": "lazy",
+                            "properties": {},
+                            "label": null
+                        },
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                            },
+                            "properties": {
+                                "stillAttending": "optionId"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "educationCompleted": {
+                        "valueList": {
+                            "id": "yesNo",
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                            },
+                            "load": "lazy",
+                            "properties": {},
+                            "label": null
+                        },
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                            },
+                            "properties": {
+                                "educationCompleted": "optionId"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    }
+                }
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "questionResponse": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/application/v1/metadata/questionResponse",
+            "title": "Job Application Question Response",
+            "description": "Job Application Question Response",
+            "type": "object",
+            "properties": {
+                "question": {
+                    "type": "string",
+                    "title": "question",
+                    "description": "question",
+                    "maxLength": 100
+                },
+                "question-type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "question-type",
+                    "description": "question-type",
+                    "maxLength": 100
+                },
+                "expected-answer": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "expected-answer",
+                    "description": "expected-answer",
+                    "maxLength": 100
+                },
+                "high-low": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "high-low",
+                    "description": "high-low",
+                    "maxLength": 100
+                },
+                "answer": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "answer",
+                    "description": "answer",
+                    "maxLength": 100
+                }
+            },
+            "required": [
+                "question"
+            ],
+            "x-sap-sf-resource": {},
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "languages": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/application/v1/metadata/languages",
+            "title": "Languages",
+            "description": "Language",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Background Id",
+                    "description": "Unique identifier for snapshot application background information",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "type": {
+                    "type": "number",
+                    "format": "decimal",
+                    "title": "Background Element Type",
+                    "description": "Background Element Type",
+                    "x-sap-precision": 4
+                },
+                "modifiedAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Last Modified Date",
+                    "description": "Date on which this record was last modified"
+                },
+                "createdAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Background Element Creation Date",
+                    "description": "Date on which this record was created"
+                },
+                "createdBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Element Created By",
+                    "description": "Records User Sys Id of the user who has created the record.",
+                    "maxLength": 100
+                },
+                "modifiedBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Element Last Modified By",
+                    "description": "Records User Sys Id of the user who has modified the record last time.",
+                    "maxLength": 100
+                },
+                "language": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Language",
+                    "description": "Language",
+                    "maxLength": 4000
+                },
+                "speakingProf": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Speaking Proficiency",
+                    "description": "Speaking Proficiency",
+                    "maxLength": 4000
+                },
+                "readingProf": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Reading Proficiency",
+                    "description": "Reading Proficiency",
+                    "maxLength": 4000
+                },
+                "writingProf": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Writing Proficiency",
+                    "description": "Writing Proficiency",
+                    "maxLength": 4000
+                }
+            },
+            "required": [
+                "id",
+                "type"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ],
+                "properties": {
+                    "createdBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "createdBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "modifiedBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "modifiedBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "language": {
+                        "valueList": {
+                            "id": "corninglang",
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                            },
+                            "load": "lazy",
+                            "properties": {},
+                            "label": null
+                        },
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                            },
+                            "properties": {
+                                "language": "optionId"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "speakingProf": {
+                        "valueList": {
+                            "id": "fluency",
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                            },
+                            "load": "lazy",
+                            "properties": {},
+                            "label": null
+                        },
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                            },
+                            "properties": {
+                                "speakingProf": "optionId"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "readingProf": {
+                        "valueList": {
+                            "id": "fluency",
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                            },
+                            "load": "lazy",
+                            "properties": {},
+                            "label": null
+                        },
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                            },
+                            "properties": {
+                                "readingProf": "optionId"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "writingProf": {
+                        "valueList": {
+                            "id": "fluency",
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                            },
+                            "load": "lazy",
+                            "properties": {},
+                            "label": null
+                        },
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                            },
+                            "properties": {
+                                "writingProf": "optionId"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    }
+                }
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "insideWorkExperience": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/application/v1/metadata/insideWorkExperience",
+            "title": "Inside Work Experience",
+            "description": "Corning Work History",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Background Id",
+                    "description": "Unique identifier for snapshot application background information",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "type": {
+                    "type": "number",
+                    "format": "decimal",
+                    "title": "Background Element Type",
+                    "description": "Background Element Type",
+                    "x-sap-precision": 4
+                },
+                "modifiedAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Last Modified Date",
+                    "description": "Date on which this record was last modified"
+                },
+                "createdAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Background Element Creation Date",
+                    "description": "Date on which this record was created"
+                },
+                "createdBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Element Created By",
+                    "description": "Records User Sys Id of the user who has created the record.",
+                    "maxLength": 100
+                },
+                "modifiedBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Element Last Modified By",
+                    "description": "Records User Sys Id of the user who has modified the record last time.",
+                    "maxLength": 100
+                },
+                "title": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Position Title",
+                    "description": "Position Title",
+                    "maxLength": 4000
+                },
+                "division": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Division",
+                    "description": "Division",
+                    "maxLength": 4000
+                },
+                "location": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Work Location",
+                    "description": "Work Location",
+                    "maxLength": 4000
+                },
+                "workcountry": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Work Country",
+                    "description": "Work Country",
+                    "maxLength": 4000
+                },
+                "presentEmployer": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Current Role",
+                    "description": "Current Role",
+                    "maxLength": 999
+                },
+                "startDate": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Start Date",
+                    "description": "Start Date"
+                },
+                "endDate": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "End Date",
+                    "description": "End Date"
+                }
+            },
+            "required": [
+                "id",
+                "type"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ],
+                "properties": {
+                    "createdBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "createdBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "modifiedBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "modifiedBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "workcountry": {
+                        "valueList": {
+                            "id": "country",
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                            },
+                            "load": "lazy",
+                            "properties": {},
+                            "label": null
+                        },
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                            },
+                            "properties": {
+                                "workcountry": "optionId"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "presentEmployer": {
+                        "valueList": {
+                            "id": "yesNo",
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                            },
+                            "load": "lazy",
+                            "properties": {},
+                            "label": null
+                        },
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                            },
+                            "properties": {
+                                "presentEmployer": "optionId"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    }
+                }
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "onboardingInformation": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/application/v1/metadata/onboardingInformation",
+            "title": "Job Application Onboarding Information",
+            "description": "Job Application Onboarding Information",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Onboarding ID",
+                    "description": "Unique Identifier of the record.",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "vendorApplicantId": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Vendor Applicant ID",
+                    "description": "Id provided by the vendor in response",
+                    "maxLength": 50
+                },
+                "orderNo": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Order No",
+                    "description": "Order number provided by vendor upon onboarding initiation",
+                    "maxLength": 50
+                },
+                "vendor": {
+                    "type": "string",
+                    "title": "Vendor",
+                    "description": "Account identification provided by the vendor",
+                    "maxLength": 50
+                },
+                "accountId": {
+                    "type": "string",
+                    "title": "Account ID",
+                    "description": "Account identification provided by the vendor",
+                    "maxLength": 25
+                },
+                "createdBy": {
+                    "type": "string",
+                    "title": "Onboarding creation done by",
+                    "description": "User id of the person who created",
+                    "maxLength": 100
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "title": "Onboarding creation date",
+                    "description": "Date when the record is created"
+                },
+                "version": {
+                    "type": "number",
+                    "format": "decimal",
+                    "title": "Onboarding Version",
+                    "description": "Onboarding version used while initiating onboarding process for an applicant from BizX",
+                    "x-sap-precision": 4
+                },
+                "statusId": {
+                    "type": "number",
+                    "format": "decimal",
+                    "title": "Onboarding Status ID",
+                    "description": "Unique Identifier of Onboarding Status record.",
+                    "x-sap-precision": 38
+                },
+                "type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Onboarding Type",
+                    "description": "Type of onboarding process like Form,Task etc.,",
+                    "maxLength": 256
+                },
+                "name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Onboarding Name",
+                    "description": "Name of onboarding. Emergency Contact form, Direct Deposit Form, I-9 Employee form",
+                    "maxLength": 256
+                },
+                "statusType": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Onboarding Status Type",
+                    "description": "Onboarding status type like form or task",
+                    "maxLength": 256
+                },
+                "status": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Onboarding Status",
+                    "description": "Status of onboarding. Pass, partial, inprogress, reviewed etc.",
+                    "maxLength": 256
+                },
+                "modifiedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "title": "Last Modified Date",
+                    "description": "Date last updated"
+                }
+            },
+            "required": [
+                "id",
+                "vendor",
+                "accountId",
+                "createdBy",
+                "createdAt",
+                "version",
+                "statusId",
+                "modifiedAt"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ],
+                "properties": {
+                    "createdBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "createdBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    }
+                }
+            },
+            "x-sap-sf-dpp": {
+                "properties": {
+                    "accountId": {
+                        "pii": true
+                    },
+                    "createdBy": {
+                        "pii": true
+                    },
+                    "vendorApplicantId": {
+                        "pii": true
+                    }
+                }
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "backgroundCheck": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/application/v1/metadata/backgroundCheck",
+            "title": "Job Application Candidate Background Check",
+            "description": "Job Application Candidate Background Check",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Background Id",
+                    "description": "Background Id for background check",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "orderNo": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Order No",
+                    "description": "Order number sent by VI",
+                    "maxLength": 50
+                },
+                "vendor": {
+                    "type": "string",
+                    "title": "Vendor",
+                    "description": "Vendor information like VI or LN",
+                    "maxLength": 50
+                },
+                "accountId": {
+                    "type": "string",
+                    "title": "Account Id",
+                    "description": "Account identification provided by the vendor",
+                    "maxLength": 50
+                },
+                "packageId": {
+                    "type": "string",
+                    "title": "Package Id",
+                    "description": "Package id provided by the vendor",
+                    "maxLength": 50
+                },
+                "costCenterId": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Cost Center ID",
+                    "description": "Customer cost center id",
+                    "maxLength": 50
+                },
+                "createdBy": {
+                    "type": "string",
+                    "title": "Created By",
+                    "description": "User id of the person who created",
+                    "maxLength": 100
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "title": "Created Date",
+                    "description": "Date when the record is created"
+                },
+                "modifiedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "title": "Last Modified Date",
+                    "description": "Date when the record is updated"
+                },
+                "name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Check Name",
+                    "description": "Name of the check type like education, work experience etc.",
+                    "maxLength": 256
+                },
+                "status": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Check Status",
+                    "description": "This is the status of the background check like in progress/Pass/Fail",
+                    "maxLength": 256
+                },
+                "type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Check Type",
+                    "description": "Flag to indentify if this is a overall status or individual status update : 0 - overall, 1 -individual",
+                    "maxLength": 1
+                },
+                "screeningType": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Screening Type",
+                    "description": "To identify if this is an overall status or individual status for each element",
+                    "maxLength": 256
+                },
+                "orderStatus": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Order Status",
+                    "description": "This is the check status of the background check",
+                    "maxLength": 256
+                }
+            },
+            "required": [
+                "id",
+                "vendor",
+                "accountId",
+                "packageId",
+                "createdBy",
+                "createdAt",
+                "modifiedAt"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ],
+                "properties": {
+                    "createdBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "createdBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    }
+                }
+            },
+            "x-sap-sf-dpp": {
+                "properties": {
+                    "accountId": {
+                        "pii": true
+                    },
+                    "createdBy": {
+                        "pii": true
+                    }
+                }
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "skillProfile": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/application/v1/metadata/skillProfile",
+            "title": "Job Application Skill Profile",
+            "description": "Job Application Skill Profile",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "format": "int64",
+                    "title": "Skill Profile Id",
+                    "description": "Skill Profile Id",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "score": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "format": "decimal",
+                    "title": "Overall Skill Score",
+                    "description": "Overall Skill score for this application",
+                    "x-sap-precision": 38,
+                    "x-sap-scale": 3
+                },
+                "industry": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Industry Name",
+                    "description": "Store the industry information from Resume.",
+                    "maxLength": 200
+                },
+                "modifiedAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Last Modified Date",
+                    "description": "Date on which the Profile was last modified"
+                },
+                "validated": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Validated",
+                    "description": "Boolean whether the skill set has been validated.",
+                    "maxLength": 1
+                },
+                "skills": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "/rest/recruiting/application/skillprofile/v1/metadata/skill"
+                    }
+                }
+            },
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ]
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "assessment": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/application/v1/metadata/assessment",
+            "title": "Job Application Assessment",
+            "description": "Job Application Assessment data",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Assessment Order ID",
+                    "description": "Unique identifier for a assessment order",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "associationId": {
+                    "type": "number",
+                    "format": "decimal",
+                    "title": "Assessment Association ID",
+                    "description": "assessment association reference for this order",
+                    "x-sap-precision": 38
+                },
+                "status": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "format": "decimal",
+                    "title": "Assessment Status",
+                    "description": "status of the assessment 0-Completed, 1-Pending, 2-Initiated, 99-Failed",
+                    "x-sap-precision": 3
+                },
+                "statusDate": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Assessment Status Date",
+                    "description": "status date"
+                },
+                "createdBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Assessment Order Created By",
+                    "description": "Created By field, records User Sys Id of the user who has created the record",
+                    "maxLength": 100
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "title": "Assessment Order Creation Date",
+                    "description": "Created Date field, records transaction date when the record was created"
+                },
+                "modifiedBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Assessment Order Last Modified By",
+                    "description": "Last Modified Date By field, records User Sys Id of the user who has modified the record last time",
+                    "maxLength": 100
+                },
+                "modifiedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "title": "Assessment Order Last Modification Date",
+                    "description": "Last Modified Date field, records transaction date when the record was modified last time"
+                },
+                "orderStatus": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "format": "decimal",
+                    "title": "Assessment Order Status",
+                    "description": "status of the assessment order",
+                    "x-sap-precision": 1
+                },
+                "orderStatusDate": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Assessment Order Status Date",
+                    "description": "order status date"
+                },
+                "reportFieldKey": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Report Field Key",
+                    "description": "key for the report like ‘BAND’,’RAW_SCORE’",
+                    "maxLength": 256
+                },
+                "reportFieldValue": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Report Field Value",
+                    "description": "value/score for the report",
+                    "maxLength": 256
+                },
+                "packageName": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Package Name",
+                    "description": "package title",
+                    "maxLength": 256
+                },
+                "vendor": {
+                    "type": "string",
+                    "title": "Assessment Vendor",
+                    "description": "Assessment Vendor",
+                    "maxLength": 256
+                }
+            },
+            "required": [
+                "id",
+                "associationId",
+                "createdAt",
+                "modifiedAt",
+                "vendor"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ],
+                "properties": {
+                    "createdBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "createdBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "modifiedBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "modifiedBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    }
+                }
+            },
+            "x-sap-sf-dpp": {
+                "properties": {
+                    "createdBy": {
+                        "pii": true
+                    },
+                    "modifiedBy": {
+                        "pii": true
+                    }
+                }
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "statusAudit": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/application/v1/metadata/statusAudit",
+            "title": "Job Application Status Audit",
+            "description": "Job Application Status Audit",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Revision Number",
+                    "description": "revision number. References REV_ENT",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "type": {
+                    "type": "number",
+                    "format": "decimal",
+                    "title": "Revision Type",
+                    "description": "revision type: 0 - when application status was modified by system, 1 - for application status changes made by job req operator",
+                    "x-sap-precision": 3
+                },
+                "statusId": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "format": "decimal",
+                    "title": "Application Status Set Item Id",
+                    "description": "the application status of the application",
+                    "x-sap-precision": 38
+                },
+                "createdAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Created Date",
+                    "description": "date on which this record was created"
+                },
+                "createdBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Created By",
+                    "description": "user who created this record. For system statuses, this is set to v4admin",
+                    "maxLength": 100
+                },
+                "modifiedAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Last Modified Date",
+                    "description": "the date on which the status was last modified"
+                },
+                "modifiedBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Last Modified By",
+                    "description": "the user who last modified the application status. For system statuses, this is set to v4admin",
+                    "maxLength": 100
+                },
+                "skipped": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "format": "decimal",
+                    "title": "Skipped Status",
+                    "description": "if this application status was skipped: 0 - Not skipped; 1 - Skipped status and the logged in user has the selectable by permission value; 2 - Skipped status but the logged in user does not have the selectable by permission value",
+                    "x-sap-precision": 1
+                }
+            },
+            "required": [
+                "id",
+                "type"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ],
+                "properties": {
+                    "createdBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "createdBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "modifiedBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "modifiedBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    }
+                }
+            },
+            "x-sap-sf-dpp": {
+                "properties": {
+                    "createdBy": {
+                        "pii": true
+                    },
+                    "modifiedBy": {
+                        "pii": true
+                    }
+                }
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "outsideWorkExperience": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/application/v1/metadata/outsideWorkExperience",
+            "title": "Outside Work Experience",
+            "description": "Employment History",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Background Id",
+                    "description": "Unique identifier for snapshot application background information",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "type": {
+                    "type": "number",
+                    "format": "decimal",
+                    "title": "Background Element Type",
+                    "description": "Background Element Type",
+                    "x-sap-precision": 4
+                },
+                "modifiedAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Last Modified Date",
+                    "description": "Date on which this record was last modified"
+                },
+                "createdAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Background Element Creation Date",
+                    "description": "Date on which this record was created"
+                },
+                "createdBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Element Created By",
+                    "description": "Records User Sys Id of the user who has created the record.",
+                    "maxLength": 100
+                },
+                "modifiedBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Background Element Last Modified By",
+                    "description": "Records User Sys Id of the user who has modified the record last time.",
+                    "maxLength": 100
+                },
+                "title": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Position Title",
+                    "description": "Position Title",
+                    "maxLength": 4000
+                },
+                "employer": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Company Name",
+                    "description": "Company Name",
+                    "maxLength": 4000
+                },
+                "division": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Division",
+                    "description": "Division",
+                    "maxLength": 4000
+                },
+                "location": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Work Location",
+                    "description": "Work Location",
+                    "maxLength": 4000
+                },
+                "workcountry": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Work Country",
+                    "description": "Work Country",
+                    "maxLength": 4000
+                },
+                "businessType": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Industry",
+                    "description": "Industry",
+                    "maxLength": 4000
+                },
+                "presentEmployer": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Current Role",
+                    "description": "Current Role",
+                    "maxLength": 999
+                },
+                "startDate": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "Start Date",
+                    "description": "Start Date"
+                },
+                "endDate": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "title": "End Date",
+                    "description": "End Date"
+                }
+            },
+            "required": [
+                "id",
+                "type"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ],
+                "properties": {
+                    "createdBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "createdBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "modifiedBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "modifiedBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "workcountry": {
+                        "valueList": {
+                            "id": "country",
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                            },
+                            "load": "lazy",
+                            "properties": {},
+                            "label": null
+                        },
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                            },
+                            "properties": {
+                                "workcountry": "optionId"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "businessType": {
+                        "valueList": {
+                            "id": "industry",
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                            },
+                            "load": "lazy",
+                            "properties": {},
+                            "label": null
+                        },
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                            },
+                            "properties": {
+                                "businessType": "optionId"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "presentEmployer": {
+                        "valueList": {
+                            "id": "yesNo",
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickList"
+                            },
+                            "load": "lazy",
+                            "properties": {},
+                            "label": null
+                        },
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+                            },
+                            "properties": {
+                                "presentEmployer": "optionId"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    }
+                }
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "skill": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/application/skillprofile/v1/metadata/skill",
+            "title": "Skill Details",
+            "description": "Skill Details",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Skill Id",
+                    "description": "Unique identifier for the skill",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Skill Code",
+                    "description": "Skill code UUID from TIH.",
+                    "maxLength": 128
+                },
+                "score": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "format": "decimal",
+                    "title": "Individual Skill Score",
+                    "description": "Value between 0-1 - expresses the strength of a suggested skill",
+                    "x-sap-precision": 38,
+                    "x-sap-scale": 3
+                },
+                "assignmentMode": {
+                    "type": "number",
+                    "format": "decimal",
+                    "title": "Assignment Mode",
+                    "description": "How the skill was assigned - EXTRACTED(1), MANUAL(2), SUGGESTED(3)",
+                    "x-sap-precision": 38
+                },
+                "priority": {
+                    "type": "number",
+                    "format": "decimal",
+                    "title": "Priority",
+                    "description": "In order to define a given skill priority - PRIMARY(0), SECONDARY(1)",
+                    "x-sap-precision": 38
+                },
+                "context": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Skill Context",
+                    "description": "Sentence in which the skill was found",
+                    "maxLength": 1000
+                }
+            },
+            "required": [
+                "id",
+                "assignmentMode",
+                "priority"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ]
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        },
+        "comment": {
+            "$schema": "https://json-schema.org/draft/2019-09/schema",
+            "$id": "/rest/recruiting/application/v1/metadata/comment",
+            "title": "Job Application Comments",
+            "description": "Job Application Comments data",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "title": "Comment ID",
+                    "description": "Comment ID",
+                    "minimum": -9223372036854775808,
+                    "maximum": 9223372036854775807
+                },
+                "commentator": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "title": "Commentator",
+                    "description": "The user ID of the commentator",
+                    "maxLength": 100
+                },
+                "content": {
+                    "type": "string",
+                    "title": "Content",
+                    "description": "The actual content of the comment",
+                    "maxLength": 4000
+                },
+                "createdBy": {
+                    "type": "string",
+                    "title": "Created By",
+                    "description": "The person who created the comment",
+                    "maxLength": 100
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "title": "Created Date",
+                    "description": "The date and time when the comment was created"
+                },
+                "modifiedBy": {
+                    "type": "string",
+                    "title": "Last Modified By",
+                    "description": "The person who last modified the comment",
+                    "maxLength": 100
+                },
+                "modifiedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "title": "Last Modified Date",
+                    "description": "The date and time when the comment was last modified"
+                }
+            },
+            "required": [
+                "id",
+                "content",
+                "createdBy",
+                "createdAt",
+                "modifiedBy",
+                "modifiedAt"
+            ],
+            "x-sap-sf-resource": {
+                "id": [
+                    "id"
+                ],
+                "properties": {
+                    "createdBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "createdBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    },
+                    "modifiedBy": {
+                        "bind": {
+                            "schema": {
+                                "$ref": "/rest/extensibility/general/v1/metadata/User"
+                            },
+                            "properties": {
+                                "modifiedBy": "id"
+                            },
+                            "type": "association",
+                            "multiplicity": "1..1"
+                        }
+                    }
+                }
+            },
+            "x-sap-sf-dpp": {
+                "properties": {
+                    "commentator": {
+                        "pii": true
+                    },
+                    "createdBy": {
+                        "pii": true
+                    },
+                    "modifiedBy": {
+                        "pii": true
+                    }
+                }
+            },
+            "x-sap-sf-version": "1.0.0",
+            "x-sap-root-entity": false
+        }
+    }
+}

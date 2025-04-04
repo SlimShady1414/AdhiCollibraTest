@@ -1,0 +1,623 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/workforce/orgstructure/v1/metadata/position",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "position",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.workforce",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "position" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Position",
+      "@ODM.entityName" : "WorkforcePosition",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:position",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "position",
+        "propertyTypes" : [ "sap.sf.workforce:positionId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:positionId"
+        },
+        "code" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "code",
+          "length" : 128
+        },
+        "timeslices" : {
+          "type" : "cds.Composition",
+          "target" : "position_positionTimeSlice",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "timeslices", "position_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "position_positionTimeSlice" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:position_positionTimeSlice",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "position_positionTimeSlice",
+        "propertyTypes" : [ "sap.sf.workforce:position_positionTimeSliceRecordId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "validFrom",
+        "temporalIntervalEndProperty" : "validTo"
+      } ],
+      "elements" : {
+        "position_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_position"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:position_positionTimeSliceId"
+        },
+        "_position" : {
+          "type" : "cds.Association",
+          "target" : "position",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_position", "id" ]
+          }, "=", {
+            "ref" : [ "position_id_virtual" ]
+          } ]
+        },
+        "externalName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalName"
+        },
+        "effectiveStatus" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "effectiveStatus"
+        },
+        "validFrom" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validFrom"
+        },
+        "validTo" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validTo"
+        },
+        "type" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PositionType",
+            "referencedPropertyType" : "sap.sf.extensibility:PositionTypeId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "type",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "positionTitle" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "positionTitle",
+          "length" : 255
+        },
+        "criticality" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "criticality",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "comment" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "comment",
+          "length" : 255
+        },
+        "incumbent" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "incumbent"
+        },
+        "changeReason" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:ChangeReason1PickList",
+            "referencedPropertyType" : "sap.sf.extensibility:ChangeReason1PickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "changeReason",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "description",
+          "length" : 255
+        },
+        "jobTitle" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "jobTitle",
+          "length" : 255
+        },
+        "jobCode" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:jobClassification",
+            "referencedPropertyType" : "sap.sf.foundationobjects:jobClassificationId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "jobCode",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "jobLevel" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:JobLevelPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:JobLevelPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "jobLevel",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "employeeClass" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:EMPLOYEECLASSPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:EMPLOYEECLASSPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "employeeClass",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "regularTemporary" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:RegularTemporaryPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:RegularTemporaryPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "regularTemporary",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "payGrade" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:payGrade",
+            "referencedPropertyType" : "sap.sf.foundationobjects:payGradeId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "payGrade",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "targetFTE" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "targetFTE",
+          "precision" : 39,
+          "scale" : 17
+        },
+        "vacant" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "vacant"
+        },
+        "company" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:legalEntity",
+            "referencedPropertyType" : "sap.sf.foundationobjects:legalEntityId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "company",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "businessUnit" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:businessUnit",
+            "referencedPropertyType" : "sap.sf.foundationobjects:businessUnitId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "businessUnit",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "division" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:division",
+            "referencedPropertyType" : "sap.sf.foundationobjects:divisionId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "division",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "department" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:department",
+            "referencedPropertyType" : "sap.sf.foundationobjects:departmentId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "department",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "location" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:location",
+            "referencedPropertyType" : "sap.sf.foundationobjects:locationId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "location",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "costCenter" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:costCenter",
+            "referencedPropertyType" : "sap.sf.foundationobjects:costCenterId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "costCenter",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "multipleIncumbentsAllowed" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "multipleIncumbentsAllowed"
+        },
+        "legacyPositionId" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "legacyPositionId",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "positionControlled" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "positionControlled"
+        },
+        "technicalParameters" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "technicalParameters",
+          "length" : 255
+        },
+        "positionCriticality" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:PositionCriticalityPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:PositionCriticalityPickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "positionCriticality",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "standardHours" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "standardHours",
+          "precision" : 39,
+          "scale" : 17
+        },
+        "payRange" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:payRange",
+            "referencedPropertyType" : "sap.sf.foundationobjects:payRangeId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "payRange",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "creationSource" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "creationSource"
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:position_positionTimeSliceRecordId"
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        },
+        "cust_min" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "cust_min",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "cust_mid" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "cust_mid",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "cust_max" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "cust_max",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "cust_employmentType" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:employmentTypePickList",
+            "referencedPropertyType" : "sap.sf.extensibility:employmentTypePickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "cust_employmentType",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "cust_incentivePlan" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:cust_SFCC_IncentivePlan",
+            "referencedPropertyType" : "sap.sf.extensibility:cust_SFCC_IncentivePlanId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "cust_incentivePlan",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "positionMatrixRelationship" : {
+          "type" : "cds.Composition",
+          "target" : "position_PositionMatrixRelationship",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "positionMatrixRelationship", "position_positionTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "parentPosition" : {
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_position_parentPosition"
+          },
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "_position_parentPosition" : {
+          "type" : "cds.Association",
+          "target" : "position",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_position_parentPosition", "id" ]
+          }, "=", {
+            "ref" : [ "parentPosition" ]
+          } ]
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "position_positionText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "position_positionTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        }
+      }
+    },
+    "position_PositionMatrixRelationship" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Matrix Relationship For Position",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:position_PositionMatrixRelationship",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "position_PositionMatrixRelationship",
+        "propertyTypes" : [ "sap.sf.workforce:position_PositionMatrixRelationshipRecordId" ]
+      } ],
+      "elements" : {
+        "position_positionTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_position_positionTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:position_PositionMatrixRelationshipRecordId"
+        },
+        "_position_positionTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "position_positionTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_position_positionTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "position_positionTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "matrixRelationshipType" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:PositionMatrixRelationshipTypePickList",
+            "referencedPropertyType" : "sap.sf.extensibility:PositionMatrixRelationshipTypePickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "matrixRelationshipType",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "relatedPosition" : {
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_position_relatedPosition"
+          },
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "relatedPosition",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "_position_relatedPosition" : {
+          "type" : "cds.Association",
+          "target" : "position",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_position_relatedPosition", "id" ]
+          }, "=", {
+            "ref" : [ "relatedPosition" ]
+          } ]
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:position_PositionMatrixRelationshipRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "position_positionText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Localized value for translatable data type field",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:position_positionText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "position_positionText",
+        "propertyTypes" : [ "sap.sf.workforce:position_positionTextRecordId", "sap.sf.workforce:position_positionTextLocale" ]
+      } ],
+      "elements" : {
+        "position_positionTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_position_positionTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:position_positionTextRecordId"
+        },
+        "_position_positionTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "position_positionTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_position_positionTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "position_positionTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "locale",
+          "length" : 128,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:position_positionTextLocale"
+        },
+        "externalName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalName",
+          "length" : 255
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "default"
+        }
+      }
+    }
+  }
+}

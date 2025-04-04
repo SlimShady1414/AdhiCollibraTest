@@ -1,0 +1,235 @@
+{
+  "name": "EnterpriseStructure",
+  "version": "1.0.0",
+  "category": "businessObject",
+  "type": "primary",
+  "title": "EnterpriseStructure",
+  "status": "In Testing",
+  "namespace": "sap.sf.foundationobjects",
+  "responsible": "sap:ach:LOD-SF-EC",
+  "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
+  "shortDescription": "Ent structure is info about a company structure relevant for employee. It includes data such as legal entity, location group, location, and cost center.",
+  "description": "Enterprise structure is information about a company's structure relevant for employees. It includes data such as legal entity, location group, location, and cost center.",
+  "entityTypes": [
+    "sap.odm:entityType:CompanyCode:v1",
+    "sap.odm:entityType:CostCenter:v1",
+    "sap.odm:entityType:WorkforceLocation:v1",
+    "sap.odm:entityType:WorkforceLocationGroup:v1",
+    "sap.sf.foundationobjects:entityType:costCenter:v1",
+    "sap.sf.foundationobjects:entityType:legalEntity:v1",
+    "sap.sf.foundationobjects:entityType:location:v1",
+    "sap.sf.foundationobjects:entityType:locationGroup:v1"
+  ],
+  "entities": [
+    {
+      "name": "legalEntity",
+      "nodes": [
+        {
+          "name": "legalEntity_LegalEntityBOL",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_legalEntityText",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_LegalEntitySVN",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_legalEntityTimeSlice",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_LegalEntityTHA",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_LegalEntityUSA",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_LegalEntityTUN",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_LegalEntityBLR",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_LegalEntityARG",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_LegalEntityRUS",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_LegalEntitySGP",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_LegalEntitySAU",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_LegalEntityDEU",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_LegalEntityCAN",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_LegalEntityFRA",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_LegalEntityESP",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "legalEntity_LegalEntityPRY",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        }
+      ],
+      "main": false
+    },
+    {
+      "name": "locationGroup",
+      "nodes": [
+        {
+          "name": "locationGroup",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        },
+        {
+          "name": "locationGroup_locationGroupTimesliceText",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "locationGroup_locationGroupTimeslice",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        }
+      ],
+      "main": false
+    },
+    {
+      "name": "location",
+      "nodes": [
+        {
+          "name": "location_legalEntity",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "location_locationTimesliceText",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "location_locationTimeslice",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "location_addressInformation",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "location",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        },
+        {
+          "name": "location_LegalEntity",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        }
+      ],
+      "main": false
+    },
+    {
+      "name": "costCenter",
+      "nodes": [
+        {
+          "name": "costCenter_legalEntity",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "costCenter",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        },
+        {
+          "name": "costCenter_costCenterTimeSlice",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "costCenter_costCenterText",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        }
+      ],
+      "main": false
+    }
+  ]
+}

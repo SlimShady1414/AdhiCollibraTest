@@ -1,0 +1,126 @@
+{
+  "name": "WorkforceCapability",
+  "version": "1.0.0",
+  "category": "businessObject",
+  "type": "primary",
+  "title": "WorkforceCapability",
+  "status": "In Testing",
+  "namespace": "sap.sf.capabilities",
+  "responsible": "sap:ach:LOD-SF-TIH",
+  "partOfPackage": "sap.sf.capabilities:package:DataProducts:v1.0.0",
+  "shortDescription": "This Data Product includes Attribute, Attribute Type, Proficiency Set, and Tag).",
+  "description": "This Data Product in the Talent Intelligence Hub includes Attribute (a specific skill or other Attributes), Attribute Type (type of the attribute), Proficiency Set (levels of expertise), and Tag (contextual keywords for filtering and search)",
+  "entityTypes": [
+    "sap.odm:entityType:WorkforceCapability:v1",
+    "sap.odm:entityType:WorkforceCapabilityCatalog:v1",
+    "sap.odm:entityType:WorkforceCapabilityProficiencyScale:v1",
+    "sap.sf.capabilities:entityType:library:v1",
+    "sap.sf.capabilities:entityType:libraryType:v1",
+    "sap.sf.capabilities:entityType:proficiencySet:v1",
+    "sap.sf.capabilities:entityType:tag:v1"
+  ],
+  "entities": [
+    {
+      "name": "library",
+      "nodes": [
+        {
+          "name": "library",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        },
+        {
+          "name": "library_source",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "library_libraryTypeRef",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "library_libraryText",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "library_tag",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        }
+      ],
+      "main": false
+    },
+    {
+      "name": "libraryType",
+      "nodes": [
+        {
+          "name": "libraryType",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        },
+        {
+          "name": "libraryType_libraryTypeText",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        }
+      ],
+      "main": false
+    },
+    {
+      "name": "proficiencySet",
+      "nodes": [
+        {
+          "name": "proficiencySet",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        },
+        {
+          "name": "proficiencySet_proficiencySetText",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "proficiencySet_proficiencyLevel",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "proficiencySet_proficiencyLevelText",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        }
+      ],
+      "main": false
+    },
+    {
+      "name": "tag",
+      "nodes": [
+        {
+          "name": "tag",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        },
+        {
+          "name": "tag_tagText",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        }
+      ],
+      "main": false
+    }
+  ]
+}

@@ -1,0 +1,329 @@
+{
+  "$id": "/rest/foundationobjects/enterprisestructure/v1/metadata/costCenter",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "Cost Center",
+  "type": "object",
+  "x-sap-sf-version": "1.0.0",
+  "x-sap-sf-custom-version": 1,
+  "properties": {
+    "id": {
+      "type": "integer",
+      "title": "id",
+      "x-sap-sf-hidden": true,
+      "minimum": -9223372036854775808,
+      "maximum": 9223372036854775807
+    },
+    "entityOID": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "entityOID",
+      "x-sap-sf-hidden": true,
+      "maxLength": 128
+    },
+    "externalCode": {
+      "type": "string",
+      "title": "externalCode",
+      "maxLength": 50
+    },
+    "timeslices": {
+      "type": "array",
+      "items": {
+        "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/costCenterTimeSlice"
+      }
+    }
+  },
+  "required": [
+    "externalCode"
+  ],
+  "x-sap-odm-oid": "entityOID",
+  "x-sap-odm-entity-name": "CostCenter",
+  "x-sap-root-entity": true,
+  "x-sap-sf-resource": {
+    "id": [
+      "id"
+    ],
+    "altIds": {
+      "oid": "entityOID"
+    }
+  },
+  "x-sap-sf-temporal": {
+    "type": "timeline",
+    "dates": {
+      "from": "validFrom",
+      "to": "validTo",
+      "semantics": "closed-closed"
+    }
+  },
+  "$defs": {
+    "timeslice": {
+      "$id": "/rest/foundationobjects/enterprisestructure/v1/metadata/costCenterTimeSlice",
+      "type": "object",
+      "properties": {
+        "validFrom": {
+          "type": "string",
+          "title": "validFrom",
+          "format": "date"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "name"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "description"
+        },
+        "effectiveStatus": {
+          "type": "string",
+          "title": "effectiveStatus",
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "glStatementCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "glStatementCode",
+          "maxLength": 32
+        },
+        "parentCostCenter": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "parentCostCenter"
+        },
+        "costCenterManager": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "costCenterManager"
+        },
+        "costCenterExternalObjectId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "costCenterExternalObjectId",
+          "maxLength": 40
+        },
+        "autoCreated": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "autoCreated",
+          "x-sap-sf-hidden": true
+        },
+        "validTo": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "validTo",
+          "x-sap-sf-hidden": true,
+          "format": "date"
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "cust_company": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "cust_company",
+          "x-sap-sf-custom": true
+        },
+        "legalEntity": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "legalEntity",
+          "x-sap-sf-hidden": true
+        },
+        "cust_toLegalEntity": {
+          "type": "array",
+          "items": {
+            "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/legalEntity"
+          }
+        },
+        "texts": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "title": "Localized Texts",
+          "items": {
+            "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/costCenterText"
+          }
+        }
+      },
+      "required": [
+        "validFrom"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "parentCostCenter": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/costCenter"
+              },
+              "properties": [
+                {
+                  "parentCostCenter": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "cust_company": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/legalEntity"
+              },
+              "properties": [
+                {
+                  "cust_company": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "legalEntity": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/legalEntity"
+              },
+              "properties": [
+                {
+                  "legalEntity": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "cust_toLegalEntity": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/legalEntity"
+              },
+              "properties": [
+                {
+                  "cust_toLegalEntity": "id"
+                }
+              ],
+              "multiplicity": "1..*",
+              "type": "association"
+            }
+          }
+        }
+      }
+    },
+    "CostCenterText": {
+      "$id": "/rest/foundationobjects/enterprisestructure/v1/metadata/costCenterText",
+      "title": "Localized value for translatable data type field",
+      "type": "object",
+      "properties": {
+        "locale": {
+          "title": "locale",
+          "description": "The locale specified as an ISO 63901 or BCP-47 language code.",
+          "type": "string",
+          "maxLength": 128
+        },
+        "name": {
+          "title": "name",
+          "type": "string",
+          "maxLength": 200
+        },
+        "description": {
+          "title": "description",
+          "type": "string",
+          "maxLength": 40
+        },
+        "default": {
+          "title": "default",
+          "description": "Whether or not the locale is the default locale based on the request context (i.e. user or system)",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "x-sap-sf-resource": {
+        "id": [
+          "/properties/timeslices/items/recordId",
+          "locale"
+        ]
+      },
+      "required": [
+        "locale"
+      ]
+    }
+  }
+}

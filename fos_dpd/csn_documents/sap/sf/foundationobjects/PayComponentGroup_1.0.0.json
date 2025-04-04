@@ -1,0 +1,292 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/foundationobjects/compensation/v1/metadata/payComponentGroup",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "payComponentGroup",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.foundationobjects",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "payComponentGroup" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Pay Component Group",
+      "@ODM.entityName" : "PayComponentGroup",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:payComponentGroup",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "payComponentGroup",
+        "propertyTypes" : [ "sap.sf.foundationobjects:payComponentGroupId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:payComponentGroupId"
+        },
+        "externalCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Pay Component Group ID",
+          "length" : 32
+        },
+        "timeslices" : {
+          "type" : "cds.Composition",
+          "target" : "payComponentGroup_payComponentGroupTimeslice",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "timeslices", "payComponentGroup_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "payComponentGroup_payComponentGroupTimeslice" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Pay Component Group",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:payComponentGroup_payComponentGroupTimeslice",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "payComponentGroup_payComponentGroupTimeslice",
+        "propertyTypes" : [ "sap.sf.foundationobjects:payComponentGroup_payComponentGroupTimesliceId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "startDate",
+        "temporalIntervalEndProperty" : "endDate"
+      } ],
+      "elements" : {
+        "payComponentGroup_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_payComponentGroup"
+          },
+          "type" : "cds.Integer64",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:payComponentGroup_payComponentGroupTimesliceId"
+        },
+        "_payComponentGroup" : {
+          "type" : "cds.Association",
+          "target" : "payComponentGroup",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_payComponentGroup", "id" ]
+          }, "=", {
+            "ref" : [ "payComponentGroup_id_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:payComponentGroup_payComponentGroupTimesliceId"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Name",
+          "length" : 32
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Description",
+          "length" : 128
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Status"
+        },
+        "startDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Start Date"
+        },
+        "endDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "End Date"
+        },
+        "currency" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Currency"
+        },
+        "showOnCompUI" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Display on Comp UI"
+        },
+        "useForComparatioCalc" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Use for Comparatio Calculation"
+        },
+        "useForRangePenetration" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Use for Range Penetration"
+        },
+        "sortOrder" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Sort Order",
+          "scale" : 3
+        },
+        "maxFractionDigits" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Maximum Decimal Places",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Created On"
+        },
+        "createdAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Created By",
+          "length" : 100
+        },
+        "modifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Modified On"
+        },
+        "modifiedAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Modified By",
+          "length" : 100
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "on behalf of assignment UUID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf:modifiedOnBehalfOfAssignment",
+            "referencedPropertyType" : "sap.sf:modifiedOnBehalfOfAssignment"
+          } ]
+        },
+        "associationPayComponent" : {
+          "type" : "cds.Composition",
+          "target" : "payComponentGroup_payComponent",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "associationPayComponent", "payComponentGroup_payComponentGroupTimeslice_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "payComponentGroup_payComponentGroupTimesliceText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "payComponentGroup_payComponentGroupTimeslice_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "payComponentGroup_payComponent" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "elements" : {
+        "payComponentGroup_payComponentGroupTimeslice_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_payComponentGroup_payComponentGroupTimeslice"
+          },
+          "type" : "cds.Integer64",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:payComponentGroup_payComponentId"
+        },
+        "_payComponentGroup_payComponentGroupTimeslice" : {
+          "type" : "cds.Association",
+          "target" : "payComponentGroup_payComponentGroupTimeslice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_payComponentGroup_payComponentGroupTimeslice", "id" ]
+          }, "=", {
+            "ref" : [ "payComponentGroup_payComponentGroupTimeslice_id_virtual" ]
+          } ]
+        }
+      }
+    },
+    "payComponentGroup_payComponentGroupTimesliceText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:payComponentGroup_payComponentGroupTimesliceText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "payComponentGroup_payComponentGroupTimesliceText",
+        "propertyTypes" : [ "sap.sf.foundationobjects:payComponentGroup_payComponentGroupTimesliceTextId", "sap.sf.foundationobjects:payComponentGroup_payComponentGroupTimesliceTextLocale" ]
+      } ],
+      "elements" : {
+        "payComponentGroup_payComponentGroupTimeslice_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_payComponentGroup_payComponentGroupTimeslice"
+          },
+          "type" : "cds.Integer64",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:payComponentGroup_payComponentGroupTimesliceTextId"
+        },
+        "_payComponentGroup_payComponentGroupTimeslice" : {
+          "type" : "cds.Association",
+          "target" : "payComponentGroup_payComponentGroupTimeslice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_payComponentGroup_payComponentGroupTimeslice", "id" ]
+          }, "=", {
+            "ref" : [ "payComponentGroup_payComponentGroupTimeslice_id_virtual" ]
+          } ]
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Name",
+          "length" : 32
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Description",
+          "length" : 128
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Locale",
+          "length" : 32,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:payComponentGroup_payComponentGroupTimesliceTextLocale"
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Default"
+        }
+      }
+    }
+  }
+}

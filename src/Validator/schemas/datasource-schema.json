@@ -1,0 +1,811 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Datasource",
+  "$ref": "#/definitions/DataSource",
+  "definitions": {
+    "DataSourceTransformer": {
+      "type": "object",
+      "title": "DataSourceTransformer",
+      "description": "The transformer configuration reference points to the ID of the out of the box datasource transformer implementations maintained by the FOS Transformation Runtime team. Each SAP LOB can have different types of datasource transformer implementations. If you're unsure about what value to input, please reach out to the FOS Transformation Runtime team to browse the existing transformer catalog. The input data is sourced either from the connector's outboundMedallionLayer (if this is the first transformer) or from the outboundMedallionLayer of the preceding transformer",
+      "properties": {
+        "transformerName": {
+          "type": "string",
+          "pattern": "^([a-z0-9]+(?:[.][a-z0-9]+)*):(transformer):([a-zA-Z0-9._\\-]+):(v[0-9]+\\.[0-9]+\\.[0-9])$",
+          "description": "The transformer reference name that is used for data transformation",
+          "examples": [
+            "sap.s4.afc:transformer:s4DatasourcePlugins:v1.0.0"
+          ]
+        },
+        "outboundMedallionLayer": {
+          "type": "string",
+          "description": "The medallion layer at which the transformer implementation lands the data",
+          "examples": [
+            "staging",
+            "bronze",
+            "silver",
+            "gold"
+          ]
+        }
+      },
+      "required": [
+        "transformerName",
+        "outboundMedallionLayer"
+      ],
+      "additionalProperties": false
+    },
+    "PluginConfig": {
+      "type": "object",
+      "title": "PluginConfig",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A Key-Value pair of all the necessary plugin args for a custom plugin"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "selected_columns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": ["selected_columns"],
+          "additionalProperties": false,
+          "description": "The custom plugin args that helps filter with select columns."
+        }
+      ]
+    },
+    "CustomPlugin": {
+      "type": "object",
+      "title": "CustomPlugin",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the custom plugin. Also used to reference the dependency graph (DAG) of the plugins execution."
+        },
+        "plugin_class": {
+          "type": "string",
+          "pattern": "[a-zA-Z0-9_]+$",
+          "description": "The custom plugin implementation class that defines the transformation."
+        },
+        "plugin_args": {
+          "type": "object",
+          "description": "The plugin arguments for a custom plugin.",
+          "properties": {
+            "config": {
+              "type": "object",
+              "$ref": "#/definitions/PluginConfig"
+            }
+          },
+          "required": ["config"],
+          "additionalProperties": false
+        },
+        "dependencies": {
+          "type": "array",
+          "description": "Optional: The dependencies of a particular custom plugin that helps establish the execution DAG",
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "map_all": {
+          "type": "boolean",
+          "default": true,
+          "description": "Flag indicating if all the dataframes/outputs from the previous custom plugin's execution must be selected."
+        },
+        "map_selected": {
+          "type": "array",
+          "description": "Field indicating to selected the mentioned dataFrames/outputs from the previoud custom plugin's execution.",
+          "items": {
+            "type": [
+              "string"
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "plugin_class",
+        "plugin_args"
+      ],
+      "additionalProperties": false
+    },
+    "CastToBooleanPlugin": {
+      "type": "object",
+      "title": "CastToBooleanPlugin",
+      "properties": {
+        "sourceColumnName": {
+          "type": "string",
+          "description": "Mandatory. The source column name which has to cast to boolean."
+        },
+        "targetColumnName": {
+          "type": "string",
+          "pattern": "[a-zA-Z0-9_]+$",
+          "description": "Optional. The target column name after applying the cast. If not present, the target column name will be same as the source column name"
+        },
+        "trueValue": {
+          "type": "array",
+          "minItems": 1,
+          "description": "The value(s) that represent true. It can be one or many. The values are case sensitive.",
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "falseValue": {
+          "type": "array",
+          "minItems": 1,
+          "description": "The value(s) that represent false. It can be one or many. The values are case sensitive.",
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "nullableValue": {
+          "type": "array",
+          "minItems": 1,
+          "description": "The value(s) that represent None. It can be one or many. The values are case sensitive.",
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "isEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Flag indicating if the boolean casting plugin is enabled."
+        }
+      },
+      "required": [
+        "sourceColumnName",
+        "trueValue"
+      ],
+      "additionalProperties": false
+    },
+    "CastToTimestampPlugin": {
+      "type": "object",
+      "title": "CastToTimestampPlugin",
+      "properties": {
+        "sourceColumnName": {
+          "type": "string",
+          "description": "The source column name that has to be considered for the timestamp casting."
+        },
+        "targetColumnName": {
+          "type": "string",
+          "pattern": "[a-zA-Z0-9_]+$",
+          "description": "The target column name after applying the timestamp casting. If not present, the target column name will be same as the source column name"
+        },
+        "sourceFormat": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "type": "string",
+            "description": "Please provide it in the sql date pattern format: https://spark.apache.org/docs/latest/sql-ref-datetime-pattern.html"
+          }
+        },
+        "isEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Flag indicating if the timestamp casting is enabled."
+        },
+        "valueReplacements": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Array of objects representing metadata on how to handle replacements",
+          "items": {
+            "$ref": "#/definitions/ValueReplacements"
+          }
+        }
+      },
+      "required": [
+        "sourceColumnName",
+        "sourceFormat"
+      ],
+      "additionalProperties": false
+    },
+    "CastToDatePlugin": {
+      "type": "object",
+      "title": "CastToDatePlugin",
+      "properties": {
+        "sourceColumnName": {
+          "type": "string",
+          "description": "The source column name that has to be considered for the date casting."
+        },
+        "targetColumnName": {
+          "type": "string",
+          "pattern": "[a-zA-Z0-9_]+$",
+          "description": "The target column name after applying the date casting. If not present, the target column name will be same as the source column name"
+        },
+        "sourceFormat": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "type": "string",
+            "description": "Please provide it in the sql date pattern format: https://spark.apache.org/docs/latest/sql-ref-datetime-pattern.html"
+          }
+        },
+        "isEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Flag indicating if the date casting is enabled."
+        },
+        "valueReplacements": {
+          "type": "array",
+          "description": "Array of objects representing metadata on how to handle replacements",
+          "items": {
+            "$ref": "#/definitions/ValueReplacements"
+          }
+        }
+      },
+      "required": [
+        "sourceColumnName",
+        "sourceFormat"
+      ],
+      "additionalProperties": false
+    },
+    "SourceObjects": {
+      "type": "object",
+      "title": "SourceObjects",
+      "properties": {
+        "sourceObject": {
+          "type": "string",
+          "description": "The source table or view name from which data has to be acquired."
+        },
+        "release": {
+          "type": "string",
+          "pattern": "^(\\d{2,})(\\s*/\\s*\\d{2,}){0,2}$|^\\*$",
+          "minLength": 1,
+          "description": "Release of this datasource",
+          "default": "*",
+          "examples": [
+            "2024",
+            "2024 / 01",
+            "2024 / 01 / 0512",
+            "*"
+          ]
+        },
+        "mode": {
+          "type": "string",
+          "description": "full processing or incremental processing",
+          "default": "incremental",
+          "enum": [
+            "full",
+            "incremental"
+          ]
+        },
+        "dataAcquisitionFrequency": {
+          "type": "object",
+          "title": "dataAcquisitionFrequency",
+          "description": "Default refresh frequency for Data acquisition",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "description": "represents the numerical value of the frequency"
+            },
+            "unit": {
+              "type": "string",
+              "description": "A string that represents the unit of frequency. It specifies the time unit for the value field.",
+              "default": "seconds",
+              "enum": [
+                "seconds",
+                "minutes",
+                "hours",
+                "days",
+                "weeks"
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "sourceObject"
+      ],
+      "additionalProperties": false
+    },
+    "ValueReplacements": {
+      "type": "object",
+      "title": "ValueReplacements",
+      "description": "Contains an array of values that should be replaced with a target value. The target value should be provided in the source format of the table.",
+      "properties": {
+        "sourceValues": {
+          "type": "array",
+          "items": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+            ]
+          },
+          "minItems": 1
+        },
+        "targetValue": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "sourceValues",
+        "targetValue"
+      ]
+    },
+    "AddProducerOIDColumnPlugin": {
+      "type": "object",
+      "title": "AddProducerOIDColumnPlugin",
+      "properties": {
+        "targetColumnName": {
+          "type": "string",
+          "pattern": "[a-zA-Z0-9_]+$",
+          "description": "Mandatory. The target column name for the producer OID column."
+        },
+        "sourceOIDColumnName": {
+          "type": "string",
+          "description": "IF 'sourceOIDColumnName' is filled use value from 'sourceOIDColumnName', ELSE fill 'targetColumnName' with the concatenated value in this format: <tenantID>:<sourceKey1><delimiter><sourceKey2><delimiter><sourceKey3>"
+        },
+        "delimiter": {
+          "type": "string",
+          "pattern": "[^a-zA-Z0-9\\s]+",
+          "default": "~",
+          "description": "The delimiter used for concatenation of source columns. If not given, '~' is considered by default. pattern: any number of special characters including space"
+        },
+        "sourceColumnNames": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Mandatory. The source column names that has to be considered for concatenation to generate OID column. It can be one or many.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Flag indicating if the plugin is enabled."
+        }
+      },
+      "required": [
+        "targetColumnName",
+        "sourceColumnNames"
+      ],
+      "additionalProperties": false
+    },
+    "FillProducerOIDPlugin": {
+      "type": "object",
+      "title": "FillProducerOIDPlugin",
+      "properties": {
+        "targetColumnName": {
+          "type": "string",
+          "pattern": "[a-zA-Z0-9_]+$",
+          "description": "Mandatory. The target column name for the producer OID column."
+        },
+        "sourceOIDColumnName": {
+          "type": "string",
+          "description": "IF 'sourceOIDColumnName' is filled use value from 'sourceOIDColumnName', ELSE fill 'targetColumnName' with the concatenated value in this format: <tenantID>:<sourceKey1><delimiter><sourceKey2><delimiter><sourceKey3>"
+        },
+        "delimiter": {
+          "type": "string",
+          "pattern": "[^a-zA-Z0-9\\s]+",
+          "default": "~",
+          "description": "The delimiter used for concatenation of source columns. If not given, '~' is considered by default. pattern: any number of special characters including space"
+        },
+        "sourceColumnNames": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Mandatory. The source column names that has to be considered for concatenation to generate OID column. It can be one or many.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Flag indicating if the plugin is enabled."
+        }
+      },
+      "required": [
+        "targetColumnName",
+        "sourceColumnNames"
+      ],
+      "additionalProperties": false
+    },
+    "AliasColumnPlugin": {
+      "type": "object",
+      "title": "AliasColumnPlugin",
+      "properties": {
+        "targetColumnName": {
+          "type": "string",
+          "pattern": "[a-zA-Z0-9_]+$",
+          "description": "Mandatory. The target column name after column is renamed."
+        },
+        "sourceColumnName": {
+          "type": "string",
+          "description": "Mandatory. The source column name which should be renamed."
+        },
+        "isEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Flag indicating if the aliasColumn plugin is enabled."
+        }
+      },
+      "required": [
+        "targetColumnName",
+        "sourceColumnName"
+      ],
+      "additionalProperties": false
+    },
+    "AddNewColumnPlugin": {
+      "type": "object",
+      "title": "AddNewColumnPlugin",
+      "properties": {
+        "targetColumnName": {
+          "type": "string",
+          "pattern": "[a-zA-Z0-9_]+$",
+          "description": "Mandatory. The target column name after column is renamed."
+        },
+        "constantValue": {
+          "type": "string",
+          "description": "Constant value which needs to be set to this column. If this is not specified, it will be set to null. If the constant is a date/time/timestamp format, please provide the value in ISO 8601 date format"
+        },
+        "isEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Flag indicating if the addNewColumn plugin is enabled."
+        }
+      },
+      "required": [
+        "targetColumnName"
+      ],
+      "additionalProperties": false
+    },
+    "Plugin": {
+      "type": "object",
+      "title": "Plugin",
+      "description": "Optional. Object defining the generic transformation plugins which needs to be applied before exposing the data. Note: explicit plugin definition is only required for those data casting transformations which need special semantics. Standard data cast will not need be specified in the plugins as they can be automatically done by inferring it from the Canonical CSN definition. Example of a special case semantics would be something like castToBoolean TRUE when the field has char X, and FALSE otherwise",
+      "properties": {
+        "custom": {
+          "type": "array",
+          "description": "Array of objects defining the various plugin transformations along with the execution DAG.",
+          "items": {
+            "$ref": "#/definitions/CustomPlugin"
+          }
+        },
+        "castToBoolean": {
+          "type": "array",
+          "description": "Array of objects defining the columns to be cast to boolean.",
+          "items": {
+            "$ref": "#/definitions/CastToBooleanPlugin"
+          }
+        },
+        "castToTimestamp": {
+          "type": "array",
+          "description": "Array of objects defining the columns to be cast to timestamp.",
+          "items": {
+            "$ref": "#/definitions/CastToTimestampPlugin"
+          }
+        },
+        "castToDate": {
+          "type": "array",
+          "description": "Array of objects defining the columns to be cast to date.",
+          "items": {
+            "$ref": "#/definitions/CastToDatePlugin"
+          }
+        },
+        "addNewColumn": {
+          "type": "array",
+          "description": "Array of objects defining the new columns to be added, with their values",
+          "items": {
+            "$ref": "#/definitions/AddNewColumnPlugin"
+          }
+        },
+        "aliasColumn": {
+          "type": "array",
+          "description": "Array of objects defining the columns to be aliased",
+          "items": {
+            "$ref": "#/definitions/AliasColumnPlugin"
+          }
+        },
+        "addProducerOIDColumn": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "description": "Array of objects defining the producer oid column. As of now, this can be only one",
+          "items": {
+            "$ref": "#/definitions/AddProducerOIDColumnPlugin"
+          }
+        },
+        "fillProducerOID": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "description": "Array of objects defining the producer oid column. As of now, this can be only one",
+          "items": {
+            "$ref": "#/definitions/FillProducerOIDPlugin"
+          }
+        },
+        "jsonlIngest": {
+          "type": "object",
+          "properties": {
+            "isEnabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "primaryKeyColumn": {
+              "type": "string",
+              "default": "subject"
+            },
+            "watermarkColumn": {
+              "type": "string",
+              "default": "sequence"
+            },
+            "watermarkColumnType": {
+              "type": "string",
+              "default": "cds.Int64"
+            }
+          }
+        },
+        "jsonlMerge": {
+          "type": "object",
+          "properties": {
+            "isEnabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "deleteFilterPredicate": {
+              "type": "string"
+            },
+            "purgeFilterPredicate": {
+              "type": "string"
+            }
+          }
+        },
+        "jsonlDecompose": {
+          "type": "object",
+          "properties": {
+            "sourceColumnName": {
+              "type": "string",
+              "default": "data"
+            },
+            "isEnabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "normalize": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "addProducerOIDColumn"
+          ]
+        },
+        {
+          "required": [
+            "fillProducerOID"
+          ]
+        },
+        {
+          "required": [
+            "aliasColumn"
+          ]
+        },
+        {
+          "required": [
+            "addNewColumn"
+          ]
+        },
+        {
+          "required": [
+            "castToDate"
+          ]
+        },
+        {
+          "required": [
+            "castToTimestamp"
+          ]
+        },
+        {
+          "required": [
+            "castToBoolean"
+          ]
+        },
+        {
+          "required": [
+            "jsonlIngest"
+          ]
+        },
+        {
+          "required": [
+            "jsonlMerge"
+          ]
+        },
+        {
+          "required": [
+            "jsonlDecompose"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "Metadata": {
+      "type": "object",
+      "title": "Metadata",
+      "description": "",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id of the metadata file",
+          "pattern": "^([a-z0-9]+(?:[.][a-z0-9]+)*):(csnDocument):([a-zA-Z0-9._\\-]+):(v[0-9]+\\.[0-9]+\\.[0-9])$",
+          "examples": [
+            "sap.s4.afc:csnDocument:CostCenter:v1.0.0"
+          ]
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "Connector": {
+      "type": "object",
+      "title": "Connector",
+      "description": "The connector configuration reference points to the ID of the data acquisition connector implementation maintained by the FOS Data Acquisition team. Each SAP LOB can have different types of connector implementations for data acquisition. If you're unsure about what value to input, please reach out to the FOS Data Acquisition team to browse the existing connector catalog.",
+      "properties": {
+        "connectorName": {
+          "type": "string",
+          "description": "The connector reference name that is used for data acquisition",
+          "enum": [
+            "s4Push",
+            "dsapi"
+          ]
+        },
+        "outboundMedallionLayer": {
+          "type": "string",
+          "description": "The medallion layer at which the connector implementation lands the data",
+          "examples": [
+            "staging",
+            "bronze",
+            "silver",
+            "gold"
+          ]
+        },
+        "additionalParameters": {
+          "type": "object",
+          "description": "Additional parameters for the connector",
+              "properties": {
+                "beginWatermark": {
+                  "type": "string",
+                  "description": "The watermark to fetch the data from",
+                  "example": "2021-01-01T00:00:00Z"
+              },
+              "beginWatermarkDeltaDays": {
+                  "type": "integer",
+                  "description": "The number of days to go back from the current date to fetch the data",
+                  "example": 356
+              },
+            "schedule": {
+              "type": "string",
+              "description": "The cron expression to schedule the data acquisition",
+              "example": "* 8 * * *"
+            }
+          },
+          "not" : {
+                "anyOf" : [
+                    {"required" : ["beginWatermark", "beginWatermarkDeltaDays"]}
+                ]
+            }
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": true,
+          "propertyNames": {
+            "pattern": "^[a-z][a-zA-Z0-9_]*$"
+          }
+        }
+      }
+    },
+    "DataSource": {
+      "type": "object",
+      "title": "Data Source",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Defines name of datasource how it has to appear on the data lake"
+        },
+        "namespace": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]+(\\.[a-zA-Z0-9]+)*$",
+          "maxLength": 255,
+          "description": "Defines namespace of datasource",
+          "examples": [
+            "sap.s4com"
+          ]
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of this datasource",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "examples": [
+            "1.2.3"
+          ]
+        },
+        "sourceObjects": {
+          "type": "array",
+          "description": "Array of objects defining properties of the datasource",
+          "items": {
+            "$ref": "#/definitions/SourceObjects"
+          },
+          "minItems": 1
+        },
+        "metadata": {
+          "$ref": "#/definitions/Metadata"
+        },
+        "connector": {
+          "$ref": "#/definitions/Connector"
+        },
+        "transformers": {
+          "type": "array",
+          "description": "Array of transformer to be applied on the datasource.",
+          "items": {
+            "$ref": "#/definitions/DataSourceTransformer"
+          },
+          "minItems": 1
+        },
+        "plugins": {
+          "type": "array",
+          "description": "Array of plugins to be applied on the datasource.",
+          "items": {
+            "$ref": "#/definitions/Plugin"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "namespace",
+        "name",
+        "version",
+        "metadata",
+        "connector",
+        "transformers"
+      ],
+      "if": {
+        "properties": {
+          "connector": {
+            "properties": {
+              "connectorName": {
+                "not": {
+                  "const": "dsapi"
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "sourceObjects"
+        ]
+      }
+    }
+  }
+}

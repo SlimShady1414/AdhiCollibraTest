@@ -1,0 +1,99 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "/rest/learning/asset/v1/metadata/deliveryMethod",
+    "title": "Delivery Method",
+    "description": "Metadata for the Delivery Method Resource",
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Delivery Method ID",
+        "description": "Unique identifier for the delivery method."
+      },
+      "description": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Description",
+        "description": "Description for the delivery method."
+      },
+      "texts": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "$ref": "/rest/learning/asset/v1/metadata/deliveryMethodText"
+        },
+        "title": "The Collection of Localized Values for the Delivery Method Texts"
+      },
+      "lastUpdatedUser": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Last Updated User",
+        "description": "User who last updated the delivery method."
+      },
+      "lastUpdatedTimestamp": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "date-time",
+        "title": "Last Updated Timestamp",
+        "description": "Timestamp when the delivery method was last updated."
+      }
+    },
+    "x-sap-sf-localized": {},
+    "x-sap-sf-resource": {
+      "id": [
+        "id"
+      ]
+    },
+   "x-sap-sf-version": "1.0.0",
+    "$defs": {
+      "deliveryMethodText": {
+        "$id": "/rest/learning/asset/v1/metadata/deliveryMethodText",
+        "title": "Delivery Method Localized Texts",
+        "description": "Resource containing the list of localized texts for the Delivery Method",
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Delivery Method Description"
+          },
+          "locale": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "The Locale Property",
+            "description": "The property that is used to specify the locale within a localized value resource."
+          },
+          "default": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "Default",
+            "description": "The property to indicate if this is the default locale defined"
+          }
+        },
+        "x-sap-sf-resource": {
+          "id": [
+            "/properties/id",
+            "locale"
+          ]
+        },
+        "x-sap-sf-version": "1.0"
+      }
+    }
+}

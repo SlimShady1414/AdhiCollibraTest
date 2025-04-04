@@ -1,0 +1,266 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/workforce/assignment/additionalinfo/v1/metadata/jobRelationship",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "jobRelationship",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.workforce",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "jobRelationship" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Job Relationships",
+      "@ODM.entityName" : "WorkforceJobRelationship",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:jobRelationship",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobRelationship",
+        "propertyTypes" : [ "sap.sf.workforce:jobRelationshipId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "Assignment UUID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:jobRelationshipId"
+        },
+        "jobRelationshipDetails" : {
+          "type" : "cds.Composition",
+          "target" : "jobRelationship_jobRelationshipDetail",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "jobRelationshipDetails", "jobRelationship_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "assignment" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:assignment",
+            "referencedPropertyType" : "sap.sf.workforce:assignmentId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 32
+        }
+      }
+    },
+    "jobRelationship_jobRelationshipDetail" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Job Relationship Details",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:jobRelationship_jobRelationshipDetail",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "jobRelationship_jobRelationshipDetail",
+        "propertyTypes" : [ "sap.sf.workforce:jobRelationship_jobRelationshipDetailId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "startDate",
+        "temporalIntervalEndProperty" : "endDate"
+      } ],
+      "elements" : {
+        "jobRelationship_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobRelationship"
+          },
+          "type" : "cds.UUID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:jobRelationship_jobRelationshipDetailId"
+        },
+        "_jobRelationship" : {
+          "type" : "cds.Association",
+          "target" : "jobRelationship",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobRelationship", "id" ]
+          }, "=", {
+            "ref" : [ "jobRelationship_id_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Encoded user and start date",
+          "length" : 256,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:jobRelationship_jobRelationshipDetailId"
+        },
+        "endDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "End Date"
+        },
+        "startDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Event Date"
+        },
+        "createdAssignmentId" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "Created By",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf:createdAssignment",
+            "referencedPropertyType" : "sap.sf:createdAssignment"
+          } ]
+        },
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Created On"
+        },
+        "modifiedAssignmentId" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "Last Modified By",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf:modifiedAssignment",
+            "referencedPropertyType" : "sap.sf:modifiedAssignment"
+          } ]
+        },
+        "modifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Modified On"
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "Last Modified By",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf:modifiedOnBehalfOfAssignment",
+            "referencedPropertyType" : "sap.sf:modifiedOnBehalfOfAssignment"
+          } ]
+        },
+        "value" : {
+          "type" : "cds.Composition",
+          "target" : "jobRelationship_jobRelationshipDetailGrid",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "value", "jobRelationship_jobRelationshipDetail_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "jobRelationship_jobRelationshipDetailGrid" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Job Relationship Details",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:jobRelationship_jobRelationshipDetailGrid",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobRelationship_jobRelationshipDetailGrid",
+        "propertyTypes" : [ "sap.sf.workforce:jobRelationship_jobRelationshipDetailGridId" ]
+      } ],
+      "elements" : {
+        "jobRelationship_jobRelationshipDetail_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobRelationship_jobRelationshipDetail"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:jobRelationship_jobRelationshipDetailGridId"
+        },
+        "_jobRelationship_jobRelationshipDetail" : {
+          "type" : "cds.Association",
+          "target" : "jobRelationship_jobRelationshipDetail",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobRelationship_jobRelationshipDetail", "id" ]
+          }, "=", {
+            "ref" : [ "jobRelationship_jobRelationshipDetail_id_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Id",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:jobRelationship_jobRelationshipDetailGridId"
+        },
+        "relationshipType" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:jobRelTypePickList",
+            "referencedPropertyType" : "sap.sf.extensibility:jobRelTypePickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Relationship Type",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "relUserId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Name",
+          "length" : 384
+        },
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Created On"
+        },
+        "createdAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Created By",
+          "length" : 100
+        },
+        "modifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Modified On"
+        },
+        "modifiedAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Modified By",
+          "length" : 100
+        },
+        "startDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Event Date"
+        },
+        "lastModifiedSource" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Modified Source"
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "on behalf of assignment UUID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf:modifiedOnBehalfOfAssignment",
+            "referencedPropertyType" : "sap.sf:modifiedOnBehalfOfAssignment"
+          } ]
+        },
+        "wfRequestId" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        }
+      }
+    }
+  }
+}

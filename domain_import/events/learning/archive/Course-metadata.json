@@ -1,0 +1,1071 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "/rest/learning/asset/v1/metadata/course",
+    "title": "Course",
+    "description": "Metadata for the Course Resource",
+    "type": "object",
+    "properties": {
+      "courseDuration": {
+        "type": [
+          "number",
+          "null"
+        ],
+        "format": "double",
+        "title": "Course Duration",
+        "description": "Duration of the course."
+      },
+      "categories": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "type": "string"
+        },
+        "title": "Categories",
+        "description": "List of categories the program belongs to."
+      },
+      "capabilities": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "$ref": "/rest/learning/asset/v1/metadata/capabilityRating"
+        },
+        "title": "List of Capabilities",
+        "description": "List of Attributes/Skills acquired as part of the program."
+      },
+      "requirementTypeID": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Requirement Type ID",
+        "description": "Unique identifier for the requirement type.",
+        "x-sap-sf-reference": "requirementType"
+      },
+      "requirementType": {
+        "$ref": "/rest/learning/asset/v1/metadata/requirementType"
+      },
+      "enableRating": {
+        "type": [
+          "boolean",
+          "null"
+        ],
+        "title": "Enable Rating",
+        "description": "Indicator if course can be rated."
+      },
+      "includePreviousRevisionRating": {
+        "type": [
+          "boolean",
+          "null"
+        ],
+        "title": "Include Previous Rating",
+        "description": "Indicator if previous rating is to be considered."
+      },
+      "cpeHours": {
+        "type": [
+          "number",
+          "null"
+        ],
+        "format": "double",
+        "title": "CPE Hours",
+        "description": "Continuing Professional Education (CPE) hours associated with the course."
+      },
+      "contactHours": {
+        "type": [
+          "number",
+          "null"
+        ],
+        "format": "double",
+        "title": "Contact Hours",
+        "description": " Contact Hours associated with the course"
+      },
+      "sourceId": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Source ID",
+        "description": "Source of the Learning Course"
+      },
+      "thumbnail": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Thumbnail",
+        "description": "Course Thumbnail"
+      },
+      "rating": {
+        "type": [
+          "number",
+          "null"
+        ],
+        "format": "double",
+        "title": "Rating",
+        "description": "Course Rating"
+      },
+      "ratingCount": {
+        "type": "integer",
+        "format": "int32",
+        "title": "Rating Count",
+        "description": "Rating Count"
+      },
+      "mobileAccessible": {
+        "type": "boolean",
+        "title": "Mobile Accessible",
+        "description": "Indicator if course is available on mobile"
+      },
+      "thumbnailAttachmentId": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "format": "int64",
+        "title": "Thumbnail Attachment ID",
+        "description": "Course thumbnail Attachment ID"
+      },
+      "deliveryMethod": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Delivery Method",
+        "description": "Delivery Method of the Learning Course",
+        "x-sap-sf-reference": "learningDeliveryMethod"
+      },
+      "learningDeliveryMethod": {
+        "$ref": "/rest/learning/asset/v1/metadata/deliveryMethod"
+      },
+      "createdTimestamp": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "date-time",
+        "title": "Created Timestamp",
+        "description": "Timestamp when the course was created."
+      },
+      "revisionNumber": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "format": "int64",
+        "title": "Revision Number",
+        "description": "Revision number of the course."
+      },
+      "reviserName": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Reviser Name",
+        "description": "Name of the reviser."
+      },
+      "approverName": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Approver Name",
+        "description": "Name of the approver."
+      },
+      "approvalTimestamp": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "date-time",
+        "title": "Approval Timestamp",
+        "description": "Timestamp when the course was approved."
+      },
+      "gradingMethod": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "format": "int64",
+        "title": "Grading Method",
+        "description": "Course Grading Method"
+      },
+      "approvalRequired": {
+        "type": [
+          "boolean",
+          "null"
+        ],
+        "title": "Approval Required",
+        "description": "Indicator if approval is required for the course"
+      },
+      "capabilitySource": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Capability Source",
+        "description": "Source of course capabilities"
+      },
+      "courseTitle": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Course Title",
+        "description": "Title of the course."
+      },
+      "courseDescription": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Course Description",
+        "description": "Description for the course."
+      },
+      "texts": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "$ref": "/rest/learning/asset/v1/metadata/courseText"
+        },
+        "title": "Texts",
+        "description": "The Collection of Localized Values for the Course Texts"
+      },
+      "creditHours": {
+        "type": [
+          "number",
+          "null"
+        ],
+        "format": "double",
+        "title": "Credit Hours",
+        "description": "Total Credit Hours for a Learning Event."
+      },
+      "componentID": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Component ID",
+        "description": "ID attribute for identifying a course. It\u0027s a course identifier part key."
+      },
+      "componentTypeID": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Component Type ID",
+        "description": "Course Type Identifier.  It\u0027s a course identifier part key.",
+        "x-sap-sf-reference": "courseType"
+      },
+      "courseType": {
+        "$ref": "/rest/learning/asset/v1/metadata/courseType"
+      },
+      "revisionDate": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "date-time",
+        "title": "Revision Date",
+        "description": "Revision Date of the Course. It\u0027s a course identifier part key."
+      },
+      "componentKey": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "format": "int64",
+        "title": "Component Key",
+        "description": "Component Key for the course."
+      },
+      "classificationID": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Classification ID",
+        "description": "Identifier for the course classification",
+        "x-sap-sf-reference": "classification"
+      },
+      "classification": {
+        "$ref": "/rest/learning/asset/v1/metadata/classification"
+      },
+      "learningItemID": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Learning Item ID",
+        "description": "Unique identifier for the learning item."
+      },
+      "learningItemType": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Learning Item Type",
+        "description": "Type of the learning item like COURSE or PROGRAM"
+      },
+      "domainID": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Domain ID",
+        "description": "Unique identifier for the domain."
+      },
+      "active": {
+        "type": [
+          "boolean",
+          "null"
+        ],
+        "title": "Active",
+        "description": "Indicates whether the learning item is active or not."
+      },
+      "activeOldValue": {
+        "type": [
+          "boolean",
+          "null"
+        ],
+        "title": "Active Old Value",
+        "description": "Old value of the active flag."
+      },
+      "active@changed": {
+        "type": [
+          "boolean",
+          "null"
+        ],
+        "title": "Active Changed",
+        "description": "Indicates whether the active flag is changed or not."
+      },
+      "title": {
+        "title": "Title",
+        "description": "Localized title of the learning item",
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "key": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Key",
+            "description": "Key for the label"
+          },
+          "mls": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "lang": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "title": "Language",
+                  "description": "Language for the label"
+                },
+                "text": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "title": "Text",
+                  "description": "Label value"
+                }
+              }
+            },
+            "title": "Multi Language Labels",
+            "description": "List of labels for different locales"
+          }
+        }
+      },
+      "description": {
+        "title": "Description",
+        "description": "Localized description of the learning item",
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "key": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Key",
+            "description": "Key for the label"
+          },
+          "mls": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "lang": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "title": "Language",
+                  "description": "Language for the label"
+                },
+                "text": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "title": "Text",
+                  "description": "Label value"
+                }
+              }
+            },
+            "title": "Multi Language Labels",
+            "description": "List of labels for different locales"
+          }
+        }
+      },
+      "productionReady": {
+        "type": [
+          "boolean",
+          "null"
+        ],
+        "title": "Production Ready",
+        "description": "Indicates whether the learning item is production ready or not."
+      },
+      "showInCatalog": {
+        "type": [
+          "boolean",
+          "null"
+        ],
+        "title": "Show In Catalog",
+        "description": "Indicator to show the Course in Catalog"
+      },
+      "lastUpdatedUser": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Last Updated User",
+        "description": "User who last updated the learning item."
+      },
+      "lastUpdatedTimestamp": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "date-time",
+        "title": "Last Updated Timestamp",
+        "description": "Timestamp when the course was last updated."
+      }
+    },
+    "required": [
+      "ratingCount",
+      "mobileAccessible"
+    ],
+    "x-sap-sf-localized": {},
+    "x-sap-sf-resource": {
+      "id": [
+        "learningItemID"
+      ],
+      "properties": {
+        "requirementType": {
+          "bind": {
+            "schema": {
+              "$ref": "/rest/learning/asset/v1/metadata/requirementType"
+            },
+            "properties": {
+              "requirementTypeID": "id"
+            },
+            "type": "association",
+            "multiplicity": "1..1"
+          }
+        },
+        "learningDeliveryMethod": {
+          "bind": {
+            "schema": {
+              "$ref": "/rest/learning/asset/v1/metadata/deliveryMethod"
+            },
+            "properties": {
+              "deliveryMethod": "id"
+            },
+            "type": "association",
+            "multiplicity": "1..1"
+          }
+        },
+        "courseType": {
+          "bind": {
+            "schema": {
+              "$ref": "/rest/learning/asset/v1/metadata/courseType"
+            },
+            "properties": {
+              "componentTypeID": "id"
+            },
+            "type": "association",
+            "multiplicity": "1..1"
+          }
+        },
+        "classification": {
+          "bind": {
+            "schema": {
+              "$ref": "/rest/learning/asset/v1/metadata/classification"
+            },
+            "properties": {
+              "classificationID": "id"
+            },
+            "type": "association",
+            "multiplicity": "1..1"
+          }
+        }
+      }
+    },
+  "x-sap-sf-version": "1.0.0",
+    "$defs": {
+      "capabilityRating": {
+        "$id": "/rest/learning/asset/v1/metadata/capabilityRating",
+        "title": "Learning Capabilities",
+        "description": "Metadata for Learning Capabilities",
+        "type": "object",
+        "properties": {
+          "internalId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Internal ID",
+            "description": "Learning internal ID of the capability"
+          },
+          "externalId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "External ID",
+            "description": "External ID of the capability"
+          },
+          "rating": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "title": "Rating",
+            "description": "Rating acquired for the capability"
+          },
+          "tihExternalId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "TIH External ID",
+            "description": "Identifier for the TIH capability"
+          },
+          "jpbExternalId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "JPB External ID",
+            "description": "Identifier for the JPB capability"
+          },
+          "jdmExternalId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "JDB External ID",
+            "description": "Identifier for the JDM capability"
+          }
+        },
+        "x-sap-sf-resource": {
+          "id": [
+            "/properties/id",
+            "internalId"
+          ],
+          "properties": {
+            "tihExternalId": {
+              "bind": {
+                "schema": {
+                  "$ref": "/rest/ecosystem/wholeself/v1/metadata/library"
+                },
+                "properties": {
+                  "tihExternalId": "libraryId"
+                },
+                "type": "association",
+                "multiplicity": "1..1"
+              }
+            }
+          }
+        },
+        "x-sap-sf-version": "1.0"
+      },
+      "requirementType": {
+        "$id": "/rest/learning/asset/v1/metadata/requirementType",
+        "title": "Requirement Type",
+        "description": "Metadata for the Requirement Type for the assigned items",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "ID of the requirement type",
+            "description": "Unique identifier for the requirement type."
+          },
+          "required": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "Required",
+            "description": "Indicates if the requirement is mandatory."
+          },
+          "priority": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "title": "Priority",
+            "description": "Priority of the requirement."
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Description",
+            "description": "Description for the requirement type."
+          },
+          "texts": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "/rest/learning/asset/v1/metadata/requirementTypeText"
+            },
+            "title": "The Collection of Localized Values for the Requirement Type"
+          },
+          "lastUpdatedUser": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Last Updated User",
+            "description": "User who last updated the requirement type."
+          },
+          "lastUpdatedTimestamp": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "title": "Last Updated Timestamp",
+            "description": "Timestamp when the Requirement Type was last updated."
+          }
+        },
+        "x-sap-sf-localized": {},
+        "x-sap-sf-resource": {
+          "id": [
+            "id"
+          ]
+        },
+        "x-sap-sf-version": "1.0"
+      },
+      "requirementTypeText": {
+        "$id": "/rest/learning/asset/v1/metadata/requirementTypeText",
+        "title": "Requirement Type Localized Texts",
+        "description": "Resource containing the list of localized texts for the Requirement Type",
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Requirement Type Description"
+          },
+          "locale": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "The Locale Property",
+            "description": "The property that is used to specify the locale within a localized value resource."
+          },
+          "default": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "Default",
+            "description": "The property to indicate if this is the default locale defined"
+          }
+        },
+        "x-sap-sf-resource": {
+          "id": [
+            "/properties/requirementType/id",
+            "locale"
+          ]
+        },
+        "x-sap-sf-version": "1.0"
+      },
+      "deliveryMethod": {
+        "$id": "/rest/learning/asset/v1/metadata/deliveryMethod",
+        "title": "Delivery Method",
+        "description": "Metadata for the Delivery Method Resource",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Delivery Method ID",
+            "description": "Unique identifier for the delivery method."
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Description",
+            "description": "Description for the delivery method."
+          },
+          "texts": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "/rest/learning/asset/v1/metadata/deliveryMethodText"
+            },
+            "title": "The Collection of Localized Values for the Delivery Method Texts"
+          },
+          "lastUpdatedUser": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Last Updated User",
+            "description": "User who last updated the delivery method."
+          },
+          "lastUpdatedTimestamp": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "title": "Last Updated Timestamp",
+            "description": "Timestamp when the delivery method was last updated."
+          }
+        },
+        "x-sap-sf-localized": {},
+        "x-sap-sf-resource": {
+          "id": [
+            "id"
+          ]
+        },
+        "x-sap-sf-version": "1.0"
+      },
+      "deliveryMethodText": {
+        "$id": "/rest/learning/asset/v1/metadata/deliveryMethodText",
+        "title": "Delivery Method Localized Texts",
+        "description": "Resource containing the list of localized texts for the Delivery Method",
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Delivery Method Description"
+          },
+          "locale": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "The Locale Property",
+            "description": "The property that is used to specify the locale within a localized value resource."
+          },
+          "default": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "Default",
+            "description": "The property to indicate if this is the default locale defined"
+          }
+        },
+        "x-sap-sf-resource": {
+          "id": [
+            "/properties/learningDeliveryMethod/id",
+            "locale"
+          ]
+        },
+        "x-sap-sf-version": "1.0"
+      },
+      "courseText": {
+        "$id": "/rest/learning/asset/v1/metadata/courseText",
+        "type": "object",
+        "properties": {
+          "courseTitle": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "courseDescription": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "locale": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "The Locale Property",
+            "description": "The property that is used to specify the locale within a localized value resource."
+          },
+          "default": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "Default",
+            "description": "The property to indicate if this is the default locale defined"
+          }
+        },
+        "x-sap-sf-resource": {
+          "id": [
+            "/properties/learningItemID",
+            "locale"
+          ]
+        },
+        "x-sap-sf-version": "1.0"
+      },
+      "courseType": {
+        "$id": "/rest/learning/asset/v1/metadata/courseType",
+        "title": "Course Type",
+        "description": "Metadata for the Course Type Resource",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Course Type ID",
+            "description": "Unique identifier for the course type."
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Description",
+            "description": "Description for the course type."
+          },
+          "systemProvided": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "System Provided",
+            "description": "Indicator if course type is system defined"
+          },
+          "visible": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "Visible",
+            "description": "Flag indicating whether course type is visible or not"
+          },
+          "texts": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "/rest/learning/asset/v1/metadata/courseTypeText"
+            },
+            "title": "The Collection of Localized Values for the Course Type Texts"
+          },
+          "lastUpdatedUser": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Last Updated User",
+            "description": "User who last updated the course type."
+          },
+          "lastUpdatedTimestamp": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "title": "Last Updated Timestamp",
+            "description": "Timestamp when the course type was last updated."
+          }
+        },
+        "x-sap-sf-localized": {},
+        "x-sap-sf-resource": {
+          "id": [
+            "id"
+          ]
+        },
+        "x-sap-sf-version": "1.0"
+      },
+      "courseTypeText": {
+        "$id": "/rest/learning/asset/v1/metadata/courseTypeText",
+        "title": "Course Type Localized Texts",
+        "description": "Resource containing the list of localized texts for the Course Type",
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Course Type Description"
+          },
+          "locale": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "The Locale Property",
+            "description": "The property that is used to specify the locale within a localized value resource."
+          },
+          "default": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "Default",
+            "description": "The property to indicate if this is the default locale defined"
+          }
+        },
+        "x-sap-sf-resource": {
+          "id": [
+            "/properties/courseType/id",
+            "locale"
+          ]
+        },
+        "x-sap-sf-version": "1.0"
+      },
+      "classification": {
+        "$id": "/rest/learning/asset/v1/metadata/classification",
+        "title": "Classification",
+        "description": "Metadata for the Classification Resource",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "ID of the classification",
+            "description": "Unique identifier for the classification."
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Description",
+            "description": "Description for the classification."
+          },
+          "texts": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "/rest/learning/asset/v1/metadata/classificationText"
+            },
+            "title": "The Collection of Localized Values for the Classification Texts"
+          },
+          "lastUpdatedUser": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Last Updated User",
+            "description": "User who last updated the classification."
+          },
+          "lastUpdatedTimestamp": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "title": "Last Updated Timestamp",
+            "description": "Timestamp when the classification was last updated."
+          }
+        },
+        "x-sap-sf-localized": {},
+        "x-sap-sf-resource": {
+          "id": [
+            "id"
+          ]
+        },
+        "x-sap-sf-version": "1.0"
+      },
+      "classificationText": {
+        "$id": "/rest/learning/asset/v1/metadata/classificationText",
+        "title": "Classification Localized Texts",
+        "description": "Resource containing the list of localized texts for the Classification",
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Classification Description"
+          },
+          "locale": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "The Locale Property",
+            "description": "The property that is used to specify the locale within a localized value resource."
+          },
+          "default": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "Default",
+            "description": "The property to indicate if this is the default locale defined"
+          }
+        },
+        "x-sap-sf-resource": {
+          "id": [
+            "/properties/classification/id",
+            "locale"
+          ]
+        },
+        "x-sap-sf-version": "1.0"
+      }
+    }
+  }

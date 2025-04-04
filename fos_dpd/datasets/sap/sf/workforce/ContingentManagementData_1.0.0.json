@@ -1,0 +1,8 @@
+{
+   "name": "ContingentManagementData",
+   "namespace": "sap.sf.workforce",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.workforce:dataSource:Vendorinfo:v1.0.0"
+   ]
+}

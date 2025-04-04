@@ -1,0 +1,246 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/foundationobjects/jobstructure/v1/metadata/jobFunction",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "jobFunction",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.foundationobjects",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "jobFunction" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Job Function",
+      "@ODM.entityName" : "JobFunction",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobFunction",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobFunction",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobFunctionId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobFunctionId"
+        },
+        "externalCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalCode",
+          "length" : 32
+        },
+        "timeslices" : {
+          "type" : "cds.Composition",
+          "target" : "jobFunction_jobFunctionTimeSlice",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "timeslices", "jobFunction_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "jobFunction_jobFunctionTimeSlice" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobFunction_jobFunctionTimeSlice",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "jobFunction_jobFunctionTimeSlice",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobFunction_jobFunctionTimeSliceRecordId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "validFrom",
+        "temporalIntervalEndProperty" : "validTo"
+      } ],
+      "elements" : {
+        "jobFunction_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobFunction"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobFunction_jobFunctionTimeSliceId"
+        },
+        "_jobFunction" : {
+          "type" : "cds.Association",
+          "target" : "jobFunction",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobFunction", "id" ]
+          }, "=", {
+            "ref" : [ "jobFunction_id_virtual" ]
+          } ]
+        },
+        "validFrom" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validFrom"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "name"
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "description"
+        },
+        "effectiveStatus" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "effectiveStatus"
+        },
+        "parentJobFunction" : {
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobFunction_parentJobFunction"
+          },
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "parentJobFunction",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "_jobFunction_parentJobFunction" : {
+          "type" : "cds.Association",
+          "target" : "jobFunction",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobFunction_parentJobFunction", "id" ]
+          }, "=", {
+            "ref" : [ "parentJobFunction" ]
+          } ]
+        },
+        "jobFunctionType" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:JobFunctionTypePickList",
+            "referencedPropertyType" : "sap.sf.extensibility:JobFunctionTypePickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "jobFunctionType",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "autoCreated" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "autoCreated"
+        },
+        "validTo" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validTo"
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobFunction_jobFunctionTimeSliceRecordId"
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "jobFunction_jobFunctionText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "jobFunction_jobFunctionTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        }
+      }
+    },
+    "jobFunction_jobFunctionText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Localized value for translatable data type field",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:jobFunction_jobFunctionText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "jobFunction_jobFunctionText",
+        "propertyTypes" : [ "sap.sf.foundationobjects:jobFunction_jobFunctionTextRecordId", "sap.sf.foundationobjects:jobFunction_jobFunctionTextLocale" ]
+      } ],
+      "elements" : {
+        "jobFunction_jobFunctionTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_jobFunction_jobFunctionTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobFunction_jobFunctionTextRecordId"
+        },
+        "_jobFunction_jobFunctionTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "jobFunction_jobFunctionTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_jobFunction_jobFunctionTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "jobFunction_jobFunctionTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "locale",
+          "length" : 128,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:jobFunction_jobFunctionTextLocale"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "name",
+          "length" : 90
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "description",
+          "length" : 128
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "default"
+        }
+      }
+    }
+  }
+}

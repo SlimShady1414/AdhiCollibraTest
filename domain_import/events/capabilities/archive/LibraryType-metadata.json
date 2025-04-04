@@ -1,0 +1,136 @@
+{
+  "$id": "/rest/ecosystem/wholeself/v1/metadata/libraryType",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "x-sap-sf-version": "1.0.0",
+  "type": "object",
+  "title": "TIH LibraryType",
+  "description": "Metadata for the TIH LibraryType",
+  "properties": {
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 27
+    },
+    "createdBy": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "lastModifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 27
+    },
+    "lastModifiedBy": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "libraryTypeId": {
+      "type": "integer",
+      "maxLength": 10
+    },
+    "externalId": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "uuid": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "code": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "status": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "defaultLocale": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "nameInPlural": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "proficiencySetId": {
+      "type": "integer",
+      "maxLength": 10
+    },
+    "libraryTypeTexts": {
+      "type": "array",
+      "items": {
+        "$ref": "/rest/ecosystem/wholeself/v1/metadata/libraryTypeText"
+      }
+    }
+  },
+  "required": [
+    "status",
+    "defaultLocale",
+    "externalId",
+    "libraryTypeId",
+    "uuid",
+    "name",
+    "nameInPlural"
+  ],
+  "x-sap-odm-oid": "uuid",
+  "x-sap-odm-entity-name": "WorkforceCapabilityTypeCodes",
+  "x-sap-root-entity": true,
+  "x-sap-sf-resource": {
+    "id": [
+      "libraryTypeId"
+    ],
+    "properties": {
+      "proficiencySetId": {
+        "bind": {
+          "schema": {
+            "$ref": "/rest/ecosystem/wholeself/v1/metadata/proficiencySet"
+          },
+          "properties": {
+            "proficiencySetId": "proficiencySetId"
+          },
+          "type": "association",
+          "multiplicity": "1..1"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "LibraryTypeTextRef": {
+      "$id": "/rest/ecosystem/wholeself/v1/metadata/libraryTypeText",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "libraryTypeTextId": {
+          "type": "integer",
+          "maxLength": 10
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "locale": {
+          "type": "string",
+          "maxLength": 256
+        }
+      },
+      "required": [
+        "libraryTypeTextId",
+        "name",
+        "locale"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "libraryTypeTextId"
+        ]
+      }
+    }
+  }
+}

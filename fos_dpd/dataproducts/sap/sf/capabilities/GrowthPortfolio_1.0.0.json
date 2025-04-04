@@ -1,0 +1,21 @@
+{
+   "name": "GrowthPortfolio",
+   "title": "GrowthPortfolio",
+   "description": "This data product provides Profile data of employees with Skills and Attributes",
+   "shortDescription": "Provides profile data of the employees with Skills and Attributes",
+   "partOfPackage": "sap.sf.capabilities:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-TIH",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.odm:entityType:WorkforceCapabilityAssignment:v1",
+      "sap.sf.capabilities:entityType:growthPortfolioAttribute:v1"
+   ],
+   "datasets": [
+      "sap.sf.capabilities:dataset:GrowthPortfolio:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.capabilities:share:GrowthPortfolio:v1.0.0"
+   ]
+}

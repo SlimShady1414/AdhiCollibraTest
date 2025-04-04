@@ -1,0 +1,222 @@
+{
+  "$id": "/rest/ecosystem/wholeself/v1/metadata/library",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "x-sap-sf-version": "1.0",
+  "type": "object",
+  "title": "TIH Library",
+  "description": "Metadata for the TIH Attributes",
+  "properties": {
+    "libraryId": {
+      "type": "integer",
+      "maxLength": 10
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "addedType": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "defaultLocale": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "externalId": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "uuid": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 27
+    },
+    "createdBy": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "lastModifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 27
+    },
+    "lastModifiedBy": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "status": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "/rest/ecosystem/wholeself/v1/metadata/source"
+      }
+    },
+    "libraryType": {
+      "type": "object",
+      "$ref": "/rest/ecosystem/wholeself/v1/metadata/libraryTypeRef"
+    },
+    "libraryTexts": {
+      "type": "array",
+      "items": {
+        "$ref": "/rest/ecosystem/wholeself/v1/metadata/libraryText"
+      }
+    },
+    "proficiencySet": {
+      "type": "object",
+      "$ref": "/rest/ecosystem/wholeself/v1/metadata/proficiecySet"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "$ref": "/rest/ecosystem/wholeself/v1/metadata/tag"
+      }
+    }
+  },
+  "required": [
+    "libraryId",
+    "defaultLocale",
+    "name",
+    "externalId",
+    "uuid",
+    "createdAt",
+    "createdby",
+    "lastModifiedAt",
+    "lastModifiedBy"
+  ],
+  "x-sap-odm-oid": "uuid",
+  "x-sap-odm-entity-name": "WorkforceCapability",
+  "x-sap-root-entity": true,
+  "x-sap-sf-resource": {
+    "id": [
+      "libraryId"
+    ],
+    "properties": {
+      "tags": {
+        "bind": {
+          "schema": {
+            "$ref": "/rest/ecosystem/wholeself/v1/metadata/tag"
+          },
+          "properties": {
+            "tagId": "tagId"
+          },
+          "type": "association",
+          "multiplicity": "1..*"
+        }
+      },
+      "proficiencySet": {
+        "bind": {
+          "schema": {
+            "$ref": "/rest/ecosystem/wholeself/v1/metadata/proficiencySet"
+          },
+          "properties": {
+            "proficiencySetId": "proficiencySetId"
+          },
+          "type": "association",
+          "multiplicity": "1..1"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Source": {
+      "$id": "/rest/ecosystem/wholeself/v1/metadata/source",
+      "type": "object",
+      "properties": {
+        "sourceId": {
+          "type": "integer",
+          "maxLength": 10
+        },
+        "sourceType": {
+          "type": "string",
+          "maxLength": 50
+        }
+      },
+      "required": [
+        "sourceId"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "sourceId"
+        ]
+      }
+    },
+    "libraryType": {
+      "$id": "/rest/ecosystem/wholeself/v1/metadata/libraryTypeRef",
+      "type": "object",
+      "properties": {
+        "libraryTypeId": {
+          "type": "integer",
+          "maxLength": 10
+        },
+        "code": {
+          "type": "string",
+          "maxLength": 256
+        }
+      },
+      "required": [
+        "libraryTypeId",
+        "code"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "libraryTypeId"
+        ],
+        "properties": {
+          "libraryType": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/ecosystem/wholeself/v1/metadata/libraryType"
+              },
+              "properties": {
+                "libraryTypeId": "libraryTypeId"
+              },
+              "type": "association",
+              "multiplicity": "1..1"
+            }
+          }
+        }
+      }
+    },
+    "libraryText": {
+      "$id": "/rest/ecosystem/wholeself/v1/metadata/libraryText",
+      "type": "object",
+      "properties": {
+        "libraryTextId": {
+          "type": "integer",
+          "maxLength": 10
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "locale": {
+          "type": "string",
+          "maxLength": 256
+        }
+      },
+      "required": [
+        "libraryTextId"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "libraryTextId"
+        ]
+      }
+    }
+  }
+}

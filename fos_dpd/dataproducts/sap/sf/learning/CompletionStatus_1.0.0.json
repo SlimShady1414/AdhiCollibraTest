@@ -1,0 +1,20 @@
+{
+   "name": "CompletionStatus",
+   "title": "CompletionStatus",
+   "description": "Reference Data required in Learning.",
+   "shortDescription": "Reference data that is required in Learning.",
+   "partOfPackage": "sap.sf.learning:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-LMS",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.sf.learning:entityType:completionStatus:v1"
+   ],
+   "datasets": [
+      "sap.sf.learning:dataset:CompletionStatus:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.learning:share:CompletionStatus:v1.0.0"
+   ]
+}

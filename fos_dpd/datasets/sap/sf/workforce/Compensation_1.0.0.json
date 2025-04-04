@@ -1,0 +1,9 @@
+{
+   "name": "Compensation",
+   "namespace": "sap.sf.workforce",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.workforce:dataSource:Compensationinfo:v1.0.0",
+      "sap.sf.workforce:dataSource:Onetimepayment:v1.0.0"
+   ]
+}

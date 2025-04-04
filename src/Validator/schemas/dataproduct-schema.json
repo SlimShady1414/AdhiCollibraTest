@@ -1,0 +1,324 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Data Product",
+  "$ref": "#/definitions/DataProduct",
+  "definitions": {
+    "InputPort": {
+      "type": "object",
+      "properties": {
+        "dataProduct": {
+          "type": "string",
+          "description": "Refers to the ORD id of a primary dataproduct with a complete semantic version.",
+          "pattern": "^([a-z0-9]+(?:[.][a-z0-9]+)*):(dataProduct):([a-zA-Z0-9._\\-]+):(v[0-9]+\\.[0-9]+\\.[0-9])$",
+          "examples": ["sap.s4com:dataProduct:CostCenter:v1.0.0"]
+        },
+        "shares": {
+          "type": "array",
+          "description": "The shares associated with this input port.",
+          "items": {
+            "type": "string",
+            "pattern": "^([a-z0-9]+(?:[.][a-z0-9]+)*):(share):([a-zA-Z0-9._\\-]+):(v[0-9]+\\.[0-9]+\\.[0-9])$",
+            "examples": ["sap.s4com.afc:share:CostCenter:v1.0.0"]
+          }
+        }
+      },
+      "required": ["dataProduct", "shares"],
+      "additionalProperties": false
+    },
+    "DataProductTransformer": {
+      "type": "object",
+      "title": "DataSourceTransformer",
+      "description": "The transformer configuration reference points to the ID of the out of the box transformer implementations maintained by the FOS Transformation Runtime team. Each SAP LOB can have different types of datasource transformer implementations. If you're unsure about what value to input, please reach out to the FOS Transformation Runtime team to browse the existing transformer catalog. The input data is sourced either from the connector's outboundMedallionLayer (if this is the first transformer) or from the outboundMedallionLayer of the preceding transformer",
+      "properties": {
+        "transformerName": {
+          "type": "string",
+          "pattern": "^([a-z0-9]+(?:[.][a-z0-9]+)*):(transformer):([a-zA-Z0-9._\\-]+):(v[0-9]+\\.[0-9]+\\.[0-9])$",
+          "description": "The transformer reference name that is used for data transformation",
+          "examples": [
+            "sap.s4.afc:transformer:s4DatasourcePlugins:v1.0.0"
+          ]
+        },
+        "outboundMedallionLayer": {
+          "type": "string",
+          "description": "The medallion layer at which the transformer implementation lands the data",
+          "examples": [
+            "staging",
+            "bronze",
+            "silver",
+            "gold"
+          ]
+        }
+      },
+      "required": [
+        "transformerName",
+        "outboundMedallionLayer"
+      ],
+      "additionalProperties": false
+    },
+    "MinReleaseEntry": {
+      "type": "object",
+      "title": "MinReleaseEntry",
+      "description": "Entry defining an application namespace and the minimum release applicable for it.",
+      "properties": {
+        "applicationNamespace": {
+          "type": "string",
+          "description": "The namespace of the application.",
+          "pattern": "^[a-z0-9]+(?:[.][a-z0-9]+)*$",
+          "minLength": 1,
+          "maxLength": 112,
+          "examples": [
+            "sap.s4pce"
+          ]
+        },
+        "minRelease": {
+          "type": "string",
+          "description": "Minimum release version that this data product applies to for the given namespace.",
+          "pattern": "^(\\d{2,})(\\s*/\\s*\\d{2,}){0,2}$|^\\*$",
+          "examples": [
+            "2023",
+            "2023 / 01",
+            "2023 / 01 / 12"
+          ]
+        }
+      },
+      "required": ["applicationNamespace", "minRelease"],
+      "additionalProperties": false
+    },
+    "DataProduct": {
+      "type": "object",
+      "title": "Data Product",
+      "description": "A Data Product is a data set exposed for consumption outside the boundaries of the producing application via APIs and described by high quality metadata that can be accessed through the ORD Aggregator.",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the data product",
+          "minLength": 1,
+          "maxLength": 125,
+          "examples": [
+            "CostCenter"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "description": "Human-readable title.\n\nMUST NOT exceed 255 chars.\nMUST NOT contain line breaks.",
+          "minLength": 1,
+          "maxLength": 255,
+          "examples": [
+            "Customer Order"
+          ],
+          "x-stability": {
+            "change": "patch"
+          }
+        },
+        "shortDescription": {
+          "type": "string",
+          "description": "Plain text short description.\n\nMUST NOT exceed 255 chars.\nMUST NOT contain line breaks.",
+          "minLength": 1,
+          "maxLength": 255,
+          "examples": [
+            "Offering access to all online and offline orders submitted by customers"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Full description, notated in [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nThe description SHOULD not be excessive in length and is not meant to provide full documentation.\nDetailed documentation SHOULD be attached as (typed) links.",
+          "examples": [
+            "The data product Customer Order offers access to all online and offline orders submitted by customers. It provides a customer view on the orders. For fulfillment-specific aspects please refer to the data product Fulfillment Order."
+          ]
+        },
+        "partOfPackage": {
+          "type": "string",
+          "pattern": "^([a-z0-9]+(?:[.][a-z0-9]+)*):(package):([a-zA-Z0-9._\\-]+):(v(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$)",
+          "maxLength": 255,
+          "description": "Defines which Package the resource is part of.\n\nMUST be a valid reference to a [Package](#package) ORD ID.\n\nEvery resource MUST be part of one package.",
+          "examples": [
+            "sap.s4.afc:package:AdvancedFinancialCloseDataProducts:v1.0.0"
+          ]
+        },
+        "version": {
+          "type": "string",
+          "description": "The complete [SemVer](https://semver.org/) version string.\n\nIt MUST follow the [Semantic Versioning 2.0.0](https://semver.org/) standard.\nIt SHOULD be changed if the ORD information or referenced resource definitions changed.\nIt SHOULD express minor and patch changes that don't lead to incompatible changes.\n\nWhen the `version` major version changes, the [ORD ID](#ord-id) `<majorVersion>` fragment MUST be updated to be identical.\nIn case that a resource definition file also contains a version number (e.g. [OpenAPI `info`.`version`](https://swagger.io/specification/#info-object)), it MUST be equal with the resource `version` to avoid inconsistencies.\n\nThe general [Version and Lifecycle](../index.md#version-and-lifecycle) flow MUST be followed.\n\nNote: A change is only relevant for a version increment, if it affects the ORD resource or ORD taxonomy directly.\nFor example: If a resource within a `Package` changes, but the package itself did not, the package version does not need to be incremented.",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "examples": [
+            "1.2.3"
+          ]
+        },
+        "type": {
+          "description": "Type of the data product. Based on the type some properties of a data product may become optional/mandatory.",
+          "type": "string",
+          "oneOf": [
+            {
+              "const": "primary",
+              "description": "A producer aligned data product, aka primary data product. Such a data product will be typically served directly from an application and might not have input ports."
+            },
+            {
+              "const": "derived",
+              "description": "A data product that typically aggregates and combines data from multiple sources to provide value-added data sets on top.\nDerived data products must provide at least one input port with an integration dependency that has at least one requirement.\nTo be clarified if we need an additional analytical type for data products that focus on calculating KPIs."
+            }
+          ],
+          "examples": [
+            "primary"
+          ]
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of the data-set within data product. Based on its definition, a data product is a “data set” - which can include on the values below.\nBased on the type some properties of a data product may become optional/mandatory.\nConsumers might still do analytics on business object like data products.",
+          "oneOf": [
+            {
+              "const": "business-object",
+              "description": "Business Objects: master data, transaction data"
+            },
+            {
+              "const": "analytical",
+              "description": "Analytical data, including cubes, KPIs and metrics"
+            },
+            {
+              "const": "other",
+              "description": "Other objects, eg: config data, mixed or just unspecified"
+            }
+          ],
+          "examples": [
+            "business-object"
+          ]
+        },
+        "entityTypes": {
+          "type": "array",
+          "description": "List of entity types that are at least partially exposed by the data product.",
+          "items": {
+            "type": "string",
+            "pattern": "^([a-z0-9]+(?:[.][a-z0-9]+)*):(entityType):([a-zA-Z0-9._\\-]+):(v0|v[1-9][0-9]*)$",
+            "maxLength": 255
+          },
+          "examples": [
+            [
+              "sap.odm:entityType:CustomerOrder:v1",
+              "sap.odm:entityType:BusinessPartner:v1"
+            ]
+          ]
+        },
+        "responsible": {
+          "type": "string",
+          "pattern": "^([a-z0-9]+(?:[.][a-z0-9]+)*):([a-zA-Z0-9._\\-\\/]+):([a-zA-Z0-9._\\-\\/]+)$",
+          "maxLength": 255,
+          "description": "Contains typically the organization that is responsible in the sense of RACI matrix for this ORD resource. This includes support and feature requests. It is maintained as correlation id to for example support components.",
+          "examples": [
+            "sap:ach:CIC-DP-CO"
+          ]
+        },
+        "datasets": {
+          "type": "array",
+          "description": "List of Ids of datasets included in this data product",
+          "items": {
+            "type": "string",
+            "pattern": "^([a-z0-9]+(?:[.][a-z0-9]+)*):(dataset):([a-zA-Z0-9._\\-]+):(v[0-9]+\\.[0-9]+\\.[0-9])$"
+          },
+          "minItems": 1,
+          "examples": [
+            [
+              "sap.s4.afc:dataset:CostCenter:v1.0.0"
+            ]
+          ]
+        },
+        "shares": {
+          "type": "array",
+          "description": "List of ids of shares that this data product provides",
+          "items": {
+            "type": "string",
+            "pattern": "^([a-z0-9]+(?:[.][a-z0-9]+)*):(share):([a-zA-Z0-9._\\-]+):(v[0-9]+\\.[0-9]+\\.[0-9])$"
+          },
+          "minItems": 1,
+          "examples": [
+            [
+              "sap.s4.afc:share:CostCenter:v1.0.0"
+            ]
+          ]
+        },
+        "minRelease": {
+          "type": "string",
+          "description": "Minimum release version that this data product applies to.\n\nIf not specified, data product is available to all versions.\n\nMUST NOT exceed 255 chars.\nMUST NOT contain line breaks.",
+          "minLength": 1,
+          "pattern": "^(\\d{2,})(\\s*/\\s*\\d{2,}){0,2}$|^\\*$",
+          "examples": [
+            "2023",
+            "2023 / 01",
+            "2023 / 01 / 12"
+          ]
+        },
+        "minReleases": {
+          "type": "array",
+          "description": "An array of min release entries, each defining an application namespace and its corresponding minimum release.",
+          "items": {
+            "$ref": "#/definitions/MinReleaseEntry"
+          },
+          "examples": [
+            [
+              { "applicationNamespace": "sap.s4pce", "minRelease": "2021" }
+            ]
+          ]
+        },
+        "transformers": {
+          "type": "array",
+          "description": "Array of transformer to be applied on the primary dataproduct.",
+          "items": {
+            "$ref": "#/definitions/DataProductTransformer"
+          },
+          "minItems": 1
+        },
+        "inputPorts": {
+          "type": "array",
+          "description": "An array of input ports, each defining the data product and shares.",
+          "items": {
+            "$ref": "#/definitions/InputPort"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "category",
+        "title",
+        "shortDescription",
+        "description",
+        "version",
+        "partOfPackage",
+        "responsible",
+        "shares"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": { "type": { "const": "primary" } }
+          },
+          "then": {
+            "not": {
+              "anyOf": [
+                { "required": ["inputPorts"] },
+                { "required": ["transformers"] }
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "type": { "const": "derived" } }
+          },
+          "then": {
+            "not": {
+              "required": ["datasets"]
+            }
+          }
+        },
+        {
+          "oneOf": [
+            { "required": ["minRelease"], "not": { "required": ["minReleases"] }},
+            { "required": ["minReleases"], "not": { "required": ["minRelease"] }},
+            { "not": { "anyOf": [{ "required": ["minRelease"] }, { "required": ["minReleases"] }] }}
+          ]
+        }
+      ]
+    }
+  }
+}

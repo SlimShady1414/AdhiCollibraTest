@@ -1,0 +1,21 @@
+{
+   "name": "RelatedPersons",
+   "title": "RelatedPersons",
+   "description": "A related person represents persons related to or financially reliant on an employee, such as a spouse or child.",
+   "shortDescription": "A related person represent person related to or financially reliant on employee, such as a spouse or child.",
+   "partOfPackage": "sap.sf.workforce:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-EC",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.odm:entityType:WorkforceDependent:v1",
+      "sap.sf.workforce:entityType:dependent:v1"
+   ],
+   "datasets": [
+      "sap.sf.workforce:dataset:RelatedPersons:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.workforce:share:RelatedPersons:v1.0.0"
+   ]
+}

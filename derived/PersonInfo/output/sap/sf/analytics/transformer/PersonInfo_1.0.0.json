@@ -1,0 +1,65 @@
+{
+    "name": "PersonInfo",
+    "namespace": "sap.sf.analytics",
+    "version": "1.0.0",
+    "transformations": [
+        {
+            "unixCronScheduleInUTC": "* * * * */1 0 0",
+            "maxExecutionTimeMinutes": 10080,
+            "name": "s4_bronze_to_silver_transformation",
+            "parameters": {
+                "enable_error_handling": true,
+                "enable_schema_validation": false,
+                "enable_tcsn_to_tenant_specific_container": true,
+                "enable_full_with_pk_merge": false,
+                "disable_is_empty_check": true,
+                "enable_spark_performance_metrics": true,
+                "enable_timeout_for_initial_load": true,
+                "initial_load_timeout_minutes": 60
+            },
+            "sparkConfig": {
+                "spark.executor.instances": "2",
+                "spark.dynamicAllocation.minExecutors": "1",
+                "spark.dynamicAllocation.maxExecutors": "2",
+                "spark.dynamicAllocation.enabled": "true",
+                "spark.dynamicAllocation.initialExecutors": "1",
+                "spark.kubernetes.executor.volumes.persistentVolumeClaim.spark-local-dir-1.options.sizeLimit": "50Gi",
+                "spark.kubernetes.executor.volumes.persistentVolumeClaim.spark-local-dir-1.mount.readOnly": "false",
+                "spark.kubernetes.executor.volumes.persistentVolumeClaim.spark-local-dir-1.mount.path": "/data",
+                "spark.kubernetes.executor.volumes.persistentVolumeClaim.spark-local-dir-1.options.claimName": "OnDemand",
+                "spark.kubernetes.executor.volumes.persistentVolumeClaim.spark-local-dir-1.options.storageClass": "hc-default",
+                "spark.databricks.delta.optimize.maxFileSize": "134217728",
+                "spark.sql.parquet.datetimeRebaseModeInWrite": "CORRECTED",
+                "spark.sql.parquet.int96RebaseModeInWrite": "CORRECTED",
+                "spark.sql.constraintPropagation.enabled": "false",
+                "spark.driver.extraJavaOptions": "-Xss64m -XX:+PrintFlagsFinal",
+                "spark.executor.extraJavaOptions": "-Xss64m -XX:+PrintFlagsFinal",
+                "spark.sql.files.maxPartitionBytes": "134217728",
+                "spark.databricks.delta.optimizeWrite.binSize": "134217728",
+                "spark.databricks.delta.optimizeWrite.enabled": "true"
+            },
+            "computeConfig": {
+                "workloadProfile": "default",
+                "sparkVersion": "3.5.3",
+                "resources": {
+                    "driver": {
+                        "cpu": "4",
+                        "memory": "16g"
+                    },
+                    "executor": {
+                        "cpu": "4",
+                        "memory": "16g"
+                    }
+                }
+            },
+            "steps": [
+                {
+                    "stepKey": "s4_bronze_to_silver_transformation",
+                    "packageName": "fos_workflows",
+                    "packageVersion": "1.0.291",
+                    "entryPoint": "fos_workflows.fos.bronze_to_silver_transformation=main"
+                }
+            ]
+        }
+    ]
+}

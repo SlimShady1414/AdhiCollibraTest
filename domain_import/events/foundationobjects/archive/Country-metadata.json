@@ -1,0 +1,251 @@
+{
+  "$id": "/rest/foundationobjects/v1/metadata/country",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "Country/Region",
+  "type": "object",
+  "x-sap-sf-version": "1.0.0",
+  "x-sap-sf-custom-version": 1,
+  "properties": {
+    "id": {
+      "type": "integer",
+      "title": "id",
+      "x-sap-sf-hidden": true,
+      "minimum": -9223372036854775808,
+      "maximum": 9223372036854775807
+    },
+    "code": {
+      "type": "string",
+      "title": "code",
+      "maxLength": 128
+    },
+    "timeslices": {
+      "type": "array",
+      "items": {
+        "$ref": "/rest/foundationobjects/v1/metadata/countryTimeSlice"
+      }
+    }
+  },
+  "required": [
+    "code"
+  ],
+  "x-sap-odm-entity-name": "CountryCode",
+  "x-sap-root-entity": true,
+  "x-sap-sf-resource": {
+    "id": [
+      "id"
+    ]
+  },
+  "x-sap-sf-temporal": {
+    "type": "timeline",
+    "dates": {
+      "from": "validFrom",
+      "to": "validTo",
+      "semantics": "closed-closed"
+    }
+  },
+  "$defs": {
+    "timeslice": {
+      "$id": "/rest/foundationobjects/v1/metadata/countryTimeSlice",
+      "type": "object",
+      "properties": {
+        "externalName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "externalName"
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "validFrom": {
+          "type": "string",
+          "title": "validFrom",
+          "format": "date"
+        },
+        "validTo": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "validTo",
+          "x-sap-sf-hidden": true,
+          "format": "date"
+        },
+        "twoCharCountryCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "twoCharCountryCode",
+          "maxLength": 255
+        },
+        "numericCountryCode": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "numericCountryCode",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "currency": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "currency"
+        },
+        "territoryId": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "territoryId",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "isSetByMigrate": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "isSetByMigrate",
+          "x-sap-sf-hidden": true
+        },
+        "isDRMEnabled": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "isDRMEnabled"
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "texts": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "title": "Localized Texts",
+          "items": {
+            "$ref": "/rest/foundationobjects/v1/metadata/countryText"
+          }
+        }
+      },
+      "required": [
+        "validFrom"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "currency": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/v1/metadata/currency"
+              },
+              "properties": [
+                {
+                  "currency": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          }
+        }
+      }
+    },
+    "CountryText": {
+      "$id": "/rest/foundationobjects/v1/metadata/countryText",
+      "title": "Localized value for translatable data type field",
+      "type": "object",
+      "properties": {
+        "locale": {
+          "title": "locale",
+          "description": "The locale specified as an ISO 63901 or BCP-47 language code.",
+          "type": "string",
+          "maxLength": 128
+        },
+        "externalName": {
+          "title": "externalName",
+          "type": "string",
+          "maxLength": 255
+        },
+        "default": {
+          "title": "default",
+          "description": "Whether or not the locale is the default locale based on the request context (i.e. user or system)",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "x-sap-sf-resource": {
+        "id": [
+          "/properties/timeslices/items/recordId",
+          "locale"
+        ]
+      },
+      "required": [
+        "locale"
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+   "name": "WorkforcePerson",
+   "title": "WorkforcePerson",
+   "description": "Workforce person data refers to a person and their employment details. Workforce person data includes personal information,biographical information, address, contact information, national ID, social account, country/region-specific information, and employment details such as assignments, job details, and global assignment information.",
+   "shortDescription": "Workforce person contains data that refers to a person and their employment details.",
+   "partOfPackage": "sap.sf.workforce:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-EC",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.odm:entityType:WorkforceAssignment:v1",
+      "sap.odm:entityType:WorkforcePerson:v1",
+      "sap.sf.workforce:entityType:assignment:v1",
+      "sap.sf.workforce:entityType:person:v1"
+   ],
+   "datasets": [
+      "sap.sf.workforce:dataset:WorkforcePerson:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.workforce:share:WorkforcePerson:v1.0.0"
+   ]
+}

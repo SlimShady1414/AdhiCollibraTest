@@ -1,0 +1,23 @@
+{
+   "name": "OrganizationalStructure",
+   "title": "OrganizationalStructure",
+   "description": "Organization structure refers to organizational and reporting structures in a company.",
+   "shortDescription": "Org structure refers to org and reporting structure in a company.",
+   "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-EC",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.odm:entityType:OrganizationalUnit:v1",
+      "sap.sf.foundationobjects:entityType:businessUnit:v1",
+      "sap.sf.foundationobjects:entityType:department:v1",
+      "sap.sf.foundationobjects:entityType:division:v1"
+   ],
+   "datasets": [
+      "sap.sf.foundationobjects:dataset:OrganizationalStructure:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.foundationobjects:share:OrganizationalStructure:v1.0.0"
+   ]
+}

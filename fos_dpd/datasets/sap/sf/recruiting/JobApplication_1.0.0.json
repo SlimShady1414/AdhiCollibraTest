@@ -1,0 +1,8 @@
+{
+   "name": "JobApplication",
+   "namespace": "sap.sf.recruiting",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.recruiting:dataSource:Jobapplication:v1.0.0"
+   ]
+}

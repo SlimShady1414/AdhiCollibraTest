@@ -1,0 +1,27 @@
+{
+   "name": "EnterpriseStructure",
+   "title": "EnterpriseStructure",
+   "description": "Enterprise structure is information about a company's structure relevant for employees. It includes data such as legal entity, location group, location, and cost center.",
+   "shortDescription": "Ent structure is info about a company structure relevant for employee. It includes data such as legal entity, location group, location, and cost center.",
+   "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-EC",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.odm:entityType:CompanyCode:v1",
+      "sap.odm:entityType:CostCenter:v1",
+      "sap.odm:entityType:WorkforceLocation:v1",
+      "sap.odm:entityType:WorkforceLocationGroup:v1",
+      "sap.sf.foundationobjects:entityType:costCenter:v1",
+      "sap.sf.foundationobjects:entityType:legalEntity:v1",
+      "sap.sf.foundationobjects:entityType:location:v1",
+      "sap.sf.foundationobjects:entityType:locationGroup:v1"
+   ],
+   "datasets": [
+      "sap.sf.foundationobjects:dataset:EnterpriseStructure:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.foundationobjects:share:EnterpriseStructure:v1.0.0"
+   ]
+}

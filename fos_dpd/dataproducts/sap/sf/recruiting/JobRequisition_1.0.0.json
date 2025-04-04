@@ -1,0 +1,20 @@
+{
+   "name": "JobRequisition",
+   "title": "JobRequisition",
+   "description": "Tracks job openings, managing key details to streamline hiring, ensure compliance, and optimize workforce planning in an ATS.",
+   "shortDescription": "Data product that helps track job openings and also manage key details to streamline hiring, ensure compliance, and optimize workforce planning in an ATS.",
+   "partOfPackage": "sap.sf.recruiting:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-RCM",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.sf.recruiting:entityType:jobRequisition:v1"
+   ],
+   "datasets": [
+      "sap.sf.recruiting:dataset:JobRequisition:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.recruiting:share:JobRequisition:v1.0.0"
+   ]
+}

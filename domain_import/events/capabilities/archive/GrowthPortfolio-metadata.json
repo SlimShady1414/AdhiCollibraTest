@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "/rest/ecosystem/wholeself/v1/metadata/growthportfolioattribute",
+  "x-sap-sf-version": "1.0",
+  "type": "object",
+  "title": "Growth Portfolio",
+  "properties": {
+    "personUUID": {
+      "type": "string"
+    },
+    "attributeId": {
+      "type": "integer"
+    },
+    "attributeType": {
+      "type": "integer"
+    },
+    "sourceType": {
+      "type": "string"
+    },
+    "passionateAbout": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "expectedProficiencyLevel": {
+      "type": "integer"
+    },
+    "isRoleBased": {
+      "type": "string"
+    },
+    "proficiency": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "integer"
+        },
+        "assessedDate": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "level",
+        "assessedDate"
+      ]
+    },
+    "createdBy": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "lastModifiedBy": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "createdAt": {
+      "format": "date-time",
+      "maxLength": 27
+    },
+    "lastModifiedAt": {
+      "format": "date-time",
+      "maxLength": 27
+    },
+    "proxyBy": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "assessmentHistory": {
+      "type": "array",
+      "items": {
+        "$ref": "/rest/ecosystem/wholeself/v1/metadata/assessmentHistory"
+      }
+    }
+  },
+  "required": [
+    "personUUID",
+    "attributeId",
+    "AttributeType",
+    "sourceType",
+    "status",
+    "createdBy",
+    "lastModifiedBy",
+    "createdAt",
+    "lastModifiedAt"
+  ],
+  "x-sap-odm-oid": "personUUID",
+  "x-sap-odm-entity-name": "WorkforceCapabilityAssignment",
+  "x-sap-root-entity": true,
+  "x-sap-sf-resource": {
+    "id": [
+      "personUUID, attributeId"
+    ],
+    "properties": {
+      "attributeId": {
+        "bind": {
+          "schema": {
+            "$ref": "/rest/ecosystem/wholeself/v1/metadata/library"
+          },
+          "properties": {
+            "attributeId": "libraryId"
+          },
+          "type": "association",
+          "multiplicity": "1..1"
+        }
+      },
+      "attributeType": {
+        "bind": {
+          "schema": {
+            "$ref": "/rest/ecosystem/wholeself/v1/metadata/libraryType"
+          },
+          "properties": {
+            "attributeId": "libraryId"
+          },
+          "type": "association",
+          "multiplicity": "1..1"
+        }
+      },
+      "properties": {
+        "proficiencyLevels": {
+          "bind": {
+            "schema": {
+              "$ref": "/rest/ecosystem/wholeself/v1/metadata/proficiencyLevel"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "assessmentHistory": {
+      "$id": "/rest/ecosystem/wholeself/v1/metadata/assessmentHistory",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "type": "object",
+      "properties": {
+        "sourceType": {
+          "type": "string"
+        },
+        "passionateAbout": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "expectedProficiencyLevel": {
+          "type": "integer"
+        },
+        "isRoleBased": {
+          "type": "string"
+        },
+        "proficiency": {
+          "type": "object",
+          "properties": {
+            "level": {
+              "type": "integer"
+            },
+            "assessedDate": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "level",
+            "assessedDate"
+          ]
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "lastModifiedBy": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "lastModifiedAt": {
+          "type": "string"
+        },
+        "proxyBy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "growthPortfolioId",
+        "sourceType",
+        "status",
+        "proficiency",
+        "createdBy",
+        "lastModifiedBy",
+        "createdAt",
+        "lastModifiedAt"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "growthPortfolioId"
+        ]
+      }
+    }
+  }
+}

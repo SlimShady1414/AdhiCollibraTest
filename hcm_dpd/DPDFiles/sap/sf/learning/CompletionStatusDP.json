@@ -1,0 +1,36 @@
+{
+  "name": "CompletionStatus",
+  "version": "1.0.0",
+  "category": "businessObject",
+  "type": "primary",
+  "title": "CompletionStatus",
+  "status": "In Testing",
+  "namespace": "sap.sf.learning",
+  "responsible": "sap:ach:LOD-SF-LMS",
+  "partOfPackage": "sap.sf.learning:package:DataProducts:v1.0.0",
+  "shortDescription": "Reference data that is required in Learning.",
+  "description": "Reference Data required in Learning.",
+  "entityTypes": [
+    "sap.sf.learning:entityType:completionStatus:v1"
+  ],
+  "entities": [
+    {
+      "name": "completionStatus",
+      "nodes": [
+        {
+          "name": "completionStatus_completionStatusText",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "completionStatus",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        }
+      ],
+      "main": false
+    }
+  ]
+}

@@ -1,0 +1,1329 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/workforce/v1/metadata/assignment",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "assignment",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.workforce",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "assignment" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Employment Details",
+      "@ODM.entityName" : "WorkforceAssignment",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:assignment",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "assignment",
+        "propertyTypes" : [ "sap.sf.workforce:assignmentId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "Assignment UUID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:assignmentId"
+        },
+        "legacyId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "User ID",
+          "length" : 100
+        },
+        "assignmentDetail" : {
+          "type" : "cds.Composition",
+          "target" : "assignment_assignmentDetail",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "assignmentDetail", "assignment_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "jobDetails" : {
+          "type" : "cds.Composition",
+          "target" : "assignment_jobDetail",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "jobDetails", "assignment_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "primaryAssignment" : {
+          "type" : "cds.Composition",
+          "target" : "assignment_primaryAssignment",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "primaryAssignment", "assignment_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "person" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:person",
+            "referencedPropertyType" : "sap.sf.workforce:personId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 32
+        }
+      }
+    },
+    "assignment_assignmentDetail" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:assignment_assignmentDetail",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "assignment_assignmentDetail",
+        "propertyTypes" : [ "sap.sf.workforce:assignment_assignmentDetailId" ]
+      } ],
+      "elements" : {
+        "assignment_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_assignment"
+          },
+          "type" : "cds.UUID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:assignment_assignmentDetailId"
+        },
+        "_assignment" : {
+          "type" : "cds.Association",
+          "target" : "assignment",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_assignment", "id" ]
+          }, "=", {
+            "ref" : [ "assignment_id_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Id",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:assignment_assignmentDetailId"
+        },
+        "assignmentType" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:global_assignment_typePickList",
+            "referencedPropertyType" : "sap.sf.extensibility:global_assignment_typePickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Assignment Type",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "startDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Start Date"
+        },
+        "plannedEndDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Planned End Date"
+        },
+        "assignmentClass" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Assignment Type"
+        },
+        "companyForAssignmentInfo" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Company"
+        },
+        "companyForPensionPayoutsInfo" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Pension Provider"
+        },
+        "countryCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Country Code",
+          "length" : 3
+        },
+        "originalStartDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Original Start Date"
+        },
+        "seniorityDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Seniority Start Date"
+        },
+        "eligibleForStock" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Eligible for Stock"
+        },
+        "serviceDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Service Date"
+        },
+        "initialStockGrant" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Initial Stock Grant",
+          "scale" : 3
+        },
+        "professionalServiceDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Professional Service Date"
+        },
+        "initialOptionGrant" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Initial Option Grant",
+          "scale" : 3
+        },
+        "isContingentWorker" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Is Contingent Worker"
+        },
+        "employeeFirstEmployment" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Employee's First Employment"
+        },
+        "isSecondaryAllSfProcesses" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Secondary Employment"
+        },
+        "primaryEmploymentDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "When should these changes take effect?"
+        }
+      }
+    },
+    "assignment_jobDetail" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Job Information",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:assignment_jobDetail",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "assignment_jobDetail",
+        "propertyTypes" : [ "sap.sf.workforce:assignment_jobDetailId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "startDate",
+        "temporalIntervalEndProperty" : "endDate"
+      } ],
+      "elements" : {
+        "assignment_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_assignment"
+          },
+          "type" : "cds.UUID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:assignment_jobDetailId"
+        },
+        "_assignment" : {
+          "type" : "cds.Association",
+          "target" : "assignment",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_assignment", "id" ]
+          }, "=", {
+            "ref" : [ "assignment_id_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Id",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:assignment_jobDetailId"
+        },
+        "countryCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Country Code",
+          "length" : 3
+        },
+        "position" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:position",
+            "referencedPropertyType" : "sap.sf.workforce:positionId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Position",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "positionEntryDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Position Entry Date"
+        },
+        "timeInPosition" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Time In Position"
+        },
+        "company" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:legalEntity",
+            "referencedPropertyType" : "sap.sf.foundationobjects:legalEntityId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Company",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "businessUnit" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:businessUnit",
+            "referencedPropertyType" : "sap.sf.foundationobjects:businessUnitId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Business Unit",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "division" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:division",
+            "referencedPropertyType" : "sap.sf.foundationobjects:divisionId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Division",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "department" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:department",
+            "referencedPropertyType" : "sap.sf.foundationobjects:departmentId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Department",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "location" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:location",
+            "referencedPropertyType" : "sap.sf.foundationobjects:locationId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Location",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "timezone" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Timezone",
+          "length" : 128
+        },
+        "costCenter" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:costCenter",
+            "referencedPropertyType" : "sap.sf.foundationobjects:costCenterId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Cost Center",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "managerId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Supervisor",
+          "length" : 256
+        },
+        "jobCode" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:jobClassification",
+            "referencedPropertyType" : "sap.sf.foundationobjects:jobClassificationId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Job Classification",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "jobTitle" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Job Title",
+          "length" : 256
+        },
+        "localJobTitle" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Local Job Title",
+          "length" : 256
+        },
+        "payGrade" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:payGrade",
+            "referencedPropertyType" : "sap.sf.foundationobjects:payGradeId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Pay Grade",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "regularTemp" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:regular-tempPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:regular-tempPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Regular/Temporary",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "standardHours" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Standard Weekly Hours",
+          "scale" : 2
+        },
+        "workingDaysPerWeek" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Working Days Per Week",
+          "scale" : 3
+        },
+        "fte" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "FTE",
+          "scale" : 2
+        },
+        "isFulltimeEmployee" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Is Fulltime Employee"
+        },
+        "notes" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Notes",
+          "length" : 4000
+        },
+        "employeeClass" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:EMPLOYEECLASS~LEGACYPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:EMPLOYEECLASS~LEGACYPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Employee Class",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "flsaStatus" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:FLSAStatusUSAPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:FLSAStatusUSAPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "FLSA Status",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "isShiftEmployee" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Is Shift Employee"
+        },
+        "shiftCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Shift Code",
+          "length" : 256
+        },
+        "shiftRate" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Shift Rate",
+          "scale" : 2
+        },
+        "shiftFactor" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Shift Percent",
+          "scale" : 2
+        },
+        "isCrossBorderWorker" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Is Cross Border Worker"
+        },
+        "isCompetitionClauseActive" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Competition Clause"
+        },
+        "isSideLineJobAllowed" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Sideline Job Allowed"
+        },
+        "probationPeriodEndDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Probationary Period End Date"
+        },
+        "countryOfCompany" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:ISOCountryListPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:ISOCountryListPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Country/Region",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "sickPaySupplement" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:SICKPAYSUPPPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:SICKPAYSUPPPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Sick Pay Supplement",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "jobEntryDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Job Entry Date"
+        },
+        "timeInJob" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Time in Job"
+        },
+        "payScaleType" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:payScaleType",
+            "referencedPropertyType" : "sap.sf.foundationobjects:payScaleTypeId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Pay Scale Type",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "payScaleArea" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:payScaleArea",
+            "referencedPropertyType" : "sap.sf.foundationobjects:payScaleAreaId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Pay Scale Area",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "payScaleGroup" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:payScaleGroup",
+            "referencedPropertyType" : "sap.sf.foundationobjects:payScaleGroupId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Pay Scale Group",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "payScaleLevel" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:payScaleLevel",
+            "referencedPropertyType" : "sap.sf.foundationobjects:payScaleLevelId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Pay Scale Level",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "noticePeriodStartDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Notice Period Start Date"
+        },
+        "companyEntryDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Company Entry Date"
+        },
+        "timeInCompany" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Time in Company"
+        },
+        "locationEntryDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Location Entry Date"
+        },
+        "timeInLocation" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Time in Location"
+        },
+        "departmentEntryDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Department Entry Date"
+        },
+        "timeInDepartment" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Time in Department"
+        },
+        "payScaleLevelEntryDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Pay Scale Level Entry Date"
+        },
+        "timeInPayScaleLevel" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Time in Pay Scale Level"
+        },
+        "hireDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Hire Date"
+        },
+        "terminationDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Termination Date"
+        },
+        "leaveOfAbsenceStartDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Leave of Absence Start Date"
+        },
+        "leaveOfAbsenceReturnDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Leave of Absence Return Date"
+        },
+        "contractEndDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Contract End Date"
+        },
+        "employeeNoticePeriod" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:EENoticePeriodPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:EENoticePeriodPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Employee Notice Period",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "holidayCalendarCode" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:HolidayCalendar",
+            "referencedPropertyType" : "sap.sf.extensibility:HolidayCalendarId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Holiday Calendar",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "workscheduleCode" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:WorkSchedule",
+            "referencedPropertyType" : "sap.sf.extensibility:WorkScheduleId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Work Schedule",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "timeTypeProfileCode" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:TimeTypeProfile",
+            "referencedPropertyType" : "sap.sf.extensibility:TimeTypeProfileId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Time Profile",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "timeRecordingProfileCode" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:TimeRecordingProfile",
+            "referencedPropertyType" : "sap.sf.extensibility:TimeRecordingProfileId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Time Recording Profile",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "timeRecordingAdmissibilityCode" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:TimeRecordingAdmissibility",
+            "referencedPropertyType" : "sap.sf.extensibility:TimeRecordingAdmissibilityId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Time Recording Admissibility",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "timeRecordingVariant" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Time Recording Variant"
+        },
+        "defaultOvertimeCompensationVariant" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Default Overtime Compensation Variant"
+        },
+        "timeEventTypeGroupId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:TimeEventTypeGroup",
+            "referencedPropertyType" : "sap.sf.extensibility:TimeEventTypeGroupId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Clock in Clock Out Group",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "startDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Event Date"
+        },
+        "seqNumber" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Sequence Number",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "eventReason" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:eventReason",
+            "referencedPropertyType" : "sap.sf.foundationobjects:eventReasonId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Event Reason",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "eeoClass" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:EEOJobGroupUSAPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:EEOJobGroupUSAPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "EEO Job Group",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "contractType" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:contractTypePickList",
+            "referencedPropertyType" : "sap.sf.extensibility:contractTypePickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Contract Type",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "continuedSicknessPayPeriod" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Continued Sickness Pay Period",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "continuedSicknessPayMeasure" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:periodIndicatorPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:periodIndicatorPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Continued Sickness Pay Measure",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "noticePeriod" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Notice Period",
+          "length" : 256
+        },
+        "initialEntryDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Initial Entry"
+        },
+        "entryIntoGroup" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Entry into Group"
+        },
+        "corporation" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Corporation",
+          "length" : 256
+        },
+        "eeo1JobCategory" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:EEO1JobCategoryUSAPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:EEO1JobCategoryUSAPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "EEO Category 1",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "eeo4JobCategory" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "EEO Category 4",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "eeo5JobCategory" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "EEO Category 5",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "eeo6JobCategory" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "EEO Category 6",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Created On"
+        },
+        "createdAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Created By",
+          "length" : 100
+        },
+        "modifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Modified On"
+        },
+        "modifiedAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Modified By",
+          "length" : 100
+        },
+        "endDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "End Date"
+        },
+        "emplStatus" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:employee-statusPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:employee-statusPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Employee Status",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "effectiveLatestChange" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Effective latest change"
+        },
+        "event" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:eventPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:eventPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Event",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "lastModifiedSource" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Modified Source"
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "on behalf of assignment UUID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf:modifiedOnBehalfOfAssignment",
+            "referencedPropertyType" : "sap.sf:modifiedOnBehalfOfAssignment"
+          } ]
+        },
+        "wfRequestId" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "probationaryPeriod" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Probationary Period",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "probationaryPeriodMeasure" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Probationary Period Measure",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "dismissalsNoticePeriodForEmployer" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Employer Notice Period",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "travelDistance" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Travel Distance",
+          "scale" : 3
+        },
+        "transportationSubsidy" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Railway Subscription",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "empRelationship" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Employment Relationship",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "workerCategory" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Worker Category",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "mandatoryWorkBreakRecord" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Mandatory Work Break Record",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "harmfulAgentExposure" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Harmful Agent Exposure Code",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "commitmentIndicator" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Commitment Indicator",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "permitIndicator" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Underage Apprentice Permit"
+        },
+        "pcfm" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Provisional Certificate in Financial Movements (PCFM)"
+        },
+        "retired" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Retired"
+        },
+        "healthRisk" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Health Risk"
+        },
+        "hazard" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Hazard"
+        },
+        "fgtsOptant" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "FGTS Recipient (Entitled to Receive Severance Pay)"
+        },
+        "fgtsDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "FGTS Date"
+        },
+        "fgtsPercent" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "FGTS Percentage",
+          "scale" : 3
+        },
+        "includedChallengedPersonQuota" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Included in Challenged Person Quota",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "internshipSchool" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Internship School",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "mandatoryInternship" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Mandatory Internship",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "internshipLevel" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Internship Level",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "integrationAgent" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Integration Agent",
+          "length" : 256
+        },
+        "educationalEntity" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Educational Entity",
+          "length" : 256
+        },
+        "underageApprenticeHiring" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Underage Apprentice Hiring Modality",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "underageApprenticeQualifier" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Underage Apprentice Qualifying Entity",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "underageApprenticePracticalActivities" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Underage Apprentice Practical Training Provider",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "workLocation" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Work Location",
+          "length" : 256
+        },
+        "laborProtection" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Labor Protection"
+        },
+        "occupationCri" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Occupation",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "newCalcAvgPpu" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "\tNew Calculation Average PPU"
+        },
+        "newCalcAvgDnp" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "\tNew Calculation Average DNP"
+        },
+        "codeOfJobForEldp" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Code of Job for ELDP",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "assedicCertInitialStateNum" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Number of Initial Pôle Emploi Statement (Entertainment Worker)",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "assedicCertObjectNum" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Pôle Emploi Certificate Object Number (Entertainment Worker)",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "familyRelationshipWithEmployer" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Family Relationship with Employer",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "contractReferenceForAed" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Contract Reference",
+          "length" : 256
+        },
+        "electoralCollegeForWorkersRepresentatives" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "\tElectoral College for Workers Representatives",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "electoralCollegeForWorksCouncil" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "\tElectoral College for Works Council",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "exclExecutiveSector" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Excluded from Executive Sector"
+        },
+        "residentVote" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Resident Vote"
+        },
+        "municipalInseeCode" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Municipal INSEE Code",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "employeeWorkgroupMembership" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Employee Workgroup Membership",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "calcMethodIndicator" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Calculation Method Indicator"
+        },
+        "workingTimeDirective" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Working Time Directive"
+        },
+        "wtdHoursLimit" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "WTD Working Hours Limit",
+          "length" : 256
+        },
+        "tupeOrgNumber" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "TUPE Organization Number",
+          "length" : 256
+        },
+        "pensionProtection" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Pension Protection (Fixed or Enhanced)"
+        },
+        "teachersPension" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Teachers Pensions"
+        },
+        "occupationGtm" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Occupation",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "contractId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Contract ID",
+          "length" : 256
+        },
+        "contractNumber" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Contract Number",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "ineligibleStatutoryMinWage" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Ineligible for Statutory Minimum Wage"
+        },
+        "spclRuleNonManualWorker" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Special Rule for Non-Manual Worker"
+        },
+        "paymentInLieuOfNotice" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Used in Payment in Lieu of Notice"
+        },
+        "guaranteedPayment" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Guaranteed Payment",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "periodIndicator" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Period Indicator",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "calculationBase" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Calculation Base",
+          "length" : 256
+        },
+        "workPermitExpiry" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Work Permit Expiry"
+        },
+        "creditForPreviousService" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Credit for Previous Service",
+          "length" : 256
+        },
+        "assessmentStatus" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Assessment Status",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "currentWageLevel" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Current Wage Level (%)",
+          "scale" : 3
+        },
+        "degreeOfProductivity" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Degree of Productivity (%)",
+          "scale" : 3
+        },
+        "sickPaySupplementPeriod" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Sick Pay Supplement Period",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "sickPaySupplementMeasure" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Sick Pay Supplement Measure",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "occupationalLevelKen" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Occupational Level",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "occupationalLevels" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Occupational Levels",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "occupationPer" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Occupation",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "jobGroup" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Job Group",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "fromCurrency" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "From Currency",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "toCurrency" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "To Currency",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "exchangeRate" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Exchange Rate",
+          "scale" : 3
+        },
+        "validFrom" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Exchange Rate Effective Date"
+        },
+        "contractDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Labor Contract Signing Date"
+        }
+      }
+    },
+    "assignment_primaryAssignment" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Concurrent Employment Details",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:assignment_primaryAssignment",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "assignment_primaryAssignment",
+        "propertyTypes" : [ "sap.sf.workforce:assignment_primaryAssignmentId" ]
+      } ],
+      "elements" : {
+        "assignment_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_assignment"
+          },
+          "type" : "cds.UUID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:assignment_primaryAssignmentId"
+        },
+        "_assignment" : {
+          "type" : "cds.Association",
+          "target" : "assignment",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_assignment", "id" ]
+          }, "=", {
+            "ref" : [ "assignment_id_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Id",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:assignment_primaryAssignmentId"
+        },
+        "isPrimaryConcurrentEmployment" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Primary Employment"
+        },
+        "validFrom" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Effective Start Date"
+        },
+        "validTo" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Effective End Date"
+        }
+      }
+    }
+  }
+}

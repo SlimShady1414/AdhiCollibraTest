@@ -1,0 +1,1238 @@
+{
+    "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+    "$id" : "/rest/workforce/v1/metadata/person",
+    "csnInteropEffective" : "1.0",
+    "$version" : "2.0",
+    "meta" : {
+      "__name" : "WorkforcePerson",
+      "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+      "__modelProvider" : "Successfactors",
+      "__namespace" : "sap.sf.workforce",
+      "document" : {
+        "version" : "1.0.0"
+      }
+    },
+    "definitions" : {
+      "person" : {
+        "kind" : "entity",
+        "@EndUserText.label" : "Biographical Information",
+        "@ODM.entityName" : "WorkforcePerson",
+        "@ODM.oid" : "oid",
+        "@ObjectModel.compositionRoot" : true,
+        "@EntityRelationship.entityType" : "sap.sf.workforce:person",
+        "@EntityRelationship.entityIds" : [ {
+          "name" : "person",
+          "propertyTypes" : [ "sap.sf.workforce:personId" ]
+        } ],
+        "elements" : {
+          "id" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Per Person UUID",
+            "length" : 32,
+            "key" : true,
+            "@EntityRelationship.propertyType" : "sap.sf.workforce:personId"
+          },
+          "internalId" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Person ID",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "externalId" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Person Id",
+            "length" : 32
+          },
+          "oid" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "SAP One Domain Model Person ID",
+            "length" : 128
+          },
+          "biographicalDetail" : {
+            "type" : "cds.Composition",
+            "target" : "person_biographicalDetail",
+            "cardinality" : {
+              "max" : 1
+            },
+            "on" : [ {
+              "ref" : [ "biographicalDetail", "person_id_virtual" ]
+            }, "=", {
+              "ref" : [ "id" ]
+            } ]
+          },
+          "personalDetails" : {
+            "type" : "cds.Composition",
+            "target" : "person_personalDetail",
+            "cardinality" : {
+              "src" : 1,
+              "max" : "*"
+            },
+            "on" : [ {
+              "ref" : [ "personalDetails", "person_id_virtual" ]
+            }, "=", {
+              "ref" : [ "id" ]
+            } ]
+          },
+          "nationalIds" : {
+            "type" : "cds.Composition",
+            "target" : "person_nationalId",
+            "cardinality" : {
+              "src" : 1,
+              "max" : "*"
+            },
+            "on" : [ {
+              "ref" : [ "nationalIds", "person_id_virtual" ]
+            }, "=", {
+              "ref" : [ "id" ]
+            } ]
+          },
+          "assignments" : {
+            "type" : "cds.Composition",
+            "target" : "person_assignment",
+            "cardinality" : {
+              "src" : 1,
+              "max" : "*"
+            },
+            "on" : [ {
+              "ref" : [ "assignments", "person_id_virtual" ]
+            }, "=", {
+              "ref" : [ "id" ]
+            } ]
+          }
+        }
+      },
+      "person_biographicalDetail" : {
+        "kind" : "entity",
+        "@EndUserText.label" : "Biographical Information",
+        "@EntityRelationship.entityType" : "sap.sf.workforce:person_biographicalDetail",
+        "@EntityRelationship.entityIds" : [ {
+          "name" : "person_biographicalDetail",
+          "propertyTypes" : [ "sap.sf.workforce:person_biographicalDetailId" ]
+        } ],
+        "elements" : {
+          "person_id_virtual" : {
+            "@virtual" : true,
+            "@ObjectModel.foreignKey.association" : {
+              "=" : "_person"
+            },
+            "type" : "cds.String"
+          },
+          "_person" : {
+            "type" : "cds.Association",
+            "target" : "person",
+            "cardinality" : {
+              "max" : 1
+            },
+            "on" : [ {
+              "ref" : [ "_person", "id" ]
+            }, "=", {
+              "ref" : [ "person_id_virtual" ]
+            } ]
+          },
+          "id" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Id",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647,
+            "key" : true,
+            "@EntityRelationship.propertyType" : "sap.sf.workforce:person_biographicalDetailId"
+          },
+          "personIdExternal" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Person Id",
+            "length" : 32
+          },
+          "dateOfBirth" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "Date Of Birth"
+          },
+          "countryOfBirth" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Country/Region Of Birth",
+            "length" : 100
+          },
+          "regionOfBirth" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Region Of Birth",
+            "length" : 100
+          },
+          "placeOfBirth" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Place Of Birth",
+            "length" : 100
+          },
+          "dateOfDeath" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "Date of Death"
+          },
+          "createdAt" : {
+            "type" : "cds.DateTime",
+            "@EndUserText.label" : "Created On"
+          },
+          "createdAssignmentId" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.workforce:workProfile",
+              "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+            } ],
+            "type" : "cds.String",
+            "@EndUserText.label" : "Created By",
+            "length" : 100
+          },
+          "modifiedAt" : {
+            "type" : "cds.DateTime",
+            "@EndUserText.label" : "Last Modified On"
+          },
+          "modifiedAssignmentId" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.workforce:workProfile",
+              "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+            } ],
+            "type" : "cds.String",
+            "@EndUserText.label" : "Last Modified By",
+            "length" : 100
+          },
+          "modifiedOnBehalfOfAssignmentId" : {
+            "type" : "cds.UUID",
+            "@EndUserText.label" : "on behalf of assignment UUID"
+          },
+          "biographicalLocDetails" : {
+            "type" : "cds.Composition",
+            "target" : "person_biographicalLocDetail",
+            "cardinality" : {
+              "src" : 1,
+              "max" : "*"
+            },
+            "on" : [ {
+              "ref" : [ "biographicalLocDetails", "person_biographicalDetail_id_virtual" ]
+            }, "=", {
+              "ref" : [ "id" ]
+            } ]
+          }
+        }
+      },
+      "person_personalDetail" : {
+        "kind" : "entity",
+        "@EndUserText.label" : "Personal Information",
+        "@EntityRelationship.entityType" : "sap.sf.workforce:person_personalDetail",
+        "@EntityRelationship.entityIds" : [ {
+          "name" : "person_personalDetail",
+          "propertyTypes" : [ "sap.sf.workforce:person_personalDetailId" ]
+        } ],
+        "elements" : {
+          "person_id_virtual" : {
+            "@virtual" : true,
+            "@ObjectModel.foreignKey.association" : {
+              "=" : "_person"
+            },
+            "type" : "cds.String"
+          },
+          "_person" : {
+            "type" : "cds.Association",
+            "target" : "person",
+            "cardinality" : {
+              "max" : 1
+            },
+            "on" : [ {
+              "ref" : [ "_person", "id" ]
+            }, "=", {
+              "ref" : [ "person_id_virtual" ]
+            } ]
+          },
+          "id" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Id",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647,
+            "key" : true,
+            "@EntityRelationship.propertyType" : "sap.sf.workforce:person_personalDetailId"
+          },
+          "firstName" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "First Name",
+            "length" : 128
+          },
+          "lastName" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Last Name",
+            "length" : 128
+          },
+          "secondLastName" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Second Last Name",
+            "length" : 128
+          },
+          "middleName" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Middle Name",
+            "length" : 128
+          },
+          "salutation" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Salutation",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "suffix" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Suffix",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "firstNameAlt1" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "First Name",
+            "length" : 128
+          },
+          "middleNameAlt1" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Middle Name",
+            "length" : 128
+          },
+          "lastNameAlt1" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Last Name",
+            "length" : 128
+          },
+          "firstNameAlt2" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "First Name",
+            "length" : 128
+          },
+          "middleNameAlt2" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Middle Name",
+            "length" : 128
+          },
+          "lastNameAlt2" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Last Name",
+            "length" : 128
+          },
+          "displayName" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Display Name",
+            "length" : 128
+          },
+          "formalName" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Formal Name",
+            "length" : 128
+          },
+          "title" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Title",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "birthName" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Birth Name",
+            "length" : 128
+          },
+          "birthNameAlt1" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Birth Name",
+            "length" : 128
+          },
+          "birthNameAlt2" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Birth Name",
+            "length" : 128
+          },
+          "preferredName" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Preferred Name",
+            "length" : 128
+          },
+          "initials" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Initials",
+            "length" : 128
+          },
+          "secondTitle" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Second Title",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "namePrefix" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Prefix",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "displayNameAlt1" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Display Name",
+            "length" : 128
+          },
+          "displayNameAlt2" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Display Name",
+            "length" : 128
+          },
+          "formalNameAlt1" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Formal Name",
+            "length" : 128
+          },
+          "formalNameAlt2" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Formal Name",
+            "length" : 128
+          },
+          "customString1" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Preferred Name",
+            "length" : 128
+          },
+          "gender" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Gender",
+            "length" : 2
+          },
+          "maritalStatus" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Marital Status",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "since" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "Marital Status Since"
+          },
+          "nationality" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Nationality",
+            "length" : 128
+          },
+          "secondNationality" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Second Nationality",
+            "length" : 128
+          },
+          "thirdNationality" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Third Nationality",
+            "length" : 128
+          },
+          "nativePreferredLang" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Native Preferred Language",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "challengeStatus" : {
+            "type" : "cds.Boolean",
+            "@EndUserText.label" : "Challenge Status"
+          },
+          "certificateStartDate" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "Certificate Start Date"
+          },
+          "certificateEndDate" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "Certificate End Date"
+          },
+          "partnerName" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Partner Name",
+            "length" : 128
+          },
+          "partnerNamePrefix" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Partner Name Prefix",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "nameFormatCode" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:NameFormatGO",
+              "referencedPropertyType" : "sap.sf.extensibility:NameFormatGOId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Name Format Code",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "script" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:Script",
+              "referencedPropertyType" : "sap.sf.extensibility:ScriptId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Language Script",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "scriptAlt1" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:Script",
+              "referencedPropertyType" : "sap.sf.extensibility:ScriptId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Language Script",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "scriptAlt2" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:Script",
+              "referencedPropertyType" : "sap.sf.extensibility:ScriptId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Language Script",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "thirdName" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Third Name",
+            "length" : 128
+          },
+          "thirdNameAlt1" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Third Name",
+            "length" : 128
+          },
+          "thirdNameAlt2" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Third Name",
+            "length" : 128
+          },
+          "createdAt" : {
+            "type" : "cds.DateTime",
+            "@EndUserText.label" : "Created On"
+          },
+          "createdAssignmentId" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.workforce:workProfile",
+              "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+            } ],
+            "type" : "cds.String",
+            "@EndUserText.label" : "Created By",
+            "length" : 100
+          },
+          "modifiedAt" : {
+            "type" : "cds.DateTime",
+            "@EndUserText.label" : "Last Modified On"
+          },
+          "modifiedAssignmentId" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.workforce:workProfile",
+              "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+            } ],
+            "type" : "cds.String",
+            "@EndUserText.label" : "Last Modified By",
+            "length" : 100
+          },
+          "startDate" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "Event Date"
+          },
+          "endDate" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "End Date"
+          },
+          "modifiedOnBehalfOfAssignmentId" : {
+            "type" : "cds.UUID",
+            "@EndUserText.label" : "on behalf of assignment UUID"
+          },
+          "globalDetails" : {
+            "type" : "cds.Composition",
+            "target" : "person_globalDetail",
+            "cardinality" : {
+              "src" : 1,
+              "max" : "*"
+            },
+            "on" : [ {
+              "ref" : [ "globalDetails", "person_personalDetail_id_virtual" ]
+            }, "=", {
+              "ref" : [ "id" ]
+            } ]
+          },
+          "wfRequestId" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "defaultTitle",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          }
+        }
+      },
+      "person_nationalId" : {
+        "kind" : "entity",
+        "@EndUserText.label" : "National ID Information",
+        "@EntityRelationship.entityType" : "sap.sf.workforce:person_nationalId",
+        "@EntityRelationship.entityIds" : [ {
+          "name" : "person_nationalId",
+          "propertyTypes" : [ "sap.sf.workforce:person_nationalIdId" ]
+        } ],
+        "elements" : {
+          "person_id_virtual" : {
+            "@virtual" : true,
+            "@ObjectModel.foreignKey.association" : {
+              "=" : "_person"
+            },
+            "type" : "cds.String"
+          },
+          "_person" : {
+            "type" : "cds.Association",
+            "target" : "person",
+            "cardinality" : {
+              "max" : 1
+            },
+            "on" : [ {
+              "ref" : [ "_person", "id" ]
+            }, "=", {
+              "ref" : [ "person_id_virtual" ]
+            } ]
+          },
+          "id" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Id",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647,
+            "key" : true,
+            "@EntityRelationship.propertyType" : "sap.sf.workforce:person_nationalIdId"
+          },
+          "country" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Country/Region",
+            "length" : 100
+          },
+          "cardType" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "National Id Card Type",
+            "length" : 256
+          },
+          "nationalId" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "National Id",
+            "length" : 256
+          },
+          "isPrimary" : {
+            "type" : "cds.Boolean",
+            "@EndUserText.label" : "Is Primary"
+          },
+          "isTemporary" : {
+            "type" : "cds.Boolean",
+            "@EndUserText.label" : "Temporary ID Available"
+          },
+          "temporaryId" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Temporary ID",
+            "length" : 256
+          },
+          "createdAt" : {
+            "type" : "cds.DateTime",
+            "@EndUserText.label" : "Created On"
+          },
+          "createdAssignmentId" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.workforce:workProfile",
+              "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+            } ],
+            "type" : "cds.String",
+            "@EndUserText.label" : "Created By",
+            "length" : 100
+          },
+          "modifiedAt" : {
+            "type" : "cds.DateTime",
+            "@EndUserText.label" : "Last Modified On"
+          },
+          "modifiedAssignmentId" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.workforce:workProfile",
+              "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+            } ],
+            "type" : "cds.String",
+            "@EndUserText.label" : "Last Modified By",
+            "length" : 100
+          },
+          "notes" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Notes",
+            "length" : 4000
+          },
+          "modifiedOnBehalfOfAssignmentId" : {
+            "type" : "cds.UUID",
+            "@EndUserText.label" : "on behalf of assignment UUID"
+          }
+        }
+      },
+      "person_assignment" : {
+        "kind" : "entity",
+        "@EndUserText.label" : "unknown-title",
+        "elements" : {
+          "person_id_virtual" : {
+            "@virtual" : true,
+            "@ObjectModel.foreignKey.association" : {
+              "=" : "_person"
+            },
+            "type" : "cds.String"
+          },
+          "_person" : {
+            "type" : "cds.Association",
+            "target" : "person",
+            "cardinality" : {
+              "max" : 1
+            },
+            "on" : [ {
+              "ref" : [ "_person", "id" ]
+            }, "=", {
+              "ref" : [ "person_id_virtual" ]
+            } ]
+          },
+          "person" : {
+            "type" : "cds.String",
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.workforce:assignment",
+              "referencedPropertyType" : "sap.sf.workforce:assignmentPerson"
+            } ]
+          }
+        }
+      },
+      "person_biographicalLocDetail" : {
+        "kind" : "entity",
+        "@EndUserText.label" : "Localized Biographical Information",
+        "@EntityRelationship.entityType" : "sap.sf.workforce:person_biographicalLocDetail",
+        "@EntityRelationship.entityIds" : [ {
+          "name" : "person_biographicalLocDetail",
+          "propertyTypes" : [ "sap.sf.workforce:person_biographicalLocDetailId" ]
+        } ],
+        "elements" : {
+          "person_biographicalDetail_id_virtual" : {
+            "@virtual" : true,
+            "@ObjectModel.foreignKey.association" : {
+              "=" : "_person_biographicalDetail"
+            },
+            "type" : "cds.Integer"
+          },
+          "_person_biographicalDetail" : {
+            "type" : "cds.Association",
+            "target" : "person_biographicalDetail",
+            "cardinality" : {
+              "max" : 1
+            },
+            "on" : [ {
+              "ref" : [ "_person_biographicalDetail", "id" ]
+            }, "=", {
+              "ref" : [ "person_biographicalDetail_id_virtual" ]
+            } ]
+          },
+          "id" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Id",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647,
+            "key" : true,
+            "@EntityRelationship.propertyType" : "sap.sf.workforce:person_biographicalLocDetailId"
+          },
+          "countryCode" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Country Code",
+            "length" : 3
+          },
+          "regionOfBirth" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Region Of Birth",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "placeOfBirth" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Place Of Birth",
+            "length" : 100
+          },
+          "createdAt" : {
+            "type" : "cds.DateTime",
+            "@EndUserText.label" : "Created On"
+          },
+          "createdAssignmentId" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.workforce:workProfile",
+              "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+            } ],
+            "type" : "cds.String",
+            "@EndUserText.label" : "Created By",
+            "length" : 100
+          },
+          "modifiedAt" : {
+            "type" : "cds.DateTime",
+            "@EndUserText.label" : "Last Modified On"
+          },
+          "modifiedAssignmentId" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.workforce:workProfile",
+              "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+            } ],
+            "type" : "cds.String",
+            "@EndUserText.label" : "Last Modified By",
+            "length" : 100
+          },
+          "country" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Country/Region",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "modifiedOnBehalfOfAssignmentId" : {
+            "type" : "cds.UUID",
+            "@EndUserText.label" : "on behalf of assignment UUID"
+          }
+        }
+      },
+      "person_globalDetail" : {
+        "kind" : "entity",
+        "@EndUserText.label" : "Global Information",
+        "@EntityRelationship.entityType" : "sap.sf.workforce:person_globalDetail",
+        "@EntityRelationship.entityIds" : [ {
+          "name" : "person_globalDetail",
+          "propertyTypes" : [ "sap.sf.workforce:person_globalDetailId" ]
+        } ],
+        "elements" : {
+          "person_personalDetail_id_virtual" : {
+            "@virtual" : true,
+            "@ObjectModel.foreignKey.association" : {
+              "=" : "_person_personalDetail"
+            },
+            "type" : "cds.Integer"
+          },
+          "_person_personalDetail" : {
+            "type" : "cds.Association",
+            "target" : "person_personalDetail",
+            "cardinality" : {
+              "max" : 1
+            },
+            "on" : [ {
+              "ref" : [ "_person_personalDetail", "id" ]
+            }, "=", {
+              "ref" : [ "person_personalDetail_id_virtual" ]
+            } ]
+          },
+          "id" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Id",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647,
+            "key" : true,
+            "@EntityRelationship.propertyType" : "sap.sf.workforce:person_globalDetailId"
+          },
+          "countryCode" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Country Code",
+            "length" : 3
+          },
+          "genderCountrySpecific" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Gender",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString1" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Ethnic Group",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString14" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Medicare Beneficiary Identifier (MBI)",
+            "length" : 11
+          },
+          "genericString8" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Medicare",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString15" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Equal Employment Opportunity (EEO)",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString13" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Disclosed Veteran Category",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericNumber2" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Challenged Veteran",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericNumber3" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Veterans (who served on active duty in war or campaign) authorized with a campaign badge",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericNumber4" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Armed Forces Medal Veteran",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericNumber5" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Recently Separated Veteran",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericDate3" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : " Date of Separation from Military Service "
+          },
+          "genericNumber6" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Special Disabled Veteran",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericNumber7" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Vietnam Era Veteran",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericNumber8" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Other Disabled Veteran",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericNumber9" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Visa Type",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString2" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Challenge Group",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericNumber10" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Degree of Challenge",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString3" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Type of Challenge",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericDate1" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "Date Learned"
+          },
+          "genericString4" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Issuing Authority",
+            "length" : 256
+          },
+          "genericString5" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Reference Number",
+            "length" : 256
+          },
+          "genericNumber12" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Status Given in Form CC-305",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericDate5" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "Submission Date of Form CC-305"
+          },
+          "genericString6" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+              "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+            } ],
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Challenged",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericDate2" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "Date of Determination of Challenge Status"
+          },
+          "createdAt" : {
+            "type" : "cds.DateTime",
+            "@EndUserText.label" : "Created On"
+          },
+          "createdAssignmentId" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.workforce:workProfile",
+              "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+            } ],
+            "type" : "cds.String",
+            "@EndUserText.label" : "Created By",
+            "length" : 100
+          },
+          "modifiedAt" : {
+            "type" : "cds.DateTime",
+            "@EndUserText.label" : "Last Modified On"
+          },
+          "modifiedAssignmentId" : {
+            "@EntityRelationship.reference" : [ {
+              "referencedEntityType" : "sap.sf.workforce:workProfile",
+              "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+            } ],
+            "type" : "cds.String",
+            "@EndUserText.label" : "Last Modified By",
+            "length" : 100
+          },
+          "startDate" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "Event Date"
+          },
+          "endDate" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "End Date"
+          },
+          "country" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Country/Region",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "modifiedOnBehalfOfAssignmentId" : {
+            "type" : "cds.UUID",
+            "@EndUserText.label" : "on behalf of assignment UUID"
+          },
+          "genericNumber1" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Number of Children",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString7" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Type of Challenge",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString9" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Reference Number",
+            "length" : 256
+          },
+          "genericDate6" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "Nationality Acquisition Date"
+          },
+          "genericString10" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Challenge Group",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString11" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Challenge Category",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString12" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Challenge Reason",
+            "length" : 256
+          },
+          "genericDate4" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "Expiration Date"
+          },
+          "genericNumber14" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Foreign Employee with Brazilian Spouse",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericNumber15" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Foreign Employee with Brazilian Children",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString19" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Residence Period of Foreign Employee",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericDate10" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "Retirement for INSS"
+          },
+          "genericNumber16" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Receiving Unemployment Insurance Benefit",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString16" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Disability Type",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericDate7" : {
+            "type" : "cds.Date",
+            "@EndUserText.label" : "Date of Naturalization"
+          },
+          "genericString21" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Birth First Name",
+            "length" : 256
+          },
+          "genericString22" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Birth Last Name",
+            "length" : 256
+          },
+          "genericString17" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Military Certificate Status",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString18" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Military Occupational Specialty (MOS)",
+            "length" : 40
+          },
+          "genericString20" : {
+            "type" : "cds.String",
+            "@EndUserText.label" : "Reason for Exemption",
+            "length" : 40
+          },
+          "genericNumber11" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Other Disabled Veteran",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString23" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Retirement Age Exemption",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString24" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Non-Registered Reason",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          },
+          "genericString25" : {
+            "type" : "cds.Integer",
+            "@EndUserText.label" : "Uses Company Transportation",
+            "@minimum" : -2147483648,
+            "@maximum" : 2147483647
+          }
+        }
+      }
+    }
+  }

@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "/rest/learning/asset/v1/metadata/program",
+  "title": "Program",
+  "description": "Metadata for the Program Resource",
+  "type": "object",
+  "properties": {
+    "domainId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Domain ID",
+      "description": "Unique identifier for the domain this program belongs to."
+    },
+    "active": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "title": "Active",
+      "description": "Indicates if the program is active."
+    },
+    "programId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Program ID",
+      "description": "Unique identifier for the program."
+    },
+    "title": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Title",
+      "description": "Title of the program."
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Description",
+      "description": "Description for the program."
+    },
+    "texts": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "/rest/learning/asset/v1/metadata/learningItemText"
+      },
+      "title": "The Collection of Localized Values for the Program Texts"
+    },
+    "duration": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int64",
+      "title": "Duration",
+      "description": "Duration of the program."
+    },
+    "source": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Source",
+      "description": "Indicates source of the program like developer of the program or the organization or regulatory body that requires it"
+    },
+    "categories": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "title": "Categories",
+      "description": "List of categories the program belongs to."
+    },
+    "capabilities": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "/rest/learning/asset/v1/metadata/capabilityRating"
+      },
+      "title": "List of Capabilities",
+      "description": "List of Attributes/Skills acquired as part of the program."
+    },
+    "productionReady": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "title": "Production Ready",
+      "description": "Indicates if the program is production ready."
+    },
+    "thumbnailAttachmentId": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int64",
+      "title": "Thumbnail Attachment ID",
+      "description": "Attachment ID for the thumbnail of the program."
+    },
+    "capabilitySource": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Capability Source",
+      "description": "Source of the capabilities."
+    },
+    "rating": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "format": "double",
+      "title": "Program Rating",
+      "description": "Rating of the program."
+    },
+    "ratingCount": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32",
+      "title": "Program Rating Count",
+      "description": "Rating Count of the program."
+    },
+    "id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "ID",
+      "description": "Identifier for the entity"
+    },
+    "lastUpdatedUser": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Last Updated User",
+      "description": "User who last updated the entity"
+    },
+    "lastUpdatedTimestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  },
+  "x-sap-sf-localized": {},
+  "x-sap-sf-resource": {
+    "id": [
+      "id"
+    ]
+  },
+  "x-sap-sf-version": "1.0.0",
+  "$defs": {
+    "learningItemText": {
+      "$id": "/rest/learning/asset/v1/metadata/learningItemText",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "locale": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The Locale Property",
+          "description": "The property that is used to specify the locale within a localized value resource."
+        },
+        "default": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "Default",
+          "description": "The property to indicate if this is the default locale defined"
+        }
+      },
+      "x-sap-sf-resource": {
+        "id": [
+          "/properties/id",
+          "locale"
+        ]
+      },
+      "x-sap-sf-version": "1.0"
+    },
+    "capabilityRating": {
+      "$id": "/rest/learning/asset/v1/metadata/capabilityRating",
+      "title": "Learning Capabilities",
+      "description": "Metadata for Learning Capabilities",
+      "type": "object",
+      "properties": {
+        "internalId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Internal ID",
+          "description": "Learning internal ID of the capability"
+        },
+        "externalId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "External ID",
+          "description": "External ID of the capability"
+        },
+        "rating": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int64",
+          "title": "Rating",
+          "description": "Rating acquired for the capability"
+        },
+        "tihExternalId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "TIH External ID",
+          "description": "Identifier for the TIH capability"
+        },
+        "jpbExternalId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "JPB External ID",
+          "description": "Identifier for the JPB capability"
+        },
+        "jdmExternalId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "JDB External ID",
+          "description": "Identifier for the JDM capability"
+        }
+      },
+      "x-sap-sf-resource": {
+        "id": [
+          "/properties/id",
+          "internalId"
+        ],
+        "properties": {
+          "tihExternalId": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/ecosystem/wholeself/v1/metadata/library"
+              },
+              "properties": {
+                "tihExternalId": "libraryId"
+              },
+              "type": "association",
+              "multiplicity": "1..1"
+            }
+          }
+        }
+      },
+      "x-sap-sf-version": "1.0.0"
+    }
+  }
+}

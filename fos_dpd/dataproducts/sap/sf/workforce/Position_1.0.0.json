@@ -1,0 +1,21 @@
+{
+   "name": "Position",
+   "title": "Position",
+   "description": "Job position is the smallest unit of the organizational structure in a certain part of a company and comprises a specific occurrence of a job with a fixed combination of tasks, competencies, and responsibilities.",
+   "shortDescription": "Job position is the smallest unit of the org structure in a certain part of a company and comprises a specific occurrence of a job.",
+   "partOfPackage": "sap.sf.workforce:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-EC",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.odm:entityType:WorkforcePosition:v1",
+      "sap.sf.workforce:entityType:position:v1"
+   ],
+   "datasets": [
+      "sap.sf.workforce:dataset:Position:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.workforce:share:Position:v1.0.0"
+   ]
+}

@@ -1,0 +1,11 @@
+{
+   "name": "EnterpriseStructure",
+   "namespace": "sap.sf.foundationobjects",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.foundationobjects:dataSource:Costcenter:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Legalentity:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Location:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Locationgroup:v1.0.0"
+   ]
+}

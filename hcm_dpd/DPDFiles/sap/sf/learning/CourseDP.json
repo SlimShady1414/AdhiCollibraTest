@@ -1,0 +1,48 @@
+{
+  "name": "Course",
+  "version": "1.0.0",
+  "category": "businessObject",
+  "type": "primary",
+  "title": "Course",
+  "status": "In Testing",
+  "namespace": "sap.sf.learning",
+  "responsible": "sap:ach:LOD-SF-LMS",
+  "partOfPackage": "sap.sf.learning:package:DataProducts:v1.0.0",
+  "shortDescription": "Includes all information for an item.",
+  "description": "Includes all the information for an item[Entity]",
+  "entityTypes": [
+    "sap.sf.learning:entityType:course:v1"
+  ],
+  "entities": [
+    {
+      "name": "course",
+      "nodes": [
+        {
+          "name": "course_categories",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "course",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        },
+        {
+          "name": "course_courseText",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "course_capabilityRating",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        }
+      ],
+      "main": false
+    }
+  ]
+}

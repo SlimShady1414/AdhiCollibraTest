@@ -1,0 +1,310 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "/rest/foundationobjects/enterprisestructure/v1/metadata/locationGroup",
+  "title": "Location Group",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int64"
+    },
+    "externalCode": {
+      "type": "string",
+      "title": "Code",
+      "maxLength": 32
+    },
+    "timeslices": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/locationGroupTimeslice"
+      }
+    }
+  },
+  "required": [
+    "externalCode"
+  ],
+  "links": [
+    {
+      "rel": "self",
+      "href": "/rest/foundationobjects/enterprisestructure/v1/locationGroups{/id}{?$from,$to}",
+      "templatePointers": {
+        "id": "#/properties/id"
+      }
+    },
+    {
+      "rel": "snapshot",
+      "href": "/rest/foundationobjects/enterprisestructure/v1/locationGroups{/id}{?$at}",
+      "templatePointers": {
+        "id": "#/properties/id"
+      }
+    }
+  ],
+  "x-sap-sf-resource": {
+    "id": [
+      "id"
+    ],
+    "altIds": {
+      "externalId": [
+        "externalCode"
+      ]
+    },
+    "properties": {
+      "id": {
+        "hidden": true
+      },
+      "externalCode": {
+        "index": 1
+      },
+      "timeslices": {
+        "bind": {
+          "schema": {
+            "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/locationGroupTimeslice"
+          },
+          "type": "composition",
+          "multiplicity": "1..*"
+        }
+      }
+    }
+  },
+  "x-sap-sf-temporal": {
+    "type": "timeline",
+    "link": "#/links/0",
+    "dates": {
+      "from": "startDate",
+      "to": "endDate",
+      "semantics": "closed-closed"
+    },
+    "snapshot": {
+      "schema": "/rest/foundationobjects/enterprisestructure/v1/metadata/locationGroup",
+      "link": "#/links/1"
+    },
+    "timelines": [
+      "timeslices"
+    ]
+  },
+  "x-sap-sf-version": "1.0.0",
+  "x-sap-sf-custom-version": "00000000060000000003",
+  "x-sap-root-entity": true,
+  "x-sap-odm-entity-name": "WorkforceLocationGroup",
+  "$defs": {
+    "locationGroupTimesliceText": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "$id": "/rest/foundationobjects/enterprisestructure/v1/metadata/locationGroupTimesliceText",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Name",
+          "maxLength": 32
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Description",
+          "maxLength": 128
+        },
+        "locale": {
+          "type": "string",
+          "title": "Locale",
+          "maxLength": 32
+        },
+        "default": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "Default"
+        }
+      },
+      "required": [
+        "locale"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "/properties/timeslices/items/id",
+          "locale"
+        ]
+      }
+    },
+    "locationGroupTimeslice": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "$id": "/rest/foundationobjects/enterprisestructure/v1/metadata/locationGroupTimeslice",
+      "title": "Location Group",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int64"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Name",
+          "maxLength": 32
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Description",
+          "maxLength": 128
+        },
+        "status": {
+          "type": "string",
+          "title": "Status"
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date",
+          "title": "Start Date"
+        },
+        "endDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date",
+          "title": "End Date",
+          "readOnly": true
+        },
+        "createdAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "title": "Created On",
+          "readOnly": true
+        },
+        "createdAssignmentId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Created By",
+          "readOnly": true,
+          "maxLength": 100
+        },
+        "modifiedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "title": "Last Modified On",
+          "readOnly": true
+        },
+        "modifiedAssignmentId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Last Modified By",
+          "readOnly": true,
+          "maxLength": 100
+        },
+        "modifiedOnBehalfOfAssignmentId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid",
+          "title": "on behalf of assignment UUID",
+          "readOnly": true,
+          "maxLength": 32,
+          "x-sap-sf-reference": "modifiedOnBehalfOfAssignment"
+        },
+        "texts": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/locationGroupTimesliceText"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "startDate"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "hidden": true
+          },
+          "startDate": {
+            "hidden": true
+          },
+          "endDate": {
+            "hidden": true
+          },
+          "createdAt": {
+            "hidden": true
+          },
+          "createdAssignmentId": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/workforce/v1/metadata/workProfile"
+              },
+              "properties": {
+                "createdAssignmentId": "legacyId"
+              },
+              "type": "association",
+              "multiplicity": "1..1"
+            },
+            "hidden": true
+          },
+          "modifiedAt": {
+            "hidden": true
+          },
+          "modifiedAssignmentId": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/workforce/v1/metadata/workProfile"
+              },
+              "properties": {
+                "modifiedAssignmentId": "legacyId"
+              },
+              "type": "association",
+              "multiplicity": "1..1"
+            },
+            "hidden": true
+          },
+          "modifiedOnBehalfOfAssignmentId": {
+            "hidden": true
+          },
+          "name": {
+            "index": 1
+          },
+          "description": {
+            "index": 2
+          },
+          "status": {
+            "index": 3
+          }
+        }
+      }
+    }
+  }
+}

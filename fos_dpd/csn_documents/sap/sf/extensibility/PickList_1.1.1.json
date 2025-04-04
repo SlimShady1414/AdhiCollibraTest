@@ -1,0 +1,266 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/extensibility/general/v1/metadata/pickList",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "pickList",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.extensibility",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "pickList" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "PickList",
+      "@EntityRelationship.entityType" : "sap.sf.extensibility:pickList",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "pickList",
+        "propertyTypes" : [ "sap.sf.extensibility:pickListId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854776000,
+          "@maximum" : 9223372036854776000,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.extensibility:pickListId"
+        },
+        "listId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "id",
+          "length" : 128
+        },
+        "timeslices" : {
+          "type" : "cds.Composition",
+          "target" : "pickList_pickListTimeSlice",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "timeslices", "pickList_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "pickList_pickListTimeSlice" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.extensibility:pickList_pickListTimeSlice",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "pickList_pickListTimeSlice",
+        "propertyTypes" : [ "sap.sf.extensibility:pickList_pickListTimeSliceRecordId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "validFrom",
+        "temporalIntervalEndProperty" : "validTo"
+      } ],
+      "elements" : {
+        "pickList_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_pickList"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.extensibility:pickList_pickListTimeSliceId"
+        },
+        "_pickList" : {
+          "type" : "cds.Association",
+          "target" : "pickList",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_pickList", "id" ]
+          }, "=", {
+            "ref" : [ "pickList_id_virtual" ]
+          } ]
+        },
+        "validFrom" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validFrom"
+        },
+        "validTo" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validTo"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "name",
+          "length" : 128
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "parentPickList" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "parentPickList",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.extensibility:pickList_pickListTimeSliceRecordId"
+        },
+        "values" : {
+          "type" : "cds.Composition",
+          "target" : "pickList_pickListValue",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "values", "pickList_pickListTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        }
+      }
+    },
+    "pickList_pickListValue" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.extensibility:pickList_pickListValue",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "pickList_pickListValue",
+        "propertyTypes" : [ "sap.sf.extensibility:pickList_pickListValueRecordId" ]
+      } ],
+      "elements" : {
+        "pickList_pickListTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_pickList_pickListTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.extensibility:pickList_pickListValueRecordId"
+        },
+        "_pickList_pickListTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "pickList_pickListTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_pickList_pickListTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "pickList_pickListTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "the immutable id of a picklist value",
+          "@minimum" : -9223372036854776000,
+          "@maximum" : 9223372036854776000
+        },
+        "optionId" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "the immutable id of a picklist option",
+          "@minimum" : -9223372036854776000,
+          "@maximum" : 9223372036854776000
+        },
+        "label" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "An option label in the preferred locale"
+        },
+        "externalCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "id",
+          "length" : 128
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.extensibility:pickList_pickListValueRecordId"
+        },
+        "parentValueId" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "pickList_pickListValueText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "pickList_pickListValue_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        }
+      }
+    },
+    "pickList_pickListValueText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Localized Label of Picklist value",
+      "@EntityRelationship.entityType" : "sap.sf.extensibility:pickList_pickListValueText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "pickList_pickListValueText",
+        "propertyTypes" : [ "sap.sf.extensibility:pickList_pickListValueTextRecordId", "sap.sf.extensibility:pickList_pickListValueTextLocale" ]
+      } ],
+      "elements" : {
+        "pickList_pickListValue_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_pickList_pickListValue"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.extensibility:pickList_pickListValueTextRecordId"
+        },
+        "_pickList_pickListValue" : {
+          "type" : "cds.Association",
+          "target" : "pickList_pickListValue",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_pickList_pickListValue", "recordId" ]
+          }, "=", {
+            "ref" : [ "pickList_pickListValue_recordId_virtual" ]
+          } ]
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Locale",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.extensibility:pickList_pickListValueTextLocale"
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Default"
+        },
+        "label" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Label"
+        }
+      }
+    }
+  }
+}

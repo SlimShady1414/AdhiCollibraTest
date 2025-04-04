@@ -1,0 +1,84 @@
+{
+  "name": "JobRequisition",
+  "version": "1.0.0",
+  "category": "business-object",
+  "type": "primary",
+  "title": "JobRequisition",
+  "status": "In Testing",
+  "namespace": "sap.sf.recruiting",
+  "responsible": "sap:ach:LOD-SF-RCM",
+  "partOfPackage": "sap.sf.recruiting:package:DataProducts:v1.0.0",
+  "shortDescription": "Data product that helps track job openings and also manage key details to streamline hiring, ensure compliance, and optimize workforce planning in an ATS.",
+  "description": "Tracks job openings, managing key details to streamline hiring, ensure compliance, and optimize workforce planning in an ATS.",
+  "entityTypes": [
+    "sap.sf.recruiting:entityType:jobRequisition:v1"
+  ],
+  "entities": [
+    {
+      "name": "jobRequisition",
+      "nodes": [
+        {
+          "name": "jobRequisition",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        },
+        {
+          "name": "jobRequisition_locationItem",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "jobRequisition_currencyData",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "jobRequisition_operator",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "jobRequisition_operatorTeam",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "jobRequisition_localizedText",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "jobRequisition_jobReqPostings",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "jobRequisition_Skills",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "jobRequisition_statusAudit",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "jobRequisition_skill",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        }
+      ],
+      "main": false
+    }
+  ]
+}

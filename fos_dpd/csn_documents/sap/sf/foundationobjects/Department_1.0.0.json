@@ -1,0 +1,415 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/foundationobjects/orgstructure/v1/metadata/department",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "department",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.foundationobjects",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "department" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Department",
+      "@ODM.entityName" : "OrganizationalUnit",
+      "@ODM.oid" : "entityOID",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:department",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "department",
+        "propertyTypes" : [ "sap.sf.foundationobjects:departmentId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:departmentId"
+        },
+        "entityOID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityOID",
+          "length" : 128
+        },
+        "externalCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalCode",
+          "length" : 32
+        },
+        "timeslices" : {
+          "type" : "cds.Composition",
+          "target" : "department_departmentTimeSlice",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "timeslices", "department_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "department_departmentTimeSlice" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:department_departmentTimeSlice",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "department_departmentTimeSlice",
+        "propertyTypes" : [ "sap.sf.foundationobjects:department_departmentTimeSliceRecordId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "validFrom",
+        "temporalIntervalEndProperty" : "validTo"
+      } ],
+      "elements" : {
+        "department_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_department"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:department_departmentTimeSliceId"
+        },
+        "_department" : {
+          "type" : "cds.Association",
+          "target" : "department",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_department", "id" ]
+          }, "=", {
+            "ref" : [ "department_id_virtual" ]
+          } ]
+        },
+        "validFrom" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validFrom"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "name"
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "description"
+        },
+        "effectiveStatus" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "effectiveStatus"
+        },
+        "headOfUnit" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "headOfUnit"
+        },
+        "parentDepartment" : {
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_department_parentDepartment"
+          },
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "parentDepartment",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "_department_parentDepartment" : {
+          "type" : "cds.Association",
+          "target" : "department",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_department_parentDepartment", "id" ]
+          }, "=", {
+            "ref" : [ "parentDepartment" ]
+          } ]
+        },
+        "costCenter" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:costCenter",
+            "referencedPropertyType" : "sap.sf.foundationobjects:costCenterId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "costCenter",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "autoCreated" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "autoCreated"
+        },
+        "validTo" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validTo"
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:department_departmentTimeSliceRecordId"
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        },
+        "toDepartmentApprenticeDetail" : {
+          "type" : "cds.Composition",
+          "target" : "department_DepartmentApprenticeDetail",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "toDepartmentApprenticeDetail", "department_departmentTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "cust_toDivision" : {
+          "type" : "cds.Composition",
+          "target" : "department_division",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "cust_toDivision", "department_departmentTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "department_departmentText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "department_departmentTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        }
+      }
+    },
+    "department_DepartmentApprenticeDetail" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Apprentice Department Details",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:department_DepartmentApprenticeDetail",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "department_DepartmentApprenticeDetail",
+        "propertyTypes" : [ "sap.sf.foundationobjects:department_DepartmentApprenticeDetailRecordId" ]
+      } ],
+      "elements" : {
+        "department_departmentTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_department_departmentTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:department_DepartmentApprenticeDetailRecordId"
+        },
+        "_department_departmentTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "department_departmentTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_department_departmentTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "department_departmentTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "maxNumberOfApprentices" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "maxNumberOfApprentices",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "apprenticeDepartmentLocation" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "apprenticeDepartmentLocation",
+          "length" : 255
+        },
+        "decentralTrainerUserId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "decentralTrainerUserId"
+        },
+        "externalCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "externalCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:department_DepartmentApprenticeDetailRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "department_division" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "elements" : {
+        "department_departmentTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_department_departmentTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:department_divisionRecordId"
+        },
+        "_department_departmentTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "department_departmentTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_department_departmentTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "department_departmentTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.String",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:division",
+            "referencedPropertyType" : "sap.sf.foundationobjects:divisionId"
+          } ]
+        }
+      }
+    },
+    "department_departmentText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Localized value for translatable data type field",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:department_departmentText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "department_departmentText",
+        "propertyTypes" : [ "sap.sf.foundationobjects:department_departmentTextRecordId", "sap.sf.foundationobjects:department_departmentTextLocale" ]
+      } ],
+      "elements" : {
+        "department_departmentTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_department_departmentTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:department_departmentTextRecordId"
+        },
+        "_department_departmentTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "department_departmentTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_department_departmentTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "department_departmentTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "locale",
+          "length" : 128,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:department_departmentTextLocale"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "name",
+          "length" : 90
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "description",
+          "length" : 128
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "default"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,567 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/workforce/assignment/compensation/v1/metadata/compensationInfo",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "compensationInfo",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.workforce",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "compensationInfo" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Compensation Information",
+      "@ODM.entityName" : "WorkforceCompensation",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:compensationInfo",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "compensationInfo",
+        "propertyTypes" : [ "sap.sf.workforce:compensationInfoId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "Assignment UUID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:compensationInfoId"
+        },
+        "compDetails" : {
+          "type" : "cds.Composition",
+          "target" : "compensationInfo_compDetail",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "compDetails", "compensationInfo_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "assignment" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:assignment",
+            "referencedPropertyType" : "sap.sf.workforce:assignmentId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 32
+        }
+      }
+    },
+    "compensationInfo_compDetail" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Compensation Information",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:compensationInfo_compDetail",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "compensationInfo_compDetail",
+        "propertyTypes" : [ "sap.sf.workforce:compensationInfo_compDetailId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "startDate",
+        "temporalIntervalEndProperty" : "endDate"
+      } ],
+      "elements" : {
+        "compensationInfo_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_compensationInfo"
+          },
+          "type" : "cds.UUID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:compensationInfo_compDetailId"
+        },
+        "_compensationInfo" : {
+          "type" : "cds.Association",
+          "target" : "compensationInfo",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_compensationInfo", "id" ]
+          }, "=", {
+            "ref" : [ "compensationInfo_id_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Id",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:compensationInfo_compDetailId"
+        },
+        "countryCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Country Code",
+          "length" : 3
+        },
+        "compensationStructure" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:CompensationStructure",
+            "referencedPropertyType" : "sap.sf.extensibility:CompensationStructureId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Compensation Structure",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "prorationFactor" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Proration Factor",
+          "scale" : 3
+        },
+        "payType" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:PayTypePickList",
+            "referencedPropertyType" : "sap.sf.extensibility:PayTypePickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Pay Type",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "notes" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Notes",
+          "length" : 4000
+        },
+        "seqNumber" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Sequence Number",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "payGroup" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PayGroup",
+            "referencedPropertyType" : "sap.sf.extensibility:PayGroupId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Pay Group",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "isEligibleForBenefits" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Is Eligible For Benefit"
+        },
+        "isEligibleForCar" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Is Eligible For Car"
+        },
+        "benefitsRate" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Benefits Rate",
+          "scale" : 2
+        },
+        "compaRatio" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Compa Ratio",
+          "scale" : 2
+        },
+        "rangePenetration" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Range Penetration",
+          "scale" : 2
+        },
+        "isHighlyCompensatedEmployee" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Is Highly Compensated Employee"
+        },
+        "isInsider" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Insider As Defined By Statute"
+        },
+        "pensionableSalary" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Pensionable Salary",
+          "scale" : 3
+        },
+        "userId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "User ID",
+          "length" : 100
+        },
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Created On"
+        },
+        "createdAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Created By",
+          "length" : 100
+        },
+        "modifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Modified On"
+        },
+        "modifiedAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Modified By",
+          "length" : 100
+        },
+        "startDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Event Date"
+        },
+        "endDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "End Date"
+        },
+        "event" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:eventPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:eventPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Event",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "on behalf of assignment UUID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf:modifiedOnBehalfOfAssignment",
+            "referencedPropertyType" : "sap.sf:modifiedOnBehalfOfAssignment"
+          } ]
+        },
+        "wfRequestId" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "recurringPayComponent" : {
+          "type" : "cds.Composition",
+          "target" : "compensationInfo_recurringPayComponent",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "recurringPayComponent", "compensationInfo_compDetail_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "targetPayComponent" : {
+          "type" : "cds.Composition",
+          "target" : "compensationInfo_targetPayComponent",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "targetPayComponent", "compensationInfo_compDetail_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "compensationInfo_recurringPayComponent" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Recurring Pay Components",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:compensationInfo_recurringPayComponent",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "compensationInfo_recurringPayComponent",
+        "propertyTypes" : [ "sap.sf.workforce:compensationInfo_recurringPayComponentId" ]
+      } ],
+      "elements" : {
+        "compensationInfo_compDetail_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_compensationInfo_compDetail"
+          },
+          "type" : "cds.Integer64",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:compensationInfo_recurringPayComponentId"
+        },
+        "_compensationInfo_compDetail" : {
+          "type" : "cds.Association",
+          "target" : "compensationInfo_compDetail",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_compensationInfo_compDetail", "id" ]
+          }, "=", {
+            "ref" : [ "compensationInfo_compDetail_id_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Id",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:compensationInfo_recurringPayComponentId"
+        },
+        "payComponent" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:payComponent",
+            "referencedPropertyType" : "sap.sf.foundationobjects:payComponentId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Pay Component",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "currencyCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Currency",
+          "length" : 32
+        },
+        "frequency" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:frequency",
+            "referencedPropertyType" : "sap.sf.foundationobjects:frequencyId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Frequency",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "numberOfUnits" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Number",
+          "scale" : 3
+        },
+        "unitOfMeasure" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:UnitOfMeasure",
+            "referencedPropertyType" : "sap.sf.extensibility:UnitOfMeasureId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Unit of Measure",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Created On"
+        },
+        "createdAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Created By",
+          "length" : 100
+        },
+        "modifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Modified On"
+        },
+        "modifiedAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Modified By",
+          "length" : 100
+        },
+        "startDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Event Date"
+        },
+        "endDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "End Date"
+        },
+        "seqNumber" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Sequence Number",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "amountValue" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Amount",
+          "scale" : 2
+        },
+        "percentageValue" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Percentage",
+          "scale" : 2
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "on behalf of assignment UUID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf:modifiedOnBehalfOfAssignment",
+            "referencedPropertyType" : "sap.sf:modifiedOnBehalfOfAssignment"
+          } ]
+        }
+      }
+    },
+    "compensationInfo_targetPayComponent" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Pay Targets",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:compensationInfo_targetPayComponent",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "compensationInfo_targetPayComponent",
+        "propertyTypes" : [ "sap.sf.workforce:compensationInfo_targetPayComponentId" ]
+      } ],
+      "elements" : {
+        "compensationInfo_compDetail_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_compensationInfo_compDetail"
+          },
+          "type" : "cds.Integer64",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:compensationInfo_targetPayComponentId"
+        },
+        "_compensationInfo_compDetail" : {
+          "type" : "cds.Association",
+          "target" : "compensationInfo_compDetail",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_compensationInfo_compDetail", "id" ]
+          }, "=", {
+            "ref" : [ "compensationInfo_compDetail_id_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Id",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:compensationInfo_targetPayComponentId"
+        },
+        "payComponent" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:payComponent",
+            "referencedPropertyType" : "sap.sf.foundationobjects:payComponentId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Pay Component",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "currencyCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Currency",
+          "length" : 32
+        },
+        "frequency" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:frequency",
+            "referencedPropertyType" : "sap.sf.foundationobjects:frequencyId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Frequency",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "numberOfUnits" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Number",
+          "scale" : 3
+        },
+        "unitOfMeasure" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:UnitOfMeasure",
+            "referencedPropertyType" : "sap.sf.extensibility:UnitOfMeasureId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Unit of Measure",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Created On"
+        },
+        "createdAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Created By",
+          "length" : 100
+        },
+        "modifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Modified On"
+        },
+        "modifiedAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Modified By",
+          "length" : 100
+        },
+        "startDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Event Date"
+        },
+        "endDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "End Date"
+        },
+        "seqNumber" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Sequence Number",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "amountValue" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Amount",
+          "scale" : 2
+        },
+        "percentageValue" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Percentage",
+          "scale" : 2
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "on behalf of assignment UUID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf:modifiedOnBehalfOfAssignment",
+            "referencedPropertyType" : "sap.sf:modifiedOnBehalfOfAssignment"
+          } ]
+        }
+      }
+    }
+  }
+}

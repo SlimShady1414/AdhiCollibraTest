@@ -1,0 +1,228 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/foundationobjects/v1/metadata/timeZone",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "timeZone",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.foundationobjects",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "timeZone" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Time Zone",
+      "@ODM.entityName" : "TimeZoneCode",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:timeZone",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "timeZone",
+        "propertyTypes" : [ "sap.sf.foundationobjects:timeZoneId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:timeZoneId"
+        },
+        "externalCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalCode",
+          "length" : 128
+        },
+        "timeslices" : {
+          "type" : "cds.Composition",
+          "target" : "timeZone_timeZoneTimeSlice",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "timeslices", "timeZone_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "timeZone_timeZoneTimeSlice" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:timeZone_timeZoneTimeSlice",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "timeZone_timeZoneTimeSlice",
+        "propertyTypes" : [ "sap.sf.foundationobjects:timeZone_timeZoneTimeSliceRecordId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "validFrom",
+        "temporalIntervalEndProperty" : "validTo"
+      } ],
+      "elements" : {
+        "timeZone_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_timeZone"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:timeZone_timeZoneTimeSliceId"
+        },
+        "_timeZone" : {
+          "type" : "cds.Association",
+          "target" : "timeZone",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_timeZone", "id" ]
+          }, "=", {
+            "ref" : [ "timeZone_id_virtual" ]
+          } ]
+        },
+        "validFrom" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validFrom"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "name"
+        },
+        "effectiveStatus" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "effectiveStatus"
+        },
+        "country" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:country",
+            "referencedPropertyType" : "sap.sf.foundationobjects:countryId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "country",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "supported" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "supported"
+        },
+        "utcOffset" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "utcOffset",
+          "length" : 255
+        },
+        "utcDstOffset" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "utcDstOffset",
+          "length" : 255
+        },
+        "comment" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "comment",
+          "length" : 255
+        },
+        "validTo" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validTo"
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:timeZone_timeZoneTimeSliceRecordId"
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "timeZone_timeZoneText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "timeZone_timeZoneTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        }
+      }
+    },
+    "timeZone_timeZoneText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Localized value for translatable data type field",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:timeZone_timeZoneText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "timeZone_timeZoneText",
+        "propertyTypes" : [ "sap.sf.foundationobjects:timeZone_timeZoneTextRecordId", "sap.sf.foundationobjects:timeZone_timeZoneTextLocale" ]
+      } ],
+      "elements" : {
+        "timeZone_timeZoneTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_timeZone_timeZoneTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:timeZone_timeZoneTextRecordId"
+        },
+        "_timeZone_timeZoneTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "timeZone_timeZoneTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_timeZone_timeZoneTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "timeZone_timeZoneTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "locale",
+          "length" : 128,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:timeZone_timeZoneTextLocale"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "name",
+          "length" : 255
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "default"
+        }
+      }
+    }
+  }
+}

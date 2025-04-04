@@ -1,0 +1,119 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/learning/asset/v1/metadata/completionStatus",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "completionStatus",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.learning",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "completionStatus" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Completion Status",
+      "@EntityRelationship.entityType" : "sap.sf.learning:completionStatus",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "completionStatus",
+        "propertyTypes" : [ "sap.sf.learning:completionStatusId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "ID of the completion status",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:completionStatusId"
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Description of the completion status"
+        },
+        "courseTypeId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Course Type ID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.learning:courseType",
+            "referencedPropertyType" : "sap.sf.learning:courseTypeId"
+          } ]
+        },
+        "provideCredit" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Provide Credit"
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "completionStatus_completionStatusText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "completionStatus_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "lastUpdatedUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Updated User"
+        },
+        "lastUpdatedTimestamp" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Updated Timestamp"
+        }
+      }
+    },
+    "completionStatus_completionStatusText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Completion Status Localized Texts",
+      "@EntityRelationship.entityType" : "sap.sf.learning:completionStatus_completionStatusText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "completionStatus_completionStatusText",
+        "propertyTypes" : [ "sap.sf.learning:completionStatus_completionStatusTextId", "sap.sf.learning:completionStatus_completionStatusTextLocale" ]
+      } ],
+      "elements" : {
+        "completionStatus_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_completionStatus"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:completionStatus_completionStatusTextId"
+        },
+        "_completionStatus" : {
+          "type" : "cds.Association",
+          "target" : "completionStatus",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_completionStatus", "id" ]
+          }, "=", {
+            "ref" : [ "completionStatus_id_virtual" ]
+          } ]
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Completion Status Description"
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "The Locale Property",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:completionStatus_completionStatusTextLocale"
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Default"
+        }
+      }
+    }
+  }
+}

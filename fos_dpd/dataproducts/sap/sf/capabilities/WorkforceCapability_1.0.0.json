@@ -1,0 +1,26 @@
+{
+   "name": "WorkforceCapability",
+   "title": "WorkforceCapability",
+   "description": "This Data Product in the Talent Intelligence Hub includes Attribute (a specific skill or other Attributes), Attribute Type (type of the attribute), Proficiency Set (levels of expertise), and Tag (contextual keywords for filtering and search)",
+   "shortDescription": "This Data Product includes Attribute, Attribute Type, Proficiency Set, and Tag).",
+   "partOfPackage": "sap.sf.capabilities:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-TIH",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.odm:entityType:WorkforceCapability:v1",
+      "sap.odm:entityType:WorkforceCapabilityCatalog:v1",
+      "sap.odm:entityType:WorkforceCapabilityProficiencyScale:v1",
+      "sap.sf.capabilities:entityType:library:v1",
+      "sap.sf.capabilities:entityType:libraryType:v1",
+      "sap.sf.capabilities:entityType:proficiencySet:v1",
+      "sap.sf.capabilities:entityType:tag:v1"
+   ],
+   "datasets": [
+      "sap.sf.capabilities:dataset:WorkforceCapability:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.capabilities:share:WorkforceCapability:v1.0.0"
+   ]
+}

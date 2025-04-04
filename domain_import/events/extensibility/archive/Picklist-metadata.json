@@ -1,0 +1,229 @@
+{
+	"$id": "/rest/extensibility/general/v1/metadata/pickList",
+	"$schema": "https://json-schema.org/draft/2019-09/schema",
+	"title": "PickList",
+	"type": "object",
+	"x-sap-sf-version": "1.1.1",
+	"x-sap-sf-custom-version": "1",
+	"properties": {
+		"id": {
+			"type": "integer",
+			"readOnly": false,
+			"title": "id",
+			"minimum": -9223372036854776000,
+			"maximum": 9223372036854776000
+		},
+		"listId": {
+			"type": "string",
+			"readOnly": false,
+			"title": "id",
+			"maxLength": 128
+		},
+		"timeslices": {
+			"type": "array",
+			"items": {
+				"$ref": "/rest/extensibility/general/v1/metadata/pickListTimeSlice"
+			}
+		}
+	},
+	"required": [
+		"id"
+	],
+	"x-sap-sf-temporal": {
+		"type": "timeline",
+		"dates": {
+			"from": "validFrom",
+			"to": "validTo",
+			"semantics": "closed-closed"
+		}
+	},
+	"x-sap-sf-resource": {
+		"id": [
+			"id"
+		],
+		"properties": {
+			"id": {
+				"hidden": true
+			}
+		}
+	},
+	"$defs": {
+		"timeslice": {
+			"$id": "/rest/extensibility/general/v1/metadata/pickListTimeSlice",
+			"type": "object",
+			"properties": {
+				"validFrom": {
+					"type": [
+						"string",
+						"null"
+					],
+					"readOnly": false,
+					"title": "validFrom",
+					"format": "date"
+				},
+				"validTo": {
+					"type": [
+						"string",
+						"null"
+					],
+					"readOnly": false,
+					"title": "validTo",
+					"format": "date"
+				},
+				"name": {
+					"type": [
+						"string",
+						"null"
+					],
+					"readOnly": false,
+					"title": "name",
+					"maxLength": 128
+				},
+				"status": {
+					"type": "string",
+					"readOnly": false,
+					"title": "status",
+					"enum": [
+						"A",
+						"I"
+					]
+				},
+				"parentPickList": {
+					"type": [
+						"integer",
+						"null"
+					],
+					"readOnly": false,
+					"title": "parentPickList"
+				},
+				"recordId": {
+					"type": "string",
+					"title": "recordId",
+					"maxLength": 255
+				},
+				"values": {
+					"type": "array",
+					"items": {
+						"$ref": "/rest/extensibility/general/v1/metadata/pickListValue"
+					}
+				}
+			},
+			"required": [
+				"validFrom",
+				"validTo"
+			],
+			"x-sap-sf-resource": {
+				"id": [
+					"recordId"
+				],
+				"values": {
+					"bind": {
+						"schema": {
+							"$ref": "/rest/extensibility/general/v1/metadata/pickListValue"
+						},
+						"multiplicity": "1..*",
+						"type": "composition"
+					}
+				},
+				"properties": {
+					"validTo": {
+						"hidden": true
+					}
+				}
+			}
+		},
+		"pickListValue": {
+			"$id": "/rest/extensibility/general/v1/metadata/pickListValue",
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer",
+					"readOnly": false,
+					"title": "the immutable id of a picklist value",
+					"minimum": -9223372036854776000,
+					"maximum": 9223372036854776000
+				},
+				"optionId": {
+					"type": "integer",
+					"readOnly": false,
+					"title": "the immutable id of a picklist option",
+					"minimum": -9223372036854776000,
+					"maximum": 9223372036854776000
+				},
+				"label": {
+					"type": "string",
+					"title": "An option label in the preferred locale"
+				},
+				"externalCode": {
+					"type": "string",
+					"readOnly": false,
+					"title": "id",
+					"maxLength": 128
+				},
+				"status": {
+					"type": "string",
+					"readOnly": false,
+					"title": "status",
+					"enum": [
+						"A",
+						"I"
+					]
+				},
+				"recordId": {
+					"type": "string",
+					"title": "recordId",
+					"maxLength": 255
+				},
+				"parentValueId": {
+					"type": [
+						"integer",
+						"null"
+					]
+				},
+				"texts": {
+					"title": "Localized Texts",
+					"type": "array",
+					"items": {
+						"$ref": "/rest/extensibility/general/v1/metadata/pickListValueText"
+					}
+				}
+			},
+			"x-sap-sf-resource": {
+				"id": [
+					"recordId"
+				]
+			}
+		},
+		"localizedTexts": {
+			"$id": "/rest/extensibility/general/v1/metadata/pickListValueText",
+			"title": "Localized Label of Picklist value",
+			"type": "object",
+			"properties": {
+				"locale": {
+					"title": "Locale",
+					"description": "The locale specified as an ISO 63901 or BCP-47 language code.",
+					"type": "string"
+				},
+				"default": {
+					"title": "Default",
+					"description": "Whether or not the locale is the default locale based on the request context (i.e. user or system)",
+					"type": "boolean",
+					"default": false
+				},
+				"label": {
+					"type": "string",
+					"title": "Label"
+				}
+			},
+			"x-sap-sf-resource": {
+				"id": [
+					"/properties/timeslices/items/values/items/recordId",
+					"locale"
+				]
+			},
+			"required": [
+				"locale"
+			]
+		}
+	}
+}

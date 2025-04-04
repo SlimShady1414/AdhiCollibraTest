@@ -1,0 +1,31 @@
+{
+   "name": "CommonConfigurationData",
+   "title": "CommonConfigurationData",
+   "description": "Common configuration data  is information that can be shared across the entire company, such as currencies, country codes, exchange rates, and time zones.",
+   "shortDescription": "Common configuration data is info that can be shared across the company, such as currency, country code, exchange rate, and time zone.",
+   "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-EC",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.odm:entityType:CountryCode:v1",
+      "sap.odm:entityType:CurrencyCode:v1",
+      "sap.odm:entityType:EventReasonCode:v1",
+      "sap.odm:entityType:ExchangeRate:v1",
+      "sap.odm:entityType:TimeZoneCode:v1",
+      "sap.sf.foundationobjects:entityType:country:v1",
+      "sap.sf.foundationobjects:entityType:currency:v1",
+      "sap.sf.foundationobjects:entityType:currencyExchangeRate:v1",
+      "sap.sf.foundationobjects:entityType:eventReason:v1",
+      "sap.sf.foundationobjects:entityType:frequency:v1",
+      "sap.sf.foundationobjects:entityType:geoZone:v1",
+      "sap.sf.foundationobjects:entityType:timeZone:v1"
+   ],
+   "datasets": [
+      "sap.sf.foundationobjects:dataset:CommonConfigurationData:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.foundationobjects:share:CommonConfigurationData:v1.0.0"
+   ]
+}

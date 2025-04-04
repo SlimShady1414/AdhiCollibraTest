@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Share",
+  "$ref": "#/definitions/Share",
+  "definitions": {
+    "ShareTable": {
+      "type": "object",
+      "title": "Share table",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the share table"
+        },
+        "version": {
+          "type": "string",
+          "description": "Defines version of delta table"
+        },
+        "medallionLayer": {
+          "type": "string",
+          "description": "Defines medallion layer of share table",
+          "enum": [
+            "gold",
+            "silver"
+          ]
+        },
+        "cdfEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable change data feed"
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "medallionLayer"
+      ]
+    },
+    "HdlfsSchema": {
+      "type": "object",
+      "title": "Hdlfs Schema",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the Hdlfs schema"
+        },
+        "shareTables": {
+          "type": "array",
+          "description": "Share tables included in this schema",
+          "items": {
+            "$ref": "#/definitions/ShareTable"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "name",
+        "shareTables"
+      ]
+    },
+    "Share": {
+      "type": "object",
+      "title": "Share",
+      "additionalProperties": false,
+      "propertyNames": {
+        "pattern": "^[a-z][a-zA-Z0-9_]*$"
+      },
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the share",
+          "minLength": 1,
+          "maxLength": 125,
+          "examples": [
+            "CostCenter"
+          ]
+        },
+        "namespace": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:[.][a-z0-9]+)*$",
+          "minLength": 1,
+          "maxLength": 119,
+          "description": "Defines namespace of share",
+          "examples": [
+            "sap.s4.afc"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "description": "Human-readable title.\n\nMUST NOT exceed 255 chars.\nMUST NOT contain line breaks.\nIf not provided, it will be inherited from data product.",
+          "minLength": 1,
+          "maxLength": 255,
+          "examples": [
+            "Process Request for Quotation"
+          ]
+        },
+        "shortDescription": {
+          "type": "string",
+          "description": "Plain text short description.\n\nMUST NOT exceed 255 chars.\nMUST NOT contain line breaks.\nIf not provided, it will be inherited from data product.",
+          "minLength": 1,
+          "maxLength": 255,
+          "examples": [
+            "This service enables you to create Request for Quotation (RFQ) through an API call."
+          ]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Full description, notated in [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nThe description SHOULD not be excessive in length and is not meant to provide full documentation.\nDetailed documentation SHOULD be attached as (typed) links.\nIf not provided, it will be inherited from data product.",
+          "examples": [
+            "This service enables you to create Request for Quotation (RFQ)\nthrough an API call from a source system outside SAP S/4HANA Cloud\nor SAP S/4HANA on-Premise. Furthermore, the service enables you to\nread existing Request for Quotation data from the SAP S/4HANA Cloud\nor SAP S/4HANA on-Premise.\n"
+          ]
+        },
+        "version": {
+          "type": "string",
+          "description": "The complete [SemVer](https://semver.org/) version string.\n\nIt MUST follow the [Semantic Versioning 2.0.0](https://semver.org/) standard.\nIt SHOULD be changed if the ORD information or referenced resource definitions changed.\nIt SHOULD express minor and patch changes that don't lead to incompatible changes.\n\nWhen the `version` major version changes, the [ORD ID](#ord-id) `<majorVersion>` fragment MUST be updated to be identical.\nIn case that a resource definition file also contains a version number (e.g. [OpenAPI `info`.`version`](https://swagger.io/specification/#info-object)), it MUST be equal with the resource `version` to avoid inconsistencies.\n\nThe general [Version and Lifecycle](../index.md#version-and-lifecycle) flow MUST be followed.\n\nNote: A change is only relevant for a version increment, if it affects the ORD resource or ORD taxonomy directly.\nFor example: If a resource within a `Package` changes, but the package itself did not, the package version does not need to be incremented.",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "examples": [
+            "1.2.3",
+            "1.0.0-alpha.1"
+          ]
+        },
+        "isRuntimeExtensible": {
+          "type": "boolean",
+          "description": "Indicates if the share definition can be extended at runtime\n\nIf set to true, then LOBs can provide dynamic share definitions at runtime to extend the static version of the definitions, for example to add more tables to share.",
+          "default": false
+        },
+        "hdlfsSchemas": {
+          "type": "array",
+          "description": "Hdlfs schemas included in this share",
+          "items": {
+            "$ref": "#/definitions/HdlfsSchema"
+          },
+          "minItems": 1
+        },
+        "extensible": {
+          "type": "object",
+          "title": "extensible",
+          "additionalProperties": false,
+          "properties": {
+            "supported": {
+              "type": "string",
+              "enum": [
+                "no",
+                "manual",
+                "automatic"
+              ]
+            },
+            "description": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "supported"
+          ],
+          "anyOf": [
+            {
+              "properties": {
+                "supported": {
+                  "const": "manual"
+                }
+              },
+              "required": [
+                "description"
+              ]
+            },
+            {
+              "properties": {
+                "supported": {
+                  "const": "automatic"
+                }
+              },
+              "required": [
+                "description"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "namespace",
+        "title",
+        "shortDescription",
+        "description",
+        "version",
+        "hdlfsSchemas",
+        "extensible"
+      ]
+    }
+  }
+}

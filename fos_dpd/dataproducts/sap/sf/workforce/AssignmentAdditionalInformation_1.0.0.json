@@ -1,0 +1,21 @@
+{
+   "name": "AssignmentAdditionalInformation",
+   "title": "AssignmentAdditionalInformation",
+   "description": "Additional information of assignment includes details, such as, job relationships.",
+   "shortDescription": "Additional info of assignment includes details, such as, job relationships.",
+   "partOfPackage": "sap.sf.workforce:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-EC",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.odm:entityType:WorkforceJobRelationship:v1",
+      "sap.sf.workforce:entityType:jobRelationship:v1"
+   ],
+   "datasets": [
+      "sap.sf.workforce:dataset:AssignmentAdditionalInformation:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.workforce:share:AssignmentAdditionalInformation:v1.0.0"
+   ]
+}

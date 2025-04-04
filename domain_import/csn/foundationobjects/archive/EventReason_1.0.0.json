@@ -1,0 +1,272 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/foundationobjects/v1/metadata/eventReason",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "eventReason",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.foundationobjects",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "eventReason" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Event Reason",
+      "@ODM.entityName" : "EventReasonCode",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:eventReason",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "eventReason",
+        "propertyTypes" : [ "sap.sf.foundationobjects:eventReasonId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:eventReasonId"
+        },
+        "externalCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Event Reason ID",
+          "length" : 32
+        },
+        "timeslices" : {
+          "type" : "cds.Composition",
+          "target" : "eventReason_eventReasonTimeslice",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "timeslices", "eventReason_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "eventReason_eventReasonTimeslice" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Event Reason",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:eventReason_eventReasonTimeslice",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "eventReason_eventReasonTimeslice",
+        "propertyTypes" : [ "sap.sf.foundationobjects:eventReason_eventReasonTimesliceId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "startDate",
+        "temporalIntervalEndProperty" : "endDate"
+      } ],
+      "elements" : {
+        "eventReason_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_eventReason"
+          },
+          "type" : "cds.Integer64",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:eventReason_eventReasonTimesliceId"
+        },
+        "_eventReason" : {
+          "type" : "cds.Association",
+          "target" : "eventReason",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_eventReason", "id" ]
+          }, "=", {
+            "ref" : [ "eventReason_id_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:eventReason_eventReasonTimesliceId"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Event Reason Name",
+          "length" : 32
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Description",
+          "length" : 128
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Status"
+        },
+        "startDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Start Date"
+        },
+        "endDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "End Date"
+        },
+        "event" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:eventPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:eventPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Event",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "emplStatus" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:employee-statusPickList",
+            "referencedPropertyType" : "sap.sf.extensibility:employee-statusPickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Employee Status",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "implicitPositionAction" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueOptionId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:positionActionTypePickList",
+            "referencedPropertyType" : "sap.sf.extensibility:positionActionTypePickListListId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Follow-Up Activity in Position",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "payrollEvent" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Payroll Event",
+          "length" : 4
+        },
+        "includeInWorkExperience" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Display in Internal Job History Portlet"
+        },
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Created On"
+        },
+        "createdAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Created By",
+          "length" : 100
+        },
+        "modifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Modified On"
+        },
+        "modifiedAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Modified By",
+          "length" : 100
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "on behalf of assignment UUID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf:modifiedOnBehalfOfAssignment",
+            "referencedPropertyType" : "sap.sf:modifiedOnBehalfOfAssignment"
+          } ]
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "eventReason_eventReasonTimesliceText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "eventReason_eventReasonTimeslice_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "eventReason_eventReasonTimesliceText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:eventReason_eventReasonTimesliceText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "eventReason_eventReasonTimesliceText",
+        "propertyTypes" : [ "sap.sf.foundationobjects:eventReason_eventReasonTimesliceTextId", "sap.sf.foundationobjects:eventReason_eventReasonTimesliceTextLocale" ]
+      } ],
+      "elements" : {
+        "eventReason_eventReasonTimeslice_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_eventReason_eventReasonTimeslice"
+          },
+          "type" : "cds.Integer64",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:eventReason_eventReasonTimesliceTextId"
+        },
+        "_eventReason_eventReasonTimeslice" : {
+          "type" : "cds.Association",
+          "target" : "eventReason_eventReasonTimeslice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_eventReason_eventReasonTimeslice", "id" ]
+          }, "=", {
+            "ref" : [ "eventReason_eventReasonTimeslice_id_virtual" ]
+          } ]
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Event Reason Name",
+          "length" : 32
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Description",
+          "length" : 128
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Locale",
+          "length" : 32,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:eventReason_eventReasonTimesliceTextLocale"
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Default"
+        }
+      }
+    }
+  }
+}

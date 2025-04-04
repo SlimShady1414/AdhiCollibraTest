@@ -1,0 +1,107 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/learning/asset/v1/metadata/deliveryMethod",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "deliveryMethod",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.learning",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "deliveryMethod" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Delivery Method",
+      "@EntityRelationship.entityType" : "sap.sf.learning:deliveryMethod",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "deliveryMethod",
+        "propertyTypes" : [ "sap.sf.learning:deliveryMethodId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Delivery Method ID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:deliveryMethodId"
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Description"
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "deliveryMethod_deliveryMethodText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "deliveryMethod_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "lastUpdatedUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Updated User"
+        },
+        "lastUpdatedTimestamp" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Updated Timestamp"
+        }
+      }
+    },
+    "deliveryMethod_deliveryMethodText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Delivery Method Localized Texts",
+      "@EntityRelationship.entityType" : "sap.sf.learning:deliveryMethod_deliveryMethodText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "deliveryMethod_deliveryMethodText",
+        "propertyTypes" : [ "sap.sf.learning:deliveryMethod_deliveryMethodTextId", "sap.sf.learning:deliveryMethod_deliveryMethodTextLocale" ]
+      } ],
+      "elements" : {
+        "deliveryMethod_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_deliveryMethod"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:deliveryMethod_deliveryMethodTextId"
+        },
+        "_deliveryMethod" : {
+          "type" : "cds.Association",
+          "target" : "deliveryMethod",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_deliveryMethod", "id" ]
+          }, "=", {
+            "ref" : [ "deliveryMethod_id_virtual" ]
+          } ]
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Delivery Method Description"
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "The Locale Property",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:deliveryMethod_deliveryMethodTextLocale"
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Default"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,393 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/foundationobjects/paystructure/v1/metadata/payScaleLevel",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "payScaleLevel",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.foundationobjects",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "payScaleLevel" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Pay Scale Level",
+      "@ODM.entityName" : "PayScaleLevel",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:payScaleLevel",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "payScaleLevel",
+        "propertyTypes" : [ "sap.sf.foundationobjects:payScaleLevelId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:payScaleLevelId"
+        },
+        "code" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "code",
+          "length" : 128
+        },
+        "timeslices" : {
+          "type" : "cds.Composition",
+          "target" : "payScaleLevel_payScaleLevelTimeSlice",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "timeslices", "payScaleLevel_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "payScaleLevel_payScaleLevelTimeSlice" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:payScaleLevel_payScaleLevelTimeSlice",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "payScaleLevel_payScaleLevelTimeSlice",
+        "propertyTypes" : [ "sap.sf.foundationobjects:payScaleLevel_payScaleLevelTimeSliceRecordId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "validFrom",
+        "temporalIntervalEndProperty" : "validTo"
+      } ],
+      "elements" : {
+        "payScaleLevel_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_payScaleLevel"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:payScaleLevel_payScaleLevelTimeSliceId"
+        },
+        "_payScaleLevel" : {
+          "type" : "cds.Association",
+          "target" : "payScaleLevel",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_payScaleLevel", "id" ]
+          }, "=", {
+            "ref" : [ "payScaleLevel_id_virtual" ]
+          } ]
+        },
+        "payScaleLevel" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "payScaleLevel",
+          "length" : 128
+        },
+        "externalName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalName"
+        },
+        "validFrom" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validFrom"
+        },
+        "validTo" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validTo"
+        },
+        "nextPayScaleLevel" : {
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_payScaleLevel_nextPayScaleLevel"
+          },
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "nextPayScaleLevel",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "_payScaleLevel_nextPayScaleLevel" : {
+          "type" : "cds.Association",
+          "target" : "payScaleLevel",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_payScaleLevel_nextPayScaleLevel", "id" ]
+          }, "=", {
+            "ref" : [ "nextPayScaleLevel" ]
+          } ]
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:payScaleLevel_payScaleLevelTimeSliceRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        },
+        "toPayScalePayComponents" : {
+          "type" : "cds.Composition",
+          "target" : "payScaleLevel_PayScalePayComponent",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "toPayScalePayComponents", "payScaleLevel_payScaleLevelTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "payScaleGroup" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:payScaleGroup",
+            "referencedPropertyType" : "sap.sf.foundationobjects:payScaleGroupId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "payScaleLevel_payScaleLevelText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "payScaleLevel_payScaleLevelTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        }
+      }
+    },
+    "payScaleLevel_PayScalePayComponent" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "PayScalePayComponent",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:payScaleLevel_PayScalePayComponent",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "payScaleLevel_PayScalePayComponent",
+        "propertyTypes" : [ "sap.sf.foundationobjects:payScaleLevel_PayScalePayComponentRecordId" ]
+      } ],
+      "elements" : {
+        "payScaleLevel_payScaleLevelTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_payScaleLevel_payScaleLevelTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:payScaleLevel_PayScalePayComponentRecordId"
+        },
+        "_payScaleLevel_payScaleLevelTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "payScaleLevel_payScaleLevelTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_payScaleLevel_payScaleLevelTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "payScaleLevel_payScaleLevelTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "code" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:payComponent",
+            "referencedPropertyType" : "sap.sf.foundationobjects:payComponentId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "code",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "amount" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "amount",
+          "precision" : 272,
+          "scale" : 17
+        },
+        "currency" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:currency",
+            "referencedPropertyType" : "sap.sf.foundationobjects:currencyId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "currency",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "frequency" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:frequency",
+            "referencedPropertyType" : "sap.sf.foundationobjects:frequencyId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "frequency",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "number" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "number",
+          "precision" : 272,
+          "scale" : 17
+        },
+        "unit" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:UnitOfMeasure",
+            "referencedPropertyType" : "sap.sf.extensibility:UnitOfMeasureId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "unit",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "rate" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "rate",
+          "precision" : 272,
+          "scale" : 17
+        },
+        "percentage" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "percentage",
+          "precision" : 272,
+          "scale" : 17
+        },
+        "entityId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityId",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:payScaleLevel_PayScalePayComponentRecordId"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "objectType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "objectType",
+          "length" : 255
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        }
+      }
+    },
+    "payScaleLevel_payScaleLevelText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Localized value for translatable data type field",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:payScaleLevel_payScaleLevelText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "payScaleLevel_payScaleLevelText",
+        "propertyTypes" : [ "sap.sf.foundationobjects:payScaleLevel_payScaleLevelTextRecordId", "sap.sf.foundationobjects:payScaleLevel_payScaleLevelTextLocale" ]
+      } ],
+      "elements" : {
+        "payScaleLevel_payScaleLevelTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_payScaleLevel_payScaleLevelTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:payScaleLevel_payScaleLevelTextRecordId"
+        },
+        "_payScaleLevel_payScaleLevelTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "payScaleLevel_payScaleLevelTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_payScaleLevel_payScaleLevelTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "payScaleLevel_payScaleLevelTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "locale",
+          "length" : 128,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:payScaleLevel_payScaleLevelTextLocale"
+        },
+        "externalName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalName",
+          "length" : 255
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "default"
+        }
+      }
+    }
+  }
+}

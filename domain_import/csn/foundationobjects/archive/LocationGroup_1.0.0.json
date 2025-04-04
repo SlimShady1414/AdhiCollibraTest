@@ -1,0 +1,224 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/foundationobjects/enterprisestructure/v1/metadata/locationGroup",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "locationGroup",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.foundationobjects",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "locationGroup" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Location Group",
+      "@ODM.entityName" : "WorkforceLocationGroup",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:locationGroup",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "locationGroup",
+        "propertyTypes" : [ "sap.sf.foundationobjects:locationGroupId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:locationGroupId"
+        },
+        "externalCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Code",
+          "length" : 32
+        },
+        "timeslices" : {
+          "type" : "cds.Composition",
+          "target" : "locationGroup_locationGroupTimeslice",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "timeslices", "locationGroup_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "locationGroup_locationGroupTimeslice" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Location Group",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:locationGroup_locationGroupTimeslice",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "locationGroup_locationGroupTimeslice",
+        "propertyTypes" : [ "sap.sf.foundationobjects:locationGroup_locationGroupTimesliceId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "startDate",
+        "temporalIntervalEndProperty" : "endDate"
+      } ],
+      "elements" : {
+        "locationGroup_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_locationGroup"
+          },
+          "type" : "cds.Integer64",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:locationGroup_locationGroupTimesliceId"
+        },
+        "_locationGroup" : {
+          "type" : "cds.Association",
+          "target" : "locationGroup",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_locationGroup", "id" ]
+          }, "=", {
+            "ref" : [ "locationGroup_id_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:locationGroup_locationGroupTimesliceId"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Name",
+          "length" : 32
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Description",
+          "length" : 128
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Status"
+        },
+        "startDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Start Date"
+        },
+        "endDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "End Date"
+        },
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Created On"
+        },
+        "createdAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Created By",
+          "length" : 100
+        },
+        "modifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Modified On"
+        },
+        "modifiedAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Modified By",
+          "length" : 100
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "on behalf of assignment UUID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf:modifiedOnBehalfOfAssignment",
+            "referencedPropertyType" : "sap.sf:modifiedOnBehalfOfAssignment"
+          } ]
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "locationGroup_locationGroupTimesliceText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "locationGroup_locationGroupTimeslice_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "locationGroup_locationGroupTimesliceText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:locationGroup_locationGroupTimesliceText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "locationGroup_locationGroupTimesliceText",
+        "propertyTypes" : [ "sap.sf.foundationobjects:locationGroup_locationGroupTimesliceTextId", "sap.sf.foundationobjects:locationGroup_locationGroupTimesliceTextLocale" ]
+      } ],
+      "elements" : {
+        "locationGroup_locationGroupTimeslice_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_locationGroup_locationGroupTimeslice"
+          },
+          "type" : "cds.Integer64",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:locationGroup_locationGroupTimesliceTextId"
+        },
+        "_locationGroup_locationGroupTimeslice" : {
+          "type" : "cds.Association",
+          "target" : "locationGroup_locationGroupTimeslice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_locationGroup_locationGroupTimeslice", "id" ]
+          }, "=", {
+            "ref" : [ "locationGroup_locationGroupTimeslice_id_virtual" ]
+          } ]
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Name",
+          "length" : 32
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Description",
+          "length" : 128
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Locale",
+          "length" : 32,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:locationGroup_locationGroupTimesliceTextLocale"
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Default"
+        }
+      }
+    }
+  }
+}

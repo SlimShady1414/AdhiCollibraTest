@@ -1,0 +1,190 @@
+{
+  "$id": "/rest/ecosystem/wholeself/v1/metadata/proficiencySet",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "x-sap-sf-version": "1.0.0",
+  "type": "object",
+  "title": "TIH ProficiencySet",
+  "description": "Metadata for the TIH ProficiencySet",
+  "properties": {
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 27
+    },
+    "createdBy": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "lastModifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 27
+    },
+    "lastModifiedBy": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "proficiencySetId": {
+      "type": "integer",
+      "maxLength": 10
+    },
+    "proficiencySetName": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "status": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "proficiencySetTexts": {
+      "type": "array",
+      "items": {
+        "$ref": "/rest/ecosystem/wholeself/v1/metadata/proficiencySetText"
+      }
+    },
+    "proficiencyLevels": {
+      "type": "array",
+      "items": {
+        "$ref": "/rest/ecosystem/wholeself/v1/metadata/proficiencyLevel"
+      }
+    }
+  },
+  "required": [
+    "proficiencyLevels",
+    "proficiencySetId",
+    "proficiencySetName",
+    "proficiencySetTexts",
+    "status"
+  ],
+  "x-sap-odm-oid": "uuid",
+  "x-sap-odm-entity-name": "WorkforceCapabilityProficiencyScale",
+  "x-sap-root-entity": true,
+  "x-sap-sf-resource": {
+    "id": [
+      "proficiencySetId"
+    ]
+  },
+  "$defs": {
+    "ProficiencySetText": {
+      "$id": "/rest/ecosystem/wholeself/v1/metadata/proficiencySetText",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locale": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "proficiencySetTextId": {
+          "type": "integer",
+          "maxLength": 10
+        }
+      },
+      "required": [
+        "locale",
+        "name",
+        "proficiencySetTextId"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "proficiencySetTextId"
+        ]
+      },
+      "title": "ProficiencySetText"
+    },
+    "ProficiencyLevel": {
+      "$id": "/rest/ecosystem/wholeself/v1/metadata/proficiencyLevel",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "proficiencyLevelId": {
+          "type": "integer",
+          "maxLength": 10
+        },
+        "levelValue": {
+          "type": "integer",
+          "maxLength": 10
+        },
+        "levelLabel": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "status": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "proficiencyLevelTexts": {
+          "type": "array",
+          "items": {
+            "$ref": "/rest/ecosystem/wholeself/v1/metadata/proficiencyLevelText"
+          }
+        }
+      },
+      "required": [
+        "levelLabel",
+        "levelValue",
+        "proficiencyLevelId",
+        "proficiencyLevelTexts",
+        "status"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "proficiencyLevelId"
+        ]
+      },
+      "title": "ProficiencyLevel"
+    },
+    "ProficiencyLevelText": {
+      "$id": "/rest/ecosystem/wholeself/v1/metadata/proficiencyLevelText",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locale": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "levelLabel": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "proficiencyLevelTextId": {
+          "type": "integer",
+          "maxLength": 10
+        }
+      },
+      "required": [
+        "levelLabel",
+        "locale",
+        "proficiencyLevelTextId"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "proficiencyLevelTextId"
+        ]
+      },
+      "title": "ProficiencyLevelText"
+    }
+  }
+}

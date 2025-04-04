@@ -1,0 +1,224 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/ecosystem/wholeself/v1/metadata/growthPortfolioAttribute",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "growthPortfolioAttribute",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.capabilities",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "growthPortfolioAttribute" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Growth Portfolio",
+      "@ODM.entityName" : "WorkforceCapabilityAssignment",
+      "@ODM.oid" : "personUUID",
+      "@EntityRelationship.entityType" : "sap.sf.capabilities:growthPortfolioAttribute",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "growthPortfolioAttribute",
+        "propertyTypes" : [ "sap.sf.capabilities:growthPortfolioAttributePersonUUID, attributeId" ]
+      } ],
+      "elements" : {
+        "personUUID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "attributeId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.capabilities:library",
+            "referencedPropertyType" : "sap.sf.capabilities:libraryLibraryId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "attributeType" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "sourceType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "passionateAbout" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "expectedProficiencyLevel" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "isRoleBased" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "proficiency" : {
+          "type" : "cds.Composition",
+          "target" : "growthPortfolioAttribute_",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "proficiency", "growthPortfolioAttribute_personUUID, attributeId_virtual" ]
+          }, "=", {
+            "ref" : [ "personUUID, attributeId" ]
+          } ]
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 100
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 100
+        },
+        "createdAt" : {
+          "type" : "cds.Composition",
+          "target" : "growthPortfolioAttribute_",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "createdAt", "growthPortfolioAttribute_personUUID, attributeId_virtual" ]
+          }, "=", {
+            "ref" : [ "personUUID, attributeId" ]
+          } ]
+        },
+        "lastModifiedAt" : {
+          "type" : "cds.Composition",
+          "target" : "growthPortfolioAttribute_",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "lastModifiedAt", "growthPortfolioAttribute_personUUID, attributeId_virtual" ]
+          }, "=", {
+            "ref" : [ "personUUID, attributeId" ]
+          } ]
+        },
+        "proxyBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 100
+        },
+        "assessmentHistory" : {
+          "type" : "cds.Composition",
+          "target" : "growthPortfolioAttribute_assessmentHistory",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "assessmentHistory", "growthPortfolioAttribute_personUUID, attributeId_virtual" ]
+          }, "=", {
+            "ref" : [ "personUUID, attributeId" ]
+          } ]
+        }
+      }
+    },
+    "growthPortfolioAttribute_assessmentHistory" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.capabilities:growthPortfolioAttribute_assessmentHistory",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "growthPortfolioAttribute_assessmentHistory",
+        "propertyTypes" : [ "sap.sf.capabilities:growthPortfolioAttribute_assessmentHistoryGrowthPortfolioId" ]
+      } ],
+      "elements" : {
+        "growthPortfolioAttribute_personUUID, attributeId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_growthPortfolioAttribute"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:growthPortfolioAttribute_assessmentHistoryPersonUUID, attributeId"
+        },
+        "_growthPortfolioAttribute" : {
+          "type" : "cds.Association",
+          "target" : "growthPortfolioAttribute",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_growthPortfolioAttribute", "personUUID, attributeId" ]
+          }, "=", {
+            "ref" : [ "growthPortfolioAttribute_personUUID, attributeId_virtual" ]
+          } ]
+        },
+        "sourceType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "passionateAbout" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "expectedProficiencyLevel" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "isRoleBased" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "proficiency" : {
+          "type" : "cds.Composition",
+          "target" : "growthPortfolioAttribute_",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "proficiency", "growthPortfolioAttribute_assessmentHistory_growthPortfolioId_virtual" ]
+          }, "=", {
+            "ref" : [ "growthPortfolioId" ]
+          } ]
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "createdAt" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "lastModifiedAt" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "proxyBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        }
+      }
+    }
+  }
+}

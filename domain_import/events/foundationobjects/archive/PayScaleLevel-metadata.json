@@ -1,0 +1,469 @@
+{
+  "$id": "/rest/foundationobjects/paystructure/v1/metadata/payScaleLevel",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "Pay Scale Level",
+  "type": "object",
+  "x-sap-sf-version": "1.0.0",
+  "x-sap-sf-custom-version": 1,
+  "properties": {
+    "id": {
+      "type": "integer",
+      "title": "id",
+      "x-sap-sf-hidden": true,
+      "minimum": -9223372036854775808,
+      "maximum": 9223372036854775807
+    },
+    "code": {
+      "type": "string",
+      "title": "code",
+      "maxLength": 128
+    },
+    "timeslices": {
+      "type": "array",
+      "items": {
+        "$ref": "/rest/foundationobjects/paystructure/v1/metadata/payScaleLevelTimeSlice"
+      }
+    }
+  },
+  "required": [
+    "code"
+  ],
+  "x-sap-odm-entity-name": "PayScaleLevel",
+  "x-sap-root-entity": true,
+  "x-sap-sf-resource": {
+    "id": [
+      "id"
+    ]
+  },
+  "x-sap-sf-temporal": {
+    "type": "timeline",
+    "dates": {
+      "from": "validFrom",
+      "to": "validTo",
+      "semantics": "closed-closed"
+    }
+  },
+  "$defs": {
+    "timeslice": {
+      "$id": "/rest/foundationobjects/paystructure/v1/metadata/payScaleLevelTimeSlice",
+      "type": "object",
+      "properties": {
+        "payScaleLevel": {
+          "type": "string",
+          "title": "payScaleLevel",
+          "maxLength": 128
+        },
+        "externalName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "externalName"
+        },
+        "validFrom": {
+          "type": "string",
+          "title": "validFrom",
+          "format": "date"
+        },
+        "validTo": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "validTo",
+          "x-sap-sf-hidden": true,
+          "format": "date"
+        },
+        "nextPayScaleLevel": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "nextPayScaleLevel"
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "toPayScalePayComponents": {
+          "type": "array",
+          "items": {
+            "$ref": "/rest/extensibility/general/v1/metadata/PayScalePayComponent"
+          }
+        },
+        "payScaleGroup": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "texts": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "title": "Localized Texts",
+          "items": {
+            "$ref": "/rest/foundationobjects/paystructure/v1/metadata/payScaleLevelText"
+          }
+        }
+      },
+      "required": [
+        "payScaleLevel",
+        "validFrom"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "nextPayScaleLevel": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/paystructure/v1/metadata/payScaleLevel"
+              },
+              "properties": [
+                {
+                  "nextPayScaleLevel": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "toPayScalePayComponents": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PayScalePayComponent"
+              },
+              "multiplicity": "1..*",
+              "type": "composition"
+            }
+          },
+          "payScaleGroup": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/paystructure/v1/metadata/payScaleGroup"
+              },
+              "properties": [
+                {
+                  "payScaleGroup": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          }
+        }
+      }
+    },
+    "PayScalePayComponent": {
+      "$id": "/rest/extensibility/general/v1/metadata/PayScalePayComponent",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "PayScalePayComponent",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "code": {
+          "type": "integer",
+          "title": "code"
+        },
+        "amount": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "amount",
+          "x-sap-precision": 272,
+          "x-sap-scale": 17
+        },
+        "currency": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "currency"
+        },
+        "frequency": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "frequency"
+        },
+        "number": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "number",
+          "x-sap-precision": 272,
+          "x-sap-scale": 17
+        },
+        "unit": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "unit"
+        },
+        "rate": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "rate",
+          "x-sap-precision": 272,
+          "x-sap-scale": 17
+        },
+        "percentage": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "percentage",
+          "x-sap-precision": 272,
+          "x-sap-scale": 17
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "code": {
+            "bind": {
+              "schema": {
+                "$ref": " /rest/foundationobjects/compensation/v1/metadata/payComponent"
+              },
+              "properties": [
+                {
+                  "code": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "currency": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/v1/metadata/currency"
+              },
+              "properties": [
+                {
+                  "currency": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "frequency": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/v1/metadata/frequency"
+              },
+              "properties": [
+                {
+                  "frequency": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "unit": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/UnitOfMeasure"
+              },
+              "properties": [
+                {
+                  "unit": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          }
+        }
+      }
+    },
+    "PayScaleLevelText": {
+      "$id": "/rest/foundationobjects/paystructure/v1/metadata/payScaleLevelText",
+      "title": "Localized value for translatable data type field",
+      "type": "object",
+      "properties": {
+        "locale": {
+          "title": "locale",
+          "description": "The locale specified as an ISO 63901 or BCP-47 language code.",
+          "type": "string",
+          "maxLength": 128
+        },
+        "externalName": {
+          "title": "externalName",
+          "type": "string",
+          "maxLength": 255
+        },
+        "default": {
+          "title": "default",
+          "description": "Whether or not the locale is the default locale based on the request context (i.e. user or system)",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "x-sap-sf-resource": {
+        "id": [
+          "/properties/timeslices/items/recordId",
+          "locale"
+        ]
+      },
+      "required": [
+        "locale"
+      ]
+    }
+  }
+}

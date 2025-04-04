@@ -1,0 +1,2456 @@
+{
+  "$id": "/rest/foundationobjects/enterprisestructure/v1/metadata/legalEntity",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "Legal Entity",
+  "type": "object",
+  "x-sap-sf-version": "1.0.0",
+  "x-sap-sf-custom-version": 1,
+  "properties": {
+    "id": {
+      "type": "integer",
+      "title": "id",
+      "x-sap-sf-hidden": true,
+      "minimum": -9223372036854775808,
+      "maximum": 9223372036854775807
+    },
+    "entityOID": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "entityOID",
+      "x-sap-sf-hidden": true,
+      "maxLength": 128
+    },
+    "externalCode": {
+      "type": "string",
+      "title": "externalCode",
+      "maxLength": 32
+    },
+    "timeslices": {
+      "type": "array",
+      "items": {
+        "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/legalEntityTimeSlice"
+      }
+    }
+  },
+  "required": [
+    "externalCode"
+  ],
+  "x-sap-odm-oid": "entityOID",
+  "x-sap-odm-entity-name": "CompanyCode",
+  "x-sap-root-entity": true,
+  "x-sap-sf-resource": {
+    "id": [
+      "id"
+    ],
+    "altIds": {
+      "oid": "entityOID"
+    }
+  },
+  "x-sap-sf-temporal": {
+    "type": "timeline",
+    "dates": {
+      "from": "validFrom",
+      "to": "validTo",
+      "semantics": "closed-closed"
+    }
+  },
+  "$defs": {
+    "timeslice": {
+      "$id": "/rest/foundationobjects/enterprisestructure/v1/metadata/legalEntityTimeSlice",
+      "type": "object",
+      "properties": {
+        "validFrom": {
+          "type": "string",
+          "title": "validFrom",
+          "format": "date"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "name"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "description"
+        },
+        "effectiveStatus": {
+          "type": "string",
+          "title": "effectiveStatus",
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "defaultPayGroup": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "defaultPayGroup"
+        },
+        "defaultLocation": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "defaultLocation"
+        },
+        "standardWeeklyHours": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "standardWeeklyHours",
+          "x-sap-precision": 272,
+          "x-sap-scale": 17
+        },
+        "currency": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "currency"
+        },
+        "officialLanguage": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "officialLanguage",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "countryOfRegistration": {
+          "type": "integer",
+          "title": "countryOfRegistration"
+        },
+        "autoCreated": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "autoCreated",
+          "x-sap-sf-hidden": true
+        },
+        "validTo": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "validTo",
+          "x-sap-sf-hidden": true,
+          "format": "date"
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "toLegalEntityUSA": {
+          "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityUSA"
+        },
+        "toLegalEntityDEU": {
+          "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityDEU"
+        },
+        "toLegalEntityESP": {
+          "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityESP"
+        },
+        "toLegalEntityFRA": {
+          "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityFRA"
+        },
+        "toLegalEntityARG": {
+          "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityARG"
+        },
+        "toLegalEntityRUS": {
+          "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityRUS"
+        },
+        "toLegalEntitySAU": {
+          "$ref": "/rest/extensibility/general/v1/metadata/LegalEntitySAU"
+        },
+        "toLegalEntityBLR": {
+          "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityBLR"
+        },
+        "toLegalEntityTHA": {
+          "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityTHA"
+        },
+        "cust_toNameFormatGO": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "toNameFormat": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "toLegalEntityTUN": {
+          "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityTUN"
+        },
+        "toDisplayNameFormat": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "toLegalEntitySGP": {
+          "$ref": "/rest/extensibility/general/v1/metadata/LegalEntitySGP"
+        },
+        "toLegalEntityPRY": {
+          "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityPRY"
+        },
+        "toLegalEntityBOL": {
+          "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityBOL"
+        },
+        "toLegalEntitySVN": {
+          "$ref": "/rest/extensibility/general/v1/metadata/LegalEntitySVN"
+        },
+        "toLegalEntityCAN": {
+          "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityCAN"
+        },
+        "texts": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "title": "Localized Texts",
+          "items": {
+            "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/legalEntityText"
+          }
+        }
+      },
+      "required": [
+        "validFrom",
+        "countryOfRegistration"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "defaultPayGroup": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PayGroup"
+              },
+              "properties": [
+                {
+                  "defaultPayGroup": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "defaultLocation": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/location"
+              },
+              "properties": [
+                {
+                  "defaultLocation": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "currency": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/v1/metadata/currency"
+              },
+              "properties": [
+                {
+                  "currency": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "countryOfRegistration": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/v1/metadata/country"
+              },
+              "properties": [
+                {
+                  "countryOfRegistration": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "toLegalEntityUSA": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityUSA"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toLegalEntityDEU": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityDEU"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toLegalEntityESP": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityESP"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toLegalEntityFRA": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityFRA"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toLegalEntityARG": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityARG"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toLegalEntityRUS": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityRUS"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toLegalEntitySAU": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/LegalEntitySAU"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toLegalEntityBLR": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityBLR"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toLegalEntityTHA": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityTHA"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "cust_toNameFormatGO": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/NameFormatGO"
+              },
+              "properties": [
+                {
+                  "cust_toNameFormatGO": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "toNameFormat": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/NameFormatGO"
+              },
+              "properties": [
+                {
+                  "toNameFormat": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "toLegalEntityTUN": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityTUN"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toDisplayNameFormat": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/NameFormatGO"
+              },
+              "properties": [
+                {
+                  "toDisplayNameFormat": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "toLegalEntitySGP": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/LegalEntitySGP"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toLegalEntityPRY": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityPRY"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toLegalEntityBOL": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityBOL"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toLegalEntitySVN": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/LegalEntitySVN"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toLegalEntityCAN": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/LegalEntityCAN"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          }
+        }
+      }
+    },
+    "LegalEntityCAN": {
+      "$id": "/rest/extensibility/general/v1/metadata/LegalEntityCAN",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Legal Entity Canada",
+      "type": "object",
+      "properties": {
+        "businessNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "businessNumber",
+          "maxLength": 9
+        },
+        "neqNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "neqNumber",
+          "maxLength": 10
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "LegalEntityDEU": {
+      "$id": "/rest/extensibility/general/v1/metadata/LegalEntityDEU",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Legal Entity Germany",
+      "type": "object",
+      "properties": {
+        "taxUnit": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "taxUnit",
+          "maxLength": 45
+        },
+        "socialAccidentInsurance": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "socialAccidentInsurance",
+          "maxLength": 45
+        },
+        "socialAccidentInsuranceRegistrationNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "socialAccidentInsuranceRegistrationNumber",
+          "maxLength": 45
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "LegalEntityTHA": {
+      "$id": "/rest/extensibility/general/v1/metadata/LegalEntityTHA",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Legal Entity Thailand",
+      "type": "object",
+      "properties": {
+        "socialSecurityNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "socialSecurityNumber",
+          "maxLength": 10
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "LegalEntityTUN": {
+      "$id": "/rest/extensibility/general/v1/metadata/LegalEntityTUN",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Legal Entity Tunisia",
+      "type": "object",
+      "properties": {
+        "numberOfSecondaryEstablishment": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "numberOfSecondaryEstablishment",
+          "maxLength": 3
+        },
+        "categoryCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "categoryCode",
+          "maxLength": 1
+        },
+        "codeVat": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "codeVat",
+          "maxLength": 1
+        },
+        "fiscalID": {
+          "type": "string",
+          "title": "fiscalID",
+          "maxLength": 9
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "fiscalID",
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "LegalEntityRUS": {
+      "$id": "/rest/extensibility/general/v1/metadata/LegalEntityRUS",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Legal Entity Russia",
+      "type": "object",
+      "properties": {
+        "okpoNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "okpoNumber",
+          "maxLength": 10
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "LegalEntityARG": {
+      "$id": "/rest/extensibility/general/v1/metadata/LegalEntityARG",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Legal Entity Argentina",
+      "type": "object",
+      "properties": {
+        "cuitCode": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "cuitCode",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "cuit": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "cuit",
+          "x-sap-sf-hidden": true,
+          "maxLength": 11
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "LegalEntitySGP": {
+      "$id": "/rest/extensibility/general/v1/metadata/LegalEntitySGP",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Legal Entity Singapore",
+      "type": "object",
+      "properties": {
+        "uniqueEntityNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "uniqueEntityNumber",
+          "maxLength": 255
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "LegalEntityFRA": {
+      "$id": "/rest/extensibility/general/v1/metadata/LegalEntityFRA",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Legal Entity France",
+      "type": "object",
+      "properties": {
+        "nafCode": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "nafCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "nafCodePost2008": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "nafCodePost2008",
+          "maxLength": 45
+        },
+        "sirenCode": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "sirenCode",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "LegalEntityPRY": {
+      "$id": "/rest/extensibility/general/v1/metadata/LegalEntityPRY",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Legal Entity Paraguay",
+      "type": "object",
+      "properties": {
+        "taxNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "taxNumber",
+          "maxLength": 13
+        },
+        "socialSecurity": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "socialSecurity",
+          "maxLength": 13
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "LegalEntityESP": {
+      "$id": "/rest/extensibility/general/v1/metadata/LegalEntityESP",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Legal Entity Spain",
+      "type": "object",
+      "properties": {
+        "certificadoDeIdentificacionFiscal": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "certificadoDeIdentificacionFiscal",
+          "maxLength": 45
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "LegalEntityBOL": {
+      "$id": "/rest/extensibility/general/v1/metadata/LegalEntityBOL",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Legal Entity Bolivia",
+      "type": "object",
+      "properties": {
+        "taxNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "taxNumber",
+          "maxLength": 12
+        },
+        "employerSocialSecurityNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "employerSocialSecurityNumber",
+          "maxLength": 13
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "LegalEntityUSA": {
+      "$id": "/rest/extensibility/general/v1/metadata/LegalEntityUSA",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Legal Entity USA",
+      "type": "object",
+      "properties": {
+        "legalEntityType": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "legalEntityType"
+        },
+        "federalReserveBankID": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "federalReserveBankID",
+          "maxLength": 45
+        },
+        "fedReserveBankDistrict": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "fedReserveBankDistrict",
+          "maxLength": 45
+        },
+        "employerID": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "employerID",
+          "maxLength": 45
+        },
+        "eeoCompanyCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "eeoCompanyCode",
+          "maxLength": 45
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "legalEntityType": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "legalEntityType": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "LegalEntityType",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          }
+        }
+      }
+    },
+    "LegalEntityBLR": {
+      "$id": "/rest/extensibility/general/v1/metadata/LegalEntityBLR",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Legal Entity Belarus",
+      "type": "object",
+      "properties": {
+        "unpNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "unpNumber",
+          "maxLength": 9
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "LegalEntitySVN": {
+      "$id": "/rest/extensibility/general/v1/metadata/LegalEntitySVN",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Legal Entity Slovenia",
+      "type": "object",
+      "properties": {
+        "companyRegistrationNumber": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "companyRegistrationNumber",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "companyMasterNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "companyMasterNumber",
+          "maxLength": 10
+        },
+        "employerTaxNumber": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "employerTaxNumber",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "LegalEntitySAU": {
+      "$id": "/rest/extensibility/general/v1/metadata/LegalEntitySAU",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Legal Entity Saudi Arabia",
+      "type": "object",
+      "properties": {
+        "gosiRegistrationNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "gosiRegistrationNumber",
+          "maxLength": 9
+        },
+        "gosiOfficeBranch": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "gosiOfficeBranch",
+          "maxLength": 255
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "companyCommercialRegistrationNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "companyCommercialRegistrationNumber",
+          "maxLength": 255
+        },
+        "companyRepresentative": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "companyRepresentative"
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "LegalEntityText": {
+      "$id": "/rest/foundationobjects/enterprisestructure/v1/metadata/legalEntityText",
+      "title": "Localized value for translatable data type field",
+      "type": "object",
+      "properties": {
+        "locale": {
+          "title": "locale",
+          "description": "The locale specified as an ISO 63901 or BCP-47 language code.",
+          "type": "string",
+          "maxLength": 128
+        },
+        "name": {
+          "title": "name",
+          "type": "string",
+          "maxLength": 90
+        },
+        "description": {
+          "title": "description",
+          "type": "string",
+          "maxLength": 128
+        },
+        "default": {
+          "title": "default",
+          "description": "Whether or not the locale is the default locale based on the request context (i.e. user or system)",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "x-sap-sf-resource": {
+        "id": [
+          "/properties/timeslices/items/recordId",
+          "locale"
+        ]
+      },
+      "required": [
+        "locale"
+      ]
+    }
+  }
+}

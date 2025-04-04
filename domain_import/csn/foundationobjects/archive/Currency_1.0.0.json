@@ -1,0 +1,219 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/foundationobjects/v1/metadata/currency",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "currency",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.foundationobjects",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "currency" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Currency",
+      "@ODM.entityName" : "CurrencyCode",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:currency",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "currency",
+        "propertyTypes" : [ "sap.sf.foundationobjects:currencyId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:currencyId"
+        },
+        "code" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "code",
+          "length" : 128
+        },
+        "timeslices" : {
+          "type" : "cds.Composition",
+          "target" : "currency_currencyTimeSlice",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "timeslices", "currency_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "currency_currencyTimeSlice" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:currency_currencyTimeSlice",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "currency_currencyTimeSlice",
+        "propertyTypes" : [ "sap.sf.foundationobjects:currency_currencyTimeSliceRecordId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "validFrom",
+        "temporalIntervalEndProperty" : "validTo"
+      } ],
+      "elements" : {
+        "currency_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_currency"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:currency_currencyTimeSliceId"
+        },
+        "_currency" : {
+          "type" : "cds.Association",
+          "target" : "currency",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_currency", "id" ]
+          }, "=", {
+            "ref" : [ "currency_id_virtual" ]
+          } ]
+        },
+        "externalName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalName"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "validFrom" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validFrom"
+        },
+        "validTo" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validTo"
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "description"
+        },
+        "defaultDecimals" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultDecimals",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "symbol" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "symbol",
+          "length" : 255
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:currency_currencyTimeSliceRecordId"
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "currency_currencyText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "currency_currencyTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        }
+      }
+    },
+    "currency_currencyText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Localized value for translatable data type field",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:currency_currencyText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "currency_currencyText",
+        "propertyTypes" : [ "sap.sf.foundationobjects:currency_currencyTextRecordId", "sap.sf.foundationobjects:currency_currencyTextLocale" ]
+      } ],
+      "elements" : {
+        "currency_currencyTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_currency_currencyTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:currency_currencyTextRecordId"
+        },
+        "_currency_currencyTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "currency_currencyTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_currency_currencyTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "currency_currencyTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "locale",
+          "length" : 128,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:currency_currencyTextLocale"
+        },
+        "externalName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalName",
+          "length" : 255
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "description",
+          "length" : 255
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "default"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+   "name": "DeliveryMethod",
+   "title": "DeliveryMethod",
+   "description": "Reference Data required in Learning.Delivery Date assumes that all dependencies are in place. If this is not the case then Delivery Qtr will be re-determined",
+   "shortDescription": "Reference Data that is required in Learning. Delivery Date assumes that all the dependencies are in place.",
+   "partOfPackage": "sap.sf.learning:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-LMS",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.sf.learning:entityType:deliveryMethod:v1"
+   ],
+   "datasets": [
+      "sap.sf.learning:dataset:DeliveryMethod:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.learning:share:DeliveryMethod:v1.0.0"
+   ]
+}

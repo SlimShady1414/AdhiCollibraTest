@@ -1,0 +1,24 @@
+Printing Validation Errors in generated FOS files against dataproduct-schema.json
+../../fos_dpd/dataproducts/sap/sf/workforce/WorkforcePerson_1.0.0.json
+'Workforce person data refers to a person and their employment details. Workforce person data includes personal information,biographical information, address, contact information, national ID, social account, country/region-specific information, and employment details such as assignments, job details, and global assignment information.' is too long
+
+Failed validating 'maxLength' in schema['properties']['shortDescription']:
+    {'type': 'string',
+     'description': 'Plain text short description.\n'
+                    '\n'
+                    'MUST NOT exceed 255 chars.\n'
+                    'MUST NOT contain line breaks.',
+     'minLength': 1,
+     'maxLength': 255,
+     'examples': ['Offering access to all online and offline orders '
+                  'submitted by customers']}
+
+On instance['shortDescription']:
+    ('Workforce person data refers to a person and their employment '
+     'details. Workforce person data includes personal '
+     'information,biographical information, address, contact information, '
+     'national ID, social account, country/region-specific information, '
+     'and employment details such as assignments, job details, and global '
+     'assignment information.')
+
+--------------------------------------------------

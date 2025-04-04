@@ -1,0 +1,2106 @@
+{
+  "$id": "/rest/foundationobjects/jobstructure/v1/metadata/jobClassification",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "Job Classification ",
+  "type": "object",
+  "x-sap-sf-version": "1.0.0",
+  "x-sap-sf-custom-version": 1,
+  "properties": {
+    "id": {
+      "type": "integer",
+      "title": "id",
+      "x-sap-sf-hidden": true,
+      "minimum": -9223372036854775808,
+      "maximum": 9223372036854775807
+    },
+    "entityOID": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "entityOID",
+      "x-sap-sf-hidden": true,
+      "maxLength": 128
+    },
+    "externalCode": {
+      "type": "string",
+      "title": "externalCode",
+      "maxLength": 32
+    },
+    "timeslices": {
+      "type": "array",
+      "items": {
+        "$ref": "/rest/foundationobjects/jobstructure/v1/metadata/jobClassificationTimeSlice"
+      }
+    }
+  },
+  "required": [
+    "externalCode"
+  ],
+  "x-sap-odm-oid": "entityOID",
+  "x-sap-odm-entity-name": "JobClassification",
+  "x-sap-root-entity": true,
+  "x-sap-sf-resource": {
+    "id": [
+      "id"
+    ],
+    "altIds": {
+      "oid": "entityOID"
+    }
+  },
+  "x-sap-sf-temporal": {
+    "type": "timeline",
+    "dates": {
+      "from": "validFrom",
+      "to": "validTo",
+      "semantics": "closed-closed"
+    }
+  },
+  "$defs": {
+    "timeslice": {
+      "$id": "/rest/foundationobjects/jobstructure/v1/metadata/jobClassificationTimeSlice",
+      "type": "object",
+      "properties": {
+        "validFrom": {
+          "type": "string",
+          "title": "validFrom",
+          "format": "date"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "name"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "description"
+        },
+        "effectiveStatus": {
+          "type": "string",
+          "title": "effectiveStatus",
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "workerCompCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "workerCompCode",
+          "maxLength": 32
+        },
+        "parentJobClassification": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "parentJobClassification"
+        },
+        "defaultJobLevel": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "defaultJobLevel"
+        },
+        "standardWeeklyHours": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "standardWeeklyHours",
+          "x-sap-sf-hidden": true,
+          "x-sap-precision": 272,
+          "x-sap-scale": 17
+        },
+        "regularTemporary": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "regularTemporary",
+          "x-sap-sf-hidden": true
+        },
+        "defaultEmployeeClass": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "defaultEmployeeClass",
+          "x-sap-sf-hidden": true
+        },
+        "fulltimeEmployee": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "fulltimeEmployee",
+          "x-sap-sf-hidden": true
+        },
+        "defaultSupervisorLevel": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "defaultSupervisorLevel",
+          "x-sap-sf-hidden": true
+        },
+        "payGrade": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "payGrade"
+        },
+        "jobFunction": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "jobFunction"
+        },
+        "autoCreated": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "autoCreated",
+          "x-sap-sf-hidden": true
+        },
+        "validTo": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "validTo",
+          "x-sap-sf-hidden": true,
+          "format": "date"
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "toJobClassificationCountry": {
+          "type": "array",
+          "items": {
+            "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationCountry"
+          }
+        },
+        "texts": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "title": "Localized Texts",
+          "items": {
+            "$ref": "/rest/foundationobjects/jobstructure/v1/metadata/jobClassificationText"
+          }
+        }
+      },
+      "required": [
+        "validFrom"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "parentJobClassification": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/jobstructure/v1/metadata/jobClassification"
+              },
+              "properties": [
+                {
+                  "parentJobClassification": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "defaultJobLevel": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "defaultJobLevel": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "JobLevel",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "regularTemporary": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "regularTemporary": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "RegularTemporary",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "defaultEmployeeClass": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "defaultEmployeeClass": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "EmployeeClass",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "defaultSupervisorLevel": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "defaultSupervisorLevel": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "EmployeeClass",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "payGrade": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/paystructure/v1/metadata/payGrade"
+              },
+              "properties": [
+                {
+                  "payGrade": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "jobFunction": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/jobstructure/v1/metadata/jobFunction"
+              },
+              "properties": [
+                {
+                  "jobFunction": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "toJobClassificationCountry": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationCountry"
+              },
+              "multiplicity": "1..*",
+              "type": "composition"
+            }
+          }
+        }
+      }
+    },
+    "JobClassificationGBR": {
+      "$id": "/rest/extensibility/general/v1/metadata/JobClassificationGBR",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Job Classification United Kingdom",
+      "type": "object",
+      "properties": {
+        "occupationalCode": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "occupationalCode",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "JobClassificationCHL": {
+      "$id": "/rest/extensibility/general/v1/metadata/JobClassificationCHL",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Job Classification Chile",
+      "type": "object",
+      "properties": {
+        "heavyWork": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "heavyWork"
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "heavyWork": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "heavyWork": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "heavyWork_CHI",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          }
+        }
+      }
+    },
+    "JobClassificationITA": {
+      "$id": "/rest/extensibility/general/v1/metadata/JobClassificationITA",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Job Classification Italy ",
+      "type": "object",
+      "properties": {
+        "inailCode": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "inailCode",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "JobClassificationFRA": {
+      "$id": "/rest/extensibility/general/v1/metadata/JobClassificationFRA",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Job Classification France",
+      "type": "object",
+      "properties": {
+        "inseeCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "inseeCode",
+          "maxLength": 32
+        },
+        "employeeCategory": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "employeeCategory",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "JobClassificationAUS": {
+      "$id": "/rest/extensibility/general/v1/metadata/JobClassificationAUS",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Job Classification Australia",
+      "type": "object",
+      "properties": {
+        "ascoCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "ascoCode",
+          "maxLength": 32
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ]
+      }
+    },
+    "JobClassificationZAF": {
+      "$id": "/rest/extensibility/general/v1/metadata/JobClassificationZAF",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Job Classification South Africa",
+      "type": "object",
+      "properties": {
+        "occupationalLevel": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "occupationalLevel"
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "occupationalLevel": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "occupationalLevel": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "occupationalLevel_ZAF",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          }
+        }
+      }
+    },
+    "JobClassificationBOL": {
+      "$id": "/rest/extensibility/general/v1/metadata/JobClassificationBOL",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Job Classification Bolivia",
+      "type": "object",
+      "properties": {
+        "occupationalCategory": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "occupationalCategory"
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "occupationalCategory": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "occupationalCategory": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "OCCUPATION_BOL",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          }
+        }
+      }
+    },
+    "JobClassificationUSA": {
+      "$id": "/rest/extensibility/general/v1/metadata/JobClassificationUSA",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Job Classification USA ",
+      "type": "object",
+      "properties": {
+        "localJobTitle": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "localJobTitle",
+          "maxLength": 32
+        },
+        "eeo1JobCategory": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "eeo1JobCategory"
+        },
+        "eeo4JobCategory": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "eeo4JobCategory",
+          "x-sap-sf-hidden": true
+        },
+        "eeo5JobCategory": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "eeo5JobCategory",
+          "x-sap-sf-hidden": true
+        },
+        "eeo6JobCategory": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "eeo6JobCategory",
+          "x-sap-sf-hidden": true
+        },
+        "eeoJobGroup": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "eeoJobGroup"
+        },
+        "flsaStatusUSA": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "flsaStatusUSA"
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "eeo1JobCategory": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "eeo1JobCategory": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "EEO1JobCategoryUSA",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "eeo4JobCategory": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "eeo4JobCategory": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "EEO4JobCategoryUSA",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "eeo5JobCategory": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "eeo5JobCategory": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "EEO5JobCategoryUSA",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "eeo6JobCategory": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "eeo6JobCategory": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "EEO6JobCategoryUSA",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "eeoJobGroup": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "eeoJobGroup": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "EEOJobGroupUSA",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "flsaStatusUSA": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "flsaStatusUSA": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "FLSAStatusUSA",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          }
+        }
+      }
+    },
+    "JobClassificationBRA": {
+      "$id": "/rest/extensibility/general/v1/metadata/JobClassificationBRA",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Job Classification Brazil ",
+      "type": "object",
+      "properties": {
+        "occupationalCode": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "occupationalCode"
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "occupationalCode": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "occupationalCode": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "OccupationalCodeBRA",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          }
+        }
+      }
+    },
+    "JobClassificationCAN": {
+      "$id": "/rest/extensibility/general/v1/metadata/JobClassificationCAN",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Job Classification Canada ",
+      "type": "object",
+      "properties": {
+        "occupationalClassification": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "occupationalClassification",
+          "maxLength": 255
+        },
+        "externalCode": {
+          "type": "integer",
+          "title": "externalCode",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "classificationGroupCA": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "classificationGroupCA"
+        }
+      },
+      "required": [
+        "externalCode"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "classificationGroupCA": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "classificationGroupCA": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "ClassificationGroup_CAN",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          }
+        }
+      }
+    },
+    "JobClassificationCountry": {
+      "$id": "/rest/extensibility/general/v1/metadata/JobClassificationCountry",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Job Classification Country/Region",
+      "type": "object",
+      "properties": {
+        "country": {
+          "type": "integer",
+          "title": "country"
+        },
+        "effectiveStatus": {
+          "type": "string",
+          "title": "effectiveStatus",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "toJobClassificationUSA": {
+          "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationUSA"
+        },
+        "toJobClassificationFRA": {
+          "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationFRA"
+        },
+        "toJobClassificationGBR": {
+          "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationGBR"
+        },
+        "toJobClassificationAUS": {
+          "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationAUS"
+        },
+        "toJobClassificationBRA": {
+          "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationBRA"
+        },
+        "toJobClassificationCAN": {
+          "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationCAN"
+        },
+        "toJobClassificationITA": {
+          "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationITA"
+        },
+        "toJobClassificationZAF": {
+          "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationZAF"
+        },
+        "toJobClassificationBOL": {
+          "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationBOL"
+        },
+        "toJobClassificationCHL": {
+          "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationCHL"
+        }
+      },
+      "required": [
+        "country"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "country": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/v1/metadata/country"
+              },
+              "properties": [
+                {
+                  "country": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "toJobClassificationUSA": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationUSA"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toJobClassificationFRA": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationFRA"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toJobClassificationGBR": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationGBR"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toJobClassificationAUS": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationAUS"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toJobClassificationBRA": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationBRA"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toJobClassificationCAN": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationCAN"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toJobClassificationITA": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationITA"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toJobClassificationZAF": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationZAF"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toJobClassificationBOL": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationBOL"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          },
+          "toJobClassificationCHL": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/JobClassificationCHL"
+              },
+              "multiplicity": "1..1",
+              "type": "composition"
+            }
+          }
+        }
+      }
+    },
+    "JobClassificationText": {
+      "$id": "/rest/foundationobjects/jobstructure/v1/metadata/jobClassificationText",
+      "title": "Localized value for translatable data type field",
+      "type": "object",
+      "properties": {
+        "locale": {
+          "title": "locale",
+          "description": "The locale specified as an ISO 63901 or BCP-47 language code.",
+          "type": "string",
+          "maxLength": 128
+        },
+        "name": {
+          "title": "name",
+          "type": "string",
+          "maxLength": 90
+        },
+        "description": {
+          "title": "description",
+          "type": "string",
+          "maxLength": 4000
+        },
+        "default": {
+          "title": "default",
+          "description": "Whether or not the locale is the default locale based on the request context (i.e. user or system)",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "x-sap-sf-resource": {
+        "id": [
+          "/properties/timeslices/items/recordId",
+          "locale"
+        ]
+      },
+      "required": [
+        "locale"
+      ]
+    }
+  }
+}

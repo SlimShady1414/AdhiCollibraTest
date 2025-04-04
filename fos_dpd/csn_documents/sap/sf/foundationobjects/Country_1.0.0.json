@@ -1,0 +1,234 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/foundationobjects/v1/metadata/country",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "country",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.foundationobjects",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "country" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Country/Region",
+      "@ODM.entityName" : "CountryCode",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:country",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "country",
+        "propertyTypes" : [ "sap.sf.foundationobjects:countryId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:countryId"
+        },
+        "code" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "code",
+          "length" : 128
+        },
+        "timeslices" : {
+          "type" : "cds.Composition",
+          "target" : "country_countryTimeSlice",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "timeslices", "country_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "country_countryTimeSlice" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:country_countryTimeSlice",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "country_countryTimeSlice",
+        "propertyTypes" : [ "sap.sf.foundationobjects:country_countryTimeSliceRecordId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "validFrom",
+        "temporalIntervalEndProperty" : "validTo"
+      } ],
+      "elements" : {
+        "country_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_country"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:country_countryTimeSliceId"
+        },
+        "_country" : {
+          "type" : "cds.Association",
+          "target" : "country",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_country", "id" ]
+          }, "=", {
+            "ref" : [ "country_id_virtual" ]
+          } ]
+        },
+        "externalName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalName"
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "status"
+        },
+        "validFrom" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validFrom"
+        },
+        "validTo" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validTo"
+        },
+        "twoCharCountryCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "twoCharCountryCode",
+          "length" : 255
+        },
+        "numericCountryCode" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "numericCountryCode",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "currency" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:currency",
+            "referencedPropertyType" : "sap.sf.foundationobjects:currencyId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "currency",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "territoryId" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "territoryId",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807
+        },
+        "isSetByMigrate" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "isSetByMigrate"
+        },
+        "isDRMEnabled" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "isDRMEnabled"
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:country_countryTimeSliceRecordId"
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "country_countryText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "country_countryTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        }
+      }
+    },
+    "country_countryText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Localized value for translatable data type field",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:country_countryText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "country_countryText",
+        "propertyTypes" : [ "sap.sf.foundationobjects:country_countryTextRecordId", "sap.sf.foundationobjects:country_countryTextLocale" ]
+      } ],
+      "elements" : {
+        "country_countryTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_country_countryTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:country_countryTextRecordId"
+        },
+        "_country_countryTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "country_countryTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_country_countryTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "country_countryTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "locale",
+          "length" : 128,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:country_countryTextLocale"
+        },
+        "externalName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalName",
+          "length" : 255
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "default"
+        }
+      }
+    }
+  }
+}

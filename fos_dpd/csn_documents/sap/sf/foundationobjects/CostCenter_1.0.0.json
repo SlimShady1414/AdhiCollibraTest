@@ -1,0 +1,321 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/foundationobjects/enterprisestructure/v1/metadata/costCenter",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "costCenter",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.foundationobjects",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "costCenter" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Cost Center",
+      "@ODM.entityName" : "CostCenter",
+      "@ODM.oid" : "entityOID",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:costCenter",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "costCenter",
+        "propertyTypes" : [ "sap.sf.foundationobjects:costCenterId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:costCenterId"
+        },
+        "entityOID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityOID",
+          "length" : 128
+        },
+        "externalCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalCode",
+          "length" : 50
+        },
+        "timeslices" : {
+          "type" : "cds.Composition",
+          "target" : "costCenter_costCenterTimeSlice",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "timeslices", "costCenter_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "costCenter_costCenterTimeSlice" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:costCenter_costCenterTimeSlice",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "costCenter_costCenterTimeSlice",
+        "propertyTypes" : [ "sap.sf.foundationobjects:costCenter_costCenterTimeSliceRecordId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "validFrom",
+        "temporalIntervalEndProperty" : "validTo"
+      } ],
+      "elements" : {
+        "costCenter_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_costCenter"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:costCenter_costCenterTimeSliceId"
+        },
+        "_costCenter" : {
+          "type" : "cds.Association",
+          "target" : "costCenter",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_costCenter", "id" ]
+          }, "=", {
+            "ref" : [ "costCenter_id_virtual" ]
+          } ]
+        },
+        "validFrom" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validFrom"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "name"
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "description"
+        },
+        "effectiveStatus" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "effectiveStatus"
+        },
+        "glStatementCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "glStatementCode",
+          "length" : 32
+        },
+        "parentCostCenter" : {
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_costCenter_parentCostCenter"
+          },
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "parentCostCenter",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "_costCenter_parentCostCenter" : {
+          "type" : "cds.Association",
+          "target" : "costCenter",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_costCenter_parentCostCenter", "id" ]
+          }, "=", {
+            "ref" : [ "parentCostCenter" ]
+          } ]
+        },
+        "costCenterManager" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "costCenterManager"
+        },
+        "costCenterExternalObjectId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "costCenterExternalObjectId",
+          "length" : 40
+        },
+        "autoCreated" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "autoCreated"
+        },
+        "validTo" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validTo"
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:costCenter_costCenterTimeSliceRecordId"
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        },
+        "cust_company" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:legalEntity",
+            "referencedPropertyType" : "sap.sf.foundationobjects:legalEntityId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "cust_company",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "legalEntity" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:legalEntity",
+            "referencedPropertyType" : "sap.sf.foundationobjects:legalEntityId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "legalEntity",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "cust_toLegalEntity" : {
+          "type" : "cds.Composition",
+          "target" : "costCenter_legalEntity",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "cust_toLegalEntity", "costCenter_costCenterTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "costCenter_costCenterText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "costCenter_costCenterTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        }
+      }
+    },
+    "costCenter_legalEntity" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "elements" : {
+        "costCenter_costCenterTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_costCenter_costCenterTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:costCenter_legalEntityRecordId"
+        },
+        "_costCenter_costCenterTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "costCenter_costCenterTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_costCenter_costCenterTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "costCenter_costCenterTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.String",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:legalEntity",
+            "referencedPropertyType" : "sap.sf.foundationobjects:legalEntityId"
+          } ]
+        }
+      }
+    },
+    "costCenter_costCenterText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Localized value for translatable data type field",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:costCenter_costCenterText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "costCenter_costCenterText",
+        "propertyTypes" : [ "sap.sf.foundationobjects:costCenter_costCenterTextRecordId", "sap.sf.foundationobjects:costCenter_costCenterTextLocale" ]
+      } ],
+      "elements" : {
+        "costCenter_costCenterTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_costCenter_costCenterTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:costCenter_costCenterTextRecordId"
+        },
+        "_costCenter_costCenterTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "costCenter_costCenterTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_costCenter_costCenterTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "costCenter_costCenterTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "locale",
+          "length" : 128,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:costCenter_costCenterTextLocale"
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "name",
+          "length" : 200
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "description",
+          "length" : 40
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "default"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,285 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/ecosystem/wholeself/v1/metadata/proficiencySet",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "proficiencySet",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.capabilities",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "proficiencySet" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "TIH ProficiencySet",
+      "@ODM.entityName" : "WorkforceCapabilityProficiencyScale",
+      "@ODM.oid" : "uuid",
+      "@EntityRelationship.entityType" : "sap.sf.capabilities:proficiencySet",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "proficiencySet",
+        "propertyTypes" : [ "sap.sf.capabilities:proficiencySetProficiencySetId" ]
+      } ],
+      "elements" : {
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 100
+        },
+        "lastModifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 100
+        },
+        "proficiencySetId" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:proficiencySetProficiencySetId"
+        },
+        "proficiencySetName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 4000
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 50
+        },
+        "proficiencySetTexts" : {
+          "type" : "cds.Composition",
+          "target" : "proficiencySet_proficiencySetText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "proficiencySetTexts", "proficiencySet_proficiencySetId_virtual" ]
+          }, "=", {
+            "ref" : [ "proficiencySetId" ]
+          } ]
+        },
+        "proficiencyLevels" : {
+          "type" : "cds.Composition",
+          "target" : "proficiencySet_proficiencyLevel",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "proficiencyLevels", "proficiencySet_proficiencySetId_virtual" ]
+          }, "=", {
+            "ref" : [ "proficiencySetId" ]
+          } ]
+        }
+      }
+    },
+    "proficiencySet_proficiencySetText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "ProficiencySetText",
+      "@EntityRelationship.entityType" : "sap.sf.capabilities:proficiencySet_proficiencySetText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "proficiencySet_proficiencySetText",
+        "propertyTypes" : [ "sap.sf.capabilities:proficiencySet_proficiencySetTextProficiencySetTextId" ]
+      } ],
+      "elements" : {
+        "proficiencySet_proficiencySetId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_proficiencySet"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:proficiencySet_proficiencySetTextProficiencySetId"
+        },
+        "_proficiencySet" : {
+          "type" : "cds.Association",
+          "target" : "proficiencySet",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_proficiencySet", "proficiencySetId" ]
+          }, "=", {
+            "ref" : [ "proficiencySet_proficiencySetId_virtual" ]
+          } ]
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        },
+        "name" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 4000
+        },
+        "proficiencySetTextId" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:proficiencySet_proficiencySetTextProficiencySetTextId"
+        }
+      }
+    },
+    "proficiencySet_proficiencyLevel" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "ProficiencyLevel",
+      "@EntityRelationship.entityType" : "sap.sf.capabilities:proficiencySet_proficiencyLevel",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "proficiencySet_proficiencyLevel",
+        "propertyTypes" : [ "sap.sf.capabilities:proficiencySet_proficiencyLevelProficiencyLevelId" ]
+      } ],
+      "elements" : {
+        "proficiencySet_proficiencySetId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_proficiencySet"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:proficiencySet_proficiencyLevelProficiencySetId"
+        },
+        "_proficiencySet" : {
+          "type" : "cds.Association",
+          "target" : "proficiencySet",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_proficiencySet", "proficiencySetId" ]
+          }, "=", {
+            "ref" : [ "proficiencySet_proficiencySetId_virtual" ]
+          } ]
+        },
+        "proficiencyLevelId" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:proficiencySet_proficiencyLevelProficiencyLevelId"
+        },
+        "levelValue" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "levelLabel" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 4000
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 50
+        },
+        "proficiencyLevelTexts" : {
+          "type" : "cds.Composition",
+          "target" : "proficiencySet_proficiencyLevelText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "proficiencyLevelTexts", "proficiencySet_proficiencyLevel_proficiencyLevelId_virtual" ]
+          }, "=", {
+            "ref" : [ "proficiencyLevelId" ]
+          } ]
+        }
+      }
+    },
+    "proficiencySet_proficiencyLevelText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "ProficiencyLevelText",
+      "@EntityRelationship.entityType" : "sap.sf.capabilities:proficiencySet_proficiencyLevelText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "proficiencySet_proficiencyLevelText",
+        "propertyTypes" : [ "sap.sf.capabilities:proficiencySet_proficiencyLevelTextProficiencyLevelTextId" ]
+      } ],
+      "elements" : {
+        "proficiencySet_proficiencyLevel_proficiencyLevelId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_proficiencySet_proficiencyLevel"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:proficiencySet_proficiencyLevelTextProficiencyLevelId"
+        },
+        "_proficiencySet_proficiencyLevel" : {
+          "type" : "cds.Association",
+          "target" : "proficiencySet_proficiencyLevel",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_proficiencySet_proficiencyLevel", "proficiencyLevelId" ]
+          }, "=", {
+            "ref" : [ "proficiencySet_proficiencyLevel_proficiencyLevelId_virtual" ]
+          } ]
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        },
+        "levelLabel" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 4000
+        },
+        "proficiencyLevelTextId" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:proficiencySet_proficiencyLevelTextProficiencyLevelTextId"
+        }
+      }
+    }
+  }
+}

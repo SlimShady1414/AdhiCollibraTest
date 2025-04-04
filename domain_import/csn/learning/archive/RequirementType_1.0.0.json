@@ -1,0 +1,117 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/learning/asset/v1/metadata/requirementType",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "requirementType",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.learning",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "requirementType" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Requirement Type",
+      "@EntityRelationship.entityType" : "sap.sf.learning:requirementType",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "requirementType",
+        "propertyTypes" : [ "sap.sf.learning:requirementTypeId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "ID of the requirement type",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:requirementTypeId"
+        },
+        "required" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Required"
+        },
+        "priority" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "Priority",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Description"
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "requirementType_requirementTypeText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "requirementType_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "lastUpdatedUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Updated User"
+        },
+        "lastUpdatedTimestamp" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Updated Timestamp"
+        }
+      }
+    },
+    "requirementType_requirementTypeText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Requirement Type Localized Texts",
+      "@EntityRelationship.entityType" : "sap.sf.learning:requirementType_requirementTypeText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "requirementType_requirementTypeText",
+        "propertyTypes" : [ "sap.sf.learning:requirementType_requirementTypeTextId", "sap.sf.learning:requirementType_requirementTypeTextLocale" ]
+      } ],
+      "elements" : {
+        "requirementType_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_requirementType"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:requirementType_requirementTypeTextId"
+        },
+        "_requirementType" : {
+          "type" : "cds.Association",
+          "target" : "requirementType",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_requirementType", "id" ]
+          }, "=", {
+            "ref" : [ "requirementType_id_virtual" ]
+          } ]
+        },
+        "description" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Requirement Type Description"
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "The Locale Property",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:requirementType_requirementTypeTextLocale"
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Default"
+        }
+      }
+    }
+  }
+}

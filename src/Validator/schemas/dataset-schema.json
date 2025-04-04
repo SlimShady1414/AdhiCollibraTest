@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Dataset",
+  "$ref": "#/definitions/Dataset",
+  "definitions": {
+    "Dataset": {
+      "type": "object",
+      "title": "Dataset",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Defines name of dataset",
+          "minLength": 1,
+          "maxLength": 125
+        },
+        "namespace": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:[.][a-z0-9]+)*$",
+          "minLength": 1,
+          "maxLength": 117,
+          "description": "Defines namespace of dataset",
+          "examples": [
+            "sap.s4.afc"
+          ]
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of this dataset\nVersion number of dataset is not off importance at current version, please set it to 1.0.0 for now.\nWe will revise and update.",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "examples": [
+            "1.0.0"
+          ]
+        },
+        "datasets": {
+          "type": "array",
+          "description": "Defines dependent datasets of dataset",
+          "items": {
+            "type": "string",
+            "pattern": "^([a-z0-9]+(?:[.][a-z0-9]+)*):(dataset):([a-zA-Z0-9._\\-]+):(v[0-9]+\\.[0-9]+\\.[0-9])$"
+          },
+          "minItems": 1,
+          "examples": [
+            [
+              "sap.s4.afc:dataset:CostCenter:v1.0.0"
+            ]
+          ]
+        },
+        "dataSources": {
+          "type": "array",
+          "description": "Defines data sources of dataset",
+          "items": {
+            "type": "string",
+            "pattern": "^([a-z0-9]+(?:[.][a-z0-9]+)*):(dataSource):([a-zA-Z0-9._\\-]+):(v[0-9]+\\.[0-9]+\\.[0-9])$",
+            "x-stability": {
+                "add": "minor",
+                "remove": "major",
+                "change": "major"
+            }
+          },
+          "minItems": 1,
+          "examples": [
+            [
+              "sap.s4.afc:dataSource:CostCenter:v1.0.0"
+            ]
+          ]
+        },
+        "transformers": {
+          "type": "array",
+          "description": "Defines transformers applied to this dataset",
+          "items": {
+            "type": "string",
+            "pattern": "^([a-z0-9]+(?:[.][a-z0-9]+)*):(transformer):([a-zA-Z0-9._\\-]+):(v[0-9]+\\.[0-9]+\\.[0-9])$"
+          },
+          "minItems": 1,
+          "examples": [
+            [
+              "sap.s4.afc:transformer:S4PluginsTransformer:v1.0.0"
+            ]
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "namespace",
+        "version",
+        "dataSources"
+      ]
+    }
+  }
+}

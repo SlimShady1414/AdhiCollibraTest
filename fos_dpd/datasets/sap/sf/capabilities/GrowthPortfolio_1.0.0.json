@@ -1,0 +1,8 @@
+{
+   "name": "GrowthPortfolio",
+   "namespace": "sap.sf.capabilities",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.capabilities:dataSource:Growthportfolioattribute:v1.0.0"
+   ]
+}

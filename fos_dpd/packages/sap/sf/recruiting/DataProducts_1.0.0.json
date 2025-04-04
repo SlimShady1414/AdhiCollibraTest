@@ -1,0 +1,12 @@
+{
+   "name": "DataProducts",
+   "namespace": "sap.sf.recruiting",
+   "version": "1.0.0",
+   "vendor": "sap:vendor:SAP:",
+   "partOfProducts": [
+      "sap:product:SAPSuccessFactors:"
+   ],
+   "title": "Recruiting Data Products",
+   "shortDescription": "Package for Recruiting data products.",
+   "description": "Package that contains Recruiting data products."
+}

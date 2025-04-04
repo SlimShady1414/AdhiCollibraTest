@@ -1,0 +1,20 @@
+{
+   "name": "Picklist",
+   "title": "Picklist",
+   "description": "All referenced picklists, its needed in derived data product's transformation pipeline and data modelling for out- of- the-box content and Insight app.",
+   "shortDescription": "All refer picklist, its needed in derived data product transform pipeline and data modelling for out- of- the-box content and Insight app",
+   "partOfPackage": "sap.sf.extensibility:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-MDF",
+   "category": "other",
+   "entityTypes": [
+      "sap.sf.extensibility:entityType:pickList:v1"
+   ],
+   "datasets": [
+      "sap.sf.extensibility:dataset:Picklist:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.extensibility:share:Picklist:v1.0.0"
+   ]
+}

@@ -1,0 +1,125 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/learning/history/v1/metadata/learningCompletion",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "learningCompletion",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.learning",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "learningCompletion" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Learning Item Completion",
+      "@EntityRelationship.entityType" : "sap.sf.learning:learningCompletion",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "learningCompletion",
+        "propertyTypes" : [ "sap.sf.learning:learningCompletionLearningCompletionEventSysGUID" ]
+      } ],
+      "elements" : {
+        "userID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "User ID"
+        },
+        "componentID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Component ID"
+        },
+        "componentTypeID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Component Type ID"
+        },
+        "revisionDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Revision Date"
+        },
+        "completionStatusID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Completion Status ID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.learning:completionStatus",
+            "referencedPropertyType" : "sap.sf.learning:completionStatusId"
+          } ]
+        },
+        "hasCredit" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Has Credit"
+        },
+        "completionDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Completion Date"
+        },
+        "learningCompletionEventSysGUID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Learning Completion Event identifier",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:learningCompletionLearningCompletionEventSysGUID"
+        },
+        "learningItemType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Learning Item Type"
+        },
+        "learningItemID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Learning Item Identifier"
+        },
+        "courseId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Course Identifier",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.learning:course",
+            "referencedPropertyType" : "sap.sf.learning:courseLearningItemID"
+          } ]
+        },
+        "programId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Program Identifier",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.learning:program",
+            "referencedPropertyType" : "sap.sf.learning:programId"
+          } ]
+        },
+        "lastUpdatedTimestamp" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Updated Timestamp"
+        },
+        "componentKey" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Component Key",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "totalHours" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Total Hours"
+        },
+        "creditHours" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Credit Hours"
+        },
+        "cpeHours" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "CPE Hours"
+        },
+        "contactHours" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Contact Hours"
+        },
+        "personId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workforcePersonProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workforcePersonProfileId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Person Identifier"
+        }
+      }
+    }
+  }
+}

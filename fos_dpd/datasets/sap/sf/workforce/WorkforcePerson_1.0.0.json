@@ -1,0 +1,9 @@
+{
+   "name": "WorkforcePerson",
+   "namespace": "sap.sf.workforce",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.workforce:dataSource:Assignment:v1.0.0",
+      "sap.sf.workforce:dataSource:Person:v1.0.0"
+   ]
+}

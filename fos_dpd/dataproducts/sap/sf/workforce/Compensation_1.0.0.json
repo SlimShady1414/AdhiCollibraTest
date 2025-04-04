@@ -1,0 +1,23 @@
+{
+   "name": "Compensation",
+   "title": "Compensation",
+   "description": "Data Product that contains Compensation information of assignment includes compensation details and one-time payments.",
+   "shortDescription": "Data Product for Compensation info of assignment includes compensation details and one-time payments.",
+   "partOfPackage": "sap.sf.workforce:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-EC",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.odm:entityType:WorkforceCompensation:v1",
+      "sap.odm:entityType:WorkforceOneTimePayment:v1",
+      "sap.sf.workforce:entityType:compensationInfo:v1",
+      "sap.sf.workforce:entityType:oneTimePayment:v1"
+   ],
+   "datasets": [
+      "sap.sf.workforce:dataset:Compensation:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.workforce:share:Compensation:v1.0.0"
+   ]
+}

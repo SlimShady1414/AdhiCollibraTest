@@ -1,0 +1,12 @@
+{
+   "name": "DataProducts",
+   "namespace": "sap.sf.learning",
+   "version": "1.0.0",
+   "vendor": "sap:vendor:SAP:",
+   "partOfProducts": [
+      "sap:product:SAPSuccessFactors:"
+   ],
+   "title": "Learning data products",
+   "shortDescription": "Package for Learning data products.",
+   "description": "Package containing Learning data products."
+}

@@ -1,0 +1,30 @@
+{
+    "name": "PersonInfo",
+    "title": "Person Info",
+    "description": "PersonInfo description",
+    "shortDescription": "PersonInfo short description",
+    "partOfPackage": "sap.sf.analytics",
+    "version": "1.0.0",
+    "type": "derived",
+    "responsible": "new",
+    "category": "business-object",
+    "inputPorts": [
+        {
+            "dataProduct": "sap.sf.workforce:dataProduct:Person:v1",
+            "shares": [
+                "sap.sf.workforce:share:person:v1"
+            ]
+        }
+    ],
+    "transformers": [
+        {
+            "transformerName": "sap.sf.analytics:transformer:personInfo:v1",
+            "outboundMedallionLayer": "gold"
+        }
+    ],
+    "shares": [
+        {
+            "share": "sap.sf.analytics:share:PersonInfo:v1.0.0"
+        }
+    ]
+}

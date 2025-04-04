@@ -1,0 +1,14 @@
+{
+   "name": "CommonConfigurationData",
+   "namespace": "sap.sf.foundationobjects",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.foundationobjects:dataSource:Country:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Currency:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Currencyexchangerate:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Eventreason:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Frequency:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Geozone:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Timezone:v1.0.0"
+   ]
+}

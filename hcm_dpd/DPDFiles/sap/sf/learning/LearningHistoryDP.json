@@ -1,0 +1,30 @@
+{
+  "name": "LearningHistory",
+  "version": "1.0.0",
+  "category": "businessObject",
+  "type": "primary",
+  "title": "LearningHistory",
+  "status": "In Testing",
+  "namespace": "sap.sf.learning",
+  "responsible": "sap:ach:LOD-SF-LMS",
+  "partOfPackage": "sap.sf.learning:package:DataProducts:v1.0.0",
+  "shortDescription": "Learning History includes the information of all completions including courses and programs",
+  "description": "Learning History includes information of all completions including courses, programs[User Data]",
+  "entityTypes": [
+    "sap.sf.learning:entityType:learningCompletion:v1"
+  ],
+  "entities": [
+    {
+      "name": "learningCompletion",
+      "nodes": [
+        {
+          "name": "learningCompletion",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        }
+      ],
+      "main": false
+    }
+  ]
+}

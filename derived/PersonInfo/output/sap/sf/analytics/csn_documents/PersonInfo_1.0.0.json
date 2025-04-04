@@ -1,0 +1,77 @@
+{
+    "definitions": {
+        "PersonInfo": {
+            "kind": "service",
+            "@name": "PersonInfo",
+            "@title": "Person Info",
+            "@description": "PersonInfo description",
+            "@shortDescription": "PersonInfo short description",
+            "@version": "1.0.0",
+            "@type": "derived",
+            "@partOfPackage": "sap.sf.analytics",
+            "@responsible": "new",
+            "@category": "business-object",
+            "@namespace": "sap.sf.analytics"
+        },
+        "PersonInfo.PersonInfo": {
+            "kind": "entity",
+            "@EndUserText.label": "Biographical Information",
+            "@EntityRelationship.entityType": "sap.sf.workforce:person_biographicalDetail",
+            "@EntityRelationship.entityIds": [
+                {
+                    "name": "person_biographicalDetail",
+                    "propertyTypes": [
+                        "sap.sf.workforce:person_biographicalDetailId"
+                    ]
+                }
+            ],
+            "elements": {
+                "id": {
+                    "@EndUserText.label": "Id",
+                    "@minimum": -2147483648,
+                    "@maximum": 2147483647,
+                    "@EntityRelationship.propertyType": "sap.sf.workforce:person_biographicalDetailId",
+                    "type": "cds.Integer"
+                },
+                "firstName": {
+                    "@EndUserText.label": "First Name",
+                    "type": "cds.String",
+                    "length": 128
+                },
+                "lastName": {
+                    "@EndUserText.label": "Last Name",
+                    "type": "cds.String",
+                    "length": 128
+                },
+                "middleName": {
+                    "@EndUserText.label": "Middle Name",
+                    "type": "cds.String",
+                    "length": 128
+                },
+                "displayName": {
+                    "@EndUserText.label": "Display Name",
+                    "type": "cds.String",
+                    "length": 128
+                },
+                "preferredName": {
+                    "@EndUserText.label": "Preferred Name",
+                    "type": "cds.String",
+                    "length": 128
+                },
+                "startDate": {
+                    "@EndUserText.label": "Event Date",
+                    "type": "cds.Date"
+                },
+                "endDate": {
+                    "@EndUserText.label": "End Date",
+                    "type": "cds.Date"
+                }
+            }
+        }
+    },
+    "meta": {
+        "creator": "CDS Compiler v5.8.2",
+        "flavor": "inferred"
+    },
+    "$version": "2.0"
+}

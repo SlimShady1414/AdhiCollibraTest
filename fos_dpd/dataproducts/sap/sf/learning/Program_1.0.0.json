@@ -1,0 +1,20 @@
+{
+   "name": "Program",
+   "title": "Program",
+   "description": "Includes all information for a Program[Entity].Delivery Date assumes that all dependencies are in place. If this is not the case then Delivery Qtr will be re-determined",
+   "shortDescription": "Includes all information for a Program. Delivery Date assumes that all the dependencies are in place.",
+   "partOfPackage": "sap.sf.learning:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-LMS",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.sf.learning:entityType:program:v1"
+   ],
+   "datasets": [
+      "sap.sf.learning:dataset:Program:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.learning:share:Program:v1.0.0"
+   ]
+}

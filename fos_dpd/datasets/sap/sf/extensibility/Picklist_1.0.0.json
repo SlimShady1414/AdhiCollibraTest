@@ -1,0 +1,8 @@
+{
+   "name": "Picklist",
+   "namespace": "sap.sf.extensibility",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.extensibility:dataSource:Picklist:v1.0.0"
+   ]
+}

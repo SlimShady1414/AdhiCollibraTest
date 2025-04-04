@@ -1,0 +1,200 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/workforce/assignment/compensation/v1/metadata/oneTimePayment",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "oneTimePayment",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.workforce",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "oneTimePayment" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Spot Bonus",
+      "@ODM.entityName" : "WorkforceOneTimePayment",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:oneTimePayment",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "oneTimePayment",
+        "propertyTypes" : [ "sap.sf.workforce:oneTimePaymentId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "Assignment UUID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:oneTimePaymentId"
+        },
+        "oneTimePaymentDetails" : {
+          "type" : "cds.Composition",
+          "target" : "oneTimePayment_oneTimePaymentDetail",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "oneTimePaymentDetails", "oneTimePayment_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        },
+        "assignment" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:assignment",
+            "referencedPropertyType" : "sap.sf.workforce:assignmentId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 32
+        }
+      }
+    },
+    "oneTimePayment_oneTimePaymentDetail" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Spot Bonus",
+      "@EntityRelationship.entityType" : "sap.sf.workforce:oneTimePayment_oneTimePaymentDetail",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "oneTimePayment_oneTimePaymentDetail",
+        "propertyTypes" : [ "sap.sf.workforce:oneTimePayment_oneTimePaymentDetailId" ]
+      } ],
+      "elements" : {
+        "oneTimePayment_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_oneTimePayment"
+          },
+          "type" : "cds.UUID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:oneTimePayment_oneTimePaymentDetailId"
+        },
+        "_oneTimePayment" : {
+          "type" : "cds.Association",
+          "target" : "oneTimePayment",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_oneTimePayment", "id" ]
+          }, "=", {
+            "ref" : [ "oneTimePayment_id_virtual" ]
+          } ]
+        },
+        "id" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Id",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.workforce:oneTimePayment_oneTimePaymentDetailId"
+        },
+        "payDate" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "Issue Date"
+        },
+        "payComponentCode" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:payComponent",
+            "referencedPropertyType" : "sap.sf.foundationobjects:payComponentId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Pay Component",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "currencyCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Currency",
+          "length" : 20
+        },
+        "alternativeCostCenter" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:costCenter",
+            "referencedPropertyType" : "sap.sf.foundationobjects:costCenterId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Alternative Cost Center",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "sequenceNumber" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Sequence Number"
+        },
+        "numberOfUnits" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Number",
+          "scale" : 3
+        },
+        "unitOfMeasure" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:UnitOfMeasure",
+            "referencedPropertyType" : "sap.sf.extensibility:UnitOfMeasureId"
+          } ],
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Unit of Measure",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "userId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "User ID",
+          "length" : 100
+        },
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Created On"
+        },
+        "createdAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Created By",
+          "length" : 100
+        },
+        "modifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Modified On"
+        },
+        "modifiedAssignmentId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.workforce:workProfile",
+            "referencedPropertyType" : "sap.sf.workforce:workProfileLegacyId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Modified By",
+          "length" : 100
+        },
+        "amount" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Amount",
+          "scale" : 3
+        },
+        "percentage" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Percentage",
+          "scale" : 3
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : "cds.UUID",
+          "@EndUserText.label" : "on behalf of assignment UUID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf:modifiedOnBehalfOfAssignment",
+            "referencedPropertyType" : "sap.sf:modifiedOnBehalfOfAssignment"
+          } ]
+        }
+      }
+    }
+  }
+}

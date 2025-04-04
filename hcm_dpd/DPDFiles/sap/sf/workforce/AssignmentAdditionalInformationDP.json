@@ -1,0 +1,43 @@
+{
+  "name": "AssignmentAdditionalInformation",
+  "version": "1.0.0",
+  "category": "businessObject",
+  "type": "primary",
+  "title": "AssignmentAdditionalInformation",
+  "status": "In Testing",
+  "namespace": "sap.sf.workforce",
+  "responsible": "sap:ach:LOD-SF-EC",
+  "partOfPackage": "sap.sf.workforce:package:DataProducts:v1.0.0",
+  "shortDescription": "Additional info of assignment includes details, such as, job relationships.",
+  "description": "Additional information of assignment includes details, such as, job relationships.",
+  "entityTypes": [
+    "sap.odm:entityType:WorkforceJobRelationship:v1",
+    "sap.sf.workforce:entityType:jobRelationship:v1"
+  ],
+  "entities": [
+    {
+      "name": "jobRelationship",
+      "nodes": [
+        {
+          "name": "jobRelationship",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        },
+        {
+          "name": "jobRelationship_jobRelationshipDetailGrid",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "jobRelationship_jobRelationshipDetail",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        }
+      ],
+      "main": false
+    }
+  ]
+}

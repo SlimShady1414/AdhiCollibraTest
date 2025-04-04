@@ -1,0 +1,884 @@
+{
+  "$schema" : "https://json-schema.org/draft/2019-09/schema",
+  "$id" : "/rest/workforce/assignment/compensation/v1/metadata/compensationInfo",
+  "title" : "Compensation Information",
+  "type" : "object",
+  "properties" : {
+    "id" : {
+      "type" : [ "string", "null" ],
+      "format" : "uuid",
+      "title" : "Assignment UUID",
+      "readOnly" : true,
+      "maxLength" : 32
+    },
+    "compDetails" : {
+      "type" : [ "array", "null" ],
+      "items" : {
+        "$ref" : "/rest/workforce/assignment/compensation/v1/metadata/compDetail"
+      }
+    },
+    "assignment" : {
+      "type" : [ "string", "null" ],
+      "maxLength" : 32
+    }
+  },
+  "links" : [ {
+    "rel" : "self",
+    "href" : "/rest/workforce/assignment/compensation/v1/compensationInfos{/id}{?$from,$to}",
+    "templatePointers" : {
+      "id" : "#/properties/id"
+    }
+  }, {
+    "rel" : "snapshot",
+    "href" : "/rest/workforce/assignment/compensation/v1/compensationInfos{/id}{?$at}",
+    "templatePointers" : {
+      "id" : "#/properties/id"
+    }
+  } ],
+  "x-sap-sf-resource" : {
+    "id" : [ "id" ],
+    "properties" : {
+      "id" : {
+        "index" : 1,
+        "hidden" : true
+      },
+      "compDetails" : {
+        "bind" : {
+          "schema" : {
+            "$ref" : "/rest/workforce/assignment/compensation/v1/metadata/compDetail"
+          },
+          "type" : "composition",
+          "multiplicity" : "1..*"
+        }
+      },
+      "assignment" : {
+        "bind" : {
+          "schema" : {
+            "$ref" : "/rest/workforce/v1/metadata/assignment"
+          },
+          "properties" : {
+            "assignment" : "id"
+          },
+          "type" : "association",
+          "multiplicity" : "1..1"
+        }
+      }
+    }
+  },
+  "x-sap-sf-temporal" : {
+    "type" : "timeline",
+    "link" : "#/links/0",
+    "dates" : {
+      "from" : "startDate",
+      "to" : "endDate",
+      "semantics" : "closed-closed"
+    },
+    "snapshot" : {
+      "schema" : "/rest/workforce/assignment/compensation/v1/metadata/compensationInfo",
+      "link" : "#/links/1"
+    },
+    "timelines" : [ "compDetails" ]
+  },
+  "x-sap-sf-version" : "1.0.0",
+  "x-sap-sf-custom-version" : "00000017490000000492",
+  "x-sap-root-entity" : true,
+  "x-sap-odm-entity-name" : "WorkforceCompensation",
+  "$defs" : {
+    "targetPayComponent" : {
+      "$schema" : "https://json-schema.org/draft/2019-09/schema",
+      "$id" : "/rest/workforce/assignment/compensation/v1/metadata/targetPayComponent",
+      "title" : "Pay Targets",
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : [ "integer", "null" ],
+          "format" : "int64",
+          "title" : "Id"
+        },
+        "payComponent" : {
+          "type" : "integer",
+          "format" : "int64",
+          "title" : "Pay Component"
+        },
+        "currencyCode" : {
+          "type" : "string",
+          "title" : "Currency",
+          "maxLength" : 32
+        },
+        "frequency" : {
+          "type" : "integer",
+          "format" : "int64",
+          "title" : "Frequency"
+        },
+        "numberOfUnits" : {
+          "type" : [ "number", "null" ],
+          "format" : "decimal",
+          "title" : "Number",
+          "x-sap-scale" : 3
+        },
+        "unitOfMeasure" : {
+          "type" : [ "integer", "null" ],
+          "format" : "int64",
+          "title" : "Unit of Measure"
+        },
+        "createdAt" : {
+          "type" : [ "string", "null" ],
+          "format" : "date-time",
+          "title" : "Created On",
+          "readOnly" : true
+        },
+        "createdAssignmentId" : {
+          "type" : [ "string", "null" ],
+          "title" : "Created By",
+          "readOnly" : true,
+          "maxLength" : 100
+        },
+        "modifiedAt" : {
+          "type" : [ "string", "null" ],
+          "format" : "date-time",
+          "title" : "Last Modified On",
+          "readOnly" : true
+        },
+        "modifiedAssignmentId" : {
+          "type" : [ "string", "null" ],
+          "title" : "Last Modified By",
+          "readOnly" : true,
+          "maxLength" : 100
+        },
+        "startDate" : {
+          "type" : "string",
+          "format" : "date",
+          "title" : "Event Date"
+        },
+        "endDate" : {
+          "type" : [ "string", "null" ],
+          "format" : "date",
+          "title" : "End Date",
+          "readOnly" : true
+        },
+        "seqNumber" : {
+          "type" : [ "integer", "null" ],
+          "format" : "int64",
+          "title" : "Sequence Number",
+          "readOnly" : true
+        },
+        "amountValue" : {
+          "type" : [ "number", "null" ],
+          "format" : "decimal",
+          "title" : "Amount",
+          "x-sap-scale" : 2,
+          "x-sap-sf-trailing-zeros" : true
+        },
+        "percentageValue" : {
+          "type" : [ "number", "null" ],
+          "format" : "decimal",
+          "title" : "Percentage",
+          "x-sap-scale" : 2,
+          "x-sap-sf-trailing-zeros" : true
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : [ "string", "null" ],
+          "format" : "uuid",
+          "title" : "on behalf of assignment UUID",
+          "readOnly" : true,
+          "maxLength" : 32,
+          "x-sap-sf-reference" : "modifiedOnBehalfOfAssignment"
+        }
+      },
+      "x-sap-sf-resource" : {
+        "id" : [ "id" ],
+        "properties" : {
+          "id" : {
+            "hidden" : true
+          },
+          "createdAt" : {
+            "hidden" : true
+          },
+          "createdAssignmentId" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/workforce/v1/metadata/workProfile"
+              },
+              "properties" : {
+                "createdAssignmentId" : "legacyId"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "hidden" : true
+          },
+          "modifiedAt" : {
+            "hidden" : true
+          },
+          "modifiedAssignmentId" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/workforce/v1/metadata/workProfile"
+              },
+              "properties" : {
+                "modifiedAssignmentId" : "legacyId"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "hidden" : true
+          },
+          "startDate" : {
+            "hidden" : true
+          },
+          "endDate" : {
+            "hidden" : true
+          },
+          "seqNumber" : {
+            "hidden" : true
+          },
+          "modifiedOnBehalfOfAssignmentId" : {
+            "hidden" : true
+          },
+          "payComponent" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/foundationobjects/compensation/v1/metadata/payComponent"
+              },
+              "properties" : {
+                "payComponent" : "id"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "index" : 1
+          },
+          "frequency" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/foundationobjects/v1/metadata/frequency"
+              },
+              "properties" : {
+                "frequency" : "id"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "index" : 2
+          },
+          "percentageValue" : {
+            "index" : 3
+          },
+          "amountValue" : {
+            "index" : 4
+          },
+          "currencyCode" : {
+            "index" : 5
+          },
+          "numberOfUnits" : {
+            "index" : 6
+          },
+          "unitOfMeasure" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/extensibility/general/v1/metadata/UnitOfMeasure"
+              },
+              "properties" : {
+                "unitOfMeasure" : "id"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "index" : 7
+          }
+        }
+      },
+      "x-sap-sf-temporal" : {
+        "type" : "timeslice",
+        "dates" : {
+          "sequence" : "seqNumber"
+        }
+      }
+    },
+    "recurringPayComponent" : {
+      "$schema" : "https://json-schema.org/draft/2019-09/schema",
+      "$id" : "/rest/workforce/assignment/compensation/v1/metadata/recurringPayComponent",
+      "title" : "Recurring Pay Components",
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : [ "integer", "null" ],
+          "format" : "int64",
+          "title" : "Id"
+        },
+        "payComponent" : {
+          "type" : "integer",
+          "format" : "int64",
+          "title" : "Pay Component"
+        },
+        "currencyCode" : {
+          "type" : "string",
+          "title" : "Currency",
+          "maxLength" : 32
+        },
+        "frequency" : {
+          "type" : "integer",
+          "format" : "int64",
+          "title" : "Frequency"
+        },
+        "numberOfUnits" : {
+          "type" : [ "number", "null" ],
+          "format" : "decimal",
+          "title" : "Number",
+          "x-sap-scale" : 3
+        },
+        "unitOfMeasure" : {
+          "type" : [ "integer", "null" ],
+          "format" : "int64",
+          "title" : "Unit of Measure"
+        },
+        "createdAt" : {
+          "type" : [ "string", "null" ],
+          "format" : "date-time",
+          "title" : "Created On",
+          "readOnly" : true
+        },
+        "createdAssignmentId" : {
+          "type" : [ "string", "null" ],
+          "title" : "Created By",
+          "readOnly" : true,
+          "maxLength" : 100
+        },
+        "modifiedAt" : {
+          "type" : [ "string", "null" ],
+          "format" : "date-time",
+          "title" : "Last Modified On",
+          "readOnly" : true
+        },
+        "modifiedAssignmentId" : {
+          "type" : [ "string", "null" ],
+          "title" : "Last Modified By",
+          "readOnly" : true,
+          "maxLength" : 100
+        },
+        "startDate" : {
+          "type" : "string",
+          "format" : "date",
+          "title" : "Event Date"
+        },
+        "endDate" : {
+          "type" : [ "string", "null" ],
+          "format" : "date",
+          "title" : "End Date",
+          "readOnly" : true
+        },
+        "seqNumber" : {
+          "type" : [ "integer", "null" ],
+          "format" : "int64",
+          "title" : "Sequence Number",
+          "readOnly" : true
+        },
+        "amountValue" : {
+          "type" : [ "number", "null" ],
+          "format" : "decimal",
+          "title" : "Amount",
+          "x-sap-scale" : 2,
+          "x-sap-sf-trailing-zeros" : true
+        },
+        "percentageValue" : {
+          "type" : [ "number", "null" ],
+          "format" : "decimal",
+          "title" : "Percentage",
+          "x-sap-scale" : 2,
+          "x-sap-sf-trailing-zeros" : true
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : [ "string", "null" ],
+          "format" : "uuid",
+          "title" : "on behalf of assignment UUID",
+          "readOnly" : true,
+          "maxLength" : 32,
+          "x-sap-sf-reference" : "modifiedOnBehalfOfAssignment"
+        }
+      },
+      "x-sap-sf-resource" : {
+        "id" : [ "id" ],
+        "properties" : {
+          "id" : {
+            "hidden" : true
+          },
+          "createdAt" : {
+            "hidden" : true
+          },
+          "createdAssignmentId" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/workforce/v1/metadata/workProfile"
+              },
+              "properties" : {
+                "createdAssignmentId" : "legacyId"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "hidden" : true
+          },
+          "modifiedAt" : {
+            "hidden" : true
+          },
+          "modifiedAssignmentId" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/workforce/v1/metadata/workProfile"
+              },
+              "properties" : {
+                "modifiedAssignmentId" : "legacyId"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "hidden" : true
+          },
+          "startDate" : {
+            "hidden" : true
+          },
+          "endDate" : {
+            "hidden" : true
+          },
+          "seqNumber" : {
+            "hidden" : true
+          },
+          "modifiedOnBehalfOfAssignmentId" : {
+            "hidden" : true
+          },
+          "payComponent" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/foundationobjects/compensation/v1/metadata/payComponent"
+              },
+              "properties" : {
+                "payComponent" : "id"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "index" : 1
+          },
+          "frequency" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/foundationobjects/v1/metadata/frequency"
+              },
+              "properties" : {
+                "frequency" : "id"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "index" : 2
+          },
+          "percentageValue" : {
+            "index" : 3
+          },
+          "amountValue" : {
+            "index" : 4
+          },
+          "currencyCode" : {
+            "index" : 5
+          },
+          "numberOfUnits" : {
+            "index" : 6
+          },
+          "unitOfMeasure" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/extensibility/general/v1/metadata/UnitOfMeasure"
+              },
+              "properties" : {
+                "unitOfMeasure" : "id"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "index" : 7
+          }
+        }
+      },
+      "x-sap-sf-temporal" : {
+        "type" : "timeslice",
+        "dates" : {
+          "sequence" : "seqNumber"
+        }
+      }
+    },
+    "compDetailDefault" : {
+      "$schema" : "https://json-schema.org/draft/2019-09/schema",
+      "$id" : "/rest/workforce/assignment/compensation/v1/metadata/compDetailDefault",
+      "title" : "Compensation Information",
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : [ "integer", "null" ],
+          "format" : "int64",
+          "title" : "Id"
+        },
+        "countryCode" : {
+          "type" : [ "string", "null" ],
+          "title" : "Country Code",
+          "readOnly" : true,
+          "maxLength" : 3
+        },
+        "compensationStructure" : {
+          "type" : [ "integer", "null" ],
+          "format" : "int64",
+          "title" : "Compensation Structure"
+        },
+        "prorationFactor" : {
+          "type" : [ "number", "null" ],
+          "format" : "decimal",
+          "title" : "Proration Factor",
+          "x-sap-scale" : 3
+        },
+        "payType" : {
+          "type" : [ "integer", "null" ],
+          "format" : "int64",
+          "title" : "Pay Type"
+        },
+        "notes" : {
+          "type" : [ "string", "null" ],
+          "title" : "Notes",
+          "maxLength" : 4000
+        },
+        "seqNumber" : {
+          "type" : [ "integer", "null" ],
+          "format" : "int64",
+          "title" : "Sequence Number"
+        },
+        "payGroup" : {
+          "type" : [ "integer", "null" ],
+          "format" : "int64",
+          "title" : "Pay Group"
+        },
+        "isEligibleForBenefits" : {
+          "type" : [ "boolean", "null" ],
+          "title" : "Is Eligible For Benefit"
+        },
+        "isEligibleForCar" : {
+          "type" : [ "boolean", "null" ],
+          "title" : "Is Eligible For Car"
+        },
+        "benefitsRate" : {
+          "type" : [ "number", "null" ],
+          "format" : "decimal",
+          "title" : "Benefits Rate",
+          "x-sap-scale" : 2
+        },
+        "compaRatio" : {
+          "type" : [ "number", "null" ],
+          "format" : "decimal",
+          "title" : "Compa Ratio",
+          "readOnly" : true,
+          "x-sap-scale" : 2
+        },
+        "rangePenetration" : {
+          "type" : [ "number", "null" ],
+          "format" : "decimal",
+          "title" : "Range Penetration",
+          "readOnly" : true,
+          "x-sap-scale" : 2
+        },
+        "isHighlyCompensatedEmployee" : {
+          "type" : [ "boolean", "null" ],
+          "title" : "Is Highly Compensated Employee"
+        },
+        "isInsider" : {
+          "type" : [ "boolean", "null" ],
+          "title" : "Insider As Defined By Statute"
+        },
+        "pensionableSalary" : {
+          "type" : [ "number", "null" ],
+          "format" : "decimal",
+          "title" : "Pensionable Salary",
+          "x-sap-scale" : 3
+        },
+        "userId" : {
+          "type" : [ "string", "null" ],
+          "title" : "User ID",
+          "maxLength" : 100
+        },
+        "createdAt" : {
+          "type" : [ "string", "null" ],
+          "format" : "date-time",
+          "title" : "Created On",
+          "readOnly" : true
+        },
+        "createdAssignmentId" : {
+          "type" : [ "string", "null" ],
+          "title" : "Created By",
+          "readOnly" : true,
+          "maxLength" : 100
+        },
+        "modifiedAt" : {
+          "type" : [ "string", "null" ],
+          "format" : "date-time",
+          "title" : "Last Modified On",
+          "readOnly" : true
+        },
+        "modifiedAssignmentId" : {
+          "type" : [ "string", "null" ],
+          "title" : "Last Modified By",
+          "readOnly" : true,
+          "maxLength" : 100
+        },
+        "startDate" : {
+          "type" : "string",
+          "format" : "date",
+          "title" : "Event Date"
+        },
+        "endDate" : {
+          "type" : [ "string", "null" ],
+          "format" : "date",
+          "title" : "End Date",
+          "readOnly" : true
+        },
+        "event" : {
+          "type" : [ "integer", "null" ],
+          "format" : "int64",
+          "title" : "Event"
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : [ "string", "null" ],
+          "format" : "uuid",
+          "title" : "on behalf of assignment UUID",
+          "readOnly" : true,
+          "maxLength" : 32,
+          "x-sap-sf-reference" : "modifiedOnBehalfOfAssignment"
+        },
+        "wfRequestId" : {
+          "type" : [ "integer", "null" ],
+          "format" : "int64",
+          "readOnly" : true
+        },
+        "recurringPayComponent" : {
+          "type" : [ "array", "null" ],
+          "items" : {
+            "$ref" : "/rest/workforce/assignment/compensation/v1/metadata/recurringPayComponent"
+          }
+        },
+        "targetPayComponent" : {
+          "type" : [ "array", "null" ],
+          "items" : {
+            "$ref" : "/rest/workforce/assignment/compensation/v1/metadata/targetPayComponent"
+          }
+        }
+      },
+      "x-sap-sf-resource" : {
+        "id" : [ "id" ],
+        "properties" : {
+          "id" : {
+            "hidden" : true
+          },
+          "countryCode" : {
+            "hidden" : true
+          },
+          "seqNumber" : {
+            "hidden" : true
+          },
+          "userId" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/workforce/v1/metadata/workProfile"
+              },
+              "properties" : {
+                "userId" : "legacyId"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "index" : 14
+          },
+          "createdAt" : {
+            "hidden" : true
+          },
+          "createdAssignmentId" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/workforce/v1/metadata/workProfile"
+              },
+              "properties" : {
+                "createdAssignmentId" : "legacyId"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "hidden" : true
+          },
+          "modifiedAt" : {
+            "hidden" : true
+          },
+          "modifiedAssignmentId" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/workforce/v1/metadata/workProfile"
+              },
+              "properties" : {
+                "modifiedAssignmentId" : "legacyId"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "hidden" : true
+          },
+          "startDate" : {
+            "hidden" : true
+          },
+          "endDate" : {
+            "hidden" : true
+          },
+          "modifiedOnBehalfOfAssignmentId" : {
+            "hidden" : true
+          },
+          "wfRequestId" : {
+            "hidden" : true
+          },
+          "compensationStructure" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/extensibility/general/v1/metadata/CompensationStructure"
+              },
+              "properties" : {
+                "compensationStructure" : "id"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "index" : 1
+          },
+          "prorationFactor" : {
+            "index" : 2
+          },
+          "payType" : {
+            "valueList" : {
+              "id" : "PayType",
+              "schema" : {
+                "$ref" : "/rest/extensibility/general/v1/metadata/PickList"
+              },
+              "properties" : {
+                "payType" : "id"
+              },
+              "label" : null
+            },
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties" : {
+                "payType" : "optionId"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "index" : 3
+          },
+          "notes" : {
+            "index" : 4
+          },
+          "payGroup" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/extensibility/general/v1/metadata/PayGroup"
+              },
+              "properties" : {
+                "payGroup" : "id"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "index" : 5
+          },
+          "isEligibleForBenefits" : {
+            "index" : 6
+          },
+          "isEligibleForCar" : {
+            "index" : 7
+          },
+          "benefitsRate" : {
+            "index" : 8
+          },
+          "compaRatio" : {
+            "index" : 9
+          },
+          "rangePenetration" : {
+            "index" : 10
+          },
+          "isHighlyCompensatedEmployee" : {
+            "index" : 11
+          },
+          "isInsider" : {
+            "index" : 12
+          },
+          "pensionableSalary" : {
+            "index" : 13
+          },
+          "event" : {
+            "valueList" : {
+              "id" : "event",
+              "schema" : {
+                "$ref" : "/rest/extensibility/general/v1/metadata/PickList"
+              },
+              "properties" : {
+                "event" : "id"
+              },
+              "label" : null
+            },
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties" : {
+                "event" : "optionId"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "index" : 15
+          },
+          "recurringPayComponent" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/workforce/assignment/compensation/v1/metadata/recurringPayComponent"
+              },
+              "type" : "composition",
+              "multiplicity" : "1..*"
+            }
+          },
+          "targetPayComponent" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/workforce/assignment/compensation/v1/metadata/targetPayComponent"
+              },
+              "type" : "composition",
+              "multiplicity" : "1..*"
+            }
+          }
+        }
+      },
+      "x-sap-sf-temporal" : {
+        "type" : "timeslice",
+        "dates" : {
+          "sequence" : "seqNumber"
+        }
+      }
+    },
+    "compDetail" : {
+      "$schema" : "https://json-schema.org/draft/2019-09/schema",
+      "$id" : "/rest/workforce/assignment/compensation/v1/metadata/compDetail",
+      "title" : "Compensation Information",
+      "type" : "object",
+      "oneOf" : [ {
+        "$ref" : "/rest/workforce/assignment/compensation/v1/metadata/compDetailDefault"
+      } ],
+      "discriminator" : {
+        "propertyName" : "countryCode",
+        "mapping" : {
+          "*" : "/rest/workforce/assignment/compensation/v1/metadata/compDetailDefault"
+        }
+      }
+    }
+  }
+}

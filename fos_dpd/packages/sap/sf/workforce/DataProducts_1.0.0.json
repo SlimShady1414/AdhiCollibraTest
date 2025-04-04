@@ -1,0 +1,12 @@
+{
+   "name": "DataProducts",
+   "namespace": "sap.sf.workforce",
+   "version": "1.0.0",
+   "vendor": "sap:vendor:SAP:",
+   "partOfProducts": [
+      "sap:product:SAPSuccessFactors:"
+   ],
+   "title": "Workforce data products",
+   "shortDescription": "Package for Workforce data products.",
+   "description": "Package that contains Workforce data products."
+}

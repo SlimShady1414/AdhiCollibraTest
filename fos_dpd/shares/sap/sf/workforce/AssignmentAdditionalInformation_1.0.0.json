@@ -1,0 +1,34 @@
+{
+   "name": "AssignmentAdditionalInformation",
+   "namespace": "sap.sf.workforce",
+   "title": "AssignmentAdditionalInformation",
+   "shortDescription": "Additional info of assignment includes details, such as, job relationships.",
+   "description": "Additional information of assignment includes details, such as, job relationships.",
+   "version": "1.0.0",
+   "extensible": {
+      "supported": "automatic",
+      "description": "Extensions to the model are automatically integrated in the API"
+   },
+   "hdlfsSchemas": [
+      {
+         "name": "AssignmentAdditionalInformation",
+         "shareTables": [
+            {
+               "name": "jobRelationship",
+               "version": "1.0.0",
+               "medallionLayer": "silver"
+            },
+            {
+               "name": "jobRelationship_jobRelationshipDetailGrid",
+               "version": "1.0.0",
+               "medallionLayer": "silver"
+            },
+            {
+               "name": "jobRelationship_jobRelationshipDetail",
+               "version": "1.0.0",
+               "medallionLayer": "silver"
+            }
+         ]
+      }
+   ]
+}

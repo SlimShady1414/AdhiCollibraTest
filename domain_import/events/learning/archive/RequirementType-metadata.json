@@ -1,0 +1,116 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "/rest/learning/asset/v1/metadata/requirementType",
+    "title": "Requirement Type",
+    "description": "Metadata for the Requirement Type for the assigned items",
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "ID of the requirement type",
+        "description": "Unique identifier for the requirement type."
+      },
+      "required": {
+        "type": [
+          "boolean",
+          "null"
+        ],
+        "title": "Required",
+        "description": "Indicates if the requirement is mandatory."
+      },
+      "priority": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "format": "int32",
+        "title": "Priority",
+        "description": "Priority of the requirement."
+      },
+      "description": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Description",
+        "description": "Description for the requirement type."
+      },
+      "texts": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "$ref": "/rest/learning/asset/v1/metadata/requirementTypeText"
+        },
+        "title": "The Collection of Localized Values for the Requirement Type"
+      },
+      "lastUpdatedUser": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Last Updated User",
+        "description": "User who last updated the requirement type."
+      },
+      "lastUpdatedTimestamp": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "date-time",
+        "title": "Last Updated Timestamp",
+        "description": "Timestamp when the Requirement Type was last updated."
+      }
+    },
+    "x-sap-sf-localized": {},
+    "x-sap-sf-resource": {
+      "id": [
+        "id"
+      ]
+    },
+    "x-sap-sf-version": "1.0.0",
+    "$defs": {
+      "requirementTypeText": {
+        "$id": "/rest/learning/asset/v1/metadata/requirementTypeText",
+        "title": "Requirement Type Localized Texts",
+        "description": "Resource containing the list of localized texts for the Requirement Type",
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Requirement Type Description"
+          },
+          "locale": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "The Locale Property",
+            "description": "The property that is used to specify the locale within a localized value resource."
+          },
+          "default": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "Default",
+            "description": "The property to indicate if this is the default locale defined"
+          }
+        },
+        "x-sap-sf-resource": {
+          "id": [
+            "/properties/id",
+            "locale"
+          ]
+        },
+        "x-sap-sf-version": "1.0"
+      }
+    }
+}

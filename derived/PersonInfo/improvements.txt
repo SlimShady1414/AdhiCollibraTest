@@ -1,0 +1,14 @@
+CSN
+
+- CSN should contain only entities which are defined in the service. All other entities comming from imports should be removed.
+- We need to have an annotation which defines a transformer to use. If such annotation is present the query attribute should be removed from CSN
+
+DPD file
+
+- The input ports should only include the share, not the single tables
+- "sap.sf.workforce:afc:share:person_biographicalDetail:v2.0" - the shares must use the packages defined by the annotatio in CDS file
+
+Transformer file
+
+- It should use transformer which is defined by the annotation
+

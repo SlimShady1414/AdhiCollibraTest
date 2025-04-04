@@ -1,0 +1,12 @@
+{
+   "name": "DataProducts",
+   "namespace": "sap.sf.capabilities",
+   "version": "1.0.0",
+   "vendor": "sap:vendor:SAP:",
+   "partOfProducts": [
+      "sap:product:SAPSuccessFactors:"
+   ],
+   "title": "Capabilities data products",
+   "shortDescription": "Package for Capabilities data products.",
+   "description": "Package that contains Capabilities data products."
+}

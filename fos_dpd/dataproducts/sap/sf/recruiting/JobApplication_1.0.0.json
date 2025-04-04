@@ -1,0 +1,20 @@
+{
+   "name": "JobApplication",
+   "title": "JobApplication",
+   "description": "Tracks and manages a candidate's application, monitoring progress, job details, and skills to streamline evaluation and hiring.",
+   "shortDescription": "Data product that helps track and manage a candidate's application, monitoring progress, job details, and skills to streamline evaluation and hiring.",
+   "partOfPackage": "sap.sf.recruiting:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-RCM",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.sf.recruiting:entityType:jobApplication:v1"
+   ],
+   "datasets": [
+      "sap.sf.recruiting:dataset:JobApplication:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.recruiting:share:JobApplication:v1.0.0"
+   ]
+}

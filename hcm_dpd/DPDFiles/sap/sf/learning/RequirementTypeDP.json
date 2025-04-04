@@ -1,0 +1,36 @@
+{
+  "name": "RequirementType",
+  "version": "1.0.0",
+  "category": "businessObject",
+  "type": "primary",
+  "title": "RequirementType",
+  "status": "In Testing",
+  "namespace": "sap.sf.learning",
+  "responsible": "sap:ach:LOD-SF-TIH",
+  "partOfPackage": "sap.sf.learning:package:DataProducts:v1.0.0",
+  "shortDescription": "Reference Data that is required in Learning",
+  "description": "Reference Data required in Learning",
+  "entityTypes": [
+    "sap.sf.learning:entityType:requirementType:v1"
+  ],
+  "entities": [
+    {
+      "name": "requirementType",
+      "nodes": [
+        {
+          "name": "requirementType_requirementTypeText",
+          "extensible": true,
+          "root": false,
+          "plugins": []
+        },
+        {
+          "name": "requirementType",
+          "extensible": true,
+          "root": true,
+          "plugins": []
+        }
+      ],
+      "main": false
+    }
+  ]
+}

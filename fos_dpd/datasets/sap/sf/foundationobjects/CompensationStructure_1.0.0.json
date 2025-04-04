@@ -1,0 +1,9 @@
+{
+   "name": "CompensationStructure",
+   "namespace": "sap.sf.foundationobjects",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.foundationobjects:dataSource:Paycomponent:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Paycomponentgroup:v1.0.0"
+   ]
+}

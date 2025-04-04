@@ -1,0 +1,243 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/foundationobjects/v1/metadata/currencyExchangeRate",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "currencyExchangeRate",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.foundationobjects",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "currencyExchangeRate" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Currency Exchange Rate",
+      "@ODM.entityName" : "ExchangeRate",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:currencyExchangeRate",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "currencyExchangeRate",
+        "propertyTypes" : [ "sap.sf.foundationobjects:currencyExchangeRateId" ]
+      } ],
+      "elements" : {
+        "id" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "id",
+          "@minimum" : -9223372036854775808,
+          "@maximum" : 9223372036854775807,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:currencyExchangeRateId"
+        },
+        "externalCode" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalCode",
+          "length" : 128
+        },
+        "timeslices" : {
+          "type" : "cds.Composition",
+          "target" : "currencyExchangeRate_currencyExchangeRateTimeSlice",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "timeslices", "currencyExchangeRate_id_virtual" ]
+          }, "=", {
+            "ref" : [ "id" ]
+          } ]
+        }
+      }
+    },
+    "currencyExchangeRate_currencyExchangeRateTimeSlice" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:currencyExchangeRate_currencyExchangeRateTimeSlice",
+      "@EntityRelationship.temporalIds" : [ {
+        "name" : "currencyExchangeRate_currencyExchangeRateTimeSlice",
+        "propertyTypes" : [ "sap.sf.foundationobjects:currencyExchangeRate_currencyExchangeRateTimeSliceRecordId" ],
+        "temporalIntervalType" : "CLOSED_CLOSED",
+        "temporalType" : "DATE",
+        "temporalIntervalStartProperty" : "validFrom",
+        "temporalIntervalEndProperty" : "validTo"
+      } ],
+      "elements" : {
+        "currencyExchangeRate_id_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_currencyExchangeRate"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:currencyExchangeRate_currencyExchangeRateTimeSliceId"
+        },
+        "_currencyExchangeRate" : {
+          "type" : "cds.Association",
+          "target" : "currencyExchangeRate",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_currencyExchangeRate", "id" ]
+          }, "=", {
+            "ref" : [ "currencyExchangeRate_id_virtual" ]
+          } ]
+        },
+        "externalName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalName"
+        },
+        "effectiveStatus" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "effectiveStatus"
+        },
+        "validFrom" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validFrom"
+        },
+        "validTo" : {
+          "type" : "cds.Date",
+          "@EndUserText.label" : "validTo"
+        },
+        "currencyExchangeRateType" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.extensibility:PickListValue",
+            "referencedPropertyType" : "sap.sf.extensibility:PickListValueId"
+          }, {
+            "referencedEntityType" : "sap.sf.extensibility:CurrencyExchangeRateTypePickList",
+            "referencedPropertyType" : "sap.sf.extensibility:CurrencyExchangeRateTypePickListListId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "currencyExchangeRateType",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "sourceCurrency" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:currency",
+            "referencedPropertyType" : "sap.sf.foundationobjects:currencyId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "sourceCurrency",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "targetCurrency" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.foundationobjects:currency",
+            "referencedPropertyType" : "sap.sf.foundationobjects:currencyId"
+          } ],
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "targetCurrency",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "exchangeRate" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "exchangeRate",
+          "precision" : 272,
+          "scale" : 17
+        },
+        "lastModifiedDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "lastModifiedDate"
+        },
+        "recordId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "recordId",
+          "length" : 255,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:currencyExchangeRate_currencyExchangeRateTimeSliceRecordId"
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "createdBy"
+        },
+        "createdDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "createdDate"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "lastModifiedBy"
+        },
+        "proxyUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "proxyUser",
+          "length" : 255
+        },
+        "entityOID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "entityOID",
+          "length" : 128
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "currencyExchangeRate_currencyExchangeRateText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "currencyExchangeRate_currencyExchangeRateTimeSlice_recordId_virtual" ]
+          }, "=", {
+            "ref" : [ "recordId" ]
+          } ]
+        }
+      }
+    },
+    "currencyExchangeRate_currencyExchangeRateText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Localized value for translatable data type field",
+      "@EntityRelationship.entityType" : "sap.sf.foundationobjects:currencyExchangeRate_currencyExchangeRateText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "currencyExchangeRate_currencyExchangeRateText",
+        "propertyTypes" : [ "sap.sf.foundationobjects:currencyExchangeRate_currencyExchangeRateTextRecordId", "sap.sf.foundationobjects:currencyExchangeRate_currencyExchangeRateTextLocale" ]
+      } ],
+      "elements" : {
+        "currencyExchangeRate_currencyExchangeRateTimeSlice_recordId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_currencyExchangeRate_currencyExchangeRateTimeSlice"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:currencyExchangeRate_currencyExchangeRateTextRecordId"
+        },
+        "_currencyExchangeRate_currencyExchangeRateTimeSlice" : {
+          "type" : "cds.Association",
+          "target" : "currencyExchangeRate_currencyExchangeRateTimeSlice",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_currencyExchangeRate_currencyExchangeRateTimeSlice", "recordId" ]
+          }, "=", {
+            "ref" : [ "currencyExchangeRate_currencyExchangeRateTimeSlice_recordId_virtual" ]
+          } ]
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "locale",
+          "length" : 128,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.foundationobjects:currencyExchangeRate_currencyExchangeRateTextLocale"
+        },
+        "externalName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "externalName",
+          "length" : 255
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "default"
+        }
+      }
+    }
+  }
+}

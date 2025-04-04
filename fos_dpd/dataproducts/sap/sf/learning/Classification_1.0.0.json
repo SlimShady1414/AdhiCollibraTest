@@ -1,0 +1,20 @@
+{
+   "name": "Classification",
+   "title": "Classification",
+   "description": "Reference Data required in Learning",
+   "shortDescription": "Contains reference data that is required in Learning.",
+   "partOfPackage": "sap.sf.learning:package:DataProducts:v1.0.0",
+   "version": "1.0.0",
+   "type": "primary",
+   "responsible": "sap:ach:LOD-SF-LMS",
+   "category": "business-object",
+   "entityTypes": [
+      "sap.sf.learning:entityType:classification:v1"
+   ],
+   "datasets": [
+      "sap.sf.learning:dataset:Classification:v1.0.0"
+   ],
+   "shares": [
+      "sap.sf.learning:share:Classification:v1.0.0"
+   ]
+}

@@ -1,0 +1,12 @@
+{
+   "name": "DataProducts",
+   "namespace": "sap.sf.extensibility",
+   "version": "1.0.0",
+   "vendor": "sap:vendor:SAP:",
+   "partOfProducts": [
+      "sap:product:SAPSuccessFactors:"
+   ],
+   "title": "Extensibility data products",
+   "shortDescription": "Package for Extensibility data products.",
+   "description": "Package that contains for Extensibility data products like Picklists, custom objects etc.,"
+}

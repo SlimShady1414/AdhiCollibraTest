@@ -1,0 +1,352 @@
+{
+  "$schema" : "https://json-schema.org/draft/2019-09/schema",
+  "$id" : "/rest/workforce/assignment/additionalinfo/v1/metadata/jobRelationship",
+  "title" : "Job Relationships",
+  "type" : "object",
+  "properties" : {
+    "id" : {
+      "type" : [ "string", "null" ],
+      "format" : "uuid",
+      "title" : "Assignment UUID",
+      "readOnly" : true,
+      "maxLength" : 32
+    },
+    "jobRelationshipDetails" : {
+      "type" : [ "array", "null" ],
+      "items" : {
+        "$ref" : "/rest/workforce/assignment/additionalinfo/v1/metadata/jobRelationshipDetail"
+      }
+    },
+    "assignment" : {
+      "type" : [ "string", "null" ],
+      "maxLength" : 32
+    }
+  },
+  "links" : [ {
+    "rel" : "self",
+    "href" : "/rest/workforce/assignment/additionalinfo/v1/jobRelationships{/id}{?$from,$to}",
+    "templatePointers" : {
+      "id" : "#/properties/id"
+    }
+  }, {
+    "rel" : "snapshot",
+    "href" : "/rest/workforce/assignment/additionalinfo/v1/jobRelationships{/id}{?$at}",
+    "templatePointers" : {
+      "id" : "#/properties/id"
+    }
+  } ],
+  "x-sap-sf-resource" : {
+    "id" : [ "id" ],
+    "properties" : {
+      "id" : {
+        "index" : 1,
+        "hidden" : true
+      },
+      "jobRelationshipDetails" : {
+        "bind" : {
+          "schema" : {
+            "$ref" : "/rest/workforce/assignment/additionalinfo/v1/metadata/jobRelationshipDetail"
+          },
+          "type" : "composition",
+          "multiplicity" : "1..*"
+        }
+      },
+      "assignment" : {
+        "bind" : {
+          "schema" : {
+            "$ref" : "/rest/workforce/v1/metadata/assignment"
+          },
+          "properties" : {
+            "assignment" : "id"
+          },
+          "type" : "association",
+          "multiplicity" : "1..1"
+        }
+      }
+    }
+  },
+  "x-sap-sf-temporal" : {
+    "type" : "timeline",
+    "link" : "#/links/0",
+    "dates" : {
+      "from" : "startDate",
+      "to" : "endDate",
+      "semantics" : "closed-closed"
+    },
+    "snapshot" : {
+      "schema" : "/rest/workforce/assignment/additionalinfo/v1/metadata/jobRelationship",
+      "link" : "#/links/1"
+    },
+    "timelines" : [ "jobRelationshipDetails" ]
+  },
+  "x-sap-sf-version" : "1.0.0",
+  "x-sap-sf-custom-version" : "00000017490000000492",
+  "x-sap-root-entity" : true,
+  "x-sap-odm-entity-name" : "WorkforceJobRelationship",
+  "$defs" : {
+    "jobRelationshipDetailGrid" : {
+      "$schema" : "https://json-schema.org/draft/2019-09/schema",
+      "$id" : "/rest/workforce/assignment/additionalinfo/v1/metadata/jobRelationshipDetailGrid",
+      "title" : "Job Relationship Details",
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : [ "integer", "null" ],
+          "format" : "int64",
+          "title" : "Id"
+        },
+        "relationshipType" : {
+          "type" : "integer",
+          "format" : "int64",
+          "title" : "Relationship Type"
+        },
+        "relUserId" : {
+          "type" : "string",
+          "title" : "Name",
+          "maxLength" : 384
+        },
+        "createdAt" : {
+          "type" : [ "string", "null" ],
+          "format" : "date-time",
+          "title" : "Created On",
+          "readOnly" : true
+        },
+        "createdAssignmentId" : {
+          "type" : [ "string", "null" ],
+          "title" : "Created By",
+          "readOnly" : true,
+          "maxLength" : 100
+        },
+        "modifiedAt" : {
+          "type" : [ "string", "null" ],
+          "format" : "date-time",
+          "title" : "Last Modified On",
+          "readOnly" : true
+        },
+        "modifiedAssignmentId" : {
+          "type" : [ "string", "null" ],
+          "title" : "Last Modified By",
+          "readOnly" : true,
+          "maxLength" : 100
+        },
+        "startDate" : {
+          "type" : "string",
+          "format" : "date",
+          "title" : "Event Date"
+        },
+        "lastModifiedSource" : {
+          "type" : [ "string", "null" ],
+          "title" : "Last Modified Source",
+          "readOnly" : true
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : [ "string", "null" ],
+          "format" : "uuid",
+          "title" : "on behalf of assignment UUID",
+          "readOnly" : true,
+          "maxLength" : 32,
+          "x-sap-sf-reference" : "modifiedOnBehalfOfAssignment"
+        },
+        "wfRequestId" : {
+          "type" : [ "integer", "null" ],
+          "format" : "int64",
+          "readOnly" : true
+        }
+      },
+      "x-sap-sf-resource" : {
+        "id" : [ "id" ],
+        "properties" : {
+          "id" : {
+            "hidden" : true
+          },
+          "startDate" : {
+            "hidden" : true
+          },
+          "wfRequestId" : {
+            "hidden" : true
+          },
+          "relationshipType" : {
+            "valueList" : {
+              "id" : "jobRelType",
+              "schema" : {
+                "$ref" : "/rest/extensibility/general/v1/metadata/PickList"
+              },
+              "properties" : {
+                "relationshipType" : "id"
+              },
+              "label" : null
+            },
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties" : {
+                "relationshipType" : "optionId"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "index" : 1
+          },
+          "relUserId" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/workforce/v1/metadata/workProfile"
+              },
+              "properties" : {
+                "relUserId" : "legacyId"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "index" : 2
+          },
+          "createdAt" : {
+            "index" : 3
+          },
+          "createdAssignmentId" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/workforce/v1/metadata/workProfile"
+              },
+              "properties" : {
+                "createdAssignmentId" : "legacyId"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "index" : 4
+          },
+          "modifiedAt" : {
+            "index" : 5
+          },
+          "modifiedAssignmentId" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/workforce/v1/metadata/workProfile"
+              },
+              "properties" : {
+                "modifiedAssignmentId" : "legacyId"
+              },
+              "type" : "association",
+              "multiplicity" : "1..1"
+            },
+            "index" : 6
+          },
+          "lastModifiedSource" : {
+            "index" : 7
+          },
+          "modifiedOnBehalfOfAssignmentId" : {
+            "index" : 8
+          }
+        }
+      }
+    },
+    "jobRelationshipDetail" : {
+      "$schema" : "https://json-schema.org/draft/2019-09/schema",
+      "$id" : "/rest/workforce/assignment/additionalinfo/v1/metadata/jobRelationshipDetail",
+      "title" : "Job Relationship Details",
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : [ "string", "null" ],
+          "title" : "Encoded user and start date",
+          "readOnly" : true,
+          "maxLength" : 256
+        },
+        "endDate" : {
+          "type" : [ "string", "null" ],
+          "format" : "date",
+          "title" : "End Date",
+          "readOnly" : true
+        },
+        "startDate" : {
+          "type" : "string",
+          "format" : "date",
+          "title" : "Event Date"
+        },
+        "createdAssignmentId" : {
+          "type" : [ "string", "null" ],
+          "format" : "uuid",
+          "title" : "Created By",
+          "readOnly" : true,
+          "maxLength" : 32,
+          "x-sap-sf-reference" : "createdAssignment"
+        },
+        "createdAt" : {
+          "type" : [ "string", "null" ],
+          "format" : "date-time",
+          "title" : "Created On",
+          "readOnly" : true
+        },
+        "modifiedAssignmentId" : {
+          "type" : [ "string", "null" ],
+          "format" : "uuid",
+          "title" : "Last Modified By",
+          "readOnly" : true,
+          "maxLength" : 32,
+          "x-sap-sf-reference" : "modifiedAssignment"
+        },
+        "modifiedAt" : {
+          "type" : [ "string", "null" ],
+          "format" : "date-time",
+          "title" : "Last Modified On",
+          "readOnly" : true
+        },
+        "modifiedOnBehalfOfAssignmentId" : {
+          "type" : [ "string", "null" ],
+          "format" : "uuid",
+          "title" : "Last Modified By",
+          "readOnly" : true,
+          "maxLength" : 32,
+          "x-sap-sf-reference" : "modifiedOnBehalfOfAssignment"
+        },
+        "value" : {
+          "type" : [ "array", "null" ],
+          "items" : {
+            "$ref" : "/rest/workforce/assignment/additionalinfo/v1/metadata/jobRelationshipDetailGrid"
+          }
+        }
+      },
+      "x-sap-sf-resource" : {
+        "id" : [ "id" ],
+        "properties" : {
+          "id" : {
+            "index" : 3,
+            "hidden" : true
+          },
+          "startDate" : {
+            "index" : 1
+          },
+          "endDate" : {
+            "index" : 2
+          },
+          "modifiedOnBehalfOfAssignmentId" : {
+            "index" : 4
+          },
+          "modifiedAssignmentId" : {
+            "index" : 5
+          },
+          "createdAt" : {
+            "index" : 6
+          },
+          "modifiedAt" : {
+            "index" : 7
+          },
+          "createdAssignmentId" : {
+            "index" : 8
+          },
+          "value" : {
+            "bind" : {
+              "schema" : {
+                "$ref" : "/rest/workforce/assignment/additionalinfo/v1/metadata/jobRelationshipDetailGrid"
+              },
+              "type" : "composition",
+              "multiplicity" : "1..*"
+            }
+          }
+        }
+      }
+    }
+  }
+}

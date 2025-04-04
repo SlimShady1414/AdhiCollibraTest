@@ -1,0 +1,8 @@
+{
+   "name": "Classification",
+   "namespace": "sap.sf.learning",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.learning:dataSource:Classification:v1.0.0"
+   ]
+}

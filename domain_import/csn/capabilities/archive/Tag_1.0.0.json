@@ -1,0 +1,146 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/ecosystem/wholeself/v1/metadata/tag",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "tag",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.capabilities",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "tag" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "TIH Tag",
+      "@ODM.entityName" : "WorkforceCapabilityCatalog",
+      "@ODM.oid" : "uuid",
+      "@EntityRelationship.entityType" : "sap.sf.capabilities:tag",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "tag",
+        "propertyTypes" : [ "sap.sf.capabilities:tagTagId" ]
+      } ],
+      "elements" : {
+        "tagId" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:tagTagId"
+        },
+        "tagLabel" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        },
+        "tagValue" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        },
+        "status" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 50
+        },
+        "tagType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 50
+        },
+        "tagTexts" : {
+          "type" : "cds.Composition",
+          "target" : "tag_tagText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "tagTexts", "tag_tagId_virtual" ]
+          }, "=", {
+            "ref" : [ "tagId" ]
+          } ]
+        },
+        "createdAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "createdBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 100
+        },
+        "lastModifiedAt" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "lastModifiedBy" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 100
+        }
+      }
+    },
+    "tag_tagText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.capabilities:tag_tagText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "tag_tagText",
+        "propertyTypes" : [ "sap.sf.capabilities:tag_tagTextTagTextId" ]
+      } ],
+      "elements" : {
+        "tag_tagId_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_tag"
+          },
+          "type" : "cds.Integer",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:tag_tagTextTagId"
+        },
+        "_tag" : {
+          "type" : "cds.Association",
+          "target" : "tag",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_tag", "tagId" ]
+          }, "=", {
+            "ref" : [ "tag_tagId_virtual" ]
+          } ]
+        },
+        "tagTextId" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "defaultTitle",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647,
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.capabilities:tag_tagTextTagTextId"
+        },
+        "tagLabel" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        },
+        "tagValue" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle",
+          "length" : 256
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,909 @@
+{
+  "$id": "/rest/workforce/orgstructure/v1/metadata/position",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "Position",
+  "type": "object",
+  "x-sap-sf-version": "1.0.0",
+  "x-sap-sf-custom-version": 1,
+  "properties": {
+    "id": {
+      "type": "integer",
+      "title": "id",
+      "x-sap-sf-hidden": true,
+      "minimum": -9223372036854775808,
+      "maximum": 9223372036854775807
+    },
+    "code": {
+      "type": "string",
+      "title": "code",
+      "maxLength": 128
+    },
+    "timeslices": {
+      "type": "array",
+      "items": {
+        "$ref": "/rest/workforce/orgstructure/v1/metadata/positionTimeSlice"
+      }
+    }
+  },
+  "required": [
+    "code"
+  ],
+  "x-sap-odm-entity-name": "WorkforcePosition",
+  "x-sap-root-entity": true,
+  "x-sap-sf-resource": {
+    "id": [
+      "id"
+    ]
+  },
+  "x-sap-sf-temporal": {
+    "type": "timeline",
+    "dates": {
+      "from": "validFrom",
+      "to": "validTo",
+      "semantics": "closed-closed"
+    }
+  },
+  "$defs": {
+    "timeslice": {
+      "$id": "/rest/workforce/orgstructure/v1/metadata/positionTimeSlice",
+      "type": "object",
+      "properties": {
+        "externalName": {
+          "type": "string",
+          "title": "externalName"
+        },
+        "effectiveStatus": {
+          "type": "string",
+          "title": "effectiveStatus",
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "validFrom": {
+          "type": "string",
+          "title": "validFrom",
+          "format": "date"
+        },
+        "validTo": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "validTo",
+          "x-sap-sf-hidden": true,
+          "format": "date"
+        },
+        "type": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "type"
+        },
+        "positionTitle": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "positionTitle",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "criticality": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "criticality",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "comment": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "comment",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "incumbent": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "incumbent",
+          "x-sap-sf-hidden": true
+        },
+        "changeReason": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "changeReason"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "description",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "jobTitle": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "jobTitle",
+          "maxLength": 255
+        },
+        "jobCode": {
+          "type": "integer",
+          "title": "jobCode"
+        },
+        "jobLevel": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "jobLevel"
+        },
+        "employeeClass": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "employeeClass"
+        },
+        "regularTemporary": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "regularTemporary",
+          "x-sap-sf-hidden": true
+        },
+        "payGrade": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "payGrade"
+        },
+        "targetFTE": {
+          "type": "number",
+          "title": "targetFTE",
+          "x-sap-precision": 39,
+          "x-sap-scale": 17
+        },
+        "vacant": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "vacant"
+        },
+        "company": {
+          "type": "integer",
+          "title": "company"
+        },
+        "businessUnit": {
+          "type": "integer",
+          "title": "businessUnit"
+        },
+        "division": {
+          "type": "integer",
+          "title": "division"
+        },
+        "department": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "department"
+        },
+        "location": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "location"
+        },
+        "costCenter": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "costCenter"
+        },
+        "multipleIncumbentsAllowed": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "multipleIncumbentsAllowed"
+        },
+        "legacyPositionId": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "legacyPositionId",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "positionControlled": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "positionControlled"
+        },
+        "technicalParameters": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "technicalParameters",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "positionCriticality": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "positionCriticality"
+        },
+        "standardHours": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "standardHours",
+          "x-sap-precision": 39,
+          "x-sap-scale": 17
+        },
+        "payRange": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "payRange"
+        },
+        "creationSource": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "creationSource",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "WORKFORCE_PLAN",
+            "MASS_COPY_FROM_POSITION_ORGCHART",
+            "POSITION_TRANSFER",
+            "POSITION_RECLASSIFICATION",
+            "IMPORT"
+          ]
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "cust_min": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "cust_min",
+          "x-sap-sf-custom": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "cust_mid": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "cust_mid",
+          "x-sap-sf-custom": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "cust_max": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "cust_max",
+          "x-sap-sf-custom": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "cust_employmentType": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "cust_employmentType",
+          "x-sap-sf-custom": true
+        },
+        "cust_incentivePlan": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "title": "cust_incentivePlan",
+          "x-sap-sf-custom": true
+        },
+        "positionMatrixRelationship": {
+          "type": "array",
+          "items": {
+            "$ref": "/rest/extensibility/general/v1/metadata/PositionMatrixRelationship"
+          }
+        },
+        "parentPosition": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "texts": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "title": "Localized Texts",
+          "items": {
+            "$ref": "/rest/workforce/orgstructure/v1/metadata/positionText"
+          }
+        }
+      },
+      "required": [
+        "externalName",
+        "validFrom",
+        "transactionSequence",
+        "jobCode",
+        "targetFTE",
+        "company",
+        "businessUnit",
+        "division"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "type": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PositionType"
+              },
+              "properties": [
+                {
+                  "type": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "changeReason": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "changeReason": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "ChangeReason1",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "jobCode": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/jobstructure/v1/metadata/jobClassification"
+              },
+              "properties": [
+                {
+                  "jobCode": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "jobLevel": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "jobLevel": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "JobLevel",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "employeeClass": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "employeeClass": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "EMPLOYEECLASS",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "regularTemporary": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "regularTemporary": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "RegularTemporary",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "payGrade": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/paystructure/v1/metadata/payGrade"
+              },
+              "properties": [
+                {
+                  "payGrade": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "company": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/legalEntity"
+              },
+              "properties": [
+                {
+                  "company": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "businessUnit": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/orgstructure/v1/metadata/businessUnit"
+              },
+              "properties": [
+                {
+                  "businessUnit": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "division": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/orgstructure/v1/metadata/division"
+              },
+              "properties": [
+                {
+                  "division": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "department": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/orgstructure/v1/metadata/department"
+              },
+              "properties": [
+                {
+                  "department": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "location": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/location"
+              },
+              "properties": [
+                {
+                  "location": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "costCenter": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/enterprisestructure/v1/metadata/costCenter"
+              },
+              "properties": [
+                {
+                  "costCenter": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "positionCriticality": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "positionCriticality": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "PositionCriticality",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "payRange": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/foundationobjects/paystructure/v1/metadata/payRange"
+              },
+              "properties": [
+                {
+                  "payRange": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "cust_employmentType": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "cust_employmentType": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "employmentType",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "cust_incentivePlan": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/custom/v1/metadata/cust_SFCC_IncentivePlan"
+              },
+              "properties": [
+                {
+                  "cust_incentivePlan": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          },
+          "positionMatrixRelationship": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PositionMatrixRelationship"
+              },
+              "multiplicity": "1..*",
+              "type": "composition"
+            }
+          },
+          "parentPosition": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/workforce/orgstructure/v1/metadata/position"
+              },
+              "properties": [
+                {
+                  "parentPosition": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          }
+        }
+      }
+    },
+    "PositionMatrixRelationship": {
+      "$id": "/rest/extensibility/general/v1/metadata/PositionMatrixRelationship",
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Matrix Relationship For Position",
+      "type": "object",
+      "properties": {
+        "matrixRelationshipType": {
+          "type": "integer",
+          "title": "matrixRelationshipType"
+        },
+        "id": {
+          "type": "integer",
+          "title": "id",
+          "x-sap-sf-hidden": true,
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "relatedPosition": {
+          "type": "integer",
+          "title": "relatedPosition"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "entityId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "recordId",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "status": {
+          "type": "string",
+          "title": "status",
+          "x-sap-sf-hidden": true,
+          "enum": [
+            "A",
+            "I"
+          ]
+        },
+        "objectType": {
+          "type": "string",
+          "title": "objectType",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdBy",
+          "x-sap-sf-hidden": true
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "createdDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedBy",
+          "x-sap-sf-hidden": true
+        },
+        "lastModifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "lastModifiedDate",
+          "x-sap-sf-hidden": true,
+          "format": "date-time"
+        },
+        "proxyUser": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "proxyUser",
+          "x-sap-sf-hidden": true,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "matrixRelationshipType",
+        "relatedPosition",
+        "parent"
+      ],
+      "x-sap-sf-resource": {
+        "id": [
+          "recordId"
+        ],
+        "properties": {
+          "matrixRelationshipType": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/extensibility/general/v1/metadata/PickListValue"
+              },
+              "properties": [
+                {
+                  "matrixRelationshipType": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            },
+            "valueList": {
+              "id": "PositionMatrixRelationshipType",
+              "schema": {
+                "ref": "/extensibility/general/v1/metadata/PickList"
+              }
+            }
+          },
+          "relatedPosition": {
+            "bind": {
+              "schema": {
+                "$ref": "/rest/workforce/orgstructure/v1/metadata/position"
+              },
+              "properties": [
+                {
+                  "relatedPosition": "id"
+                }
+              ],
+              "multiplicity": "1..1",
+              "type": "association"
+            }
+          }
+        }
+      }
+    },
+    "PositionText": {
+      "$id": "/rest/workforce/orgstructure/v1/metadata/positionText",
+      "title": "Localized value for translatable data type field",
+      "type": "object",
+      "properties": {
+        "locale": {
+          "title": "locale",
+          "description": "The locale specified as an ISO 63901 or BCP-47 language code.",
+          "type": "string",
+          "maxLength": 128
+        },
+        "externalName": {
+          "title": "externalName",
+          "type": "string",
+          "maxLength": 255
+        },
+        "default": {
+          "title": "default",
+          "description": "Whether or not the locale is the default locale based on the request context (i.e. user or system)",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "x-sap-sf-resource": {
+        "id": [
+          "/properties/timeslices/items/recordId",
+          "locale"
+        ]
+      },
+      "required": [
+        "locale"
+      ]
+    }
+  }
+}

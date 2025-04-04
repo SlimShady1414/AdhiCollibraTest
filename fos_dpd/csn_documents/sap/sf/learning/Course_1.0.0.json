@@ -1,0 +1,431 @@
+{
+  "$schema" : "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id" : "/rest/learning/asset/v1/metadata/course",
+  "csnInteropEffective" : "1.0",
+  "$version" : "2.0",
+  "meta" : {
+    "__name" : "course",
+    "creator" : "Successfactors CSN Object Model API v1.0.0-alpha",
+    "__modelProvider" : "Successfactors",
+    "__namespace" : "sap.sf.learning",
+    "document" : {
+      "version" : "1.0.0"
+    }
+  },
+  "definitions" : {
+    "course" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : true,
+      "@EndUserText.label" : "Course",
+      "@EntityRelationship.entityType" : "sap.sf.learning:course",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "course",
+        "propertyTypes" : [ "sap.sf.learning:courseLearningItemID" ]
+      } ],
+      "elements" : {
+        "courseDuration" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Course Duration"
+        },
+        "categories" : {
+          "type" : "cds.Composition",
+          "target" : "course_categories",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "categories", "course_learningItemID_virtual" ]
+          }, "=", {
+            "ref" : [ "learningItemID" ]
+          } ]
+        },
+        "capabilities" : {
+          "type" : "cds.Composition",
+          "target" : "course_capabilityRating",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "capabilities", "course_learningItemID_virtual" ]
+          }, "=", {
+            "ref" : [ "learningItemID" ]
+          } ]
+        },
+        "requirementTypeID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Requirement Type ID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.learning:requirementType",
+            "referencedPropertyType" : "sap.sf.learning:requirementTypeId"
+          } ]
+        },
+        "enableRating" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Enable Rating"
+        },
+        "includePreviousRevisionRating" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Include Previous Rating"
+        },
+        "cpeHours" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "CPE Hours"
+        },
+        "contactHours" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Contact Hours"
+        },
+        "sourceId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Source ID"
+        },
+        "thumbnail" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Thumbnail"
+        },
+        "rating" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Rating"
+        },
+        "ratingCount" : {
+          "type" : "cds.Integer",
+          "@EndUserText.label" : "Rating Count",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "mobileAccessible" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Mobile Accessible"
+        },
+        "thumbnailAttachmentId" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Thumbnail Attachment ID",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "deliveryMethod" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Delivery Method",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.learning:learningDeliveryMethod",
+            "referencedPropertyType" : "sap.sf.learning:learningDeliveryMethodId"
+          } ]
+        },
+        "learningDeliveryMethod" : {
+          "type" : "cds.String",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.learning:deliveryMethod",
+            "referencedPropertyType" : "sap.sf.learning:deliveryMethodId"
+          } ]
+        },
+        "createdTimestamp" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Created Timestamp"
+        },
+        "revisionNumber" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Revision Number",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "reviserName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Reviser Name"
+        },
+        "approverName" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Approver Name"
+        },
+        "approvalTimestamp" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Approval Timestamp"
+        },
+        "gradingMethod" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Grading Method",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "approvalRequired" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Approval Required"
+        },
+        "capabilitySource" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Capability Source"
+        },
+        "courseTitle" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Course Title"
+        },
+        "courseDescription" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Course Description"
+        },
+        "texts" : {
+          "type" : "cds.Composition",
+          "target" : "course_courseText",
+          "cardinality" : {
+            "src" : 1,
+            "max" : "*"
+          },
+          "on" : [ {
+            "ref" : [ "texts", "course_learningItemID_virtual" ]
+          }, "=", {
+            "ref" : [ "learningItemID" ]
+          } ]
+        },
+        "creditHours" : {
+          "type" : "cds.Decimal",
+          "@EndUserText.label" : "Credit Hours"
+        },
+        "componentID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Component ID"
+        },
+        "componentTypeID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Component Type ID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.learning:courseType",
+            "referencedPropertyType" : "sap.sf.learning:courseTypeId"
+          } ]
+        },
+        "revisionDate" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Revision Date"
+        },
+        "componentKey" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Component Key",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "classificationID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Classification ID",
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.learning:classification",
+            "referencedPropertyType" : "sap.sf.learning:classificationId"
+          } ]
+        },
+        "learningItemID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Learning Item ID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:courseLearningItemID"
+        },
+        "learningItemType" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Learning Item Type"
+        },
+        "domainID" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Domain ID"
+        },
+        "active" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Active"
+        },
+        "activeOldValue" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Active Old Value"
+        },
+        "active@changed" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Active Changed"
+        },
+        "title" : {
+          "type" : "cds.Composition",
+          "target" : "course_",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "title", "course_learningItemID_virtual" ]
+          }, "=", {
+            "ref" : [ "learningItemID" ]
+          } ]
+        },
+        "description" : {
+          "type" : "cds.Composition",
+          "target" : "course_",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "description", "course_learningItemID_virtual" ]
+          }, "=", {
+            "ref" : [ "learningItemID" ]
+          } ]
+        },
+        "productionReady" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Production Ready"
+        },
+        "showInCatalog" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Show In Catalog"
+        },
+        "lastUpdatedUser" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Last Updated User"
+        },
+        "lastUpdatedTimestamp" : {
+          "type" : "cds.DateTime",
+          "@EndUserText.label" : "Last Updated Timestamp"
+        }
+      }
+    },
+    "course_categories" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "elements" : {
+        "course_learningItemID_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_course"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:course_categoriesLearningItemID"
+        },
+        "_course" : {
+          "type" : "cds.Association",
+          "target" : "course",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_course", "learningItemID" ]
+          }, "=", {
+            "ref" : [ "course_learningItemID_virtual" ]
+          } ]
+        },
+        "categories" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Categories"
+        }
+      }
+    },
+    "course_capabilityRating" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "Learning Capabilities",
+      "@EntityRelationship.entityType" : "sap.sf.learning:course_capabilityRating",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "course_capabilityRating",
+        "propertyTypes" : [ "sap.sf.learning:course_capabilityRatingId", "sap.sf.learning:course_capabilityRatingInternalId" ]
+      } ],
+      "elements" : {
+        "course_learningItemID_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_course"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:course_capabilityRatingLearningItemID"
+        },
+        "_course" : {
+          "type" : "cds.Association",
+          "target" : "course",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_course", "learningItemID" ]
+          }, "=", {
+            "ref" : [ "course_learningItemID_virtual" ]
+          } ]
+        },
+        "internalId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "Internal ID",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:course_capabilityRatingInternalId"
+        },
+        "externalId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "External ID"
+        },
+        "rating" : {
+          "type" : "cds.Integer64",
+          "@EndUserText.label" : "Rating",
+          "@minimum" : -2147483648,
+          "@maximum" : 2147483647
+        },
+        "tihExternalId" : {
+          "@EntityRelationship.reference" : [ {
+            "referencedEntityType" : "sap.sf.capabilities:library",
+            "referencedPropertyType" : "sap.sf.capabilities:libraryLibraryId"
+          } ],
+          "type" : "cds.String",
+          "@EndUserText.label" : "TIH External ID"
+        },
+        "jpbExternalId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "JPB External ID"
+        },
+        "jdmExternalId" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "JDB External ID"
+        }
+      }
+    },
+    "course_courseText" : {
+      "kind" : "entity",
+      "@ObjectModel.compositionRoot" : false,
+      "@EndUserText.label" : "unknown-title",
+      "@EntityRelationship.entityType" : "sap.sf.learning:course_courseText",
+      "@EntityRelationship.entityId" : [ {
+        "name" : "course_courseText",
+        "propertyTypes" : [ "sap.sf.learning:course_courseTextLearningItemID", "sap.sf.learning:course_courseTextLocale" ]
+      } ],
+      "elements" : {
+        "course_learningItemID_virtual" : {
+          "@virtual" : true,
+          "@ObjectModel.foreignKey.association" : {
+            "=" : "_course"
+          },
+          "type" : "cds.String",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:course_courseTextLearningItemID"
+        },
+        "_course" : {
+          "type" : "cds.Association",
+          "target" : "course",
+          "cardinality" : {
+            "max" : 1
+          },
+          "on" : [ {
+            "ref" : [ "_course", "learningItemID" ]
+          }, "=", {
+            "ref" : [ "course_learningItemID_virtual" ]
+          } ]
+        },
+        "courseTitle" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "courseDescription" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "defaultTitle"
+        },
+        "locale" : {
+          "type" : "cds.String",
+          "@EndUserText.label" : "The Locale Property",
+          "key" : true,
+          "@EntityRelationship.propertyType" : "sap.sf.learning:course_courseTextLocale"
+        },
+        "default" : {
+          "type" : "cds.Boolean",
+          "@EndUserText.label" : "Default"
+        }
+      }
+    }
+  }
+}

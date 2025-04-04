@@ -1,0 +1,245 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "/rest/learning/asset/v1/metadata/completionStatus",
+    "title": "Completion Status",
+    "description": "Metadata for the Completion Status Resource",
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "ID of the completion status",
+        "description": "Unique identifier for the completion status."
+      },
+      "description": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Description of the completion status",
+        "description": "Description for the completion status."
+      },
+      "courseTypeId": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Course Type ID",
+        "description": "Type of an item to which this completion status belongs to.",
+        "x-sap-sf-reference": "courseType"
+      },
+      "courseType": {
+        "$ref": "/rest/learning/asset/v1/metadata/courseType"
+      },
+      "provideCredit": {
+        "type": [
+          "boolean",
+          "null"
+        ],
+        "title": "Provide Credit",
+        "description": "Indicates whether the completion status provides credit."
+      },
+      "texts": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "$ref": "/rest/learning/asset/v1/metadata/completionStatusText"
+        },
+        "title": "The Collection of Localized Values for the Completion Status"
+      },
+      "lastUpdatedUser": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Last Updated User",
+        "description": "User who last updated the completion status."
+      },
+      "lastUpdatedTimestamp": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "date-time",
+        "title": "Last Updated Timestamp",
+        "description": "Timestamp when the Completion Status was last updated."
+      }
+    },
+    "x-sap-sf-localized": {},
+    "x-sap-sf-resource": {
+      "id": [
+        "id"
+      ],
+      "properties": {
+        "courseType": {
+          "bind": {
+            "schema": {
+              "$ref": "/rest/learning/asset/v1/metadata/courseType"
+            },
+            "properties": {
+              "courseTypeId": "id"
+            },
+            "type": "association",
+            "multiplicity": "1..1"
+          }
+        }
+      }
+    },
+  "x-sap-sf-version": "1.0.0",
+    "$defs": {
+      "courseType": {
+        "$id": "/rest/learning/asset/v1/metadata/courseType",
+        "title": "Course Type",
+        "description": "Metadata for the Course Type Resource",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Course Type ID",
+            "description": "Unique identifier for the course type."
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Description",
+            "description": "Description for the course type."
+          },
+          "systemProvided": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "System Provided",
+            "description": "Indicator if course type is system defined"
+          },
+          "visible": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "Visible",
+            "description": "Flag indicating whether course type is visible or not"
+          },
+          "texts": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "/rest/learning/asset/v1/metadata/courseTypeText"
+            },
+            "title": "The Collection of Localized Values for the Course Type Texts"
+          },
+          "lastUpdatedUser": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Last Updated User",
+            "description": "User who last updated the course type."
+          },
+          "lastUpdatedTimestamp": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "title": "Last Updated Timestamp",
+            "description": "Timestamp when the course type was last updated."
+          }
+        },
+        "x-sap-sf-localized": {},
+        "x-sap-sf-resource": {
+          "id": [
+            "id"
+          ]
+        },
+        "x-sap-sf-version": "1.0"
+      },
+      "courseTypeText": {
+        "$id": "/rest/learning/asset/v1/metadata/courseTypeText",
+        "title": "Course Type Localized Texts",
+        "description": "Resource containing the list of localized texts for the Course Type",
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Course Type Description"
+          },
+          "locale": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "The Locale Property",
+            "description": "The property that is used to specify the locale within a localized value resource."
+          },
+          "default": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "Default",
+            "description": "The property to indicate if this is the default locale defined"
+          }
+        },
+        "x-sap-sf-resource": {
+          "id": [
+            "/properties/courseType/id",
+            "locale"
+          ]
+        },
+        "x-sap-sf-version": "1.0"
+      },
+      "completionStatusText": {
+        "$id": "/rest/learning/asset/v1/metadata/completionStatusText",
+        "title": "Completion Status Localized Texts",
+        "description": "Resource containing the list of localized texts for the completion status",
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Completion Status Description"
+          },
+          "locale": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "The Locale Property",
+            "description": "The property that is used to specify the locale within a localized value resource."
+          },
+          "default": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "Default",
+            "description": "The property to indicate if this is the default locale defined"
+          }
+        },
+        "x-sap-sf-resource": {
+          "id": [
+            "/properties/id",
+            "locale"
+          ]
+        },
+        "x-sap-sf-version": "1.0"
+      }
+    }
+}

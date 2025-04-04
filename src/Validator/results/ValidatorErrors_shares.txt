@@ -1,0 +1,26 @@
+Printing Validation Errors in generated FOS files against share-schema.json
+../../fos_dpd/shares/sap/sf/workforce/WorkforcePerson_1.0.0.json
+'Workforce person data refers to a person and their employment details. Workforce person data includes personal information,biographical information, address, contact information, national ID, social account, country/region-specific information, and employment details such as assignments, job details, and global assignment information.' is too long
+
+Failed validating 'maxLength' in schema['properties']['shortDescription']:
+    {'type': 'string',
+     'description': 'Plain text short description.\n'
+                    '\n'
+                    'MUST NOT exceed 255 chars.\n'
+                    'MUST NOT contain line breaks.\n'
+                    'If not provided, it will be inherited from data '
+                    'product.',
+     'minLength': 1,
+     'maxLength': 255,
+     'examples': ['This service enables you to create Request for '
+                  'Quotation (RFQ) through an API call.']}
+
+On instance['shortDescription']:
+    ('Workforce person data refers to a person and their employment '
+     'details. Workforce person data includes personal '
+     'information,biographical information, address, contact information, '
+     'national ID, social account, country/region-specific information, '
+     'and employment details such as assignments, job details, and global '
+     'assignment information.')
+
+--------------------------------------------------

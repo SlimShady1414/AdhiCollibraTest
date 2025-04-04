@@ -1,0 +1,10 @@
+{
+   "name": "OrganizationalStructure",
+   "namespace": "sap.sf.foundationobjects",
+   "version": "1.0.0",
+   "dataSources": [
+      "sap.sf.foundationobjects:dataSource:Businessunit:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Department:v1.0.0",
+      "sap.sf.foundationobjects:dataSource:Division:v1.0.0"
+   ]
+}
