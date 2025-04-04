@@ -11,10 +11,14 @@ on:
 jobs:
   update-json-files:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -86,8 +90,10 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add hcm_dpd/DPDFiles/sap/sf/
           git commit -m "Add metadata headers to JSON files" || echo "No changes to commit"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
