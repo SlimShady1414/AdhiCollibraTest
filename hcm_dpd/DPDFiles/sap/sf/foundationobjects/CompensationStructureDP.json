@@ -4,77 +4,84 @@
   "policyLevels": "sap:core:v1",
   "dataProducts": [
     {
-      "name": "CompensationStructure",
-      "version": "1.0.0",
-      "category": "business-object",
-      "type": "primary",
-      "title": "CompensationStructure",
-      "status": "In Testing",
-      "namespace": "sap.sf.foundationobjects",
-      "responsible": "sap:ach:LOD-SF-EC",
-      "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
-      "shortDescription": "Comp structure refers to component of comp information and their definition.",
-      "description": "Compensation structure refers to components of compensation information and their definitions.",
-      "entityTypes": [
-        "sap.odm:entityType:PayComponent:v1",
-        "sap.odm:entityType:PayComponentGroup:v1",
-        "sap.sf.foundationobjects:entityType:payComponent:v1",
-        "sap.sf.foundationobjects:entityType:payComponentGroup:v1"
-      ],
-      "entities": [
+      "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
+      "openResourceDiscovery": "1.9",
+      "policyLevels": "sap:core:v1",
+      "dataProducts": [
         {
-          "name": "payComponentGroup",
-          "nodes": [
-            {
-              "name": "payComponentGroup_payComponent",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "payComponentGroup_payComponentGroupTimeslice",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
+          "name": "CompensationStructure",
+          "version": "1.0.0",
+          "category": "business-object",
+          "type": "primary",
+          "title": "CompensationStructure",
+          "status": "In Testing",
+          "namespace": "sap.sf.foundationobjects",
+          "responsible": "sap:ach:LOD-SF-EC",
+          "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
+          "shortDescription": "Comp structure refers to component of comp information and their definition.",
+          "description": "Compensation structure refers to components of compensation information and their definitions.",
+          "entityTypes": [
+            "sap.odm:entityType:PayComponent:v1",
+            "sap.odm:entityType:PayComponentGroup:v1",
+            "sap.sf.foundationobjects:entityType:payComponent:v1",
+            "sap.sf.foundationobjects:entityType:payComponentGroup:v1"
+          ],
+          "entities": [
             {
               "name": "payComponentGroup",
-              "extensible": true,
-              "root": true,
-              "plugins": []
-            },
-            {
-              "name": "payComponentGroup_payComponentGroupTimesliceText",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            }
-          ],
-          "main": false
-        },
-        {
-          "name": "payComponent",
-          "nodes": [
-            {
-              "name": "payComponent_payComponentTimesliceText",
-              "extensible": true,
-              "root": false,
-              "plugins": []
+              "nodes": [
+                {
+                  "name": "payComponentGroup_payComponent",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "payComponentGroup_payComponentGroupTimeslice",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "payComponentGroup",
+                  "extensible": true,
+                  "root": true,
+                  "plugins": []
+                },
+                {
+                  "name": "payComponentGroup_payComponentGroupTimesliceText",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                }
+              ],
+              "main": false
             },
             {
               "name": "payComponent",
-              "extensible": true,
-              "root": true,
-              "plugins": []
-            },
-            {
-              "name": "payComponent_payComponentTimeslice",
-              "extensible": true,
-              "root": false,
-              "plugins": []
+              "nodes": [
+                {
+                  "name": "payComponent_payComponentTimesliceText",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "payComponent",
+                  "extensible": true,
+                  "root": true,
+                  "plugins": []
+                },
+                {
+                  "name": "payComponent_payComponentTimeslice",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                }
+              ],
+              "main": false
             }
-          ],
-          "main": false
+          ]
         }
       ]
     }

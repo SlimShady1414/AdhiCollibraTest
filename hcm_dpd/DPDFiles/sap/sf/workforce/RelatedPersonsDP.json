@@ -4,51 +4,58 @@
   "policyLevels": "sap:core:v1",
   "dataProducts": [
     {
-      "name": "RelatedPersons",
-      "version": "1.0.0",
-      "category": "businessObject",
-      "type": "primary",
-      "title": "RelatedPersons",
-      "status": "In Testing",
-      "namespace": "sap.sf.workforce",
-      "responsible": "sap:ach:LOD-SF-EC",
-      "partOfPackage": "sap.sf.workforce:package:DataProducts:v1.0.0",
-      "shortDescription": "A related person represent person related to or financially reliant on employee, such as a spouse or child.",
-      "description": "A related person represents persons related to or financially reliant on an employee, such as a spouse or child.",
-      "entityTypes": [
-        "sap.odm:entityType:WorkforceDependent:v1",
-        "sap.sf.workforce:entityType:dependent:v1"
-      ],
-      "entities": [
+      "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
+      "openResourceDiscovery": "1.9",
+      "policyLevels": "sap:core:v1",
+      "dataProducts": [
         {
-          "name": "dependent",
-          "nodes": [
-            {
-              "name": "dependent_dependentPersonalDetail",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "dependent_dependentBiographicalDetail",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "dependent_personRelationship",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
+          "name": "RelatedPersons",
+          "version": "1.0.0",
+          "category": "businessObject",
+          "type": "primary",
+          "title": "RelatedPersons",
+          "status": "In Testing",
+          "namespace": "sap.sf.workforce",
+          "responsible": "sap:ach:LOD-SF-EC",
+          "partOfPackage": "sap.sf.workforce:package:DataProducts:v1.0.0",
+          "shortDescription": "A related person represent person related to or financially reliant on employee, such as a spouse or child.",
+          "description": "A related person represents persons related to or financially reliant on an employee, such as a spouse or child.",
+          "entityTypes": [
+            "sap.odm:entityType:WorkforceDependent:v1",
+            "sap.sf.workforce:entityType:dependent:v1"
+          ],
+          "entities": [
             {
               "name": "dependent",
-              "extensible": true,
-              "root": true,
-              "plugins": []
+              "nodes": [
+                {
+                  "name": "dependent_dependentPersonalDetail",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "dependent_dependentBiographicalDetail",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "dependent_personRelationship",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "dependent",
+                  "extensible": true,
+                  "root": true,
+                  "plugins": []
+                }
+              ],
+              "main": false
             }
-          ],
-          "main": false
+          ]
         }
       ]
     }

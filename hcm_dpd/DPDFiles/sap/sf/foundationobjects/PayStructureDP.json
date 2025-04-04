@@ -4,163 +4,170 @@
   "policyLevels": "sap:core:v1",
   "dataProducts": [
     {
-      "name": "PayStructure",
-      "version": "1.0.0",
-      "category": "businessObject",
-      "type": "primary",
-      "title": "PayStructure",
-      "status": "In Testing",
-      "namespace": "sap.sf.foundationobjects",
-      "responsible": "sap:ach:LOD-SF-EC",
-      "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
-      "shortDescription": "Pay structure refer to the payment defn, including pay range, pay grade, and pay scale type.",
-      "description": "Pay structure refers to the payment definition, including pay range, pay grade, and pay scale types.",
-      "entityTypes": [
-        "sap.odm:entityType:PayGrade:v1",
-        "sap.odm:entityType:PayRange:v1",
-        "sap.odm:entityType:PayScaleArea:v1",
-        "sap.odm:entityType:PayScaleGroup:v1",
-        "sap.odm:entityType:PayScaleLevel:v1",
-        "sap.odm:entityType:PayScaleType:v1",
-        "sap.sf.foundationobjects:entityType:payGrade:v1",
-        "sap.sf.foundationobjects:entityType:payRange:v1",
-        "sap.sf.foundationobjects:entityType:payScaleArea:v1",
-        "sap.sf.foundationobjects:entityType:payScaleGroup:v1",
-        "sap.sf.foundationobjects:entityType:payScaleLevel:v1",
-        "sap.sf.foundationobjects:entityType:payScaleType:v1"
-      ],
-      "entities": [
+      "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
+      "openResourceDiscovery": "1.9",
+      "policyLevels": "sap:core:v1",
+      "dataProducts": [
         {
-          "name": "payScaleType",
-          "nodes": [
-            {
-              "name": "payScaleType_payScaleTypeText",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
+          "name": "PayStructure",
+          "version": "1.0.0",
+          "category": "businessObject",
+          "type": "primary",
+          "title": "PayStructure",
+          "status": "In Testing",
+          "namespace": "sap.sf.foundationobjects",
+          "responsible": "sap:ach:LOD-SF-EC",
+          "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
+          "shortDescription": "Pay structure refer to the payment defn, including pay range, pay grade, and pay scale type.",
+          "description": "Pay structure refers to the payment definition, including pay range, pay grade, and pay scale types.",
+          "entityTypes": [
+            "sap.odm:entityType:PayGrade:v1",
+            "sap.odm:entityType:PayRange:v1",
+            "sap.odm:entityType:PayScaleArea:v1",
+            "sap.odm:entityType:PayScaleGroup:v1",
+            "sap.odm:entityType:PayScaleLevel:v1",
+            "sap.odm:entityType:PayScaleType:v1",
+            "sap.sf.foundationobjects:entityType:payGrade:v1",
+            "sap.sf.foundationobjects:entityType:payRange:v1",
+            "sap.sf.foundationobjects:entityType:payScaleArea:v1",
+            "sap.sf.foundationobjects:entityType:payScaleGroup:v1",
+            "sap.sf.foundationobjects:entityType:payScaleLevel:v1",
+            "sap.sf.foundationobjects:entityType:payScaleType:v1"
+          ],
+          "entities": [
             {
               "name": "payScaleType",
-              "extensible": true,
-              "root": true,
-              "plugins": []
-            }
-          ],
-          "main": false
-        },
-        {
-          "name": "payScaleGroup",
-          "nodes": [
-            {
-              "name": "payScaleGroup_payScaleGroupText",
-              "extensible": true,
-              "root": false,
-              "plugins": []
+              "nodes": [
+                {
+                  "name": "payScaleType_payScaleTypeText",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "payScaleType",
+                  "extensible": true,
+                  "root": true,
+                  "plugins": []
+                }
+              ],
+              "main": false
             },
             {
               "name": "payScaleGroup",
-              "extensible": true,
-              "root": true,
-              "plugins": []
-            }
-          ],
-          "main": false
-        },
-        {
-          "name": "payScaleArea",
-          "nodes": [
-            {
-              "name": "payScaleArea",
-              "extensible": true,
-              "root": true,
-              "plugins": []
+              "nodes": [
+                {
+                  "name": "payScaleGroup_payScaleGroupText",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "payScaleGroup",
+                  "extensible": true,
+                  "root": true,
+                  "plugins": []
+                }
+              ],
+              "main": false
             },
             {
-              "name": "payScaleArea_payScaleAreaText",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            }
-          ],
-          "main": false
-        },
-        {
-          "name": "payScaleLevel",
-          "nodes": [
-            {
-              "name": "payScaleLevel_payScaleLevelText",
-              "extensible": true,
-              "root": false,
-              "plugins": []
+              "name": "payScaleArea",
+              "nodes": [
+                {
+                  "name": "payScaleArea",
+                  "extensible": true,
+                  "root": true,
+                  "plugins": []
+                },
+                {
+                  "name": "payScaleArea_payScaleAreaText",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                }
+              ],
+              "main": false
             },
             {
               "name": "payScaleLevel",
-              "extensible": true,
-              "root": true,
-              "plugins": []
+              "nodes": [
+                {
+                  "name": "payScaleLevel_payScaleLevelText",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "payScaleLevel",
+                  "extensible": true,
+                  "root": true,
+                  "plugins": []
+                },
+                {
+                  "name": "payScaleLevel_PayScalePayComponent",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "payScaleLevel_payScaleLevelTimeSlice",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                }
+              ],
+              "main": false
             },
-            {
-              "name": "payScaleLevel_PayScalePayComponent",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "payScaleLevel_payScaleLevelTimeSlice",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            }
-          ],
-          "main": false
-        },
-        {
-          "name": "payGrade",
-          "nodes": [
             {
               "name": "payGrade",
-              "extensible": true,
-              "root": true,
-              "plugins": []
+              "nodes": [
+                {
+                  "name": "payGrade",
+                  "extensible": true,
+                  "root": true,
+                  "plugins": []
+                },
+                {
+                  "name": "payGrade_payGradeTimesliceText",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "payGrade_payGradeTimeslice",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                }
+              ],
+              "main": false
             },
-            {
-              "name": "payGrade_payGradeTimesliceText",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "payGrade_payGradeTimeslice",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            }
-          ],
-          "main": false
-        },
-        {
-          "name": "payRange",
-          "nodes": [
             {
               "name": "payRange",
-              "extensible": true,
-              "root": true,
-              "plugins": []
-            },
-            {
-              "name": "payRange_payRangeTimesliceText",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "payRange_payRangeTimeslice",
-              "extensible": true,
-              "root": false,
-              "plugins": []
+              "nodes": [
+                {
+                  "name": "payRange",
+                  "extensible": true,
+                  "root": true,
+                  "plugins": []
+                },
+                {
+                  "name": "payRange_payRangeTimesliceText",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "payRange_payRangeTimeslice",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                }
+              ],
+              "main": false
             }
-          ],
-          "main": false
+          ]
         }
       ]
     }

@@ -4,137 +4,144 @@
   "policyLevels": "sap:core:v1",
   "dataProducts": [
     {
-      "name": "JobStructure",
-      "version": "1.0.0",
-      "category": "businessObject",
-      "type": "primary",
-      "title": "JobStructure",
-      "status": "In Testing",
-      "namespace": "sap.sf.foundationobjects",
-      "responsible": "sap:ach:LOD-SF-EC",
-      "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
-      "shortDescription": "Job structure refer to info about job classification and job function.",
-      "description": "Job structure refers to information about job classication and job function.",
-      "entityTypes": [
-        "sap.odm:entityType:JobClassification:v1",
-        "sap.odm:entityType:JobFunction:v1",
-        "sap.sf.foundationobjects:entityType:jobClassification:v1",
-        "sap.sf.foundationobjects:entityType:jobFunction:v1"
-      ],
-      "entities": [
+      "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
+      "openResourceDiscovery": "1.9",
+      "policyLevels": "sap:core:v1",
+      "dataProducts": [
         {
-          "name": "jobClassification",
-          "nodes": [
-            {
-              "name": "jobClassification_JobClassificationCHL",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
+          "name": "JobStructure",
+          "version": "1.0.0",
+          "category": "businessObject",
+          "type": "primary",
+          "title": "JobStructure",
+          "status": "In Testing",
+          "namespace": "sap.sf.foundationobjects",
+          "responsible": "sap:ach:LOD-SF-EC",
+          "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
+          "shortDescription": "Job structure refer to info about job classification and job function.",
+          "description": "Job structure refers to information about job classication and job function.",
+          "entityTypes": [
+            "sap.odm:entityType:JobClassification:v1",
+            "sap.odm:entityType:JobFunction:v1",
+            "sap.sf.foundationobjects:entityType:jobClassification:v1",
+            "sap.sf.foundationobjects:entityType:jobFunction:v1"
+          ],
+          "entities": [
             {
               "name": "jobClassification",
-              "extensible": true,
-              "root": true,
-              "plugins": []
+              "nodes": [
+                {
+                  "name": "jobClassification_JobClassificationCHL",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "jobClassification",
+                  "extensible": true,
+                  "root": true,
+                  "plugins": []
+                },
+                {
+                  "name": "jobClassification_JobClassificationBOL",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "jobClassification_JobClassificationAUS",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "jobClassification_JobClassificationCAN",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "jobClassification_JobClassificationBRA",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "jobClassification_JobClassificationZAF",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "jobClassification_JobClassificationUSA",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "jobClassification_JobClassificationFRA",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "jobClassification_JobClassificationCountry",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "jobClassification_JobClassificationITA",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "jobClassification_JobClassificationGBR",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "jobClassification_jobClassificationTimeSlice",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "jobClassification_jobClassificationText",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                }
+              ],
+              "main": false
             },
-            {
-              "name": "jobClassification_JobClassificationBOL",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "jobClassification_JobClassificationAUS",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "jobClassification_JobClassificationCAN",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "jobClassification_JobClassificationBRA",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "jobClassification_JobClassificationZAF",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "jobClassification_JobClassificationUSA",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "jobClassification_JobClassificationFRA",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "jobClassification_JobClassificationCountry",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "jobClassification_JobClassificationITA",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "jobClassification_JobClassificationGBR",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "jobClassification_jobClassificationTimeSlice",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "jobClassification_jobClassificationText",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            }
-          ],
-          "main": false
-        },
-        {
-          "name": "jobFunction",
-          "nodes": [
             {
               "name": "jobFunction",
-              "extensible": true,
-              "root": true,
-              "plugins": []
-            },
-            {
-              "name": "jobFunction_jobFunctionTimeSlice",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "jobFunction_jobFunctionText",
-              "extensible": true,
-              "root": false,
-              "plugins": []
+              "nodes": [
+                {
+                  "name": "jobFunction",
+                  "extensible": true,
+                  "root": true,
+                  "plugins": []
+                },
+                {
+                  "name": "jobFunction_jobFunctionTimeSlice",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "jobFunction_jobFunctionText",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                }
+              ],
+              "main": false
             }
-          ],
-          "main": false
+          ]
         }
       ]
     }

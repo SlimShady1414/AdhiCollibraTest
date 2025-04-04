@@ -4,50 +4,57 @@
   "policyLevels": "sap:core:v1",
   "dataProducts": [
     {
-      "name": "Picklist",
-      "version": "1.0.0",
-      "category": "other",
-      "type": "primary",
-      "title": "Picklist",
-      "status": "In Testing",
-      "namespace": "sap.sf.extensibility",
-      "responsible": "sap:ach:LOD-SF-MDF",
-      "partOfPackage": "sap.sf.extensibility:package:DataProducts:v1.0.0",
-      "shortDescription": "All refer picklist, its needed in derived data product transform pipeline and data modelling for out- of- the-box content and Insight app",
-      "description": "All referenced picklists, its needed in derived data product's transformation pipeline and data modelling for out- of- the-box content and Insight app.",
-      "entityTypes": [
-        "sap.sf.extensibility:entityType:pickList:v1"
-      ],
-      "entities": [
+      "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
+      "openResourceDiscovery": "1.9",
+      "policyLevels": "sap:core:v1",
+      "dataProducts": [
         {
-          "name": "pickList",
-          "nodes": [
+          "name": "Picklist",
+          "version": "1.0.0",
+          "category": "other",
+          "type": "primary",
+          "title": "Picklist",
+          "status": "In Testing",
+          "namespace": "sap.sf.extensibility",
+          "responsible": "sap:ach:LOD-SF-MDF",
+          "partOfPackage": "sap.sf.extensibility:package:DataProducts:v1.0.0",
+          "shortDescription": "All refer picklist, its needed in derived data product transform pipeline and data modelling for out- of- the-box content and Insight app",
+          "description": "All referenced picklists, its needed in derived data product's transformation pipeline and data modelling for out- of- the-box content and Insight app.",
+          "entityTypes": [
+            "sap.sf.extensibility:entityType:pickList:v1"
+          ],
+          "entities": [
             {
               "name": "pickList",
-              "extensible": true,
-              "root": true,
-              "plugins": []
-            },
-            {
-              "name": "pickList_pickListTimeSlice",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "pickList_pickListValue",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
-            {
-              "name": "pickList_pickListValueText",
-              "extensible": true,
-              "root": false,
-              "plugins": []
+              "nodes": [
+                {
+                  "name": "pickList",
+                  "extensible": true,
+                  "root": true,
+                  "plugins": []
+                },
+                {
+                  "name": "pickList_pickListTimeSlice",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "pickList_pickListValue",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "pickList_pickListValueText",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                }
+              ],
+              "main": false
             }
-          ],
-          "main": false
+          ]
         }
       ]
     }

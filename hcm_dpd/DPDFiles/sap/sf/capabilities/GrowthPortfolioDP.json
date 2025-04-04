@@ -4,39 +4,46 @@
   "policyLevels": "sap:core:v1",
   "dataProducts": [
     {
-      "name": "GrowthPortfolio",
-      "version": "1.0.0",
-      "category": "businessObject",
-      "type": "primary",
-      "title": "GrowthPortfolio",
-      "status": "In Testing",
-      "namespace": "sap.sf.capabilities",
-      "responsible": "sap:ach:LOD-SF-TIH",
-      "partOfPackage": "sap.sf.capabilities:package:DataProducts:v1.0.0",
-      "shortDescription": "Provides profile data of the employees with Skills and Attributes",
-      "description": "This data product provides Profile data of employees with Skills and Attributes",
-      "entityTypes": [
-        "sap.odm:entityType:WorkforceCapabilityAssignment:v1",
-        "sap.sf.capabilities:entityType:growthPortfolioAttribute:v1"
-      ],
-      "entities": [
+      "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
+      "openResourceDiscovery": "1.9",
+      "policyLevels": "sap:core:v1",
+      "dataProducts": [
         {
-          "name": "growthPortfolioAttribute",
-          "nodes": [
+          "name": "GrowthPortfolio",
+          "version": "1.0.0",
+          "category": "businessObject",
+          "type": "primary",
+          "title": "GrowthPortfolio",
+          "status": "In Testing",
+          "namespace": "sap.sf.capabilities",
+          "responsible": "sap:ach:LOD-SF-TIH",
+          "partOfPackage": "sap.sf.capabilities:package:DataProducts:v1.0.0",
+          "shortDescription": "Provides profile data of the employees with Skills and Attributes",
+          "description": "This data product provides Profile data of employees with Skills and Attributes",
+          "entityTypes": [
+            "sap.odm:entityType:WorkforceCapabilityAssignment:v1",
+            "sap.sf.capabilities:entityType:growthPortfolioAttribute:v1"
+          ],
+          "entities": [
             {
               "name": "growthPortfolioAttribute",
-              "extensible": true,
-              "root": true,
-              "plugins": []
-            },
-            {
-              "name": "growthPortfolioAttribute_assessmentHistory",
-              "extensible": true,
-              "root": false,
-              "plugins": []
+              "nodes": [
+                {
+                  "name": "growthPortfolioAttribute",
+                  "extensible": true,
+                  "root": true,
+                  "plugins": []
+                },
+                {
+                  "name": "growthPortfolioAttribute_assessmentHistory",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                }
+              ],
+              "main": false
             }
-          ],
-          "main": false
+          ]
         }
       ]
     }

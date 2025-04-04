@@ -4,38 +4,45 @@
   "policyLevels": "sap:core:v1",
   "dataProducts": [
     {
-      "name": "Classification",
-      "version": "1.0.0",
-      "category": "businessObject",
-      "type": "primary",
-      "title": "Classification",
-      "status": "In Testing",
-      "namespace": "sap.sf.learning",
-      "responsible": "sap:ach:LOD-SF-LMS",
-      "partOfPackage": "sap.sf.learning:package:DataProducts:v1.0.0",
-      "shortDescription": "Contains reference data that is required in Learning.",
-      "description": "Reference Data required in Learning",
-      "entityTypes": [
-        "sap.sf.learning:entityType:classification:v1"
-      ],
-      "entities": [
+      "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
+      "openResourceDiscovery": "1.9",
+      "policyLevels": "sap:core:v1",
+      "dataProducts": [
         {
-          "name": "classification",
-          "nodes": [
-            {
-              "name": "classification_classificationText",
-              "extensible": true,
-              "root": false,
-              "plugins": []
-            },
+          "name": "Classification",
+          "version": "1.0.0",
+          "category": "businessObject",
+          "type": "primary",
+          "title": "Classification",
+          "status": "In Testing",
+          "namespace": "sap.sf.learning",
+          "responsible": "sap:ach:LOD-SF-LMS",
+          "partOfPackage": "sap.sf.learning:package:DataProducts:v1.0.0",
+          "shortDescription": "Contains reference data that is required in Learning.",
+          "description": "Reference Data required in Learning",
+          "entityTypes": [
+            "sap.sf.learning:entityType:classification:v1"
+          ],
+          "entities": [
             {
               "name": "classification",
-              "extensible": true,
-              "root": true,
-              "plugins": []
+              "nodes": [
+                {
+                  "name": "classification_classificationText",
+                  "extensible": true,
+                  "root": false,
+                  "plugins": []
+                },
+                {
+                  "name": "classification",
+                  "extensible": true,
+                  "root": true,
+                  "plugins": []
+                }
+              ],
+              "main": false
             }
-          ],
-          "main": false
+          ]
         }
       ]
     }
