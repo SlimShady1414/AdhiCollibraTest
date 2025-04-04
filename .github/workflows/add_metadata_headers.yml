@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout AdhiCollibraTest repository
+      - name: Checkout repository
         uses: actions/checkout@v2
       
       - name: Set up Node.js
@@ -26,7 +26,10 @@ jobs:
 
       - name: Create intermediate files with metadata headers
         run: |
-          # Define the required metadata headers
+          const fs = require('fs');
+          const path = require('path');
+          const jsonfile = require('jsonfile');
+
           const metadata = {
             "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
             "openResourceDiscovery": "1.9",
@@ -34,19 +37,13 @@ jobs:
             "dataProducts": []
           };
 
-          const fs = require('fs');
-          const path = require('path');
-          const jsonfile = require('jsonfile');
-
-          const baseDir = 'hcm_dpd/DPDFiles/sap/sf/';  # Change this to match the directory structure in AdhiCollibraTest
-          const outputDir = 'modified_json';  # Output directory where modified files will be saved
+          const baseDir = 'hcm_dpd/DPDFiles/sap/sf/';
+          const outputDir = 'modified_json';
           
-          // Create the output directory if it doesn't exist
           if (!fs.existsSync(outputDir)) {
             fs.mkdirSync(outputDir);
           }
 
-          // Function to recursively iterate through directories and update JSON files
           function updateJsonFiles(dir) {
             const files = fs.readdirSync(dir);
             files.forEach(file => {
@@ -54,31 +51,25 @@ jobs:
               const stat = fs.lstatSync(fullPath);
               
               if (stat.isDirectory()) {
-                // Recursively process directories
                 updateJsonFiles(fullPath);
               } else if (file.endsWith('.json')) {
-                // Read the JSON file
                 jsonfile.readFile(fullPath, (err, obj) => {
                   if (err) {
                     console.error('Error reading JSON file:', err);
                     return;
                   }
 
-                  // Prepend the metadata headers and append the closing brackets
-                  obj = { ...metadata, dataProducts: [{ ...obj }] };
+                  const newObj = { ...metadata, dataProducts: [obj] };
 
-                  // Generate the new output file path
                   const relativePath = path.relative(baseDir, fullPath);
                   const outputFilePath = path.join(outputDir, relativePath);
 
-                  // Create the necessary directories for the output file path
                   const outputDirPath = path.dirname(outputFilePath);
                   if (!fs.existsSync(outputDirPath)) {
                     fs.mkdirSync(outputDirPath, { recursive: true });
                   }
 
-                  // Write the updated JSON to the new intermediate file
-                  jsonfile.writeFile(outputFilePath, obj, { spaces: 2 }, (err) => {
+                  jsonfile.writeFile(outputFilePath, newObj, { spaces: 2 }, (err) => {
                     if (err) {
                       console.error('Error writing JSON file:', err);
                     } else {
@@ -90,5 +81,20 @@ jobs:
             });
           }
 
-          // Start processing the files from the base directory
           updateJsonFiles(baseDir);
+        shell: node
+
+      - name: Replace original files with modified ones
+        run: |
+          rm -rf hcm_dpd/DPDFiles/sap/sf/*
+          cp -r modified_json/* hcm_dpd/DPDFiles/sap/sf/
+          rm -rf modified_json
+        shell: bash
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add hcm_dpd/DPDFiles/sap/sf/
+          git commit -m "Add metadata headers to JSON files" || echo "No changes to commit"
+          git push
