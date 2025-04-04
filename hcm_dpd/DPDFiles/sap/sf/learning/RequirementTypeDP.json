@@ -14,38 +14,45 @@
           "policyLevels": "sap:core:v1",
           "dataProducts": [
             {
-              "name": "RequirementType",
-              "version": "1.0.0",
-              "category": "businessObject",
-              "type": "primary",
-              "title": "RequirementType",
-              "status": "In Testing",
-              "namespace": "sap.sf.learning",
-              "responsible": "sap:ach:LOD-SF-TIH",
-              "partOfPackage": "sap.sf.learning:package:DataProducts:v1.0.0",
-              "shortDescription": "Reference Data that is required in Learning",
-              "description": "Reference Data required in Learning",
-              "entityTypes": [
-                "sap.sf.learning:entityType:requirementType:v1"
-              ],
-              "entities": [
+              "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
+              "openResourceDiscovery": "1.9",
+              "policyLevels": "sap:core:v1",
+              "dataProducts": [
                 {
-                  "name": "requirementType",
-                  "nodes": [
-                    {
-                      "name": "requirementType_requirementTypeText",
-                      "extensible": true,
-                      "root": false,
-                      "plugins": []
-                    },
+                  "name": "RequirementType",
+                  "version": "1.0.0",
+                  "category": "businessObject",
+                  "type": "primary",
+                  "title": "RequirementType",
+                  "status": "In Testing",
+                  "namespace": "sap.sf.learning",
+                  "responsible": "sap:ach:LOD-SF-TIH",
+                  "partOfPackage": "sap.sf.learning:package:DataProducts:v1.0.0",
+                  "shortDescription": "Reference Data that is required in Learning",
+                  "description": "Reference Data required in Learning",
+                  "entityTypes": [
+                    "sap.sf.learning:entityType:requirementType:v1"
+                  ],
+                  "entities": [
                     {
                       "name": "requirementType",
-                      "extensible": true,
-                      "root": true,
-                      "plugins": []
+                      "nodes": [
+                        {
+                          "name": "requirementType_requirementTypeText",
+                          "extensible": true,
+                          "root": false,
+                          "plugins": []
+                        },
+                        {
+                          "name": "requirementType",
+                          "extensible": true,
+                          "root": true,
+                          "plugins": []
+                        }
+                      ],
+                      "main": false
                     }
-                  ],
-                  "main": false
+                  ]
                 }
               ]
             }

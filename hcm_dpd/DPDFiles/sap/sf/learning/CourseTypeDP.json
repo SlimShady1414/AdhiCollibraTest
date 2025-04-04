@@ -14,38 +14,45 @@
           "policyLevels": "sap:core:v1",
           "dataProducts": [
             {
-              "name": "CourseType",
-              "version": "1.0.0",
-              "category": "businessObject",
-              "type": "primary",
-              "title": "CourseType",
-              "status": "In Testing",
-              "namespace": "sap.sf.learning",
-              "responsible": "sap:ach:LOD-SF-LMS",
-              "partOfPackage": "sap.sf.learning:package:DataProducts:v1.0.0",
-              "shortDescription": "Reference Data required in Learning. Delivery Date assumes that all the dependencies are in place.",
-              "description": "Reference Data required in Learning.Delivery Date assumes that all dependencies are in place. If this is not the case then Delivery Qtr will be re-determined",
-              "entityTypes": [
-                "sap.sf.learning:entityType:courseType:v1"
-              ],
-              "entities": [
+              "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
+              "openResourceDiscovery": "1.9",
+              "policyLevels": "sap:core:v1",
+              "dataProducts": [
                 {
-                  "name": "courseType",
-                  "nodes": [
-                    {
-                      "name": "courseType_courseTypeText",
-                      "extensible": true,
-                      "root": false,
-                      "plugins": []
-                    },
+                  "name": "CourseType",
+                  "version": "1.0.0",
+                  "category": "businessObject",
+                  "type": "primary",
+                  "title": "CourseType",
+                  "status": "In Testing",
+                  "namespace": "sap.sf.learning",
+                  "responsible": "sap:ach:LOD-SF-LMS",
+                  "partOfPackage": "sap.sf.learning:package:DataProducts:v1.0.0",
+                  "shortDescription": "Reference Data required in Learning. Delivery Date assumes that all the dependencies are in place.",
+                  "description": "Reference Data required in Learning.Delivery Date assumes that all dependencies are in place. If this is not the case then Delivery Qtr will be re-determined",
+                  "entityTypes": [
+                    "sap.sf.learning:entityType:courseType:v1"
+                  ],
+                  "entities": [
                     {
                       "name": "courseType",
-                      "extensible": true,
-                      "root": true,
-                      "plugins": []
+                      "nodes": [
+                        {
+                          "name": "courseType_courseTypeText",
+                          "extensible": true,
+                          "root": false,
+                          "plugins": []
+                        },
+                        {
+                          "name": "courseType",
+                          "extensible": true,
+                          "root": true,
+                          "plugins": []
+                        }
+                      ],
+                      "main": false
                     }
-                  ],
-                  "main": false
+                  ]
                 }
               ]
             }
