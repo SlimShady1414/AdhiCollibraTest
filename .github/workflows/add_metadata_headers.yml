@@ -24,8 +24,9 @@ jobs:
       - name: Install dependencies
         run: npm install --save jsonfile
 
-      - name: Create intermediate files with metadata headers
+      - name: Create script file
         run: |
+          cat > update_json.js << 'EOL'
           const fs = require('fs');
           const path = require('path');
           const jsonfile = require('jsonfile');
@@ -53,36 +54,28 @@ jobs:
               if (stat.isDirectory()) {
                 updateJsonFiles(fullPath);
               } else if (file.endsWith('.json')) {
-                jsonfile.readFile(fullPath, (err, obj) => {
-                  if (err) {
-                    console.error('Error reading JSON file:', err);
-                    return;
-                  }
+                const obj = jsonfile.readFileSync(fullPath);
+                const newObj = { ...metadata, dataProducts: [obj] };
 
-                  const newObj = { ...metadata, dataProducts: [obj] };
+                const relativePath = path.relative(baseDir, fullPath);
+                const outputFilePath = path.join(outputDir, relativePath);
 
-                  const relativePath = path.relative(baseDir, fullPath);
-                  const outputFilePath = path.join(outputDir, relativePath);
+                const outputDirPath = path.dirname(outputFilePath);
+                if (!fs.existsSync(outputDirPath)) {
+                  fs.mkdirSync(outputDirPath, { recursive: true });
+                }
 
-                  const outputDirPath = path.dirname(outputFilePath);
-                  if (!fs.existsSync(outputDirPath)) {
-                    fs.mkdirSync(outputDirPath, { recursive: true });
-                  }
-
-                  jsonfile.writeFile(outputFilePath, newObj, { spaces: 2 }, (err) => {
-                    if (err) {
-                      console.error('Error writing JSON file:', err);
-                    } else {
-                      console.log(`Created intermediate file: ${outputFilePath}`);
-                    }
-                  });
-                });
+                jsonfile.writeFileSync(outputFilePath, newObj, { spaces: 2 });
+                console.log(`Created intermediate file: ${outputFilePath}`);
               }
             });
           }
 
           updateJsonFiles(baseDir);
-        shell: node
+          EOL
+
+      - name: Run update script
+        run: node update_json.js
 
       - name: Replace original files with modified ones
         run: |
