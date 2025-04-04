@@ -1,111 +1,118 @@
 {
-  "name": "OrganizationalStructure",
-  "version": "1.0.0",
-  "category": "businessObject",
-  "type": "primary",
-  "title": "OrganizationalStructure",
-  "status": "In Testing",
-  "namespace": "sap.sf.foundationobjects",
-  "responsible": "sap:ach:LOD-SF-EC",
-  "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
-  "shortDescription": "Org structure refers to org and reporting structure in a company.",
-  "description": "Organization structure refers to organizational and reporting structures in a company.",
-  "entityTypes": [
-    "sap.odm:entityType:OrganizationalUnit:v1",
-    "sap.sf.foundationobjects:entityType:businessUnit:v1",
-    "sap.sf.foundationobjects:entityType:department:v1",
-    "sap.sf.foundationobjects:entityType:division:v1"
-  ],
-  "entities": [
+  "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
+  "openResourceDiscovery": "1.9",
+  "policyLevels": "sap:core:v1",
+  "dataProducts": [
     {
-      "name": "businessUnit",
-      "nodes": [
+      "name": "OrganizationalStructure",
+      "version": "1.0.0",
+      "category": "businessObject",
+      "type": "primary",
+      "title": "OrganizationalStructure",
+      "status": "In Testing",
+      "namespace": "sap.sf.foundationobjects",
+      "responsible": "sap:ach:LOD-SF-EC",
+      "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
+      "shortDescription": "Org structure refers to org and reporting structure in a company.",
+      "description": "Organization structure refers to organizational and reporting structures in a company.",
+      "entityTypes": [
+        "sap.odm:entityType:OrganizationalUnit:v1",
+        "sap.sf.foundationobjects:entityType:businessUnit:v1",
+        "sap.sf.foundationobjects:entityType:department:v1",
+        "sap.sf.foundationobjects:entityType:division:v1"
+      ],
+      "entities": [
         {
           "name": "businessUnit",
-          "extensible": true,
-          "root": true,
-          "plugins": []
-        },
-        {
-          "name": "businessUnit_businessUnitTimeSlice",
-          "extensible": true,
-          "root": false,
-          "plugins": []
-        },
-        {
-          "name": "businessUnit_businessUnitText",
-          "extensible": true,
-          "root": false,
-          "plugins": []
-        }
-      ],
-      "main": false
-    },
-    {
-      "name": "division",
-      "nodes": [
-        {
-          "name": "division_businessUnit",
-          "extensible": true,
-          "root": false,
-          "plugins": []
+          "nodes": [
+            {
+              "name": "businessUnit",
+              "extensible": true,
+              "root": true,
+              "plugins": []
+            },
+            {
+              "name": "businessUnit_businessUnitTimeSlice",
+              "extensible": true,
+              "root": false,
+              "plugins": []
+            },
+            {
+              "name": "businessUnit_businessUnitText",
+              "extensible": true,
+              "root": false,
+              "plugins": []
+            }
+          ],
+          "main": false
         },
         {
           "name": "division",
-          "extensible": true,
-          "root": true,
-          "plugins": []
-        },
-        {
-          "name": "division_divisionTimeSlice",
-          "extensible": true,
-          "root": false,
-          "plugins": []
-        },
-        {
-          "name": "division_divisionText",
-          "extensible": true,
-          "root": false,
-          "plugins": []
-        }
-      ],
-      "main": false
-    },
-    {
-      "name": "department",
-      "nodes": [
-        {
-          "name": "department_DepartmentApprenticeDetail",
-          "extensible": true,
-          "root": false,
-          "plugins": []
+          "nodes": [
+            {
+              "name": "division_businessUnit",
+              "extensible": true,
+              "root": false,
+              "plugins": []
+            },
+            {
+              "name": "division",
+              "extensible": true,
+              "root": true,
+              "plugins": []
+            },
+            {
+              "name": "division_divisionTimeSlice",
+              "extensible": true,
+              "root": false,
+              "plugins": []
+            },
+            {
+              "name": "division_divisionText",
+              "extensible": true,
+              "root": false,
+              "plugins": []
+            }
+          ],
+          "main": false
         },
         {
           "name": "department",
-          "extensible": true,
-          "root": true,
-          "plugins": []
-        },
-        {
-          "name": "department_division",
-          "extensible": true,
-          "root": false,
-          "plugins": []
-        },
-        {
-          "name": "department_departmentTimeSlice",
-          "extensible": true,
-          "root": false,
-          "plugins": []
-        },
-        {
-          "name": "department_departmentText",
-          "extensible": true,
-          "root": false,
-          "plugins": []
+          "nodes": [
+            {
+              "name": "department_DepartmentApprenticeDetail",
+              "extensible": true,
+              "root": false,
+              "plugins": []
+            },
+            {
+              "name": "department",
+              "extensible": true,
+              "root": true,
+              "plugins": []
+            },
+            {
+              "name": "department_division",
+              "extensible": true,
+              "root": false,
+              "plugins": []
+            },
+            {
+              "name": "department_departmentTimeSlice",
+              "extensible": true,
+              "root": false,
+              "plugins": []
+            },
+            {
+              "name": "department_departmentText",
+              "extensible": true,
+              "root": false,
+              "plugins": []
+            }
+          ],
+          "main": false
         }
-      ],
-      "main": false
+      ]
     }
   ]
 }

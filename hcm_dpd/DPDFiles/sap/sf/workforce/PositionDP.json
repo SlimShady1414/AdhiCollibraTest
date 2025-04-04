@@ -1,49 +1,56 @@
 {
-  "name": "Position",
-  "version": "1.0.0",
-  "category": "businessObject",
-  "type": "primary",
-  "title": "Position",
-  "status": "In Testing",
-  "namespace": "sap.sf.workforce",
-  "responsible": "sap:ach:LOD-SF-EC",
-  "partOfPackage": "sap.sf.workforce:package:DataProducts:v1.0.0",
-  "shortDescription": "Job position is the smallest unit of the org structure in a certain part of a company and comprises a specific occurrence of a job.",
-  "description": "Job position is the smallest unit of the organizational structure in a certain part of a company and comprises a specific occurrence of a job with a fixed combination of tasks, competencies, and responsibilities.",
-  "entityTypes": [
-    "sap.odm:entityType:WorkforcePosition:v1",
-    "sap.sf.workforce:entityType:position:v1"
-  ],
-  "entities": [
+  "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
+  "openResourceDiscovery": "1.9",
+  "policyLevels": "sap:core:v1",
+  "dataProducts": [
     {
-      "name": "position",
-      "nodes": [
+      "name": "Position",
+      "version": "1.0.0",
+      "category": "businessObject",
+      "type": "primary",
+      "title": "Position",
+      "status": "In Testing",
+      "namespace": "sap.sf.workforce",
+      "responsible": "sap:ach:LOD-SF-EC",
+      "partOfPackage": "sap.sf.workforce:package:DataProducts:v1.0.0",
+      "shortDescription": "Job position is the smallest unit of the org structure in a certain part of a company and comprises a specific occurrence of a job.",
+      "description": "Job position is the smallest unit of the organizational structure in a certain part of a company and comprises a specific occurrence of a job with a fixed combination of tasks, competencies, and responsibilities.",
+      "entityTypes": [
+        "sap.odm:entityType:WorkforcePosition:v1",
+        "sap.sf.workforce:entityType:position:v1"
+      ],
+      "entities": [
         {
           "name": "position",
-          "extensible": true,
-          "root": true,
-          "plugins": []
-        },
-        {
-          "name": "position_positionText",
-          "extensible": true,
-          "root": false,
-          "plugins": []
-        },
-        {
-          "name": "position_PositionMatrixRelationship",
-          "extensible": true,
-          "root": false,
-          "plugins": []
-        },
-        {
-          "name": "position_positionTimeSlice",
-          "extensible": true,
-          "root": false,
-          "plugins": []
+          "nodes": [
+            {
+              "name": "position",
+              "extensible": true,
+              "root": true,
+              "plugins": []
+            },
+            {
+              "name": "position_positionText",
+              "extensible": true,
+              "root": false,
+              "plugins": []
+            },
+            {
+              "name": "position_PositionMatrixRelationship",
+              "extensible": true,
+              "root": false,
+              "plugins": []
+            },
+            {
+              "name": "position_positionTimeSlice",
+              "extensible": true,
+              "root": false,
+              "plugins": []
+            }
+          ],
+          "main": false
         }
-      ],
-      "main": false
+      ]
     }
   ]
 }
