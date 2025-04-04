@@ -9,128 +9,135 @@
       "policyLevels": "sap:core:v1",
       "dataProducts": [
         {
-          "name": "JobApplication",
-          "version": "1.0.0",
-          "category": "business-object",
-          "type": "primary",
-          "title": "JobApplication",
-          "status": "In Testing",
-          "namespace": "sap.sf.recruiting",
-          "responsible": "sap:ach:LOD-SF-RCM",
-          "partOfPackage": "sap.sf.recruiting:package:DataProducts:v1.0.0",
-          "shortDescription": "Data product that helps track and manage a candidate's application, monitoring progress, job details, and skills to streamline evaluation and hiring.",
-          "description": "Tracks and manages a candidate's application, monitoring progress, job details, and skills to streamline evaluation and hiring.",
-          "entityTypes": [
-            "sap.sf.recruiting:entityType:jobApplication:v1"
-          ],
-          "entities": [
+          "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
+          "openResourceDiscovery": "1.9",
+          "policyLevels": "sap:core:v1",
+          "dataProducts": [
             {
-              "name": "jobApplication",
-              "nodes": [
+              "name": "JobApplication",
+              "version": "1.0.0",
+              "category": "business-object",
+              "type": "primary",
+              "title": "JobApplication",
+              "status": "In Testing",
+              "namespace": "sap.sf.recruiting",
+              "responsible": "sap:ach:LOD-SF-RCM",
+              "partOfPackage": "sap.sf.recruiting:package:DataProducts:v1.0.0",
+              "shortDescription": "Data product that helps track and manage a candidate's application, monitoring progress, job details, and skills to streamline evaluation and hiring.",
+              "description": "Tracks and manages a candidate's application, monitoring progress, job details, and skills to streamline evaluation and hiring.",
+              "entityTypes": [
+                "sap.sf.recruiting:entityType:jobApplication:v1"
+              ],
+              "entities": [
                 {
                   "name": "jobApplication",
-                  "extensible": true,
-                  "root": true,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_currencyData",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_questionResponse",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_comment",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_assessment",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_onboardingInformation",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_backgroundCheck",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_courses",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_certificates",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_mobility",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_languages",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_education",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_insideWorkExperience",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_outsideWorkExperience",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_statusAudit",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_skillProfile",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "jobApplication_skill",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
+                  "nodes": [
+                    {
+                      "name": "jobApplication",
+                      "extensible": true,
+                      "root": true,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_currencyData",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_questionResponse",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_comment",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_assessment",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_onboardingInformation",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_backgroundCheck",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_courses",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_certificates",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_mobility",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_languages",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_education",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_insideWorkExperience",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_outsideWorkExperience",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_statusAudit",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_skillProfile",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "jobApplication_skill",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    }
+                  ],
+                  "main": false
                 }
-              ],
-              "main": false
+              ]
             }
           ]
         }

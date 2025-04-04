@@ -9,101 +9,108 @@
       "policyLevels": "sap:core:v1",
       "dataProducts": [
         {
-          "name": "WorkforcePerson",
-          "version": "1.0.0",
-          "category": "businessObject",
-          "type": "primary",
-          "title": "WorkforcePerson",
-          "status": "In Testing",
-          "namespace": "sap.sf.workforce",
-          "responsible": "sap:ach:LOD-SF-EC",
-          "partOfPackage": "sap.sf.workforce:package:DataProducts:v1.0.0",
-          "shortDescription": "Workforce person contains data that refers to a person and their employment details.",
-          "description": "Workforce person data refers to a person and their employment details. Workforce person data includes personal information,biographical information, address, contact information, national ID, social account, country/region-specific information, and employment details such as assignments, job details, and global assignment information.",
-          "entityTypes": [
-            "sap.odm:entityType:WorkforceAssignment:v1",
-            "sap.odm:entityType:WorkforcePerson:v1",
-            "sap.sf.workforce:entityType:assignment:v1",
-            "sap.sf.workforce:entityType:person:v1"
-          ],
-          "entities": [
+          "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
+          "openResourceDiscovery": "1.9",
+          "policyLevels": "sap:core:v1",
+          "dataProducts": [
             {
-              "name": "person",
-              "nodes": [
-                {
-                  "name": "person_personalDetail",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "person_assignment",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
+              "name": "WorkforcePerson",
+              "version": "1.0.0",
+              "category": "businessObject",
+              "type": "primary",
+              "title": "WorkforcePerson",
+              "status": "In Testing",
+              "namespace": "sap.sf.workforce",
+              "responsible": "sap:ach:LOD-SF-EC",
+              "partOfPackage": "sap.sf.workforce:package:DataProducts:v1.0.0",
+              "shortDescription": "Workforce person contains data that refers to a person and their employment details.",
+              "description": "Workforce person data refers to a person and their employment details. Workforce person data includes personal information,biographical information, address, contact information, national ID, social account, country/region-specific information, and employment details such as assignments, job details, and global assignment information.",
+              "entityTypes": [
+                "sap.odm:entityType:WorkforceAssignment:v1",
+                "sap.odm:entityType:WorkforcePerson:v1",
+                "sap.sf.workforce:entityType:assignment:v1",
+                "sap.sf.workforce:entityType:person:v1"
+              ],
+              "entities": [
                 {
                   "name": "person",
-                  "extensible": true,
-                  "root": true,
-                  "plugins": []
-                },
-                {
-                  "name": "person_biographicalLocDetail",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "person_biographicalDetail",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "person_nationalId",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "person_globalDetail",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                }
-              ],
-              "main": false
-            },
-            {
-              "name": "assignment",
-              "nodes": [
-                {
-                  "name": "assignment_assignmentDetail",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
+                  "nodes": [
+                    {
+                      "name": "person_personalDetail",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "person_assignment",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "person",
+                      "extensible": true,
+                      "root": true,
+                      "plugins": []
+                    },
+                    {
+                      "name": "person_biographicalLocDetail",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "person_biographicalDetail",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "person_nationalId",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "person_globalDetail",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    }
+                  ],
+                  "main": false
                 },
                 {
                   "name": "assignment",
-                  "extensible": true,
-                  "root": true,
-                  "plugins": []
-                },
-                {
-                  "name": "assignment_primaryAssignment",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "assignment_jobDetail",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
+                  "nodes": [
+                    {
+                      "name": "assignment_assignmentDetail",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "assignment",
+                      "extensible": true,
+                      "root": true,
+                      "plugins": []
+                    },
+                    {
+                      "name": "assignment_primaryAssignment",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "assignment_jobDetail",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    }
+                  ],
+                  "main": false
                 }
-              ],
-              "main": false
+              ]
             }
           ]
         }

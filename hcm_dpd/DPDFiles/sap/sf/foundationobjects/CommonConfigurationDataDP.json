@@ -9,193 +9,200 @@
       "policyLevels": "sap:core:v1",
       "dataProducts": [
         {
-          "name": "CommonConfigurationData",
-          "version": "1.0.0",
-          "category": "businessObject",
-          "type": "primary",
-          "title": "CommonConfigurationData",
-          "status": "In Testing",
-          "namespace": "sap.sf.foundationobjects",
-          "responsible": "sap:ach:LOD-SF-EC",
-          "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
-          "shortDescription": "Common configuration data is info that can be shared across the company, such as currency, country code, exchange rate, and time zone.",
-          "description": "Common configuration data  is information that can be shared across the entire company, such as currencies, country codes, exchange rates, and time zones.",
-          "entityTypes": [
-            "sap.odm:entityType:CountryCode:v1",
-            "sap.odm:entityType:CurrencyCode:v1",
-            "sap.odm:entityType:EventReasonCode:v1",
-            "sap.odm:entityType:ExchangeRate:v1",
-            "sap.odm:entityType:TimeZoneCode:v1",
-            "sap.sf.foundationobjects:entityType:country:v1",
-            "sap.sf.foundationobjects:entityType:currency:v1",
-            "sap.sf.foundationobjects:entityType:currencyExchangeRate:v1",
-            "sap.sf.foundationobjects:entityType:eventReason:v1",
-            "sap.sf.foundationobjects:entityType:frequency:v1",
-            "sap.sf.foundationobjects:entityType:geoZone:v1",
-            "sap.sf.foundationobjects:entityType:timeZone:v1"
-          ],
-          "entities": [
+          "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
+          "openResourceDiscovery": "1.9",
+          "policyLevels": "sap:core:v1",
+          "dataProducts": [
             {
-              "name": "currency",
-              "nodes": [
+              "name": "CommonConfigurationData",
+              "version": "1.0.0",
+              "category": "businessObject",
+              "type": "primary",
+              "title": "CommonConfigurationData",
+              "status": "In Testing",
+              "namespace": "sap.sf.foundationobjects",
+              "responsible": "sap:ach:LOD-SF-EC",
+              "partOfPackage": "sap.sf.foundationobjects:package:DataProducts:v1.0.0",
+              "shortDescription": "Common configuration data is info that can be shared across the company, such as currency, country code, exchange rate, and time zone.",
+              "description": "Common configuration data  is information that can be shared across the entire company, such as currencies, country codes, exchange rates, and time zones.",
+              "entityTypes": [
+                "sap.odm:entityType:CountryCode:v1",
+                "sap.odm:entityType:CurrencyCode:v1",
+                "sap.odm:entityType:EventReasonCode:v1",
+                "sap.odm:entityType:ExchangeRate:v1",
+                "sap.odm:entityType:TimeZoneCode:v1",
+                "sap.sf.foundationobjects:entityType:country:v1",
+                "sap.sf.foundationobjects:entityType:currency:v1",
+                "sap.sf.foundationobjects:entityType:currencyExchangeRate:v1",
+                "sap.sf.foundationobjects:entityType:eventReason:v1",
+                "sap.sf.foundationobjects:entityType:frequency:v1",
+                "sap.sf.foundationobjects:entityType:geoZone:v1",
+                "sap.sf.foundationobjects:entityType:timeZone:v1"
+              ],
+              "entities": [
                 {
                   "name": "currency",
-                  "extensible": true,
-                  "root": true,
-                  "plugins": []
+                  "nodes": [
+                    {
+                      "name": "currency",
+                      "extensible": true,
+                      "root": true,
+                      "plugins": []
+                    },
+                    {
+                      "name": "currency_currencyText",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "currency_currencyTimeSlice",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    }
+                  ],
+                  "main": false
                 },
-                {
-                  "name": "currency_currencyText",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "currency_currencyTimeSlice",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                }
-              ],
-              "main": false
-            },
-            {
-              "name": "country",
-              "nodes": [
                 {
                   "name": "country",
-                  "extensible": true,
-                  "root": true,
-                  "plugins": []
-                },
-                {
-                  "name": "country_countryTimeSlice",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "country_countryText",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                }
-              ],
-              "main": false
-            },
-            {
-              "name": "currencyExchangeRate",
-              "nodes": [
-                {
-                  "name": "currencyExchangeRate_currencyExchangeRateText",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
+                  "nodes": [
+                    {
+                      "name": "country",
+                      "extensible": true,
+                      "root": true,
+                      "plugins": []
+                    },
+                    {
+                      "name": "country_countryTimeSlice",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "country_countryText",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    }
+                  ],
+                  "main": false
                 },
                 {
                   "name": "currencyExchangeRate",
-                  "extensible": true,
-                  "root": true,
-                  "plugins": []
-                },
-                {
-                  "name": "currencyExchangeRate_currencyExchangeRateTimeSlice",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                }
-              ],
-              "main": false
-            },
-            {
-              "name": "timeZone",
-              "nodes": [
-                {
-                  "name": "timeZone_timeZoneText",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
+                  "nodes": [
+                    {
+                      "name": "currencyExchangeRate_currencyExchangeRateText",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "currencyExchangeRate",
+                      "extensible": true,
+                      "root": true,
+                      "plugins": []
+                    },
+                    {
+                      "name": "currencyExchangeRate_currencyExchangeRateTimeSlice",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    }
+                  ],
+                  "main": false
                 },
                 {
                   "name": "timeZone",
-                  "extensible": true,
-                  "root": true,
-                  "plugins": []
+                  "nodes": [
+                    {
+                      "name": "timeZone_timeZoneText",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "timeZone",
+                      "extensible": true,
+                      "root": true,
+                      "plugins": []
+                    },
+                    {
+                      "name": "timeZone_timeZoneTimeSlice",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    }
+                  ],
+                  "main": false
                 },
-                {
-                  "name": "timeZone_timeZoneTimeSlice",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                }
-              ],
-              "main": false
-            },
-            {
-              "name": "geoZone",
-              "nodes": [
                 {
                   "name": "geoZone",
-                  "extensible": true,
-                  "root": true,
-                  "plugins": []
-                },
-                {
-                  "name": "geoZone_geoZoneTimesliceText",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "geoZone_geoZoneTimeslice",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                }
-              ],
-              "main": false
-            },
-            {
-              "name": "frequency",
-              "nodes": [
-                {
-                  "name": "frequency_frequencyText",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
+                  "nodes": [
+                    {
+                      "name": "geoZone",
+                      "extensible": true,
+                      "root": true,
+                      "plugins": []
+                    },
+                    {
+                      "name": "geoZone_geoZoneTimesliceText",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "geoZone_geoZoneTimeslice",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    }
+                  ],
+                  "main": false
                 },
                 {
                   "name": "frequency",
-                  "extensible": true,
-                  "root": true,
-                  "plugins": []
-                }
-              ],
-              "main": false
-            },
-            {
-              "name": "eventReason",
-              "nodes": [
+                  "nodes": [
+                    {
+                      "name": "frequency_frequencyText",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "frequency",
+                      "extensible": true,
+                      "root": true,
+                      "plugins": []
+                    }
+                  ],
+                  "main": false
+                },
                 {
                   "name": "eventReason",
-                  "extensible": true,
-                  "root": true,
-                  "plugins": []
-                },
-                {
-                  "name": "eventReason_eventReasonTimeslice",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
-                },
-                {
-                  "name": "eventReason_eventReasonTimesliceText",
-                  "extensible": true,
-                  "root": false,
-                  "plugins": []
+                  "nodes": [
+                    {
+                      "name": "eventReason",
+                      "extensible": true,
+                      "root": true,
+                      "plugins": []
+                    },
+                    {
+                      "name": "eventReason_eventReasonTimeslice",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    },
+                    {
+                      "name": "eventReason_eventReasonTimesliceText",
+                      "extensible": true,
+                      "root": false,
+                      "plugins": []
+                    }
+                  ],
+                  "main": false
                 }
-              ],
-              "main": false
+              ]
             }
           ]
         }
