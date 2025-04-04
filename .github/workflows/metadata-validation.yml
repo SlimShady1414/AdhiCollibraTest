@@ -9,7 +9,7 @@ on:
 jobs:
   validation:
     name: Metadata Validation
-    runs-on: [self-hosted, solinas]
+    runs-on: ubuntu-latest
     
     steps:
       - uses: actions/checkout@v4
