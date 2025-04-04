@@ -1,0 +1,108 @@
+name: API Metadata Validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validation:
+    name: Metadata Validation
+    runs-on: [self-hosted, solinas]
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Run API Metadata Validator
+        continue-on-error: true
+        uses: CPA/api-metadata-validator@ms/3.13.0
+        with:
+          files: ./hcm_dpd/DPDFiles/sap/sf/**/*.json
+          ruleset: sap:core:v1
+          verbose: true
+          format: text
+          output: ./validation_results/sap_validator_results.txt
+      
+      - name: Create Results Directory
+        run: mkdir -p ./validation_results
+      
+      - name: Custom Validation Rules
+        run: |
+          python3 - <<'EOF'
+          import json
+          import glob
+          import os
+          from datetime import datetime
+          
+          def validate_file(filepath):
+              with open(filepath, 'r') as f:
+                  try:
+                      data = json.load(f)
+                      errors = []
+                      
+                      # Rule 1: Description and shortDescription should not be the same
+                      if data.get('description') == data.get('shortDescription'):
+                          errors.append(f"Description and shortDescription are identical")
+                      
+                      # Rule 2: First word of shortDescription should not equal title
+                      short_desc = data.get('shortDescription', '')
+                      title = data.get('title', '')
+                      if short_desc and title and \
+                         short_desc.split()[0].lower() == title.split()[0].lower():
+                          errors.append(f"First word of shortDescription matches title")
+                      
+                      # Rule 3: shortDescription length check
+                      if len(short_desc) > 180:
+                          errors.append(f"shortDescription exceeds 180 characters (current: {len(short_desc)})")
+                      
+                      return errors
+                  except json.JSONDecodeError:
+                      return [f"Invalid JSON format"]
+          
+          def write_error_file(errors_by_file):
+              timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+              output_file = f"./validation_results/custom_validation_errors_{timestamp}.txt"
+              
+              with open(output_file, 'w') as f:
+                  f.write(f"Custom Validation Results - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                  f.write("=" * 80 + "\n\n")
+                  
+                  if not errors_by_file:
+                      f.write("No validation errors found!\n")
+                      return
+                  
+                  for filepath, errors in errors_by_file.items():
+                      if errors:
+                          f.write(f"\nFile: {filepath}\n")
+                          f.write("-" * 40 + "\n")
+                          for error in errors:
+                              f.write(f"- {error}\n")
+                          f.write("\n")
+          
+          def main():
+              errors_by_file = {}
+              
+              # Check only files in hcm_dpd
+              for filepath in glob.glob('./hcm_dpd/DPDFiles/sap/sf/**/*.json', recursive=True):
+                  errors = validate_file(filepath)
+                  if errors:
+                      errors_by_file[filepath] = errors
+              
+              write_error_file(errors_by_file)
+              
+              if errors_by_file:
+                  print("\nValidation errors found. Check validation_results directory for details.")
+              else:
+                  print("\nAll files passed custom validation rules!")
+          
+          if __name__ == "__main__":
+              main()
+          EOF
+
+      - name: Upload Validation Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: validation-results
+          path: ./validation_results/
+          retention-days: 14
